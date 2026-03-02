@@ -1,0 +1,22 @@
+{
+  "name": "nextjs-forked",
+  "version": "0.0.8",
+  "description": null,
+  "keywords": [],
+  "main": "index.js",
+  "dependencies": {
+    "react-dom": "15.5.3",
+    "react": "15.5.3",
+    "next": "3.0.1-beta.20",
+    "lucide-react": "latest"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
