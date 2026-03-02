@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// THE IRIS: High-Fidelity Neural Focus (Adjusted 40% Smaller)
+// THE IRIS: High-Fidelity Neural Focus (Refined 330px Scale)
 const TheIris = () => (
   <svg 
     width="330" 
@@ -8,8 +8,6 @@ const TheIris = () => (
     viewBox="0 0 100 100" 
     fill="none" 
     style={{ 
-      marginLeft: '40px', 
-      flexShrink: 0,
       opacity: 0.95,
       filter: 'drop-shadow(0 0 12px rgba(37, 99, 235, 0.2))'
     }}
@@ -22,7 +20,7 @@ const TheIris = () => (
       </radialGradient>
     </defs>
 
-    {/* Outer Neural Ring - 60 Micro-Vectors */}
+    {/* Outer Neural Ring */}
     <g stroke="white" strokeWidth="0.05" strokeOpacity="0.3">
       {[...Array(60)].map((_, i) => {
         const angle = (i * Math.PI) / 30;
@@ -34,7 +32,7 @@ const TheIris = () => (
       })}
     </g>
 
-    {/* The Intricate Iris - Converging Geometry */}
+    {/* The Intricate Iris */}
     <g stroke="white" strokeWidth="0.08" strokeOpacity="0.6">
       {[...Array(72)].map((_, i) => {
         const angle = (i * Math.PI) / 36;
@@ -53,23 +51,13 @@ const TheIris = () => (
       })}
     </g>
 
-    {/* Surreal Orbital Paths */}
     <ellipse cx="50" cy="50" rx="45" ry="15" stroke="#2563eb" strokeWidth="0.07" strokeOpacity="0.4" transform="rotate(45 50 50)" />
     <ellipse cx="50" cy="50" rx="45" ry="15" stroke="#2563eb" strokeWidth="0.07" strokeOpacity="0.4" transform="rotate(-45 50 50)" />
 
-    {/* The Pupil Core */}
     <circle cx="50" cy="50" r="12" fill="url(#pupilGlow)" opacity="0.3" />
     <circle cx="50" cy="50" r="4" fill="white">
       <animate attributeName="r" values="3.8;4.5;3.8" dur="4s" repeatCount="indefinite" />
     </circle>
-    
-    {/* Tech Tracking Markers */}
-    <g opacity="0.6" fill="white">
-        <rect x="49.7" y="2" width="0.6" height="6" />
-        <rect x="49.7" y="92" width="0.6" height="6" />
-        <rect x="2" y="49.7" width="6" height="0.6" />
-        <rect x="92" y="49.7" width="6" height="0.6" />
-    </g>
   </svg>
 );
 
@@ -89,16 +77,17 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '60px 20px', scrollBehavior: 'smooth' }}>
       
+      {/* Navigation - Centered over the Iris column */}
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
-        <div style={{ display: 'flex', gap: '30px' }}>
+        <div style={{ width: '330px', display: 'flex', justifyContent: 'center', gap: '30px', marginLeft: '40px' }}>
           <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
           <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
         </div>
       </nav>
 
-      <section style={{ maxWidth: '1200px', margin: '0 auto 140px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ flex: 1.5 }}>
+      <section style={{ maxWidth: '1200px', margin: '0 auto 140px', display: 'flex', alignItems: 'center' }}>
+        <div style={{ flex: 1 }}>
           <h1 style={{ fontSize: 'clamp(44px, 7vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>
             FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
           </h1>
@@ -111,7 +100,10 @@ export default function VanitySite() {
           </button>
         </div>
         
-        <TheIris />
+        {/* Iris Container: Centered in the remaining space */}
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+          <TheIris />
+        </div>
       </section>
 
       <section id="method" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
