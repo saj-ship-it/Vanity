@@ -19,7 +19,7 @@ export default function VanitySite() {
           <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
         </h1>
         <p style={{ color: '#888', maxWidth: '520px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px' }}>
-          Investigative analytics for high-stakes decision makers. We monitor non-obvious data pipelines to detect trend breaks before they manifest in the public record.
+          Predictive analytics for high-stakes decision makers. We monitor non-obvious data pipelines to detect trend breaks before they manifest in the public record.
         </p>
         <button style={{ backgroundColor: 'white', color: 'black', padding: '20px 40px', fontWeight: 'bold', border: 'none', fontSize: '12px', letterSpacing: '0.1em' }}>
           REQUEST SECURE BRIEFING
