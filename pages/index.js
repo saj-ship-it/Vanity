@@ -5,7 +5,7 @@ export default function VanitySite() {
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'sans-serif', padding: '80px 40px' }}>
       {/* Navigation */}
       <nav style={{ marginBottom: '100px', display: 'flex', justifyContent: 'space-between', letterSpacing: '0.3em', fontSize: '10px', opacity: 0.6 }}>
-        <strong>AUTHENTIC INTELLIGENCE // EST. 2026</strong>
+        <strong>AUTHENTIC INTELLIGENCE // EST. 2017</strong>
         <div style={{ display: 'flex', gap: '20px' }}>
           <span>METHOD</span>
           <span>SECTORS</span>
@@ -18,10 +18,13 @@ export default function VanitySite() {
           FIND SIGNAL <br />
           <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
         </h1>
+        
+        {/* Updated Copy with Line Break */}
         <p style={{ color: '#888', maxWidth: '520px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px' }}>
-          Predictive analytics for high-stakes decision makers. 
+          Predictive analytics for high-stakes decision makers. <br />
           We find and monitor non-obvious data pipelines to detect trend breaks first and before impact.
         </p>
+        
         <button style={{ backgroundColor: 'white', color: 'black', padding: '20px 40px', fontWeight: 'bold', border: 'none', fontSize: '12px', letterSpacing: '0.1em' }}>
           REQUEST SECURE BRIEFING
         </button>
