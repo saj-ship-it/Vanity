@@ -5,7 +5,7 @@ export default function VanitySite() {
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'sans-serif', padding: '80px 40px' }}>
       {/* Navigation */}
       <nav style={{ marginBottom: '100px', display: 'flex', justifyContent: 'space-between', letterSpacing: '0.3em', fontSize: '10px', opacity: 0.6 }}>
-        <strong>AUTHENTIC INTELLIGENCE</strong>
+        <strong>AUTHENTIC INTELLIGENCE // EST. 2026</strong>
         <div style={{ display: 'flex', gap: '20px' }}>
           <span>METHOD</span>
           <span>SECTORS</span>
@@ -26,18 +26,18 @@ export default function VanitySite() {
         </button>
       </section>
 
-      {/* The Methodology / Content you were missing */}
+      {/* Methodology Grid */}
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '60px', borderTop: '1px solid #222', paddingTop: '60px' }}>
         <div>
-          <h3 style={{ fontSize: '14px', letterSpacing: '0.2em', marginBottom: '20px', color: '#2563eb' }}>[01] GROUND TRUTH</h3>
+          <h3 style={{ fontSize: '12px', letterSpacing: '0.2em', marginBottom: '20px', color: '#2563eb' }}>[01] GROUND TRUTH</h3>
           <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>We leverage proprietary sources—from infrastructure logs to sentiment shifts—to build a foundation of absolute truth.</p>
         </div>
         <div>
-          <h3 style={{ fontSize: '14px', letterSpacing: '0.2em', marginBottom: '20px', color: '#2563eb' }}>[02] ADVIDORY NODES</h3>
+          <h3 style={{ fontSize: '12px', letterSpacing: '0.2em', marginBottom: '20px', color: '#2563eb' }}>[02] ADVISORY NODES</h3>
           <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>Our engine scans 24/7 for pattern deviations, providing first-mover advantage in high-volatility environments.</p>
         </div>
         <div>
-          <h3 style={{ fontSize: '14px', letterSpacing: '0.2em', marginBottom: '20px', color: '#2563eb' }}>[03] SECURED ASSETS</h3>
+          <h3 style={{ fontSize: '12px', letterSpacing: '0.2em', marginBottom: '20px', color: '#2563eb' }}>[03] SECURED ASSETS</h3>
           <p style={{ color: '#666', fontSize: '14px', lineHeight: '1.6' }}>Intelligence requirements are converted into encrypted dashboards. We protect your competitive territory.</p>
         </div>
       </section>
