@@ -80,14 +80,15 @@ export default function VanitySite() {
       {/* Navigation - Centered over the Iris column */}
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
-        <div style={{ width: '330px', display: 'flex', justifyContent: 'center', gap: '30px', marginLeft: '40px' }}>
+        {/* Adjusted Navigation container to align with the 10% offset image */}
+        <div style={{ width: '330px', display: 'flex', justifyContent: 'center', gap: '30px', marginRight: '5%' }}>
           <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
           <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
         </div>
       </nav>
 
       <section style={{ maxWidth: '1200px', margin: '0 auto 140px', display: 'flex', alignItems: 'center' }}>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1.5 }}>
           <h1 style={{ fontSize: 'clamp(44px, 7vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>
             FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
           </h1>
@@ -100,8 +101,8 @@ export default function VanitySite() {
           </button>
         </div>
         
-        {/* Iris Container: Centered in the remaining space */}
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+        {/* Iris Container: Moved 10% to the left by adjusting flex and margin */}
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-5%' }}>
           <TheIris />
         </div>
       </section>
