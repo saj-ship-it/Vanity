@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// THE IRIS: High-Fidelity Neural Focus (Refined 330px Scale)
+// THE IRIS: High-Fidelity Neural Focus
 const TheIris = () => (
   <svg 
     width="330" 
@@ -19,8 +19,6 @@ const TheIris = () => (
         <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
       </radialGradient>
     </defs>
-
-    {/* Outer Neural Ring */}
     <g stroke="white" strokeWidth="0.05" strokeOpacity="0.3">
       {[...Array(60)].map((_, i) => {
         const angle = (i * Math.PI) / 30;
@@ -31,8 +29,6 @@ const TheIris = () => (
         return <line key={`o-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} />;
       })}
     </g>
-
-    {/* The Intricate Iris */}
     <g stroke="white" strokeWidth="0.08" strokeOpacity="0.6">
       {[...Array(72)].map((_, i) => {
         const angle = (i * Math.PI) / 36;
@@ -50,10 +46,8 @@ const TheIris = () => (
         );
       })}
     </g>
-
     <ellipse cx="50" cy="50" rx="45" ry="15" stroke="#2563eb" strokeWidth="0.07" strokeOpacity="0.4" transform="rotate(45 50 50)" />
     <ellipse cx="50" cy="50" rx="45" ry="15" stroke="#2563eb" strokeWidth="0.07" strokeOpacity="0.4" transform="rotate(-45 50 50)" />
-
     <circle cx="50" cy="50" r="12" fill="url(#pupilGlow)" opacity="0.3" />
     <circle cx="50" cy="50" r="4" fill="white">
       <animate attributeName="r" values="3.8;4.5;3.8" dur="4s" repeatCount="indefinite" />
@@ -77,11 +71,11 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '60px 20px', scrollBehavior: 'smooth' }}>
       
-      {/* Navigation - Centered over the Iris column */}
+      {/* Navigation - Centered over Iris */}
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
-        {/* Adjusted Navigation container to align with the 10% offset image */}
-        <div style={{ width: '330px', display: 'flex', justifyContent: 'center', gap: '30px', marginRight: '5%' }}>
+        {/* Container matches Iris width; gap creates the centered black space */}
+        <div style={{ width: '330px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
           <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
           <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
         </div>
@@ -101,18 +95,22 @@ export default function VanitySite() {
           </button>
         </div>
         
-        {/* Iris Container: Moved 10% to the left by adjusting flex and margin */}
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-5%' }}>
           <TheIris />
         </div>
       </section>
 
+      {/* Other sections remain unchanged */}
       <section id="method" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
-          <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[01] THE FEED</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Ingesting non-traditional data streams to bypass market lag.</p></div>
-          <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
-          <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Intelligence delivered via secure nodes for critical lead time.</p></div>
+          {sectors.slice(0, 3).map((s, i) => (
+            <div key={i}>
+                {s.icon}
+                <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[0{i+1}] {s.name.split(' ')[0]}</h3>
+                <p style={{ color: '#6b7280', fontSize: '14px' }}>Proprietary intelligence protocols.</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -134,8 +132,8 @@ export default function VanitySite() {
             <input name="name" required placeholder="NAME / ENTITY" style={{ width: '100%', padding: '18px', marginBottom: '20px', backgroundColor: '#0a0a0a', border: '1px solid #222', color: 'white' }} />
             <input name="email" type="email" required placeholder="SECURE EMAIL" style={{ width: '100%', padding: '18px', marginBottom: '30px', backgroundColor: '#0a0a0a', border: '1px solid #222', color: 'white' }} />
             <div style={{ display: 'flex', gap: '15px' }}>
-              <button type="button" onClick={() => setShowForm(false)} style={{ flex: 1, padding: '15px', backgroundColor: 'transparent', color: '#4b5563', border: 'none', cursor: 'pointer' }}>ABORT</button>
-              <button type="submit" style={{ flex: 2, padding: '18px', backgroundColor: '#2563eb', color: 'white', border: 'none', fontWeight: 'bold', cursor: 'pointer' }}>TRANSMIT</button>
+              <button type="button" onClick={() => setShowForm(false)} style={{ flex: 1, padding: '15px', backgroundColor: 'transparent', color: '#4b5563', border: 'none' }}>ABORT</button>
+              <button type="submit" style={{ flex: 2, padding: '18px', backgroundColor: '#2563eb', color: 'white', border: 'none', fontWeight: 'bold' }}>TRANSMIT</button>
             </div>
           </form>
         </div>
