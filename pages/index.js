@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
-// THE IRIS: High-Fidelity Neural Focus
+// THE IRIS: High-Fidelity Neural Focus (Adjusted 40% Smaller)
 const TheIris = () => (
   <svg 
-    width="550" 
-    height="550" 
+    width="330" 
+    height="330" 
     viewBox="0 0 100 100" 
     fill="none" 
     style={{ 
       marginLeft: '40px', 
       flexShrink: 0,
       opacity: 0.95,
-      filter: 'drop-shadow(0 0 15px rgba(37, 99, 235, 0.2))'
+      filter: 'drop-shadow(0 0 12px rgba(37, 99, 235, 0.2))'
     }}
   >
     <defs>
@@ -22,8 +22,8 @@ const TheIris = () => (
       </radialGradient>
     </defs>
 
-    {/* Outer Neural Ring - 120 Micro-Vectors */}
-    <g stroke="white" strokeWidth="0.04" strokeOpacity="0.3">
+    {/* Outer Neural Ring - 60 Micro-Vectors */}
+    <g stroke="white" strokeWidth="0.05" strokeOpacity="0.3">
       {[...Array(60)].map((_, i) => {
         const angle = (i * Math.PI) / 30;
         const x1 = 50 + Math.cos(angle) * 35;
@@ -35,50 +35,49 @@ const TheIris = () => (
     </g>
 
     {/* The Intricate Iris - Converging Geometry */}
-    <g stroke="white" strokeWidth="0.06" strokeOpacity="0.6">
+    <g stroke="white" strokeWidth="0.08" strokeOpacity="0.6">
       {[...Array(72)].map((_, i) => {
         const angle = (i * Math.PI) / 36;
         const x1 = 50 + Math.cos(angle) * 12;
         const y1 = 50 + Math.sin(angle) * 12;
         const x2 = 50 + Math.cos(angle) * 32;
         const y2 = 50 + Math.sin(angle) * 32;
-        // Interlocking cross-vectors for detail
         const x3 = 50 + Math.cos(angle + 0.2) * 25;
         const y3 = 50 + Math.sin(angle + 0.2) * 25;
         return (
           <React.Fragment key={`i-${i}`}>
             <line x1={x1} y1={y1} x2={x2} y2={y2} />
-            <line x1={x1} y1={y1} x2={x3} y2={y3} strokeOpacity="0.2" />
+            <line x1={x1} y1={y1} x2={x3} y2={y3} strokeOpacity="0.15" />
           </React.Fragment>
         );
       })}
     </g>
 
     {/* Surreal Orbital Paths */}
-    <ellipse cx="50" cy="50" rx="45" ry="15" stroke="#2563eb" strokeWidth="0.05" strokeOpacity="0.4" transform="rotate(45 50 50)" />
-    <ellipse cx="50" cy="50" rx="45" ry="15" stroke="#2563eb" strokeWidth="0.05" strokeOpacity="0.4" transform="rotate(-45 50 50)" />
+    <ellipse cx="50" cy="50" rx="45" ry="15" stroke="#2563eb" strokeWidth="0.07" strokeOpacity="0.4" transform="rotate(45 50 50)" />
+    <ellipse cx="50" cy="50" rx="45" ry="15" stroke="#2563eb" strokeWidth="0.07" strokeOpacity="0.4" transform="rotate(-45 50 50)" />
 
-    {/* The Pupil - The Source of the Signal */}
+    {/* The Pupil Core */}
     <circle cx="50" cy="50" r="12" fill="url(#pupilGlow)" opacity="0.3" />
     <circle cx="50" cy="50" r="4" fill="white">
       <animate attributeName="r" values="3.8;4.5;3.8" dur="4s" repeatCount="indefinite" />
     </circle>
     
-    {/* Tech Markers */}
-    <rect x="49.5" y="5" width="1" height="5" fill="white" opacity="0.5" />
-    <rect x="49.5" y="90" width="1" height="5" fill="white" opacity="0.5" />
-    <rect x="5" y="49.5" width="5" height="1" fill="white" opacity="0.5" />
-    <rect x="90" y="49.5" width="5" height="1" fill="white" opacity="0.5" />
+    {/* Tech Tracking Markers */}
+    <g opacity="0.6" fill="white">
+        <rect x="49.7" y="2" width="0.6" height="6" />
+        <rect x="49.7" y="92" width="0.6" height="6" />
+        <rect x="2" y="49.7" width="6" height="0.6" />
+        <rect x="92" y="49.7" width="6" height="0.6" />
+    </g>
   </svg>
 );
-
-const IconShield = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>;
 
 export default function VanitySite() {
   const [showForm, setShowForm] = useState(false);
 
   const sectors = [
-    { name: 'DEFENCE & INTEL', icon: <IconShield /> },
+    { name: 'DEFENCE & INTEL', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> },
     { name: 'MEDIA & DISINFO', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="17" x2="12" y2="21"/></svg> },
     { name: 'ENERGY INFRA', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> },
     { name: 'HEALTHCARE', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> },
@@ -98,9 +97,8 @@ export default function VanitySite() {
         </div>
       </nav>
 
-      {/* HERO SECTION WITH THE IRIS */}
       <section style={{ maxWidth: '1200px', margin: '0 auto 140px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ flex: 1.2 }}>
+        <div style={{ flex: 1.5 }}>
           <h1 style={{ fontSize: 'clamp(44px, 7vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>
             FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
           </h1>
@@ -113,16 +111,14 @@ export default function VanitySite() {
           </button>
         </div>
         
-        {/* THE IRIS GRAPHIC */}
         <TheIris />
       </section>
 
-      {/* Methodology Section */}
       <section id="method" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
           <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[01] THE FEED</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Ingesting non-traditional data streams to bypass market lag.</p></div>
-          <div><IconShield /><h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
+          <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
           <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Intelligence delivered via secure nodes for critical lead time.</p></div>
         </div>
       </section>
@@ -145,8 +141,8 @@ export default function VanitySite() {
             <input name="name" required placeholder="NAME / ENTITY" style={{ width: '100%', padding: '18px', marginBottom: '20px', backgroundColor: '#0a0a0a', border: '1px solid #222', color: 'white' }} />
             <input name="email" type="email" required placeholder="SECURE EMAIL" style={{ width: '100%', padding: '18px', marginBottom: '30px', backgroundColor: '#0a0a0a', border: '1px solid #222', color: 'white' }} />
             <div style={{ display: 'flex', gap: '15px' }}>
-              <button type="button" onClick={() => setShowForm(false)} style={{ flex: 1, padding: '15px', backgroundColor: 'transparent', color: '#4b5563', border: 'none' }}>ABORT</button>
-              <button type="submit" style={{ flex: 2, padding: '18px', backgroundColor: '#2563eb', color: 'white', border: 'none', fontWeight: 'bold' }}>TRANSMIT</button>
+              <button type="button" onClick={() => setShowForm(false)} style={{ flex: 1, padding: '15px', backgroundColor: 'transparent', color: '#4b5563', border: 'none', cursor: 'pointer' }}>ABORT</button>
+              <button type="submit" style={{ flex: 2, padding: '18px', backgroundColor: '#2563eb', color: 'white', border: 'none', fontWeight: 'bold', cursor: 'pointer' }}>TRANSMIT</button>
             </div>
           </form>
         </div>
