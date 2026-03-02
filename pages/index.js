@@ -1,82 +1,146 @@
 import React, { useState } from 'react';
 
-// TRON-STYLE GLOWING SURREALIST HEAD
-const TronHead = () => (
+// THE PULSE: Intricate 3D Topographic Data Spike
+const ThePulse = () => (
   <svg 
-    width="600" height="600" viewBox="0 0 100 100" fill="none" 
-    style={{ marginLeft: '20px', flexShrink: 0 }}
+    width="550" 
+    height="550" 
+    viewBox="0 0 100 100" 
+    fill="none" 
+    style={{ 
+      marginLeft: '40px', 
+      flexShrink: 0,
+      opacity: 0.9,
+    }}
   >
     <defs>
-      {/* THE BLOOM EFFECT (GLOW) */}
-      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="0.8" result="blur" />
-        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-      </filter>
+      <linearGradient id="pulseGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" stopColor="white" stopOpacity="0.1" />
+        <stop offset="50%" stopColor="white" stopOpacity="0.5" />
+        <stop offset="100%" stopColor="#2563eb" stopOpacity="1" />
+      </linearGradient>
     </defs>
 
-    <g filter="url(#glow)">
-      {/* Profile Profile - Intricate Data Paths */}
-      <path 
-        d="M30 85 C35 80, 48 72, 52 65 M52 65 C65 55, 75 40, 75 25 C75 10, 60 5, 45 8 C30 11, 22 25, 22 40" 
-        stroke="#00ffff" strokeWidth="0.3" strokeOpacity="0.8" 
-      />
-      
-      {/* Surreal Inner Circuitry */}
-      <g stroke="#00ffff" strokeWidth="0.1" strokeOpacity="0.5">
-        {[...Array(20)].map((_, i) => (
-          <line 
+    {/* Topographic Grid Lines */}
+    <g stroke="white" strokeWidth="0.05" strokeOpacity="0.4">
+      {[...Array(30)].map((_, i) => {
+        const y = 20 + i * 2;
+        // Create a "disturbance" that peaks at the Signal Spike
+        const distortion = (x) => {
+          const distance = Math.abs(x - 65) + Math.abs(y - 45);
+          return distance < 15 ? (15 - distance) * 2.5 : 0;
+        };
+        
+        return (
+          <path 
             key={i} 
-            x1={30 + i} y1={20 + (i * 2)} 
-            x2={70 - (i / 2)} y2={40 + Math.sin(i) * 10} 
+            d={`M 10 ${y} Q 35 ${y - distortion(35)} 65 ${y - distortion(65) * 3} T 90 ${y}`} 
+            stroke={i === 12 || i === 13 ? "url(#pulseGrad)" : "white"}
+            strokeWidth={i === 12 || i === 13 ? "0.15" : "0.05"}
           />
-        ))}
-        {/* Connection Nodes */}
-        <circle cx="52" cy="65" r="0.8" fill="#00ffff" />
-        <circle cx="45" cy="8" r="0.5" fill="#00ffff" />
-      </g>
-
-      {/* The "Gaze" - High Intensity Cyan */}
-      <circle cx="68" cy="30" r="1.2" stroke="#fff" strokeWidth="0.4" />
-      <line x1="68" y1="30" x2="100" y2="30" stroke="#00ffff" strokeWidth="0.05" strokeDasharray="2 1" />
+        );
+      })}
     </g>
+
+    {/* The Focal "Signal" Spike */}
+    <path 
+      d="M 65 50 L 67 15 L 63 15 Z" 
+      fill="white" 
+      filter="drop-shadow(0 0 5px #2563eb)"
+    />
+    
+    {/* Radial Interference Rings */}
+    <circle cx="65" cy="45" r="5" stroke="#2563eb" strokeWidth="0.1" strokeOpacity="0.5">
+      <animate attributeName="r" values="5;25" dur="4s" repeatCount="indefinite" />
+      <animate attributeName="stroke-opacity" values="0.5;0" dur="4s" repeatCount="indefinite" />
+    </circle>
   </svg>
 );
+
+const IconShield = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>;
 
 export default function VanitySite() {
   const [showForm, setShowForm] = useState(false);
 
-  return (
-    <div style={{ backgroundColor: '#000', color: 'white', minHeight: '100vh', fontFamily: 'monospace', padding: '60px 20px', overflowX: 'hidden' }}>
-      
-      {/* TRON PERSPECTIVE GRID BACKGROUND (SUBTLE) */}
-      <div style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', height: '30vh', background: 'linear-gradient(transparent, rgba(0, 255, 255, 0.1))', transform: 'perspective(500px) rotateX(60deg)', borderTop: '1px solid #00ffff', zIndex: 0, opacity: 0.3 }}></div>
+  const sectors = [
+    { name: 'DEFENCE & INTEL', icon: <IconShield /> },
+    { name: 'MEDIA & DISINFO', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="17" x2="12" y2="21"/></svg> },
+    { name: 'ENERGY INFRA', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> },
+    { name: 'HEALTHCARE', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> },
+    { name: 'LOGISTICS', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><rect x="1" y="3" width="15" height="13"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> },
+    { name: 'PRIVATE EQUITY', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg> },
+    { name: 'FINANCE', icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/><line x1="12" y1="20" x2="12" y2="10"/></svg> }
+  ];
 
-      <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', zIndex: 1, position: 'relative' }}>
-        <strong style={{ color: '#00ffff', letterSpacing: '0.5em', fontSize: '10px' }}>AUTHENTIC_INTELLIGENCE // v2.0</strong>
-        <div style={{ display: 'flex', gap: '30px', fontSize: '10px' }}>
-          <a href="#method" style={{ color: '#00ffff', textDecoration: 'none' }}>[ METHOD ]</a>
-          <a href="#sectors" style={{ color: '#00ffff', textDecoration: 'none' }}>[ SECTORS ]</a>
+  return (
+    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '60px 20px', scrollBehavior: 'smooth' }}>
+      
+      <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
+        <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
+        <div style={{ display: 'flex', gap: '30px' }}>
+          <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
+          <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
         </div>
       </nav>
 
-      <section style={{ maxWidth: '1200px', margin: '0 auto 140px', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 1 }}>
-        <div style={{ flex: 1 }}>
-          <h1 style={{ fontSize: 'clamp(44px, 7vw, 76px)', fontWeight: '900', lineHeight: '0.9', color: 'white', textShadow: '0 0 20px rgba(0,255,255,0.5)' }}>
-            FIND SIGNAL <br /> <span style={{ color: '#00ffff' }}>IN THE NOISE.</span>
+      <section style={{ maxWidth: '1200px', margin: '0 auto 140px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ flex: 1.2 }}>
+          <h1 style={{ fontSize: 'clamp(44px, 7vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>
+            FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
           </h1>
-          <p style={{ color: '#666', maxWidth: '480px', margin: '40px 0', lineHeight: '1.6', fontSize: '18px' }}>
+          <p style={{ color: '#9ca3af', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
             Predictive analytics for high-stakes decision makers. <br />
-            <span style={{ color: '#00ffff' }}>Monitoring data pipelines in the digital abyss.</span>
+            <span style={{ color: '#fff' }}>We find and monitor non-obvious data pipelines to detect trend breaks first and before impact.</span>
           </p>
-          <button onClick={() => setShowForm(true)} style={{ backgroundColor: '#00ffff', color: 'black', padding: '20px 40px', fontWeight: 'bold', border: 'none', cursor: 'pointer', boxShadow: '0 0 15px #00ffff' }}>
-            INITIALIZE BRIEFING
+          <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>
+            REQUEST SECURE BRIEFING
           </button>
         </div>
         
-        <TronHead />
+        {/* THE PULSE GRAPHIC */}
+        <ThePulse />
       </section>
 
-      {/* Rest of sections would follow the same neon/grid theme... */}
+      {/* Methodology Section */}
+      <section id="method" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
+        <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
+          <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg><h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[01] THE FEED</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Ingesting non-traditional data streams to bypass market lag.</p></div>
+          <div><IconShield /><h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
+          <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Intelligence delivered via secure nodes for critical lead time.</p></div>
+        </div>
+      </section>
+
+      {/* Sectors Section */}
+      <section id="sectors" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
+        <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+          {sectors.map((s) => (
+            <div key={s.name} style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '40px 20px', textAlign: 'center' }}>
+              {s.icon}<h4 style={{ fontSize: '12px', marginTop: '20px', letterSpacing: '0.1em' }}>{s.name}</h4>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact Form Modal */}
+      {showForm && (
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.98)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, backdropFilter: 'blur(10px)' }}>
+          <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST" style={{ width: '90%', maxWidth: '450px', padding: '60px', border: '1px solid #222', backgroundColor: '#050505' }}>
+            <h2 style={{ fontSize: '12px', marginBottom: '40px', letterSpacing: '0.3em', textAlign: 'center' }}>SECURE CHANNEL INITIALIZED</h2>
+            <input name="name" required placeholder="NAME / ENTITY" style={{ width: '100%', padding: '18px', marginBottom: '20px', backgroundColor: '#0a0a0a', border: '1px solid #222', color: 'white' }} />
+            <input name="email" type="email" required placeholder="SECURE EMAIL" style={{ width: '100%', padding: '18px', marginBottom: '30px', backgroundColor: '#0a0a0a', border: '1px solid #222', color: 'white' }} />
+            <div style={{ display: 'flex', gap: '15px' }}>
+              <button type="button" onClick={() => setShowForm(false)} style={{ flex: 1, padding: '15px', backgroundColor: 'transparent', color: '#4b5563', border: 'none' }}>ABORT</button>
+              <button type="submit" style={{ flex: 2, padding: '18px', backgroundColor: '#2563eb', color: 'white', border: 'none', fontWeight: 'bold' }}>TRANSMIT</button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      <footer style={{ maxWidth: '1200px', margin: '140px auto 0', borderTop: '1px solid #111', paddingTop: '40px', fontSize: '9px', color: '#374151', letterSpacing: '0.4em', textAlign: 'center' }}>
+        © 2026 AUI INC. // AUTHENTICINTEL.COM
+      </footer>
     </div>
   );
 }
