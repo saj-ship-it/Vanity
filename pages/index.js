@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-// THE PULSE: Intricate 3D Topographic Data Spike
-const ThePulse = () => (
+// THE SINGULARITY: Intricate Convergence of Data into Signal
+const TheSingularity = () => (
   <svg 
     width="550" 
     height="550" 
@@ -14,46 +14,62 @@ const ThePulse = () => (
     }}
   >
     <defs>
-      <linearGradient id="pulseGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-        <stop offset="0%" stopColor="white" stopOpacity="0.1" />
-        <stop offset="50%" stopColor="white" stopOpacity="0.5" />
-        <stop offset="100%" stopColor="#2563eb" stopOpacity="1" />
-      </linearGradient>
+      <radialGradient id="signalGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="#2563eb" stopOpacity="1" />
+        <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
+      </radialGradient>
     </defs>
 
-    {/* Topographic Grid Lines */}
-    <g stroke="white" strokeWidth="0.05" strokeOpacity="0.4">
-      {[...Array(30)].map((_, i) => {
-        const y = 20 + i * 2;
-        // Create a "disturbance" that peaks at the Signal Spike
-        const distortion = (x) => {
-          const distance = Math.abs(x - 65) + Math.abs(y - 45);
-          return distance < 15 ? (15 - distance) * 2.5 : 0;
+    {/* The Noise: Horizontal interference lines that warp toward center */}
+    <g stroke="white" strokeWidth="0.06" strokeOpacity="0.3">
+      {[...Array(40)].map((_, i) => {
+        const y = 5 + i * 2.3;
+        // The "Pull" effect toward center (50, 50)
+        const pull = (x) => {
+          const dist = Math.sqrt(Math.pow(x - 50, 2) + Math.pow(y - 50, 2));
+          return dist < 30 ? (30 - dist) * 0.5 : 0;
         };
         
         return (
           <path 
             key={i} 
-            d={`M 10 ${y} Q 35 ${y - distortion(35)} 65 ${y - distortion(65) * 3} T 90 ${y}`} 
-            stroke={i === 12 || i === 13 ? "url(#pulseGrad)" : "white"}
-            strokeWidth={i === 12 || i === 13 ? "0.15" : "0.05"}
+            d={`M 0 ${y} C 25 ${y + pull(25)}, 75 ${y - pull(75)}, 100 ${y}`} 
           />
         );
       })}
     </g>
 
-    {/* The Focal "Signal" Spike */}
+    {/* The Singularity Core: Intricate Geometric convergence */}
+    <g filter="drop-shadow(0 0 8px rgba(37, 99, 235, 0.6))">
+      {/* Outer Shell */}
+      <circle cx="50" cy="50" r="12" stroke="white" strokeWidth="0.1" strokeDasharray="0.5 0.5" />
+      
+      {/* Inner Vectors */}
+      {[...Array(8)].map((_, i) => (
+        <line 
+          key={i} 
+          x1="50" y1="50" 
+          x2={50 + 15 * Math.cos(i * Math.PI / 4)} 
+          y2={50 + 15 * Math.sin(i * Math.PI / 4)} 
+          stroke="#2563eb" 
+          strokeWidth="0.2"
+        />
+      ))}
+
+      {/* The Focal Point */}
+      <circle cx="50" cy="50" r="2.5" fill="white">
+        <animate attributeName="r" values="2.5;3.5;2.5" dur="3s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="50" cy="50" r="15" fill="url(#signalGlow)" opacity="0.4" />
+    </g>
+
+    {/* Neural connection web around the core */}
     <path 
-      d="M 65 50 L 67 15 L 63 15 Z" 
-      fill="white" 
-      filter="drop-shadow(0 0 5px #2563eb)"
+      d="M35 35 L50 50 L65 35 M35 65 L50 50 L65 65" 
+      stroke="white" 
+      strokeWidth="0.05" 
+      strokeOpacity="0.5" 
     />
-    
-    {/* Radial Interference Rings */}
-    <circle cx="65" cy="45" r="5" stroke="#2563eb" strokeWidth="0.1" strokeOpacity="0.5">
-      <animate attributeName="r" values="5;25" dur="4s" repeatCount="indefinite" />
-      <animate attributeName="stroke-opacity" values="0.5;0" dur="4s" repeatCount="indefinite" />
-    </circle>
   </svg>
 );
 
@@ -75,6 +91,7 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '60px 20px', scrollBehavior: 'smooth' }}>
       
+      {/* Nav */}
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
         <div style={{ display: 'flex', gap: '30px' }}>
@@ -83,6 +100,7 @@ export default function VanitySite() {
         </div>
       </nav>
 
+      {/* HERO SECTION WITH THE SINGULARITY */}
       <section style={{ maxWidth: '1200px', margin: '0 auto 140px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ flex: 1.2 }}>
           <h1 style={{ fontSize: 'clamp(44px, 7vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>
@@ -97,8 +115,8 @@ export default function VanitySite() {
           </button>
         </div>
         
-        {/* THE PULSE GRAPHIC */}
-        <ThePulse />
+        {/* THE SINGULARITY GRAPHIC */}
+        <TheSingularity />
       </section>
 
       {/* Methodology Section */}
@@ -111,7 +129,6 @@ export default function VanitySite() {
         </div>
       </section>
 
-      {/* Sectors Section */}
       <section id="sectors" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
@@ -123,7 +140,7 @@ export default function VanitySite() {
         </div>
       </section>
 
-      {/* Contact Form Modal */}
+      {/* FORM MODAL */}
       {showForm && (
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.98)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, backdropFilter: 'blur(10px)' }}>
           <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST" style={{ width: '90%', maxWidth: '450px', padding: '60px', border: '1px solid #222', backgroundColor: '#050505' }}>
