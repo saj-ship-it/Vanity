@@ -16,4 +16,3 @@ const VanitySite = () => (
   </div>
 );
 
-render(<VanitySite />, document.getElementById('root'));
