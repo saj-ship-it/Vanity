@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-// Specialized Sector Icons
+// Icons
+const IconShield = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>;
+const IconDatabase = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>;
+const IconZap = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>;
 const IconDefense = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="3"/></svg>;
 const IconMedia = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>;
-const IconEnergy = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>;
-const IconEquity = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>;
-const IconLogistics = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13"/><polyline points="16 8 20 8 23 11 23 16 16 16"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>;
 
 export default function VanitySite() {
   const [showForm, setShowForm] = useState(false);
@@ -37,51 +37,48 @@ export default function VanitySite() {
         </button>
       </section>
 
-      {/* SECTORS SECTION - VISUALLY IMPROVED */}
-      <section id="sectors" style={{ maxWidth: '1100px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
-        <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
-        
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
-          
-          {/* Defense Sector */}
-          <div style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '30px', textAlign: 'center' }}>
-            <IconDefense />
-            <h4 style={{ fontSize: '12px', marginTop: '20px', letterSpacing: '0.1em' }}>DEFENSE & INTEL</h4>
-            <p style={{ color: '#4b5563', fontSize: '11px', marginTop: '10px' }}>Geopolitical volatility & threat vectors.</p>
+      {/* METHOD SECTION (Restored) */}
+      <section id="method" style={{ maxWidth: '1100px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
+        <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
+          <div>
+            <IconDatabase />
+            <h3 style={{ fontSize: '14px', margin: '20px 0 15px', letterSpacing: '0.1em' }}>[01] THE FEED</h3>
+            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Ingesting non-traditional data streams to bypass standard market lag.</p>
           </div>
-
-          {/* Media Sector */}
-          <div style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '30px', textAlign: 'center' }}>
-            <IconMedia />
-            <h4 style={{ fontSize: '12px', marginTop: '20px', letterSpacing: '0.1em' }}>MEDIA & DISCO</h4>
-            <p style={{ color: '#4b5563', fontSize: '11px', marginTop: '10px' }}>Information warfare & sentiment trends.</p>
+          <div>
+            <IconShield />
+            <h3 style={{ fontSize: '14px', margin: '20px 0 15px', letterSpacing: '0.1em' }}>[02] PATTERN ISOLATION</h3>
+            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Proprietary filtering to identify deviations that precede geopolitical shifts.</p>
           </div>
-
-          {/* Energy Sector */}
-          <div style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '30px', textAlign: 'center' }}>
-            <IconEnergy />
-            <h4 style={{ fontSize: '12px', marginTop: '20px', letterSpacing: '0.1em' }}>ENERGY INFRA</h4>
-            <p style={{ color: '#4b5563', fontSize: '11px', marginTop: '10px' }}>Resource scarcity & grid resilience.</p>
+          <div>
+            <IconZap />
+            <h3 style={{ fontSize: '14px', margin: '20px 0 15px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3>
+            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Intelligence delivered via secure nodes, providing critical lead time.</p>
           </div>
-
-          {/* Equity Sector */}
-          <div style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '30px', textAlign: 'center' }}>
-            <IconEquity />
-            <h4 style={{ fontSize: '12px', marginTop: '20px', letterSpacing: '0.1em' }}>PRIVATE EQUITY</h4>
-            <p style={{ color: '#4b5563', fontSize: '11px', marginTop: '10px' }}>Asymmetric market entry points.</p>
-          </div>
-
-          {/* Logistics Sector */}
-          <div style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '30px', textAlign: 'center' }}>
-            <IconLogistics />
-            <h4 style={{ fontSize: '12px', marginTop: '20px', letterSpacing: '0.1em' }}>SUPPLY CHAIN</h4>
-            <p style={{ color: '#4b5563', fontSize: '11px', marginTop: '10px' }}>Systemic friction & bottleneck detection.</p>
-          </div>
-
         </div>
       </section>
 
-      {/* FORM MODAL */}
+      {/* SECTORS SECTION (Visual Grid) */}
+      <section id="sectors" style={{ maxWidth: '1100px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
+        <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>CORE SECTORS</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+          <div style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '30px', textAlign: 'center' }}>
+            <IconDefense />
+            <h4 style={{ fontSize: '12px', marginTop: '20px' }}>DEFENSE & INTEL</h4>
+          </div>
+          <div style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '30px', textAlign: 'center' }}>
+            <IconMedia />
+            <h4 style={{ fontSize: '12px', marginTop: '20px' }}>MEDIA & DISINFO</h4>
+          </div>
+          <div style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '30px', textAlign: 'center' }}>
+            <IconDatabase />
+            <h4 style={{ fontSize: '12px', marginTop: '20px' }}>PRIVATE EQUITY</h4>
+          </div>
+        </div>
+      </section>
+
+      {/* MODAL */}
       {showForm && (
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.98)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, backdropFilter: 'blur(10px)' }}>
           <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST" style={{ width: '90%', maxWidth: '450px', padding: '60px', border: '1px solid #222', backgroundColor: '#050505' }}>
