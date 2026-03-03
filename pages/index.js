@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
 
+// THE SEARCHLIGHT: Dimly visible noise with high-intensity signal reveal
 const DigitalSpotlight = () => {
   const cols = 28; 
   const rows = 50;
 
-  // Generate binary strings
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
       [...Array(rows)].map(() => (Math.random() > 0.5 ? '1' : '0'))
@@ -25,7 +25,7 @@ const DigitalSpotlight = () => {
 
       <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
         <defs>
-          {/* THE MASK: Reduced radius to 5.5 (25% of the previous 22) */}
+          {/* THE MASK: Surgical precision radius */}
           <mask id="spotlightMask">
             <circle r="5.5" fill="white">
               <animate attributeName="cx" values="25;75;35;25" dur="22s" repeatCount="indefinite" />
@@ -34,8 +34,8 @@ const DigitalSpotlight = () => {
           </mask>
         </defs>
 
-        {/* THE NOISE: Dark Layer (Total Blackout) */}
-        <g className="falling-data" opacity="0">
+        {/* THE NOISE: Dark Layer (Dimly visible at 6% opacity) */}
+        <g className="falling-data" opacity="0.06">
           {streams.map((column, i) => (
             <g key={`dark-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
               {column.map((char, j) => (
@@ -45,7 +45,7 @@ const DigitalSpotlight = () => {
           ))}
         </g>
 
-        {/* THE CLARITY: Light Layer (The Surgical Beam) */}
+        {/* THE CLARITY: Light Layer (Revealed at 100% intensity) */}
         <g className="falling-data" mask="url(#spotlightMask)">
           {streams.map((column, i) => (
             <g key={`light-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
@@ -55,6 +55,12 @@ const DigitalSpotlight = () => {
             </g>
           ))}
         </g>
+
+        {/* OPTIONAL: A very faint outer glow for the searchlight edge */}
+        <circle r="5.5" fill="none" stroke="white" strokeWidth="0.1" strokeOpacity="0.2">
+          <animate attributeName="cx" values="25;75;35;25" dur="22s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="25;55;85;25" dur="22s" repeatCount="indefinite" />
+        </circle>
       </svg>
     </div>
   );
@@ -102,15 +108,17 @@ export default function VanitySite() {
         </div>
       </section>
 
+      {/* Methodology Section */}
       <section id="method" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
           <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[01] THE FEED</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Ingesting non-traditional data streams to bypass market lag.</p></div>
-          <div><h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
+          <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
           <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Intelligence delivered via secure nodes for critical lead time.</p></div>
         </div>
       </section>
 
+      {/* Sectors Section */}
       <section id="sectors" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }}>
