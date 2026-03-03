@@ -1,36 +1,25 @@
 import React, { useState, useMemo } from 'react';
 
-// THE OPERATIONAL FLOW VISUAL: Monitor -> Detect -> Analyze -> Alert
+// STEP 04 VISUAL (The vertical flow we just built)
 const OperationalFlow = () => {
   const steps = ["MONITOR", "DETECT", "ANALYZE", "ALERT"];
   return (
     <div style={{ paddingLeft: '20px', borderLeft: '1px solid #1f2937', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       {steps.map((step, i) => (
         <div key={step} style={{ display: 'flex', alignItems: 'center', marginBottom: '25px', opacity: 0.4 + (i * 0.2) }}>
-          <div style={{ 
-            width: '8px', height: '8px', borderRadius: '50%', 
-            backgroundColor: i === 3 ? '#FFFDD0' : 'white', 
-            marginRight: '15px',
-            boxShadow: i === 3 ? '0 0 10px #FFFDD0' : 'none'
-          }} />
+          <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: i === 3 ? '#FFFDD0' : 'white', marginRight: '15px', boxShadow: i === 3 ? '0 0 10px #FFFDD0' : 'none' }} />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontSize: '9px', letterSpacing: '0.3em', color: i === 3 ? '#FFFDD0' : 'white', fontWeight: i === 3 ? 'bold' : 'normal' }}>
-              STEP_0{i + 1}
-            </span>
-            <span style={{ fontSize: '12px', letterSpacing: '0.1em', color: i === 3 ? '#FFFDD0' : 'white' }}>
-              {step}
-            </span>
+            <span style={{ fontSize: '9px', letterSpacing: '0.3em', color: i === 3 ? '#FFFDD0' : 'white', fontWeight: i === 3 ? 'bold' : 'normal' }}>STEP_0{i + 1}</span>
+            <span style={{ fontSize: '12px', letterSpacing: '0.1em', color: i === 3 ? '#FFFDD0' : 'white' }}>{step}</span>
           </div>
-          {i < 3 && (
-            <div style={{ position: 'absolute', height: '25px', width: '1px', backgroundColor: 'white', opacity: 0.2, marginLeft: '3.5px', marginTop: '38px' }} />
-          )}
+          {i < 3 && <div style={{ position: 'absolute', height: '25px', width: '1px', backgroundColor: 'white', opacity: 0.2, marginLeft: '3.5px', marginTop: '38px' }} />}
         </div>
       ))}
     </div>
   );
 };
 
-// THE LIVING ORB (16% Opacity, Cream Signal, 12s Speed)
+// THE DATA ORB (High-Speed Spotlight, 16% Opacity)
 const DataOrb = () => {
   const cols = 22; const rows = 40;
   const streams = useMemo(() => [...Array(cols)].map(() => [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('\n')), []);
@@ -38,7 +27,7 @@ const DataOrb = () => {
     <div className="orb-container">
       <style>{`
         .orb-container { position: relative; width: 280px; height: 280px; background-color: #000; border-radius: 50%; overflow: hidden; -webkit-mask-image: radial-gradient(circle, black 65%, transparent 100%); mask-image: radial-gradient(circle, black 65%, transparent 100%); }
-        @media (max-width: 768px) { .orb-container { width: 220px; height: 220px; margin: 40px auto; } }
+        @media (max-width: 1024px) { .orb-container { width: 220px; height: 220px; margin: 40px auto; } }
         @keyframes streamFall { 0% { transform: translateY(-50%); } 100% { transform: translateY(0%); } }
         .data-column { font-family: 'Courier New', monospace; font-size: 10px; line-height: 1.2; white-space: pre; animation: streamFall 60s linear infinite; will-change: transform; }
         @keyframes spotlightMove { 0% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } 33% { -webkit-mask-position: 85% 35%; mask-position: 85% 35%; } 66% { -webkit-mask-position: 25% 85%; mask-position: 25% 85%; } 100% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } }
@@ -53,6 +42,7 @@ const DataOrb = () => {
 
 export default function VanitySite() {
   const [showForm, setShowForm] = useState(false);
+
   const sectors = [
     { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
     { name: 'MEDIA & DISINFO', path: 'M2 3h20v14H2z M12 17v4' },
@@ -66,6 +56,7 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
+      {/* HEADER */}
       <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '60px' }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>AUTHENTIC INTELLIGENCE</strong>
         <nav style={{ display: 'flex', gap: '40px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
@@ -93,37 +84,21 @@ export default function VanitySite() {
           <div className="hero-graphic"><DataOrb /></div>
         </section>
 
-        {/* METHODOLOGY SECTION: Balanced 4-Column Grid */}
+        {/* METHODOLOGY SECTION */}
         <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
-          
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '40px' }}>
-            <style>{`
-               @media (max-width: 1024px) { #method-grid { grid-template-columns: 1fr !important; } }
-            `}</style>
+            <style>{` @media (max-width: 1024px) { #method-grid { grid-template-columns: 1fr !important; } } `}</style>
             <div id="method-grid" style={{ display: 'contents' }}>
-              <div>
-                <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3>
-                <p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Raw Ingestion.</p>
-                <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Ingesting peripheral nodes—geopolitical shifts and disruptions—before they reach market lag.</p>
-              </div>
-              <div>
-                <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[02] PATTERN ISOLATION</h3>
-                <p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Deviation Detection.</p>
-                <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Our proprietary logic filters the abyss to isolate anomalies that represent warning signs of volatility.</p>
-              </div>
-              <div>
-                <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3>
-                <p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Zero-Latency Access.</p>
-                <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Insights delivered via secure channels, giving decision-makers a window of opportunity to position before impact.</p>
-              </div>
-              
-              {/* POSITIONED IN THE 4TH COLUMN */}
+              <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Raw Ingestion.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Ingesting peripheral nodes—geopolitical shifts and disruptions—before they reach market lag.</p></div>
+              <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Deviation Detection.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Our proprietary logic filters the abyss to isolate anomalies that represent warning signs of volatility.</p></div>
+              <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Zero-Latency Access.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Insights delivered via secure channels, giving decision-makers a window of opportunity to position before impact.</p></div>
               <OperationalFlow />
             </div>
           </div>
         </section>
 
+        {/* SECTORS SECTION */}
         <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
@@ -136,6 +111,23 @@ export default function VanitySite() {
           </div>
         </section>
       </main>
+
+      {/* SECURE MODAL OVERLAY */}
+      {showForm && (
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: '400px', border: '1px solid #333', backgroundColor: '#050505', padding: '40px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
+              <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v2.6]</span>
+              <button onClick={() => setShowForm(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '12px' }}>[X] CLOSE</button>
+            </div>
+            <form action="https://formspree.io/f/your-form-id" method="POST">
+              <label style={{ display: 'block', fontSize: '10px', color: '#9ca3af', marginBottom: '10px', letterSpacing: '0.1em' }}>ENTER WORK EMAIL</label>
+              <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #FFFDD0', padding: '15px', color: 'white', fontFamily: 'monospace', marginBottom: '30px', outline: 'none' }} placeholder="user@organization.tld" />
+              <button type="submit" style={{ width: '100%', backgroundColor: '#FFFDD0', color: 'black', padding: '20px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>INITIALIZE BRIEFING</button>
+            </form>
+          </div>
+        </div>
+      )}
 
       <footer style={{ padding: '60px 0', borderTop: '1px solid #111', fontSize: '9px', color: '#374151', letterSpacing: '0.4em', textAlign: 'center' }}>
         © 2026 AUI INC. // AUTHENTICINTEL.COM
