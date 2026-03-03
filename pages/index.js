@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 
-// THE SEARCHLIGHT: Dimly visible noise with high-intensity signal reveal
+// THE SEARCHLIGHT: 12% baseline visibility with 100% signal reveal
 const DigitalSpotlight = () => {
   const cols = 28; 
   const rows = 50;
@@ -25,7 +25,7 @@ const DigitalSpotlight = () => {
 
       <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
         <defs>
-          {/* THE MASK: Surgical precision radius */}
+          {/* THE MASK: Surgical precision beam */}
           <mask id="spotlightMask">
             <circle r="5.5" fill="white">
               <animate attributeName="cx" values="25;75;35;25" dur="22s" repeatCount="indefinite" />
@@ -34,8 +34,8 @@ const DigitalSpotlight = () => {
           </mask>
         </defs>
 
-        {/* THE NOISE: Dark Layer (Dimly visible at 6% opacity) */}
-        <g className="falling-data" opacity="0.06">
+        {/* THE NOISE: Dimly visible background (Increased to 12% opacity) */}
+        <g className="falling-data" opacity="0.12">
           {streams.map((column, i) => (
             <g key={`dark-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
               {column.map((char, j) => (
@@ -45,7 +45,7 @@ const DigitalSpotlight = () => {
           ))}
         </g>
 
-        {/* THE CLARITY: Light Layer (Revealed at 100% intensity) */}
+        {/* THE CLARITY: Full intensity Signal (Revealed by Mask) */}
         <g className="falling-data" mask="url(#spotlightMask)">
           {streams.map((column, i) => (
             <g key={`light-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
@@ -55,12 +55,6 @@ const DigitalSpotlight = () => {
             </g>
           ))}
         </g>
-
-        {/* OPTIONAL: A very faint outer glow for the searchlight edge */}
-        <circle r="5.5" fill="none" stroke="white" strokeWidth="0.1" strokeOpacity="0.2">
-          <animate attributeName="cx" values="25;75;35;25" dur="22s" repeatCount="indefinite" />
-          <animate attributeName="cy" values="25;55;85;25" dur="22s" repeatCount="indefinite" />
-        </circle>
       </svg>
     </div>
   );
@@ -82,6 +76,7 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '60px 20px', scrollBehavior: 'smooth' }}>
       
+      {/* Centered Navigation Alignment */}
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
         <div style={{ width: '480px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
