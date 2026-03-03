@@ -1,88 +1,82 @@
 import React, { useState } from 'react';
 
-// THE ASSEMBLER: Noise shards converging into a crisp, pulsating Signal Core
-const TheAssembler = () => (
-  <svg 
-    width="330" 
-    height="330" 
-    viewBox="0 0 100 100" 
-    fill="none" 
-    style={{ 
-      opacity: 0.95,
-      filter: 'drop-shadow(0 0 12px rgba(37, 99, 235, 0.2))'
-    }}
-  >
-    <defs>
-      <radialGradient id="signalPulse" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stopColor="white" stopOpacity="1" />
-        <stop offset="60%" stopColor="#2563eb" stopOpacity="0.3" />
-        <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
-      </radialGradient>
-    </defs>
+const NeuralChaos = () => {
+  // Generate random positions for the noise shards
+  const shards = [...Array(120)].map((_, i) => ({
+    id: i,
+    size: Math.random() * 2 + 0.5,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: Math.random() * 10 + 5,
+    delay: Math.random() * -20,
+    opacity: Math.random() * 0.4 + 0.1
+  }));
 
-    {/* THE NOISE: Chaotic Vector Shards */}
-    <g stroke="white" strokeWidth="0.12" strokeOpacity="0.2">
-      {[...Array(90)].map((_, i) => {
-        const angle = Math.random() * Math.PI * 2;
-        const dist = 38 + Math.random() * 12;
-        const x = 50 + Math.cos(angle) * dist;
-        const y = 50 + Math.sin(angle) * dist;
-        const size = 0.8 + Math.random() * 1.5;
-        return (
-          <path 
-            key={`noise-${i}`} 
-            d={`M ${x} ${y} l ${size} -${size} l ${size} ${size} z`} 
-            transform={`rotate(${Math.random() * 360} ${x} ${y})`}
-          />
-        );
-      })}
-    </g>
+  return (
+    <div style={{ position: 'relative', width: '330px', height: '330px', marginLeft: '40px', flexShrink: 0 }}>
+      {/* CSS for Surreal Random Movement */}
+      <style>{`
+        @keyframes floatChaos {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          33% { transform: translate(15px, -10px) rotate(120deg); }
+          66% { transform: translate(-10px, 15px) rotate(240deg); }
+          100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        .shard { animation: floatChaos var(--d) infinite ease-in-out; }
+      `}</style>
 
-    {/* THE CONVERGENCE: Accelerated alignment lines */}
-    <g stroke="white" strokeWidth="0.06" strokeOpacity="0.4">
-      {[...Array(48)].map((_, i) => {
-        const angle = (i * Math.PI) / 24;
-        const r1 = 14; 
-        const r2 = 36;
-        return (
-          <line 
-            key={`line-${i}`} 
-            x1={50 + Math.cos(angle) * r1} 
-            y1={50 + Math.sin(angle) * r1} 
-            x2={50 + Math.cos(angle) * r2} 
-            y2={50 + Math.sin(angle) * r2} 
-            strokeDasharray={i % 2 === 0 ? "0.5 1.5" : "none"}
-          />
-        );
-      })}
-    </g>
+      <svg width="330" height="330" viewBox="0 0 100 100" fill="none" style={{ filter: 'drop-shadow(0 0 15px rgba(37, 99, 235, 0.2))' }}>
+        <defs>
+          <radialGradient id="signalCore" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="white" stopOpacity="1" />
+            <stop offset="40%" stopColor="#2563eb" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
+          </radialGradient>
+        </defs>
 
-    {/* THE SIGNAL: Pulsating Faceted Core */}
-    <g>
-      <circle cx="50" cy="50" r="14" fill="url(#signalPulse)" opacity="0.4">
-        <animate attributeName="r" values="12;16;12" dur="3s" repeatCount="indefinite" />
-      </circle>
-      
-      {/* Intricate Geometric Resolve */}
-      <g stroke="white" strokeWidth="0.25">
-        <path d="M50 35 L62 42 L62 58 L50 65 L38 58 L38 42 Z">
-          <animateTransform attributeName="transform" type="scale" values="1;1.08;1" dur="3s" repeatCount="indefinite" additive="sum" origin="50 50" />
-        </path>
-        <path d="M50 35 L50 65 M38 42 L62 58 M62 42 L38 58" strokeOpacity="0.4" strokeWidth="0.1" />
-      </g>
-      
-      <circle cx="50" cy="50" r="1.5" fill="white" />
-    </g>
+        {/* THE NOISE: 120 Floating fragments on random paths */}
+        <g stroke="white" strokeWidth="0.1">
+          {shards.map((s) => (
+            <circle 
+              key={s.id} 
+              className="shard"
+              cx={s.x} 
+              cy={s.y} 
+              r={s.size} 
+              strokeOpacity={s.opacity}
+              style={{ '--d': `${s.duration}s`, animationDelay: `${s.delay}s` }}
+            />
+          ))}
+        </g>
 
-    {/* Technical HUD Overlays */}
-    <g opacity="0.5" stroke="white" strokeWidth="0.3">
-      <path d="M40 5 H50 H60 M50 5 V12" />
-      <path d="M40 95 H50 H60 M50 95 V88" />
-      <path d="M5 40 V50 V60 M5 50 H12" />
-      <path d="M95 40 V50 V60 M95 50 H88" />
-    </g>
-  </svg>
-);
+        {/* THE CLARITY: The Fixed, High-Refinement Iris */}
+        <g style={{ pointerEvents: 'none' }}>
+          {/* Inner Iris Density */}
+          <g stroke="white" strokeWidth="0.08" strokeOpacity="0.7">
+            {[...Array(72)].map((_, i) => {
+              const angle = (i * Math.PI) / 36;
+              const x1 = 50 + Math.cos(angle) * 8;
+              const y1 = 50 + Math.sin(angle) * 8;
+              const x2 = 50 + Math.cos(angle) * 30;
+              const y2 = 50 + Math.sin(angle) * 30;
+              return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />;
+            })}
+          </g>
+          
+          {/* Orbital Scanners */}
+          <ellipse cx="50" cy="50" rx="40" ry="12" stroke="#2563eb" strokeWidth="0.1" strokeOpacity="0.4" transform="rotate(45 50 50)" />
+          <ellipse cx="50" cy="50" rx="40" ry="12" stroke="#2563eb" strokeWidth="0.1" strokeOpacity="0.4" transform="rotate(-45 50 50)" />
+          
+          {/* Pulsating Core */}
+          <circle cx="50" cy="50" r="10" fill="url(#signalCore)" opacity="0.4">
+            <animate attributeName="r" values="8;11;8" dur="3s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="50" cy="50" r="3" fill="white" />
+        </g>
+      </svg>
+    </div>
+  );
+};
 
 export default function VanitySite() {
   const [showForm, setShowForm] = useState(false);
@@ -100,7 +94,6 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '60px 20px', scrollBehavior: 'smooth' }}>
       
-      {/* Centered Navigation */}
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
         <div style={{ width: '330px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
@@ -123,9 +116,8 @@ export default function VanitySite() {
           </button>
         </div>
         
-        {/* The Assembler Graphic */}
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-5%' }}>
-          <TheAssembler />
+          <NeuralChaos />
         </div>
       </section>
 
@@ -141,12 +133,12 @@ export default function VanitySite() {
           <div>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[02] PATTERN ISOLATION</h3>
-            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Identifying deviations that precede major geopolitical and market shifts.</p>
+            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Identifying deviations that precede major geopolitical shifts.</p>
           </div>
           <div>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[03] ADVISORY DELIVERY</h3>
-            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Intelligence delivered via secure nodes to provide critical lead time for decision makers.</p>
+            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Intelligence delivered via secure nodes for critical lead time.</p>
           </div>
         </div>
       </section>
@@ -163,7 +155,6 @@ export default function VanitySite() {
         </div>
       </section>
 
-      {/* Contact Form Modal */}
       {showForm && (
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.98)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, backdropFilter: 'blur(10px)' }}>
           <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST" style={{ width: '90%', maxWidth: '450px', padding: '60px', border: '1px solid #222', backgroundColor: '#050505' }}>
@@ -171,8 +162,8 @@ export default function VanitySite() {
             <input name="name" required placeholder="NAME / ENTITY" style={{ width: '100%', padding: '18px', marginBottom: '20px', backgroundColor: '#0a0a0a', border: '1px solid #222', color: 'white' }} />
             <input name="email" type="email" required placeholder="SECURE EMAIL" style={{ width: '100%', padding: '18px', marginBottom: '30px', backgroundColor: '#0a0a0a', border: '1px solid #222', color: 'white' }} />
             <div style={{ display: 'flex', gap: '15px' }}>
-              <button type="button" onClick={() => setShowForm(false)} style={{ flex: 1, padding: '15px', backgroundColor: 'transparent', color: '#4b5563', border: 'none', cursor: 'pointer' }}>ABORT</button>
-              <button type="submit" style={{ flex: 2, padding: '18px', backgroundColor: '#2563eb', color: 'white', border: 'none', fontWeight: 'bold', cursor: 'pointer' }}>TRANSMIT</button>
+              <button type="button" onClick={() => setShowForm(false)} style={{ flex: 1, padding: '15px', backgroundColor: 'transparent', color: '#4b5563', border: 'none' }}>ABORT</button>
+              <button type="submit" style={{ flex: 2, padding: '18px', backgroundColor: '#2563eb', color: 'white', border: 'none', fontWeight: 'bold' }}>TRANSMIT</button>
             </div>
           </form>
         </div>
