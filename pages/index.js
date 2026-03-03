@@ -1,84 +1,60 @@
 import React, { useState, useMemo } from 'react';
 
 const DigitalSpotlight = () => {
-  const cols = 22;
-  const rows = 40;
+  const cols = 28; // Increased column count for larger area
+  const rows = 50;
 
-  // Static strings to ensure no flickering between layers
+  // Generate binary strings
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
-      [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('')
+      [...Array(rows)].map(() => (Math.random() > 0.5 ? '1' : '0'))
     ), []
   );
 
   return (
-    <div style={{ position: 'relative', width: '380px', height: '420px', backgroundColor: '#000', borderRadius: '4px', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', width: '480px', height: '550px', backgroundColor: '#000', borderRadius: '4px', overflow: 'hidden', border: '1px solid #111' }}>
       <style>{`
         @keyframes streamFall {
-          0% { transform: translateY(-50%); }
+          0% { transform: translateY(-20%); }
           100% { transform: translateY(0%); }
         }
-        @keyframes spotlightMove {
-          0% { cx: 20; cy: 20; }
-          33% { cx: 80; cy: 50; }
-          66% { cx: 30; cy: 80; }
-          100% { cx: 20; cy: 20; }
-        }
         .falling-data {
-          animation: streamFall 80s linear infinite;
+          animation: streamFall 100s linear infinite;
         }
       `}</style>
 
-      <svg width="100%" height="100%" viewBox="0 0 100 110" preserveAspectRatio="none">
+      <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
         <defs>
-          {/* THE MASK: This defines where the "Bright" text is visible */}
+          {/* THE MASK: Increased radius to 22 for a larger spotlight area */}
           <mask id="spotlightMask">
-            <circle r="15" fill="white">
-              <animate attributeName="cx" values="20;80;30;20" dur="18s" repeatCount="indefinite" />
-              <animate attributeName="cy" values="20;50;80;20" dur="18s" repeatCount="indefinite" />
+            <circle r="22" fill="white">
+              <animate attributeName="cx" values="25;75;35;25" dur="22s" repeatCount="indefinite" />
+              <animate attributeName="cy" values="25;55;85;25" dur="22s" repeatCount="indefinite" />
             </circle>
           </mask>
         </defs>
 
-        {/* LAYER 1: The Dark Abyss (Numbers are almost invisible) */}
-        <g className="falling-data" opacity="0.05">
-          {streams.map((content, i) => (
-            <text 
-              key={`dark-${i}`} 
-              x={5 + i * 4.5} 
-              y="0" 
-              fill="white" 
-              fontSize="2.5" 
-              fontFamily="monospace" 
-              style={{ writingMode: 'vertical-rl' }}
-            >
-              {content}
-            </text>
+        {/* THE NOISE: Dark Layer (Set to 0 opacity for total blackout as requested) */}
+        <g className="falling-data" opacity="0">
+          {streams.map((column, i) => (
+            <g key={`dark-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
+              {column.map((char, j) => (
+                <text key={`dark-char-${j}`} y={j * 4} fill="white" fontSize="3" fontFamily="monospace" textAnchor="middle">{char}</text>
+              ))}
+            </g>
           ))}
         </g>
 
-        {/* LAYER 2: The Illumination (Numbers only appear in the mask) */}
+        {/* THE CLARITY: Light Layer (Visible only through Mask) */}
         <g className="falling-data" mask="url(#spotlightMask)">
-          {streams.map((content, i) => (
-            <text 
-              key={`light-${i}`} 
-              x={5 + i * 4.5} 
-              y="0" 
-              fill="white" 
-              fontSize="2.5" 
-              fontFamily="monospace" 
-              style={{ writingMode: 'vertical-rl' }}
-            >
-              {content}
-            </text>
+          {streams.map((column, i) => (
+            <g key={`light-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
+              {column.map((char, j) => (
+                <text key={`light-char-${j}`} y={j * 4} fill="white" fontSize="3" fontFamily="monospace" textAnchor="middle">{char}</text>
+              ))}
+            </g>
           ))}
         </g>
-
-        {/* THE VISUAL GLOW: A soft ring to sell the spotlight effect */}
-        <circle r="15" fill="none" stroke="white" strokeWidth="0.2" strokeOpacity="0.3">
-          <animate attributeName="cx" values="20;80;30;20" dur="18s" repeatCount="indefinite" />
-          <animate attributeName="cy" values="20;50;80;20" dur="18s" repeatCount="indefinite" />
-        </circle>
       </svg>
     </div>
   );
@@ -102,14 +78,14 @@ export default function VanitySite() {
       
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
-        <div style={{ width: '380px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '10%' }}>
+        <div style={{ width: '480px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
           <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
           <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
         </div>
       </nav>
 
       <section style={{ maxWidth: '1200px', margin: '0 auto 140px', display: 'flex', alignItems: 'center' }}>
-        <div style={{ flex: 1.5 }}>
+        <div style={{ flex: 1.2 }}>
           <h1 style={{ fontSize: 'clamp(44px, 7vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>
             FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
           </h1>
@@ -121,12 +97,11 @@ export default function VanitySite() {
             REQUEST SECURE BRIEFING
           </button>
         </div>
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-10%', marginTop: '-30px' }}>
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-5%', marginTop: '-50px' }}>
           <DigitalSpotlight />
         </div>
       </section>
 
-      {/* METHODOLOGY SECTION */}
       <section id="method" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
@@ -136,7 +111,6 @@ export default function VanitySite() {
         </div>
       </section>
 
-      {/* SECTORS SECTION */}
       <section id="sectors" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }}>
