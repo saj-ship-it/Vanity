@@ -14,8 +14,8 @@ const DataOrb = () => {
   return (
     <div style={{ 
       position: 'relative', 
-      width: '330px', 
-      height: '330px', 
+      width: '280px', // Slightly scaled down for better mid-point fit
+      height: '280px', 
       backgroundColor: '#000',
       borderRadius: '50%',
       overflow: 'hidden',
@@ -29,7 +29,7 @@ const DataOrb = () => {
         }
         .data-column {
           font-family: 'Courier New', monospace;
-          font-size: 11px;
+          font-size: 10px;
           line-height: 1.2;
           white-space: pre;
           animation: streamFall 65s linear infinite;
@@ -50,8 +50,8 @@ const DataOrb = () => {
           color: #FFFDD0; 
           font-weight: bold;
           z-index: 2;
-          -webkit-mask-image: radial-gradient(circle 40px at center, black 100%, transparent 100%);
-          mask-image: radial-gradient(circle 40px at center, black 100%, transparent 100%);
+          -webkit-mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%);
+          mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%);
           -webkit-mask-repeat: no-repeat;
           mask-repeat: no-repeat;
           -webkit-mask-size: 200% 200%;
@@ -98,15 +98,14 @@ export default function VanitySite() {
   ];
 
   return (
-    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden' }}>
+    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
-      {/* HEADER: Horizontal Top Alignment */}
+      {/* HEADER: Aligned to Page Frame */}
       <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
           AUTHENTIC INTELLIGENCE
         </strong>
         
-        {/* Navigation moved back up to align with Logo */}
         <nav style={{ display: 'flex', gap: '40px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
           <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
           <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
@@ -114,9 +113,10 @@ export default function VanitySite() {
       </header>
 
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <section style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'flex-start', gap: '20px', marginTop: '100px', marginBottom: '140px' }}>
+        <section style={{ position: 'relative', marginTop: '140px', marginBottom: '140px', minHeight: '450px' }}>
           
-          <div style={{ flex: '0 1 600px', paddingTop: '40px', zIndex: 2 }}>
+          {/* TEXT BLOCK */}
+          <div style={{ maxWidth: '600px', position: 'relative', zIndex: 2 }}>
             <h1 style={{ fontSize: 'clamp(40px, 8vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>
               FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
             </h1>
@@ -134,8 +134,14 @@ export default function VanitySite() {
             </button>
           </div>
           
-          {/* GRAPHIC: Pushed Left by 50% relative to its old position */}
-          <div style={{ flex: '0 0 330px', marginLeft: '-150px', zIndex: 1 }}>
+          {/* GRAPHIC: Anchored to the Mid-Point between text and frame */}
+          <div style={{ 
+            position: 'absolute', 
+            top: '50%', 
+            left: '75%', // Positioned exactly at the mid-point of the right-side whitespace
+            transform: 'translate(-50%, -50%)',
+            zIndex: 1 
+          }}>
             <DataOrb />
           </div>
 
