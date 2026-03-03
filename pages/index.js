@@ -1,6 +1,78 @@
 import React, { useState, useMemo } from 'react';
 
-// STEP 04 VISUAL (The vertical flow we just built)
+// THE GLOBAL ORB: 1s and 0s forming a simplified world map
+const WorldDataOrb = () => {
+  const cols = 35; 
+  const rows = 45;
+
+  // A bitmask representing the "Land" vs "Water" to shape the map silhouette
+  const mapWeight = [
+    0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,
+    0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
+    0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,
+    0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
+    0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+  ];
+
+  const streams = useMemo(() => 
+    [...Array(cols)].map(() => 
+      [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('\n')
+    ), []
+  );
+
+  return (
+    <div className="orb-container">
+      <style>{`
+        .orb-container { 
+          position: relative; width: 320px; height: 320px; background-color: #000; border-radius: 50%; overflow: hidden; 
+          -webkit-mask-image: radial-gradient(circle, black 65%, transparent 100%); 
+          mask-image: radial-gradient(circle, black 65%, transparent 100%); 
+        }
+        @media (max-width: 1024px) { 
+          .orb-container { width: 240px; height: 240px; margin: 40px auto; } 
+        }
+        @keyframes streamFall { 0% { transform: translateY(-50%); } 100% { transform: translateY(0%); } }
+        .data-column { 
+          font-family: 'Courier New', monospace; font-size: 8px; line-height: 1.1; white-space: pre; 
+          animation: streamFall 75s linear infinite; will-change: transform; 
+        }
+        @keyframes spotlightMove { 
+          0% { -webkit-mask-position: 10% 20%; mask-position: 10% 20%; } 
+          50% { -webkit-mask-position: 90% 60%; mask-position: 90% 60%; } 
+          100% { -webkit-mask-position: 10% 20%; mask-position: 10% 20%; } 
+        }
+        .signal-layer { 
+          position: absolute; inset: 0; display: flex; gap: 7px; padding: 15px; color: #FFFDD0; font-weight: bold; z-index: 2; 
+          -webkit-mask-image: radial-gradient(circle 45px at center, black 100%, transparent 100%); 
+          mask-image: radial-gradient(circle 45px at center, black 100%, transparent 100%); 
+          -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 200% 200%; 
+          animation: spotlightMove 12s infinite ease-in-out; 
+        }
+        .noise-layer { 
+          position: absolute; inset: 0; display: flex; gap: 7px; padding: 15px; color: white; opacity: 0.16; z-index: 1; 
+        }
+      `}</style>
+      
+      <div className="noise-layer">
+        {streams.map((content, i) => (
+          <div key={i} className="data-column" style={{ opacity: mapWeight[i % 35] ? 1 : 0.1 }}>{content}</div>
+        ))}
+      </div>
+
+      <div className="signal-layer">
+        {streams.map((content, i) => (
+          <div key={i} className="data-column" style={{ opacity: mapWeight[i % 35] ? 1 : 0 }}>{content}</div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// STEP 04 VISUAL: Operational Pipeline
 const OperationalFlow = () => {
   const steps = ["MONITOR", "DETECT", "ANALYZE", "ALERT"];
   return (
@@ -15,27 +87,6 @@ const OperationalFlow = () => {
           {i < 3 && <div style={{ position: 'absolute', height: '25px', width: '1px', backgroundColor: 'white', opacity: 0.2, marginLeft: '3.5px', marginTop: '38px' }} />}
         </div>
       ))}
-    </div>
-  );
-};
-
-// THE DATA ORB (High-Speed Spotlight, 16% Opacity)
-const DataOrb = () => {
-  const cols = 22; const rows = 40;
-  const streams = useMemo(() => [...Array(cols)].map(() => [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('\n')), []);
-  return (
-    <div className="orb-container">
-      <style>{`
-        .orb-container { position: relative; width: 280px; height: 280px; background-color: #000; border-radius: 50%; overflow: hidden; -webkit-mask-image: radial-gradient(circle, black 65%, transparent 100%); mask-image: radial-gradient(circle, black 65%, transparent 100%); }
-        @media (max-width: 1024px) { .orb-container { width: 220px; height: 220px; margin: 40px auto; } }
-        @keyframes streamFall { 0% { transform: translateY(-50%); } 100% { transform: translateY(0%); } }
-        .data-column { font-family: 'Courier New', monospace; font-size: 10px; line-height: 1.2; white-space: pre; animation: streamFall 60s linear infinite; will-change: transform; }
-        @keyframes spotlightMove { 0% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } 33% { -webkit-mask-position: 85% 35%; mask-position: 85% 35%; } 66% { -webkit-mask-position: 25% 85%; mask-position: 25% 85%; } 100% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } }
-        .signal-layer { position: absolute; inset: 0; display: flex; gap: 10px; padding: 10px; color: #FFFDD0; font-weight: bold; z-index: 2; -webkit-mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%); mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 200% 200%; animation: spotlightMove 12s infinite ease-in-out; }
-        .noise-layer { position: absolute; inset: 0; display: flex; gap: 10px; padding: 10px; color: white; opacity: 0.16; z-index: 1; }
-      `}</style>
-      <div className="noise-layer">{streams.map((content, i) => (<div key={i} className="data-column">{content}</div>))}</div>
-      <div className="signal-layer">{streams.map((content, i) => (<div key={i} className="data-column">{content}</div>))}</div>
     </div>
   );
 };
@@ -66,6 +117,7 @@ export default function VanitySite() {
       </header>
 
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        {/* HERO SECTION */}
         <section className="hero-section">
           <style>{`
             .hero-section { position: relative; margin-top: 140px; margin-bottom: 140px; min-height: 450px; }
@@ -81,7 +133,7 @@ export default function VanitySite() {
             <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>We find and monitor non-obvious data pipelines to detect trend breaks first and before impact.</p>
             <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>REQUEST SECURE BRIEFING</button>
           </div>
-          <div className="hero-graphic"><DataOrb /></div>
+          <div className="hero-graphic"><WorldDataOrb /></div>
         </section>
 
         {/* METHODOLOGY SECTION */}
@@ -90,15 +142,27 @@ export default function VanitySite() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '40px' }}>
             <style>{` @media (max-width: 1024px) { #method-grid { grid-template-columns: 1fr !important; } } `}</style>
             <div id="method-grid" style={{ display: 'contents' }}>
-              <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Raw Ingestion.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Ingesting peripheral nodes—geopolitical shifts and disruptions—before they reach market lag.</p></div>
-              <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Deviation Detection.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Our proprietary logic filters the abyss to isolate anomalies that represent warning signs of volatility.</p></div>
-              <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Zero-Latency Access.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Insights delivered via secure channels, giving decision-makers a window of opportunity to position before impact.</p></div>
+              <div>
+                <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3>
+                <p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Raw Ingestion.</p>
+                <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Ingesting peripheral nodes—geopolitical shifts and logistical disruptions—before they reach market lag.</p>
+              </div>
+              <div>
+                <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[02] PATTERN ISOLATION</h3>
+                <p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Anomalous Detection.</p>
+                <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Our proprietary logic filters the abyss to isolate anomalies that represent warning signs of volatility.</p>
+              </div>
+              <div>
+                <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3>
+                <p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Zero-Latency Access.</p>
+                <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Insights delivered via secure channels, giving decision-makers a window of opportunity to position before impact.</p>
+              </div>
               <OperationalFlow />
             </div>
           </div>
         </section>
 
-        {/* SECTORS SECTION */}
+        {/* SECTORS Grid */}
         <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
@@ -112,12 +176,12 @@ export default function VanitySite() {
         </section>
       </main>
 
-      {/* SECURE MODAL OVERLAY */}
+      {/* SECURE MODAL */}
       {showForm && (
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '400px', border: '1px solid #333', backgroundColor: '#050505', padding: '40px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-              <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v2.6]</span>
+              <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v3.0]</span>
               <button onClick={() => setShowForm(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '12px' }}>[X] CLOSE</button>
             </div>
             <form action="https://formspree.io/f/your-form-id" method="POST">
