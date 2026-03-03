@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from 'react';
 
-// THE REFINED ORB: GPU-Accelerated, 14% Noise, Cream Signal
+// THE LIVING ORB: Moving 1s and 0s, 16% Opacity, Cream Signal
 const DataOrb = () => {
   const cols = 22; 
   const rows = 40;
 
+  // Generate binary strings for the waterfall effect
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
       [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('\n')
@@ -32,7 +33,7 @@ const DataOrb = () => {
           font-size: 11px;
           line-height: 1.2;
           white-space: pre;
-          animation: streamFall 70s linear infinite;
+          animation: streamFall 65s linear infinite; /* Constant vertical movement */
           will-change: transform;
         }
         @keyframes spotlightMove {
@@ -47,7 +48,7 @@ const DataOrb = () => {
           display: flex;
           gap: 10px;
           padding: 10px;
-          color: #FFFDD0; /* CREAM SIGNAL */
+          color: #FFFDD0; /* CREAM */
           font-weight: bold;
           z-index: 2;
           -webkit-mask-image: radial-gradient(circle 40px at center, black 100%, transparent 100%);
@@ -64,17 +65,19 @@ const DataOrb = () => {
           gap: 10px;
           padding: 10px;
           color: white;
-          opacity: 0.14; /* 14% NOISE */
+          opacity: 0.16; /* 16% OPACITY */
           z-index: 1;
         }
       `}</style>
 
+      {/* BACKGROUND NOISE (MOVING) */}
       <div className="noise-layer">
         {streams.map((content, i) => (
           <div key={i} className="data-column">{content}</div>
         ))}
       </div>
 
+      {/* FOREGROUND CREAM SIGNAL (MOVING) */}
       <div className="signal-layer">
         {streams.map((content, i) => (
           <div key={i} className="data-column">{content}</div>
@@ -87,25 +90,33 @@ const DataOrb = () => {
 export default function VanitySite() {
   const [showForm, setShowForm] = useState(false);
 
+  const sectors = [
+    { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+    { name: 'MEDIA & DISINFO', path: 'M2 3h20v14H2z M12 17v4' },
+    { name: 'ENERGY INFRA', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+    { name: 'HEALTHCARE', path: 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z' },
+    { name: 'LOGISTICS', path: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
+    { name: 'PRIVATE EQUITY', path: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
+    { name: 'FINANCE', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
+  ];
+
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden' }}>
       
-      <nav style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
-        <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
-        <div style={{ width: '330px', display: 'flex', justifyContent: 'center', gap: '30px', marginRight: '5%' }}>
-          <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
-          <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
-        </div>
-      </nav>
+      <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
+          AUTHENTIC INTELLIGENCE
+        </strong>
+      </header>
 
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <section style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '40px', marginBottom: '140px' }}>
-          <div style={{ flex: '1 1 500px' }}>
+        <section style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: '40px', marginTop: '80px', marginBottom: '140px' }}>
+          
+          <div style={{ flex: '1 1 500px', paddingTop: '40px' }}>
             <h1 style={{ fontSize: 'clamp(40px, 8vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>
               FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
             </h1>
             
-            {/* ADDED MARGIN-BOTTOM FOR SEPARATION */}
             <p style={{ color: '#9ca3af', maxWidth: '480px', marginBottom: '25px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
               Predictive analytics for high-stakes decision makers.
             </p>
@@ -119,18 +130,34 @@ export default function VanitySite() {
             </button>
           </div>
           
-          <div style={{ flex: '0 0 330px', margin: '0 auto', transform: 'translateY(-20px)' }}>
+          {/* Centered Axis: Navigation + Moving Orb */}
+          <div style={{ flex: '0 0 330px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '60px' }}>
+            <nav style={{ display: 'flex', gap: '40px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
+              <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
+              <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
+            </nav>
             <DataOrb />
           </div>
         </section>
 
-        {/* Operational Methodology */}
         <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '50px' }}>
-            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[01] THE FEED</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Ingesting non-traditional data streams to bypass market lag.</p></div>
-            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
-            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Intelligence delivered via secure nodes for critical lead time.</p></div>
+            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[01] THE FEED</h3><p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.6' }}>Ingesting non-traditional data streams to bypass market lag.</p></div>
+            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.6' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
+            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.6' }}>Intelligence delivered via secure nodes for critical lead time.</p></div>
+          </div>
+        </section>
+
+        <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
+          <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+            {sectors.map((s) => (
+              <div key={s.name} style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '40px 20px', textAlign: 'center' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.path} /></svg>
+                <h4 style={{ fontSize: '11px', letterSpacing: '0.1em' }}>{s.name}</h4>
+              </div>
+            ))}
           </div>
         </section>
       </main>
