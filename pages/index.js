@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 
-// THE SEARCHLIGHT: 18% visibility noise with Golden Signal reveal
-const DigitalSpotlight = () => {
+// THE TELESCOPE: 18% noise rain, with Lemon Signal reveal in a circular frame
+const DigitalTelescope = () => {
   const cols = 28; 
   const rows = 60;
 
@@ -22,20 +22,34 @@ const DigitalSpotlight = () => {
         .falling-data {
           animation: streamFall 70s linear infinite;
         }
+        @keyframes lensFocus {
+          0% { stroke-opacity: 0.1; stroke-width: 0.1; }
+          50% { stroke-opacity: 0.3; stroke-width: 0.2; }
+          100% { stroke-opacity: 0.1; stroke-width: 0.1; }
+        }
+        .lens-ring {
+            animation: lensFocus 5s infinite ease-in-out;
+        }
       `}</style>
 
-      <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+      {/* THE APERTURE FRAME (The outer telescope bezel) */}
+      <div style={{ 
+        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', 
+        border: '70px solid #000', borderRadius: '50%', boxShadow: 'inset 0 0 20px rgba(0,0,0,1)', zIndex: 20, pointerEvents: 'none'
+      }}></div>
+
+      <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" style={{ position: 'absolute', zIndex: 10 }}>
         <defs>
           {/* THE MASK: Precision beam for signal detection */}
           <mask id="spotlightMask">
-            <circle r="6" fill="white">
-              <animate attributeName="cx" values="20;80;40;20" dur="20s" repeatCount="indefinite" />
-              <animate attributeName="cy" values="20;40;80;20" dur="20s" repeatCount="indefinite" />
+            <circle r="7" fill="white">
+              <animate attributeName="cx" values="25;75;35;25" dur="18s" repeatCount="indefinite" />
+              <animate attributeName="cy" values="25;55;85;25" dur="18s" repeatCount="indefinite" />
             </circle>
           </mask>
         </defs>
 
-        {/* THE NOISE: Background data (Increased to 18% visibility) */}
+        {/* THE NOISE: Background data (18% visibility, White) */}
         <g className="falling-data" opacity="0.18">
           {streams.map((column, i) => (
             <g key={`noise-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
@@ -46,16 +60,29 @@ const DigitalSpotlight = () => {
           ))}
         </g>
 
-        {/* THE SIGNAL: Yellow/Gold Reveal (Revealed by Mask) */}
+        {/* THE SIGNAL: Lemon Yellow Reveal (Revealed by Mask) */}
         <g className="falling-data" mask="url(#spotlightMask)">
           {streams.map((column, i) => (
             <g key={`signal-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
               {column.map((char, j) => (
-                <text key={`signal-char-${j}`} y={j * 4} fill="#FFD700" fontSize="3.2" fontWeight="bold" fontFamily="monospace" textAnchor="middle">{char}</text>
+                <text key={`signal-char-${j}`} y={j * 4} fill="#FFFF00" fontSize="3.3" fontWeight="bold" fontFamily="monospace" textAnchor="middle">{char}</text>
               ))}
             </g>
           ))}
         </g>
+
+        {/* THE LENS DETAILS (static crosshairs for telescope feel) */}
+        <g stroke="white" strokeWidth="0.05" strokeOpacity="0.15" pointerEvents="none">
+            <line x1="10" y1="50" x2="90" y2="50" />
+            <line x1="50" y1="10" x2="50" y2="90" />
+            <circle cx="50" cy="50" r="1" fill="none" />
+        </g>
+        
+        {/* THE MOVING FOCUS RING: A faint glow to track the spotlight */}
+        <circle r="7.5" fill="none" stroke="white" className="lens-ring" pointerEvents="none">
+              <animate attributeName="cx" values="25;75;35;25" dur="18s" repeatCount="indefinite" />
+              <animate attributeName="cy" values="25;55;85;25" dur="22s" repeatCount="indefinite" />
+        </circle>
       </svg>
     </div>
   );
@@ -100,7 +127,7 @@ export default function VanitySite() {
           </button>
         </div>
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-5%', marginTop: '-50px' }}>
-          <DigitalSpotlight />
+          <DigitalTelescope />
         </div>
       </section>
 
