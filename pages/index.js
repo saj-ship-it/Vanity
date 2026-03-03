@@ -1,22 +1,9 @@
 import React, { useState, useMemo } from 'react';
 
-// THE GLOBAL ORB: 1s and 0s forming a simplified world map
+// THE HIGH-FIDELITY GLOBAL ORB
 const WorldDataOrb = () => {
   const cols = 35; 
   const rows = 45;
-
-  // A bitmask representing the "Land" vs "Water" to shape the map silhouette
-  const mapWeight = [
-    0,0,0,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,
-    0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
-    0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,
-    0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
-    0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0
-  ];
 
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
@@ -45,11 +32,21 @@ const WorldDataOrb = () => {
           50% { -webkit-mask-position: 90% 60%; mask-position: 90% 60%; } 
           100% { -webkit-mask-position: 10% 20%; mask-position: 10% 20%; } 
         }
+        
+        /* THE GEOGRAPHIC CLIPPING MASK */
+        .map-mask {
+          -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cpath d='M25 20h15v10h-15zM60 15h30v20h-30zM120 20h40v30h-40zM35 50h20v30h-20zM140 65h25v20h-25zM100 20h10v10h-10z'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cpath d='M15 25c5-2 12-4 22-2s15 1 20-3 10-8 15-5 12 4 18 2 15-6 25-4 15 5 22 1 12-8 18-5 8 8 12 12-2 12-10 15-15 0-22-5-12-8-18-4-8 10-15 15-18 2-25-8-10-15-18-12-15 0-20 8-12 15-22 12-15-5-22-10-12-8-15-5z'/%3E%3C/svg%3E");
+          mask-size: contain;
+          mask-repeat: no-repeat;
+          mask-position: center;
+        }
+
         .signal-layer { 
           position: absolute; inset: 0; display: flex; gap: 7px; padding: 15px; color: #FFFDD0; font-weight: bold; z-index: 2; 
           -webkit-mask-image: radial-gradient(circle 45px at center, black 100%, transparent 100%); 
           mask-image: radial-gradient(circle 45px at center, black 100%, transparent 100%); 
-          -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 200% 200%; 
+          -webkit-mask-repeat: no-repeat; -webkit-mask-size: 200% 200%; 
           animation: spotlightMove 12s infinite ease-in-out; 
         }
         .noise-layer { 
@@ -57,43 +54,28 @@ const WorldDataOrb = () => {
         }
       `}</style>
       
-      <div className="noise-layer">
-        {streams.map((content, i) => (
-          <div key={i} className="data-column" style={{ opacity: mapWeight[i % 35] ? 1 : 0.1 }}>{content}</div>
-        ))}
-      </div>
-
-      <div className="signal-layer">
-        {streams.map((content, i) => (
-          <div key={i} className="data-column" style={{ opacity: mapWeight[i % 35] ? 1 : 0 }}>{content}</div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// STEP 04 VISUAL: Operational Pipeline
-const OperationalFlow = () => {
-  const steps = ["MONITOR", "DETECT", "ANALYZE", "ALERT"];
-  return (
-    <div style={{ paddingLeft: '20px', borderLeft: '1px solid #1f2937', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      {steps.map((step, i) => (
-        <div key={step} style={{ display: 'flex', alignItems: 'center', marginBottom: '25px', opacity: 0.4 + (i * 0.2) }}>
-          <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: i === 3 ? '#FFFDD0' : 'white', marginRight: '15px', boxShadow: i === 3 ? '0 0 10px #FFFDD0' : 'none' }} />
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontSize: '9px', letterSpacing: '0.3em', color: i === 3 ? '#FFFDD0' : 'white', fontWeight: i === 3 ? 'bold' : 'normal' }}>STEP_0{i + 1}</span>
-            <span style={{ fontSize: '12px', letterSpacing: '0.1em', color: i === 3 ? '#FFFDD0' : 'white' }}>{step}</span>
-          </div>
-          {i < 3 && <div style={{ position: 'absolute', height: '25px', width: '1px', backgroundColor: 'white', opacity: 0.2, marginLeft: '3.5px', marginTop: '38px' }} />}
+      {/* Container for the map-shaped data */}
+      <div className="map-mask" style={{ position: 'absolute', inset: 0 }}>
+        <div className="noise-layer">
+          {streams.map((content, i) => (
+            <div key={i} className="data-column">{content}</div>
+          ))}
         </div>
-      ))}
+
+        <div className="signal-layer">
+          {streams.map((content, i) => (
+            <div key={i} className="data-column">{content}</div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
+
+// ... (Rest of the code for Header, Methodology, and Sectors remains the same)
 
 export default function VanitySite() {
   const [showForm, setShowForm] = useState(false);
-
   const sectors = [
     { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
     { name: 'MEDIA & DISINFO', path: 'M2 3h20v14H2z M12 17v4' },
@@ -104,10 +86,26 @@ export default function VanitySite() {
     { name: 'FINANCE', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
   ];
 
+  const OperationalFlow = () => {
+    const steps = ["MONITOR", "DETECT", "ANALYZE", "ALERT"];
+    return (
+      <div style={{ paddingLeft: '20px', borderLeft: '1px solid #1f2937', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        {steps.map((step, i) => (
+          <div key={step} style={{ display: 'flex', alignItems: 'center', marginBottom: '25px', opacity: 0.4 + (i * 0.2) }}>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: i === 3 ? '#FFFDD0' : 'white', marginRight: '15px', boxShadow: i === 3 ? '0 0 10px #FFFDD0' : 'none' }} />
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span style={{ fontSize: '9px', letterSpacing: '0.3em', color: i === 3 ? '#FFFDD0' : 'white', fontWeight: i === 3 ? 'bold' : 'normal' }}>STEP_0{i + 1}</span>
+              <span style={{ fontSize: '12px', letterSpacing: '0.1em', color: i === 3 ? '#FFFDD0' : 'white' }}>{step}</span>
+            </div>
+            {i < 3 && <div style={{ position: 'absolute', height: '25px', width: '1px', backgroundColor: 'white', opacity: 0.2, marginLeft: '3.5px', marginTop: '38px' }} />}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
-      
-      {/* HEADER */}
       <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '60px' }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>AUTHENTIC INTELLIGENCE</strong>
         <nav style={{ display: 'flex', gap: '40px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
@@ -117,7 +115,6 @@ export default function VanitySite() {
       </header>
 
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        {/* HERO SECTION */}
         <section className="hero-section">
           <style>{`
             .hero-section { position: relative; margin-top: 140px; margin-bottom: 140px; min-height: 450px; }
@@ -136,33 +133,19 @@ export default function VanitySite() {
           <div className="hero-graphic"><WorldDataOrb /></div>
         </section>
 
-        {/* METHODOLOGY SECTION */}
         <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '40px' }}>
             <style>{` @media (max-width: 1024px) { #method-grid { grid-template-columns: 1fr !important; } } `}</style>
             <div id="method-grid" style={{ display: 'contents' }}>
-              <div>
-                <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3>
-                <p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Raw Ingestion.</p>
-                <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Ingesting peripheral nodes—geopolitical shifts and logistical disruptions—before they reach market lag.</p>
-              </div>
-              <div>
-                <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[02] PATTERN ISOLATION</h3>
-                <p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Anomalous Detection.</p>
-                <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Our proprietary logic filters the abyss to isolate anomalies that represent warning signs of volatility.</p>
-              </div>
-              <div>
-                <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3>
-                <p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Zero-Latency Access.</p>
-                <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Insights delivered via secure channels, giving decision-makers a window of opportunity to position before impact.</p>
-              </div>
+              <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Raw Ingestion.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Ingesting peripheral nodes—geopolitical shifts and disruptions—before they reach market lag.</p></div>
+              <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Anomalous Detection.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Our proprietary logic filters the abyss to isolate anomalies that represent warning signs of volatility.</p></div>
+              <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Zero-Latency Access.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Insights delivered via secure channels, giving decision-makers a window of opportunity to position before impact.</p></div>
               <OperationalFlow />
             </div>
           </div>
         </section>
 
-        {/* SECTORS Grid */}
         <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
@@ -176,7 +159,6 @@ export default function VanitySite() {
         </section>
       </main>
 
-      {/* SECURE MODAL */}
       {showForm && (
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '400px', border: '1px solid #333', backgroundColor: '#050505', padding: '40px' }}>
