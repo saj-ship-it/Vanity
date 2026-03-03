@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 
-// THE LIVING ORB: 16% Opacity, Cream Signal, Moving 1s and 0s
+// THE LIVING ORB: 16% Opacity, Cream Signal, High-Speed Spotlight
 const DataOrb = () => {
   const cols = 22; 
   const rows = 40;
@@ -19,8 +19,22 @@ const DataOrb = () => {
       <style>{`
         @keyframes streamFall { 0% { transform: translateY(-50%); } 100% { transform: translateY(0%); } }
         .data-column { font-family: 'Courier New', monospace; font-size: 10px; line-height: 1.2; white-space: pre; animation: streamFall 60s linear infinite; will-change: transform; }
-        @keyframes spotlightMove { 0% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } 33% { -webkit-mask-position: 85% 35%; mask-position: 85% 35%; } 66% { -webkit-mask-position: 25% 85%; mask-position: 25% 85%; } 100% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } }
-        .signal-layer { position: absolute; inset: 0; display: flex; gap: 10px; padding: 10px; color: #FFFDD0; font-weight: bold; z-index: 2; -webkit-mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%); mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 200% 200%; animation: spotlightMove 20s infinite ease-in-out; }
+        
+        /* INCREASED SPEED: 12s instead of 20s */
+        @keyframes spotlightMove { 
+          0% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } 
+          33% { -webkit-mask-position: 85% 35%; mask-position: 85% 35%; } 
+          66% { -webkit-mask-position: 25% 85%; mask-position: 25% 85%; } 
+          100% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } 
+        }
+        
+        .signal-layer { 
+          position: absolute; inset: 0; display: flex; gap: 10px; padding: 10px; color: #FFFDD0; font-weight: bold; z-index: 2; 
+          -webkit-mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%); 
+          mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%); 
+          -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 200% 200%; 
+          animation: spotlightMove 12s infinite ease-in-out; 
+        }
         .noise-layer { position: absolute; inset: 0; display: flex; gap: 10px; padding: 10px; color: white; opacity: 0.16; z-index: 1; }
       `}</style>
       <div className="noise-layer">{streams.map((content, i) => (<div key={i} className="data-column">{content}</div>))}</div>
@@ -45,7 +59,6 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
-      {/* HEADER: Nav Left-Aligned with Logo */}
       <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '60px' }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>AUTHENTIC INTELLIGENCE</strong>
         <nav style={{ display: 'flex', gap: '40px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
@@ -65,49 +78,27 @@ export default function VanitySite() {
           <div style={{ position: 'absolute', top: '35%', left: '75%', transform: 'translate(-50%, -50%)', zIndex: 1 }}><DataOrb /></div>
         </section>
 
-        {/* EXPANDED METHODOLOGY SECTION */}
         <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
-          
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '80px' }}>
-            
-            {/* [01] THE FEED */}
             <div>
               <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3>
-              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>
-                Unfiltered ingestion of non-traditional data streams to bypass market lag.
-              </p>
-              <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>
-                Standard intelligence relies on delayed reporting and consensus metrics. We operate at the edge, ingesting raw data from peripheral nodes—geopolitical shifts, alternative finance movements, and logistical disruptions—before they are sanitized for public consumption.
-              </p>
+              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Unfiltered ingestion of non-traditional data streams to bypass market lag.</p>
+              <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Standard intelligence relies on delayed reporting. We operate at the edge, ingesting raw data from peripheral nodes—geopolitical shifts and logistical disruptions—before impact.</p>
             </div>
-
-            {/* [02] PATTERN ISOLATION */}
             <div>
               <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[02] PATTERN ISOLATION</h3>
-              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>
-                Identifying microscopic deviations that precede major systemic shifts.
-              </p>
-              <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>
-                We don't look for trends; we look for trend-breaks. Our proprietary logic filters the "Abyss" to isolate specific anomalies that represent the early-warning signs of volatility. We separate the noise of daily fluctuations from the signal of structural impact.
-              </p>
+              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Identifying microscopic deviations that precede major systemic shifts.</p>
+              <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>We look for trend-breaks. Our proprietary logic filters the abyss to isolate specific anomalies that represent early-warning signs of volatility.</p>
             </div>
-
-            {/* [03] ADVISORY DELIVERY */}
             <div>
               <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3>
-              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>
-                Intelligence delivered via secure channels to provide critical lead time.
-              </p>
-              <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>
-                Intelligence is a perishable asset. Our insights are delivered with zero-latency, giving decision-makers a window of opportunity to position themselves ahead of the curve. We provide the clarity needed to act while the rest of the world is still reacting.
-              </p>
+              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Intelligence delivered via secure channels to provide critical lead time.</p>
+              <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Insights delivered with zero-latency, giving decision-makers a window of opportunity to position themselves before the curve.</p>
             </div>
-
           </div>
         </section>
 
-        {/* SECTORS SECTION */}
         <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
