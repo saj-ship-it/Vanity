@@ -1,78 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
-const NeuralChaos = () => {
-  // Generate random positions for the noise shards
-  const shards = [...Array(120)].map((_, i) => ({
+const NeuralDetection = () => {
+  // Generate 80 nodes with completely randomized properties
+  const nodes = useMemo(() => [...Array(80)].map((_, i) => ({
     id: i,
-    size: Math.random() * 2 + 0.5,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 10 + 5,
+    size: Math.random() * 4 + 1,
+    // Random start positions
+    startX: Math.random() * 100,
+    startY: Math.random() * 100,
+    // Random mid-points for non-linear movement
+    midX: Math.random() * 100,
+    midY: Math.random() * 100,
+    endX: Math.random() * 100,
+    endY: Math.random() * 100,
+    duration: Math.random() * 15 + 10,
     delay: Math.random() * -20,
-    opacity: Math.random() * 0.4 + 0.1
-  }));
+    opacity: Math.random() * 0.5 + 0.1,
+    // Identify one specific node as the "Signal"
+    isSignal: i === 42 
+  })), []);
 
   return (
     <div style={{ position: 'relative', width: '330px', height: '330px', marginLeft: '40px', flexShrink: 0 }}>
-      {/* CSS for Surreal Random Movement */}
       <style>{`
-        @keyframes floatChaos {
-          0% { transform: translate(0, 0) rotate(0deg); }
-          33% { transform: translate(15px, -10px) rotate(120deg); }
-          66% { transform: translate(-10px, 15px) rotate(240deg); }
-          100% { transform: translate(0, 0) rotate(360deg); }
+        @keyframes randomPath {
+          0% { transform: translate(0, 0); }
+          33% { transform: translate(var(--mx), var(--my)); }
+          66% { transform: translate(var(--ex), var(--ey)); }
+          100% { transform: translate(0, 0); }
         }
-        .shard { animation: floatChaos var(--d) infinite ease-in-out; }
+        .node { 
+          animation: randomPath var(--d) infinite ease-in-out;
+          animation-delay: var(--del);
+        }
+        @keyframes signalPulse {
+          0% { filter: drop-shadow(0 0 2px white); stroke-opacity: 1; }
+          50% { filter: drop-shadow(0 0 15px #2563eb); stroke-opacity: 0.5; stroke-width: 2; }
+          100% { filter: drop-shadow(0 0 2px white); stroke-opacity: 1; }
+        }
+        .signal-node {
+          animation: randomPath var(--d) infinite ease-in-out, signalPulse 2s infinite ease-in-out;
+          stroke: white;
+          stroke-width: 1.5;
+        }
       `}</style>
 
-      <svg width="330" height="330" viewBox="0 0 100 100" fill="none" style={{ filter: 'drop-shadow(0 0 15px rgba(37, 99, 235, 0.2))' }}>
-        <defs>
-          <radialGradient id="signalCore" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="white" stopOpacity="1" />
-            <stop offset="40%" stopColor="#2563eb" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
-        {/* THE NOISE: 120 Floating fragments on random paths */}
-        <g stroke="white" strokeWidth="0.1">
-          {shards.map((s) => (
-            <circle 
-              key={s.id} 
-              className="shard"
-              cx={s.x} 
-              cy={s.y} 
-              r={s.size} 
-              strokeOpacity={s.opacity}
-              style={{ '--d': `${s.duration}s`, animationDelay: `${s.delay}s` }}
-            />
-          ))}
-        </g>
-
-        {/* THE CLARITY: The Fixed, High-Refinement Iris */}
-        <g style={{ pointerEvents: 'none' }}>
-          {/* Inner Iris Density */}
-          <g stroke="white" strokeWidth="0.08" strokeOpacity="0.7">
-            {[...Array(72)].map((_, i) => {
-              const angle = (i * Math.PI) / 36;
-              const x1 = 50 + Math.cos(angle) * 8;
-              const y1 = 50 + Math.sin(angle) * 8;
-              const x2 = 50 + Math.cos(angle) * 30;
-              const y2 = 50 + Math.sin(angle) * 30;
-              return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />;
-            })}
-          </g>
-          
-          {/* Orbital Scanners */}
-          <ellipse cx="50" cy="50" rx="40" ry="12" stroke="#2563eb" strokeWidth="0.1" strokeOpacity="0.4" transform="rotate(45 50 50)" />
-          <ellipse cx="50" cy="50" rx="40" ry="12" stroke="#2563eb" strokeWidth="0.1" strokeOpacity="0.4" transform="rotate(-45 50 50)" />
-          
-          {/* Pulsating Core */}
-          <circle cx="50" cy="50" r="10" fill="url(#signalCore)" opacity="0.4">
-            <animate attributeName="r" values="8;11;8" dur="3s" repeatCount="indefinite" />
-          </circle>
-          <circle cx="50" cy="50" r="3" fill="white" />
-        </g>
+      <svg width="330" height="330" viewBox="0 0 100 100" fill="none">
+        {nodes.map((n) => (
+          <circle 
+            key={n.id} 
+            className={n.isSignal ? "signal-node" : "node"}
+            cx={n.startX} 
+            cy={n.startY} 
+            r={n.isSignal ? n.size + 1 : n.size} 
+            stroke="white"
+            strokeWidth="0.5"
+            strokeOpacity={n.isSignal ? 1 : n.opacity}
+            style={{ 
+              '--mx': `${n.midX - n.startX}px`,
+              '--my': `${n.midY - n.startY}px`,
+              '--ex': `${n.endX - n.startX}px`,
+              '--ey': `${n.endY - n.startY}px`,
+              '--d': `${n.duration}s`,
+              '--del': `${n.delay}s`
+            }}
+          />
+        ))}
+        
+        {/* Subtle background technical grid to ground the space */}
+        <path d="M0 50 H100 M50 0 V100" stroke="white" strokeWidth="0.05" strokeOpacity="0.1" />
       </svg>
     </div>
   );
@@ -117,7 +113,7 @@ export default function VanitySite() {
         </div>
         
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-5%' }}>
-          <NeuralChaos />
+          <NeuralDetection />
         </div>
       </section>
 
@@ -133,17 +129,16 @@ export default function VanitySite() {
           <div>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[02] PATTERN ISOLATION</h3>
-            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Identifying deviations that precede major geopolitical shifts.</p>
+            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Identifying deviations that precede major geopolitical and market shifts.</p>
           </div>
           <div>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[03] ADVISORY DELIVERY</h3>
-            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Intelligence delivered via secure nodes for critical lead time.</p>
+            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Intelligence delivered via secure nodes to providing critical lead time for decision makers.</p>
           </div>
         </div>
       </section>
 
-      {/* Sectors Section */}
       <section id="sectors" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
@@ -155,6 +150,7 @@ export default function VanitySite() {
         </div>
       </section>
 
+      {/* Formspree Secure Form Modal */}
       {showForm && (
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.98)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, backdropFilter: 'blur(10px)' }}>
           <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST" style={{ width: '90%', maxWidth: '450px', padding: '60px', border: '1px solid #222', backgroundColor: '#050505' }}>
@@ -162,8 +158,8 @@ export default function VanitySite() {
             <input name="name" required placeholder="NAME / ENTITY" style={{ width: '100%', padding: '18px', marginBottom: '20px', backgroundColor: '#0a0a0a', border: '1px solid #222', color: 'white' }} />
             <input name="email" type="email" required placeholder="SECURE EMAIL" style={{ width: '100%', padding: '18px', marginBottom: '30px', backgroundColor: '#0a0a0a', border: '1px solid #222', color: 'white' }} />
             <div style={{ display: 'flex', gap: '15px' }}>
-              <button type="button" onClick={() => setShowForm(false)} style={{ flex: 1, padding: '15px', backgroundColor: 'transparent', color: '#4b5563', border: 'none' }}>ABORT</button>
-              <button type="submit" style={{ flex: 2, padding: '18px', backgroundColor: '#2563eb', color: 'white', border: 'none', fontWeight: 'bold' }}>TRANSMIT</button>
+              <button type="button" onClick={() => setShowForm(false)} style={{ flex: 1, padding: '15px', backgroundColor: 'transparent', color: '#4b5563', border: 'none', cursor: 'pointer' }}>ABORT</button>
+              <button type="submit" style={{ flex: 2, padding: '18px', backgroundColor: '#2563eb', color: 'white', border: 'none', fontWeight: 'bold', cursor: 'pointer' }}>TRANSMIT</button>
             </div>
           </form>
         </div>
