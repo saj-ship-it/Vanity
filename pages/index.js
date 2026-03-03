@@ -1,11 +1,10 @@
 import React, { useState, useMemo } from 'react';
 
-// THE TELESCOPE: 18% noise rain, with Lemon Signal reveal in a circular frame
-const DigitalTelescope = () => {
-  const cols = 28; 
+// THE ORB: A circular field of falling binary data with a surgical lemon-yellow reveal
+const DataOrb = () => {
+  const cols = 32; 
   const rows = 60;
 
-  // Generate binary strings
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
       [...Array(rows)].map(() => (Math.random() > 0.5 ? '1' : '0'))
@@ -13,7 +12,7 @@ const DigitalTelescope = () => {
   );
 
   return (
-    <div style={{ position: 'relative', width: '480px', height: '550px', backgroundColor: '#000', borderRadius: '4px', overflow: 'hidden', border: '1px solid #111' }}>
+    <div style={{ position: 'relative', width: '480px', height: '550px', backgroundColor: 'transparent' }}>
       <style>{`
         @keyframes streamFall {
           0% { transform: translateY(-33%); }
@@ -22,25 +21,16 @@ const DigitalTelescope = () => {
         .falling-data {
           animation: streamFall 70s linear infinite;
         }
-        @keyframes lensFocus {
-          0% { stroke-opacity: 0.1; stroke-width: 0.1; }
-          50% { stroke-opacity: 0.3; stroke-width: 0.2; }
-          100% { stroke-opacity: 0.1; stroke-width: 0.1; }
-        }
-        .lens-ring {
-            animation: lensFocus 5s infinite ease-in-out;
-        }
       `}</style>
 
-      {/* THE APERTURE FRAME (The outer telescope bezel) */}
-      <div style={{ 
-        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', 
-        border: '70px solid #000', borderRadius: '50%', boxShadow: 'inset 0 0 20px rgba(0,0,0,1)', zIndex: 20, pointerEvents: 'none'
-      }}></div>
-
-      <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" style={{ position: 'absolute', zIndex: 10 }}>
+      <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
         <defs>
-          {/* THE MASK: Precision beam for signal detection */}
+          {/* THE CIRCULAR BOUNDARY: Clips the entire stream into a circle */}
+          <clipPath id="orbClip">
+            <circle cx="50" cy="50" r="48" />
+          </clipPath>
+
+          {/* THE SPOTLIGHT: Surgical signal detection radius */}
           <mask id="spotlightMask">
             <circle r="7" fill="white">
               <animate attributeName="cx" values="25;75;35;25" dur="18s" repeatCount="indefinite" />
@@ -49,40 +39,33 @@ const DigitalTelescope = () => {
           </mask>
         </defs>
 
-        {/* THE NOISE: Background data (18% visibility, White) */}
-        <g className="falling-data" opacity="0.18">
-          {streams.map((column, i) => (
-            <g key={`noise-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
-              {column.map((char, j) => (
-                <text key={`noise-char-${j}`} y={j * 4} fill="white" fontSize="3" fontFamily="monospace" textAnchor="middle">{char}</text>
-              ))}
-            </g>
-          ))}
+        {/* Apply the circular clip to the entire group */}
+        <g clipPath="url(#orbClip)">
+          {/* THE NOISE: Faint White Background (18% visibility) */}
+          <g className="falling-data" opacity="0.18">
+            {streams.map((column, i) => (
+              <g key={`noise-col-${i}`} transform={`translate(${2 + i * 3}, 0)`}>
+                {column.map((char, j) => (
+                  <text key={`noise-char-${j}`} y={j * 4} fill="white" fontSize="3" fontFamily="monospace" textAnchor="middle">{char}</text>
+                ))}
+              </g>
+            ))}
+          </g>
+
+          {/* THE SIGNAL: Lemon Yellow Reveal (Revealed by Mask) */}
+          <g className="falling-data" mask="url(#spotlightMask)">
+            {streams.map((column, i) => (
+              <g key={`signal-col-${i}`} transform={`translate(${2 + i * 3}, 0)`}>
+                {column.map((char, j) => (
+                  <text key={`signal-char-${j}`} y={j * 4} fill="#FFFF00" fontSize="3.3" fontWeight="bold" fontFamily="monospace" textAnchor="middle">{char}</text>
+                ))}
+              </g>
+            ))}
+          </g>
         </g>
 
-        {/* THE SIGNAL: Lemon Yellow Reveal (Revealed by Mask) */}
-        <g className="falling-data" mask="url(#spotlightMask)">
-          {streams.map((column, i) => (
-            <g key={`signal-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
-              {column.map((char, j) => (
-                <text key={`signal-char-${j}`} y={j * 4} fill="#FFFF00" fontSize="3.3" fontWeight="bold" fontFamily="monospace" textAnchor="middle">{char}</text>
-              ))}
-            </g>
-          ))}
-        </g>
-
-        {/* THE LENS DETAILS (static crosshairs for telescope feel) */}
-        <g stroke="white" strokeWidth="0.05" strokeOpacity="0.15" pointerEvents="none">
-            <line x1="10" y1="50" x2="90" y2="50" />
-            <line x1="50" y1="10" x2="50" y2="90" />
-            <circle cx="50" cy="50" r="1" fill="none" />
-        </g>
-        
-        {/* THE MOVING FOCUS RING: A faint glow to track the spotlight */}
-        <circle r="7.5" fill="none" stroke="white" className="lens-ring" pointerEvents="none">
-              <animate attributeName="cx" values="25;75;35;25" dur="18s" repeatCount="indefinite" />
-              <animate attributeName="cy" values="25;55;85;25" dur="22s" repeatCount="indefinite" />
-        </circle>
+        {/* Subtle Outer Edge: A thin rim to define the orb */}
+        <circle cx="50" cy="50" r="48" fill="none" stroke="white" strokeWidth="0.1" strokeOpacity="0.2" />
       </svg>
     </div>
   );
@@ -104,7 +87,6 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '60px 20px', scrollBehavior: 'smooth' }}>
       
-      {/* Navigation aligned to the 480px graphic */}
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
         <div style={{ width: '480px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
@@ -127,7 +109,7 @@ export default function VanitySite() {
           </button>
         </div>
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-5%', marginTop: '-50px' }}>
-          <DigitalTelescope />
+          <DataOrb />
         </div>
       </section>
 
