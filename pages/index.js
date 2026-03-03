@@ -71,10 +71,8 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '60px 20px', scrollBehavior: 'smooth' }}>
       
-      {/* Navigation - Centered over Iris */}
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
-        {/* Container matches Iris width; gap creates the centered black space */}
         <div style={{ width: '330px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
           <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
           <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
@@ -100,17 +98,25 @@ export default function VanitySite() {
         </div>
       </section>
 
-      {/* Other sections remain unchanged */}
+      {/* CORRECTED METHODOLOGY SECTION */}
       <section id="method" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
-          {sectors.slice(0, 3).map((s, i) => (
-            <div key={i}>
-                {s.icon}
-                <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[0{i+1}] {s.name.split(' ')[0]}</h3>
-                <p style={{ color: '#6b7280', fontSize: '14px' }}>Proprietary intelligence protocols.</p>
-            </div>
-          ))}
+          <div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+            <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[01] THE FEED</h3>
+            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Ingesting non-traditional data streams to bypass standard market lag.</p>
+          </div>
+          <div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[02] PATTERN ISOLATION</h3>
+            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Identifying deviations that precede major geopolitical and market shifts.</p>
+          </div>
+          <div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[03] ADVISORY DELIVERY</h3>
+            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Intelligence delivered via secure nodes to providing critical lead time for decision makers.</p>
+          </div>
         </div>
       </section>
 
@@ -132,8 +138,8 @@ export default function VanitySite() {
             <input name="name" required placeholder="NAME / ENTITY" style={{ width: '100%', padding: '18px', marginBottom: '20px', backgroundColor: '#0a0a0a', border: '1px solid #222', color: 'white' }} />
             <input name="email" type="email" required placeholder="SECURE EMAIL" style={{ width: '100%', padding: '18px', marginBottom: '30px', backgroundColor: '#0a0a0a', border: '1px solid #222', color: 'white' }} />
             <div style={{ display: 'flex', gap: '15px' }}>
-              <button type="button" onClick={() => setShowForm(false)} style={{ flex: 1, padding: '15px', backgroundColor: 'transparent', color: '#4b5563', border: 'none' }}>ABORT</button>
-              <button type="submit" style={{ flex: 2, padding: '18px', backgroundColor: '#2563eb', color: 'white', border: 'none', fontWeight: 'bold' }}>TRANSMIT</button>
+              <button type="button" onClick={() => setShowForm(false)} style={{ flex: 1, padding: '15px', backgroundColor: 'transparent', color: '#4b5563', border: 'none', cursor: 'pointer' }}>ABORT</button>
+              <button type="submit" style={{ flex: 2, padding: '18px', backgroundColor: '#2563eb', color: 'white', border: 'none', fontWeight: 'bold', cursor: 'pointer' }}>TRANSMIT</button>
             </div>
           </form>
         </div>
