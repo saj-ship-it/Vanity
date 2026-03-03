@@ -5,7 +5,6 @@ const DataOrb = () => {
   const cols = 22; 
   const rows = 40;
 
-  // Generate binary strings for the waterfall effect
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
       [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('\n')
@@ -33,7 +32,7 @@ const DataOrb = () => {
           font-size: 11px;
           line-height: 1.2;
           white-space: pre;
-          animation: streamFall 65s linear infinite; /* Constant vertical movement */
+          animation: streamFall 65s linear infinite;
           will-change: transform;
         }
         @keyframes spotlightMove {
@@ -48,7 +47,7 @@ const DataOrb = () => {
           display: flex;
           gap: 10px;
           padding: 10px;
-          color: #FFFDD0; /* CREAM */
+          color: #FFFDD0; 
           font-weight: bold;
           z-index: 2;
           -webkit-mask-image: radial-gradient(circle 40px at center, black 100%, transparent 100%);
@@ -65,19 +64,17 @@ const DataOrb = () => {
           gap: 10px;
           padding: 10px;
           color: white;
-          opacity: 0.16; /* 16% OPACITY */
+          opacity: 0.16; 
           z-index: 1;
         }
       `}</style>
 
-      {/* BACKGROUND NOISE (MOVING) */}
       <div className="noise-layer">
         {streams.map((content, i) => (
           <div key={i} className="data-column">{content}</div>
         ))}
       </div>
 
-      {/* FOREGROUND CREAM SIGNAL (MOVING) */}
       <div className="signal-layer">
         {streams.map((content, i) => (
           <div key={i} className="data-column">{content}</div>
@@ -103,16 +100,23 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden' }}>
       
-      <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      {/* HEADER: Horizontal Top Alignment */}
+      <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
           AUTHENTIC INTELLIGENCE
         </strong>
+        
+        {/* Navigation moved back up to align with Logo */}
+        <nav style={{ display: 'flex', gap: '40px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
+          <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
+          <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
+        </nav>
       </header>
 
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <section style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: '40px', marginTop: '80px', marginBottom: '140px' }}>
+        <section style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'flex-start', gap: '20px', marginTop: '100px', marginBottom: '140px' }}>
           
-          <div style={{ flex: '1 1 500px', paddingTop: '40px' }}>
+          <div style={{ flex: '0 1 600px', paddingTop: '40px', zIndex: 2 }}>
             <h1 style={{ fontSize: 'clamp(40px, 8vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>
               FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
             </h1>
@@ -130,22 +134,20 @@ export default function VanitySite() {
             </button>
           </div>
           
-          {/* Centered Axis: Navigation + Moving Orb */}
-          <div style={{ flex: '0 0 330px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '60px' }}>
-            <nav style={{ display: 'flex', gap: '40px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
-              <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
-              <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
-            </nav>
+          {/* GRAPHIC: Pushed Left by 50% relative to its old position */}
+          <div style={{ flex: '0 0 330px', marginLeft: '-150px', zIndex: 1 }}>
             <DataOrb />
           </div>
+
         </section>
 
+        {/* Operational Methodology */}
         <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '50px' }}>
-            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[01] THE FEED</h3><p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.6' }}>Ingesting non-traditional data streams to bypass market lag.</p></div>
-            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.6' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
-            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.6' }}>Intelligence delivered via secure nodes for critical lead time.</p></div>
+            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[01] THE FEED</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Ingesting non-traditional data streams to bypass market lag.</p></div>
+            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
+            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Intelligence delivered via secure nodes for critical lead time.</p></div>
           </div>
         </section>
 
