@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 
 const DigitalSpotlight = () => {
-  const cols = 28; // Increased column count for larger area
+  const cols = 28; 
   const rows = 50;
 
   // Generate binary strings
@@ -25,16 +25,16 @@ const DigitalSpotlight = () => {
 
       <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
         <defs>
-          {/* THE MASK: Increased radius to 22 for a larger spotlight area */}
+          {/* THE MASK: Reduced radius to 5.5 (25% of the previous 22) */}
           <mask id="spotlightMask">
-            <circle r="22" fill="white">
+            <circle r="5.5" fill="white">
               <animate attributeName="cx" values="25;75;35;25" dur="22s" repeatCount="indefinite" />
               <animate attributeName="cy" values="25;55;85;25" dur="22s" repeatCount="indefinite" />
             </circle>
           </mask>
         </defs>
 
-        {/* THE NOISE: Dark Layer (Set to 0 opacity for total blackout as requested) */}
+        {/* THE NOISE: Dark Layer (Total Blackout) */}
         <g className="falling-data" opacity="0">
           {streams.map((column, i) => (
             <g key={`dark-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
@@ -45,7 +45,7 @@ const DigitalSpotlight = () => {
           ))}
         </g>
 
-        {/* THE CLARITY: Light Layer (Visible only through Mask) */}
+        {/* THE CLARITY: Light Layer (The Surgical Beam) */}
         <g className="falling-data" mask="url(#spotlightMask)">
           {streams.map((column, i) => (
             <g key={`light-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
@@ -106,7 +106,7 @@ export default function VanitySite() {
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
           <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[01] THE FEED</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Ingesting non-traditional data streams to bypass market lag.</p></div>
-          <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
+          <div><h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
           <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Intelligence delivered via secure nodes for critical lead time.</p></div>
         </div>
       </section>
