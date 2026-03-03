@@ -1,64 +1,85 @@
 import React, { useState, useMemo } from 'react';
 
-// THE SEARCHLIGHT: Pure CSS Masking for high-contrast reveal
 const DigitalSpotlight = () => {
   const cols = 22;
   const rows = 40;
 
+  // Static strings to ensure no flickering between layers
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
-      [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('\n')
+      [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('')
     ), []
   );
 
   return (
-    <div style={{ position: 'relative', width: '380px', height: '420px', overflow: 'hidden', backgroundColor: '#000', borderRadius: '4px', border: '1px solid #111' }}>
+    <div style={{ position: 'relative', width: '380px', height: '420px', backgroundColor: '#000', borderRadius: '4px', overflow: 'hidden' }}>
       <style>{`
-        @keyframes slowStream {
-          0% { transform: translateY(-40%); }
+        @keyframes streamFall {
+          0% { transform: translateY(-50%); }
           100% { transform: translateY(0%); }
         }
         @keyframes spotlightMove {
-          0% { mask-position: 20% 20%; -webkit-mask-position: 20% 20%; }
-          33% { mask-position: 80% 40%; -webkit-mask-position: 80% 40%; }
-          66% { mask-position: 30% 80%; -webkit-mask-position: 30% 80%; }
-          100% { mask-position: 20% 20%; -webkit-mask-position: 20% 20%; }
+          0% { cx: 20; cy: 20; }
+          33% { cx: 80; cy: 50; }
+          66% { cx: 30; cy: 80; }
+          100% { cx: 20; cy: 20; }
         }
-        .data-layer {
-          display: flex;
-          gap: 10px;
-          color: white;
-          font-family: 'Courier New', monospace;
-          font-size: 11px;
-          line-height: 1.1;
-          white-space: pre;
-          /* The Mask: Pure CSS Spotlight */
-          mask-image: radial-gradient(circle 70px at center, black 100%, transparent 100%);
-          -webkit-mask-image: radial-gradient(circle 70px at center, black 40%, transparent 100%);
-          mask-repeat: no-repeat;
-          -webkit-mask-repeat: no-repeat;
-          mask-size: 1000px 1000px; /* Large mask area to allow movement */
-          -webkit-mask-size: 1000px 1000px;
-          animation: spotlightMove 15s infinite ease-in-out;
-        }
-        .column {
-          animation: slowStream 60s linear infinite;
+        .falling-data {
+          animation: streamFall 80s linear infinite;
         }
       `}</style>
 
-      {/* The Visual Spotlight Ring (Aesthetic only) */}
-      <div style={{ 
-        position: 'absolute', width: '100%', height: '100%', zIndex: 5, pointerEvents: 'none',
-        background: 'radial-gradient(circle 80px at center, transparent 80%, rgba(0,0,0,0.8) 100%)'
-      }}></div>
+      <svg width="100%" height="100%" viewBox="0 0 100 110" preserveAspectRatio="none">
+        <defs>
+          {/* THE MASK: This defines where the "Bright" text is visible */}
+          <mask id="spotlightMask">
+            <circle r="15" fill="white">
+              <animate attributeName="cx" values="20;80;30;20" dur="18s" repeatCount="indefinite" />
+              <animate attributeName="cy" values="20;50;80;20" dur="18s" repeatCount="indefinite" />
+            </circle>
+          </mask>
+        </defs>
 
-      <div className="data-layer">
-        {streams.map((content, i) => (
-          <div key={i} className="column">
-            {content}
-          </div>
-        ))}
-      </div>
+        {/* LAYER 1: The Dark Abyss (Numbers are almost invisible) */}
+        <g className="falling-data" opacity="0.05">
+          {streams.map((content, i) => (
+            <text 
+              key={`dark-${i}`} 
+              x={5 + i * 4.5} 
+              y="0" 
+              fill="white" 
+              fontSize="2.5" 
+              fontFamily="monospace" 
+              style={{ writingMode: 'vertical-rl' }}
+            >
+              {content}
+            </text>
+          ))}
+        </g>
+
+        {/* LAYER 2: The Illumination (Numbers only appear in the mask) */}
+        <g className="falling-data" mask="url(#spotlightMask)">
+          {streams.map((content, i) => (
+            <text 
+              key={`light-${i}`} 
+              x={5 + i * 4.5} 
+              y="0" 
+              fill="white" 
+              fontSize="2.5" 
+              fontFamily="monospace" 
+              style={{ writingMode: 'vertical-rl' }}
+            >
+              {content}
+            </text>
+          ))}
+        </g>
+
+        {/* THE VISUAL GLOW: A soft ring to sell the spotlight effect */}
+        <circle r="15" fill="none" stroke="white" strokeWidth="0.2" strokeOpacity="0.3">
+          <animate attributeName="cx" values="20;80;30;20" dur="18s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="20;50;80;20" dur="18s" repeatCount="indefinite" />
+        </circle>
+      </svg>
     </div>
   );
 };
@@ -115,7 +136,7 @@ export default function VanitySite() {
         </div>
       </section>
 
-      {/* RESTORED SECTORS SECTION */}
+      {/* SECTORS SECTION */}
       <section id="sectors" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }}>
