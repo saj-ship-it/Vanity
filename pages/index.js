@@ -1,81 +1,89 @@
 import React, { useState, useMemo } from 'react';
 
-// THE REFINED ORB: 330px, 14% Opacity, Cream Signal, Blurred Edges
+// OPTIMIZED ORB: Cross-device compatible spotlight
 const DataOrb = () => {
-  const cols = 24; 
-  const rows = 45;
+  const cols = 22; 
+  const rows = 40;
 
-  // Static binary data to prevent layer mismatch
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
-      [...Array(rows)].map(() => (Math.random() > 0.5 ? '1' : '0'))
+      [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('\n')
     ), []
   );
 
   return (
-    <div style={{ position: 'relative', width: '330px', height: '330px', backgroundColor: 'transparent', overflow: 'visible' }}>
+    <div style={{ 
+      position: 'relative', 
+      width: '330px', 
+      height: '330px', 
+      backgroundColor: '#000',
+      borderRadius: '50%',
+      overflow: 'hidden',
+      // The "Blur into darkness" edge
+      maskImage: 'radial-gradient(circle, black 60%, transparent 100%)',
+      WebkitMaskImage: 'radial-gradient(circle, black 60%, transparent 100%)'
+    }}>
       <style>{`
         @keyframes streamFall {
-          0% { transform: translateY(-30%); }
+          0% { transform: translateY(-50%); }
           100% { transform: translateY(0%); }
         }
-        .falling-data {
-          animation: streamFall 100s linear infinite;
+        .data-column {
+          font-family: 'Courier New', monospace;
+          font-size: 11px;
+          line-height: 1.2;
+          white-space: pre;
+          animation: streamFall 60s linear infinite;
+          will-change: transform;
         }
         @keyframes spotlightMove {
-          0% { transform: translate(15%, 15%); }
-          33% { transform: translate(65%, 40%); }
-          66% { transform: translate(25%, 70%); }
-          100% { transform: translate(15%, 15%); }
+          0% { -webkit-mask-position: 10% 10%; mask-position: 10% 10%; }
+          33% { -webkit-mask-position: 80% 40%; mask-position: 80% 40%; }
+          66% { -webkit-mask-position: 30% 80%; mask-position: 30% 80%; }
+          100% { -webkit-mask-position: 10% 10%; mask-position: 10% 10%; }
         }
-        .spotlight-container {
+        .signal-layer {
           position: absolute;
-          top: 0; left: 0; width: 100%; height: 100%;
-          border-radius: 50%;
-          overflow: hidden;
-          animation: spotlightMove 20s infinite ease-in-out;
-          width: 60px; height: 60px; /* Surgical size */
-          z-index: 10;
-          box-shadow: 0 0 15px rgba(255, 253, 208, 0.3); /* Soft cream glow */
+          inset: 0;
+          display: flex;
+          gap: 10px;
+          padding: 10px;
+          color: #FFFDD0; /* Cream */
+          font-weight: bold;
+          z-index: 2;
+          /* The Surgical Spotlight Mask */
+          -webkit-mask-image: radial-gradient(circle 45px at center, black 100%, transparent 100%);
+          mask-image: radial-gradient(circle 45px at center, black 100%, transparent 100%);
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+          -webkit-mask-size: 200% 200%;
+          mask-size: 200% 200%;
+          animation: spotlightMove 18s infinite ease-in-out;
+        }
+        .noise-layer {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          gap: 10px;
+          padding: 10px;
+          color: white;
+          opacity: 0.14; /* 14% Opacity */
+          z-index: 1;
         }
       `}</style>
 
-      {/* THE BLURRED EDGE CONTAINER */}
-      <div style={{ 
-        position: 'absolute', width: '100%', height: '100%', 
-        borderRadius: '50%', overflow: 'hidden',
-        maskImage: 'radial-gradient(circle, black 70%, transparent 100%)',
-        WebkitMaskImage: 'radial-gradient(circle, black 70%, transparent 100%)'
-      }}>
-        
-        {/* THE NOISE: 14% Opacity White */}
-        <div style={{ opacity: 0.14, width: '100%', height: '100%' }}>
-          <svg width="100%" height="100%" viewBox="0 0 100 100" className="falling-data">
-            {streams.map((column, i) => (
-              <g key={`noise-${i}`} transform={`translate(${i * 4.2}, 0)`}>
-                {column.map((char, j) => (
-                  <text key={j} y={j * 4} fill="white" fontSize="3.5" fontFamily="monospace">{char}</text>
-                ))}
-              </g>
-            ))}
-          </svg>
-        </div>
+      {/* Background Noise Layer */}
+      <div className="noise-layer">
+        {streams.map((content, i) => (
+          <div key={i} className="data-column">{content}</div>
+        ))}
+      </div>
 
-        {/* THE SIGNAL: Moving Cream Spot */}
-        <div className="spotlight-container" style={{ backgroundColor: '#000' }}>
-            <div style={{ width: '330px', height: '330px', position: 'absolute', transform: 'translate(-50%, -50%)' }}>
-               <svg width="330" height="330" viewBox="0 0 100 100" className="falling-data">
-                {streams.map((column, i) => (
-                  <g key={`signal-${i}`} transform={`translate(${i * 4.2}, 0)`}>
-                    {column.map((char, j) => (
-                      <text key={j} y={j * 4} fill="#FFFDD0" fontSize="3.8" fontWeight="bold" fontFamily="monospace">{char}</text>
-                    ))}
-                  </g>
-                ))}
-              </svg>
-            </div>
-        </div>
-
+      {/* Foreground Cream Signal Layer */}
+      <div className="signal-layer">
+        {streams.map((content, i) => (
+          <div key={i} className="data-column">{content}</div>
+        ))}
       </div>
     </div>
   );
@@ -95,56 +103,61 @@ export default function VanitySite() {
   ];
 
   return (
-    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '60px 20px', scrollBehavior: 'smooth' }}>
+    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden' }}>
       
-      <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
+      <nav style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
-        <div style={{ width: '330px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
+        <div style={{ width: '330px', display: 'flex', justifyContent: 'center', gap: '30px', marginRight: '5%' }}>
           <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
           <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
         </div>
       </nav>
 
-      <section style={{ maxWidth: '1200px', margin: '0 auto 140px', display: 'flex', alignItems: 'center' }}>
-        <div style={{ flex: 1.2 }}>
-          <h1 style={{ fontSize: 'clamp(44px, 7vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>
-            FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
-          </h1>
-          <p style={{ color: '#9ca3af', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
-            Predictive analytics for high-stakes decision makers. <br />
-            <span style={{ color: '#fff' }}>We find and monitor non-obvious data pipelines to detect trend breaks first and before impact.</span>
-          </p>
-          <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>
-            REQUEST SECURE BRIEFING
-          </button>
-        </div>
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-5%', marginTop: '-30px' }}>
-          <DataOrb />
-        </div>
-      </section>
+      <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <section style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '40px', marginBottom: '140px' }}>
+          <div style={{ flex: '1 1 500px' }}>
+            <h1 style={{ fontSize: 'clamp(40px, 8vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>
+              FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
+            </h1>
+            <p style={{ color: '#9ca3af', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
+              Predictive analytics for high-stakes decision makers. <br />
+              <span style={{ color: '#fff' }}>We detect trend breaks first and before impact.</span>
+            </p>
+            <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>
+              REQUEST SECURE BRIEFING
+            </button>
+          </div>
+          
+          <div style={{ flex: '0 0 330px', margin: '0 auto' }}>
+            <DataOrb />
+          </div>
+        </section>
 
-      <section id="method" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
-        <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
-          <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[01] THE FEED</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Ingesting non-traditional data streams to bypass market lag.</p></div>
-          <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
-          <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Intelligence delivered via secure nodes for critical lead time.</p></div>
-        </div>
-      </section>
+        {/* Operational Methodology */}
+        <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
+          <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '50px' }}>
+            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[01] THE FEED</h3><p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.6' }}>Ingesting non-traditional data streams to bypass market lag.</p></div>
+            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.6' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
+            <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.6' }}>Intelligence delivered via secure nodes for critical lead time.</p></div>
+          </div>
+        </section>
 
-      <section id="sectors" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
-        <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }}>
-          {sectors.map((s) => (
-            <div key={s.name} style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '40px 20px', textAlign: 'center' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.path} /></svg>
-              <h4 style={{ fontSize: '12px', letterSpacing: '0.1em' }}>{s.name}</h4>
-            </div>
-          ))}
-        </div>
-      </section>
+        {/* Operational Sectors */}
+        <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
+          <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+            {sectors.map((s) => (
+              <div key={s.name} style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '40px 20px', textAlign: 'center' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.path} /></svg>
+                <h4 style={{ fontSize: '11px', letterSpacing: '0.1em' }}>{s.name}</h4>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
 
-      <footer style={{ maxWidth: '1200px', margin: '140px auto 0', borderTop: '1px solid #111', paddingTop: '40px', fontSize: '9px', color: '#374151', letterSpacing: '0.4em', textAlign: 'center' }}>
+      <footer style={{ padding: '60px 0', borderTop: '1px solid #111', fontSize: '9px', color: '#374151', letterSpacing: '0.4em', textAlign: 'center' }}>
         © 2026 AUI INC. // AUTHENTICINTEL.COM
       </footer>
     </div>
