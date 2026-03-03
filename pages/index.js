@@ -1,57 +1,39 @@
 import React, { useState, useMemo } from 'react';
 
-// SECURE NODE VISUAL: Pulsing delivery network
-const SecureNodeVisual = () => (
-  <svg width="100%" height="160" viewBox="0 0 200 100" style={{ marginTop: '20px', opacity: 0.8 }}>
-    <defs>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
-        <feMerge>
-          <feMergeNode in="coloredBlur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    </defs>
-    
-    {/* Connection Lines */}
-    <g stroke="white" strokeWidth="0.5" opacity="0.1">
-      <line x1="20" y1="50" x2="60" y2="20" />
-      <line x1="20" y1="50" x2="60" y2="80" />
-      <line x1="60" y1="20" x2="110" y2="50" />
-      <line x1="60" y1="80" x2="110" y2="50" />
-      <line x1="110" y1="50" x2="160" y2="50" stroke="#FFFDD0" strokeWidth="1" opacity="0.4" />
-    </g>
-
-    {/* Background Nodes */}
-    <circle cx="20" cy="50" r="2" fill="white" opacity="0.2" />
-    <circle cx="60" cy="20" r="2" fill="white" opacity="0.2" />
-    <circle cx="60" cy="80" r="2" fill="white" opacity="0.2" />
-    
-    {/* The Advisory Node (Cream) */}
-    <circle cx="110" cy="50" r="3" fill="#FFFDD0" filter="url(#glow)">
-      <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite" />
-      <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite" />
-    </circle>
-
-    {/* The Secure Delivery Destination */}
-    <rect x="157" y="47" width="6" height="6" fill="#FFFDD0" opacity="0.6">
-       <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2s" repeatCount="indefinite" />
-    </rect>
-
-    <text x="110" y="40" fill="#FFFDD0" fontSize="5" fontFamily="monospace" textAnchor="middle" opacity="0.5">SECURE NODE [03]</text>
-  </svg>
-);
-
-// THE LIVING ORB (Same as previous build)
-const DataOrb = () => {
-  const cols = 22; 
-  const rows = 40;
-  const streams = useMemo(() => 
-    [...Array(cols)].map(() => 
-      [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('\n')
-    ), []
+// THE OPERATIONAL FLOW VISUAL: Monitor -> Detect -> Analyze -> Alert
+const OperationalFlow = () => {
+  const steps = ["MONITOR", "DETECT", "ANALYZE", "ALERT"];
+  return (
+    <div style={{ paddingLeft: '20px', borderLeft: '1px solid #1f2937', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      {steps.map((step, i) => (
+        <div key={step} style={{ display: 'flex', alignItems: 'center', marginBottom: '25px', opacity: 0.4 + (i * 0.2) }}>
+          <div style={{ 
+            width: '8px', height: '8px', borderRadius: '50%', 
+            backgroundColor: i === 3 ? '#FFFDD0' : 'white', 
+            marginRight: '15px',
+            boxShadow: i === 3 ? '0 0 10px #FFFDD0' : 'none'
+          }} />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span style={{ fontSize: '9px', letterSpacing: '0.3em', color: i === 3 ? '#FFFDD0' : 'white', fontWeight: i === 3 ? 'bold' : 'normal' }}>
+              STEP_0{i + 1}
+            </span>
+            <span style={{ fontSize: '12px', letterSpacing: '0.1em', color: i === 3 ? '#FFFDD0' : 'white' }}>
+              {step}
+            </span>
+          </div>
+          {i < 3 && (
+            <div style={{ position: 'absolute', height: '25px', width: '1px', backgroundColor: 'white', opacity: 0.2, marginLeft: '3.5px', marginTop: '38px' }} />
+          )}
+        </div>
+      ))}
+    </div>
   );
+};
 
+// THE LIVING ORB (16% Opacity, Cream Signal, 12s Speed)
+const DataOrb = () => {
+  const cols = 22; const rows = 40;
+  const streams = useMemo(() => [...Array(cols)].map(() => [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('\n')), []);
   return (
     <div className="orb-container">
       <style>{`
@@ -71,7 +53,6 @@ const DataOrb = () => {
 
 export default function VanitySite() {
   const [showForm, setShowForm] = useState(false);
-
   const sectors = [
     { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
     { name: 'MEDIA & DISINFO', path: 'M2 3h20v14H2z M12 17v4' },
@@ -103,7 +84,6 @@ export default function VanitySite() {
               .hero-graphic { position: relative; top: 0; left: 0; transform: none; width: 100%; display: flex; justify-content: center; margin-top: 40px; }
             }
           `}</style>
-          
           <div style={{ maxWidth: '600px', position: 'relative', zIndex: 2 }}>
             <h1 style={{ fontSize: 'clamp(40px, 8vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span></h1>
             <p style={{ color: '#9ca3af', maxWidth: '480px', marginBottom: '25px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>Predictive analytics for high-stakes decision makers.</p>
@@ -113,33 +93,37 @@ export default function VanitySite() {
           <div className="hero-graphic"><DataOrb /></div>
         </section>
 
-        {/* METHODOLOGY SECTION WITH INTEGRATED VISUAL */}
+        {/* METHODOLOGY SECTION: Balanced 4-Column Grid */}
         <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '80px' }}>
-            <div>
-              <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3>
-              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Unfiltered ingestion of non-traditional data streams.</p>
-              <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Standard intelligence relies on delayed reporting. We operate at the edge, ingesting raw data from peripheral nodes—geopolitical shifts and logistical disruptions—before impact.</p>
-            </div>
-            <div>
-              <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[02] PATTERN ISOLATION</h3>
-              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Identifying microscopic deviations that precede systemic shifts.</p>
-              <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>We look for trend-breaks. Our proprietary logic filters the abyss to isolate specific anomalies that represent early-warning signs of volatility.</p>
-            </div>
-            <div>
-              <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3>
-              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Intelligence delivered via secure channels to provide lead time.</p>
-              <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Insights delivered with zero-latency, giving decision-makers a window of opportunity to position themselves before the curve.</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '40px' }}>
+            <style>{`
+               @media (max-width: 1024px) { #method-grid { grid-template-columns: 1fr !important; } }
+            `}</style>
+            <div id="method-grid" style={{ display: 'contents' }}>
+              <div>
+                <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3>
+                <p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Raw Ingestion.</p>
+                <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Ingesting peripheral nodes—geopolitical shifts and disruptions—before they reach market lag.</p>
+              </div>
+              <div>
+                <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[02] PATTERN ISOLATION</h3>
+                <p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Deviation Detection.</p>
+                <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Our proprietary logic filters the abyss to isolate anomalies that represent warning signs of volatility.</p>
+              </div>
+              <div>
+                <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3>
+                <p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Zero-Latency Access.</p>
+                <p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Insights delivered via secure channels, giving decision-makers a window of opportunity to position before impact.</p>
+              </div>
               
-              {/* THE NEW VISUAL ELEMENT */}
-              <SecureNodeVisual />
+              {/* POSITIONED IN THE 4TH COLUMN */}
+              <OperationalFlow />
             </div>
           </div>
         </section>
 
-        {/* SECTORS Grid */}
         <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
