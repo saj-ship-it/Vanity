@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from 'react';
 
-// THE ORB: 30% smaller, cream signal, blurred edges, 14% noise
+// THE REFINED ORB: 330px, 14% Opacity, Cream Signal, Blurred Edges
 const DataOrb = () => {
-  const cols = 28; 
-  const rows = 50;
+  const cols = 24; 
+  const rows = 45;
 
+  // Static binary data to prevent layer mismatch
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
       [...Array(rows)].map(() => (Math.random() > 0.5 ? '1' : '0'))
@@ -12,62 +13,70 @@ const DataOrb = () => {
   );
 
   return (
-    <div style={{ position: 'relative', width: '336px', height: '385px', backgroundColor: 'transparent' }}>
+    <div style={{ position: 'relative', width: '330px', height: '330px', backgroundColor: 'transparent', overflow: 'visible' }}>
       <style>{`
         @keyframes streamFall {
-          0% { transform: translateY(-33%); }
+          0% { transform: translateY(-30%); }
           100% { transform: translateY(0%); }
         }
         .falling-data {
-          animation: streamFall 90s linear infinite;
+          animation: streamFall 100s linear infinite;
+        }
+        @keyframes spotlightMove {
+          0% { transform: translate(15%, 15%); }
+          33% { transform: translate(65%, 40%); }
+          66% { transform: translate(25%, 70%); }
+          100% { transform: translate(15%, 15%); }
+        }
+        .spotlight-container {
+          position: absolute;
+          top: 0; left: 0; width: 100%; height: 100%;
+          border-radius: 50%;
+          overflow: hidden;
+          animation: spotlightMove 20s infinite ease-in-out;
+          width: 60px; height: 60px; /* Surgical size */
+          z-index: 10;
+          box-shadow: 0 0 15px rgba(255, 253, 208, 0.3); /* Soft cream glow */
         }
       `}</style>
 
-      <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          {/* THE SOFT EDGE: Blurs the entire orb into the black background */}
-          <mask id="edgeFade">
-            <radialGradient id="fadeGradient" cx="50%" cy="50%" r="50%">
-              <stop offset="80%" stopColor="white" stopOpacity="1" />
-              <stop offset="100%" stopColor="white" stopOpacity="0" />
-            </radialGradient>
-            <circle cx="50%" cy="50%" r="48" fill="url(#fadeGradient)" />
-          </mask>
-
-          {/* THE SPOTLIGHT: Surgical signal detection radius */}
-          <mask id="spotlightMask">
-            <circle r="6" fill="white">
-              <animate attributeName="cx" values="25;75;35;25" dur="20s" repeatCount="indefinite" />
-              <animate attributeName="cy" values="25;55;85;25" dur="20s" repeatCount="indefinite" />
-            </circle>
-          </mask>
-        </defs>
-
-        {/* The Entire Field is contained within the Edge Fade Mask */}
-        <g mask="url(#edgeFade)">
-          {/* THE NOISE: Faint White Background (Reduced to 14% visibility) */}
-          <g className="falling-data" opacity="0.14">
+      {/* THE BLURRED EDGE CONTAINER */}
+      <div style={{ 
+        position: 'absolute', width: '100%', height: '100%', 
+        borderRadius: '50%', overflow: 'hidden',
+        maskImage: 'radial-gradient(circle, black 70%, transparent 100%)',
+        WebkitMaskImage: 'radial-gradient(circle, black 70%, transparent 100%)'
+      }}>
+        
+        {/* THE NOISE: 14% Opacity White */}
+        <div style={{ opacity: 0.14, width: '100%', height: '100%' }}>
+          <svg width="100%" height="100%" viewBox="0 0 100 100" className="falling-data">
             {streams.map((column, i) => (
-              <g key={`noise-col-${i}`} transform={`translate(${5 + i * 3.3}, 0)`}>
+              <g key={`noise-${i}`} transform={`translate(${i * 4.2}, 0)`}>
                 {column.map((char, j) => (
-                  <text key={`noise-char-${j}`} y={j * 4} fill="white" fontSize="3.2" fontFamily="monospace" textAnchor="middle">{char}</text>
+                  <text key={j} y={j * 4} fill="white" fontSize="3.5" fontFamily="monospace">{char}</text>
                 ))}
               </g>
             ))}
-          </g>
+          </svg>
+        </div>
 
-          {/* THE SIGNAL: Cream Reveal (Revealed by Spotlight) */}
-          <g className="falling-data" mask="url(#spotlightMask)">
-            {streams.map((column, i) => (
-              <g key={`signal-col-${i}`} transform={`translate(${5 + i * 3.3}, 0)`}>
-                {column.map((char, j) => (
-                  <text key={`signal-char-${j}`} y={j * 4} fill="#FFFDD0" fontSize="3.5" fontWeight="bold" fontFamily="monospace" textAnchor="middle">{char}</text>
+        {/* THE SIGNAL: Moving Cream Spot */}
+        <div className="spotlight-container" style={{ backgroundColor: '#000' }}>
+            <div style={{ width: '330px', height: '330px', position: 'absolute', transform: 'translate(-50%, -50%)' }}>
+               <svg width="330" height="330" viewBox="0 0 100 100" className="falling-data">
+                {streams.map((column, i) => (
+                  <g key={`signal-${i}`} transform={`translate(${i * 4.2}, 0)`}>
+                    {column.map((char, j) => (
+                      <text key={j} y={j * 4} fill="#FFFDD0" fontSize="3.8" fontWeight="bold" fontFamily="monospace">{char}</text>
+                    ))}
+                  </g>
                 ))}
-              </g>
-            ))}
-          </g>
-        </g>
-      </svg>
+              </svg>
+            </div>
+        </div>
+
+      </div>
     </div>
   );
 };
@@ -76,13 +85,13 @@ export default function VanitySite() {
   const [showForm, setShowForm] = useState(false);
 
   const sectors = [
-    { name: 'DEFENCE & INTEL', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
-    { name: 'MEDIA & DISINFO', icon: 'M2 3h20v14H2z M12 17v4' },
-    { name: 'ENERGY INFRA', icon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
-    { name: 'HEALTHCARE', icon: 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z' },
-    { name: 'LOGISTICS', icon: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
-    { name: 'PRIVATE EQUITY', icon: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
-    { name: 'FINANCE', icon: 'M18 20V4 M6 20v-4 M12 20v-10' }
+    { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+    { name: 'MEDIA & DISINFO', path: 'M2 3h20v14H2z M12 17v4' },
+    { name: 'ENERGY INFRA', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+    { name: 'HEALTHCARE', path: 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z' },
+    { name: 'LOGISTICS', path: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
+    { name: 'PRIVATE EQUITY', path: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
+    { name: 'FINANCE', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
   ];
 
   return (
@@ -90,7 +99,7 @@ export default function VanitySite() {
       
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
-        <div style={{ width: '336px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
+        <div style={{ width: '330px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
           <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
           <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
         </div>
@@ -128,7 +137,7 @@ export default function VanitySite() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }}>
           {sectors.map((s) => (
             <div key={s.name} style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '40px 20px', textAlign: 'center' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.icon} /></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.path} /></svg>
               <h4 style={{ fontSize: '12px', letterSpacing: '0.1em' }}>{s.name}</h4>
             </div>
           ))}
