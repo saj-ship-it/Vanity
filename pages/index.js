@@ -1,11 +1,10 @@
 import React, { useState, useMemo } from 'react';
 
-// THE SEARCHLIGHT: Complete blackout until illumination
+// THE SEARCHLIGHT: Pure CSS Masking for high-contrast reveal
 const DigitalSpotlight = () => {
   const cols = 22;
   const rows = 40;
 
-  // Generate static binary streams
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
       [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('\n')
@@ -16,69 +15,50 @@ const DigitalSpotlight = () => {
     <div style={{ position: 'relative', width: '380px', height: '420px', overflow: 'hidden', backgroundColor: '#000', borderRadius: '4px', border: '1px solid #111' }}>
       <style>{`
         @keyframes slowStream {
-          0% { transform: translateY(-30%); }
+          0% { transform: translateY(-40%); }
           100% { transform: translateY(0%); }
         }
-        .stream-col {
+        @keyframes spotlightMove {
+          0% { mask-position: 20% 20%; -webkit-mask-position: 20% 20%; }
+          33% { mask-position: 80% 40%; -webkit-mask-position: 80% 40%; }
+          66% { mask-position: 30% 80%; -webkit-mask-position: 30% 80%; }
+          100% { mask-position: 20% 20%; -webkit-mask-position: 20% 20%; }
+        }
+        .data-layer {
+          display: flex;
+          gap: 10px;
+          color: white;
           font-family: 'Courier New', monospace;
           font-size: 11px;
           line-height: 1.1;
           white-space: pre;
-          animation: slowStream 45s linear infinite;
+          /* The Mask: Pure CSS Spotlight */
+          mask-image: radial-gradient(circle 70px at center, black 100%, transparent 100%);
+          -webkit-mask-image: radial-gradient(circle 70px at center, black 40%, transparent 100%);
+          mask-repeat: no-repeat;
+          -webkit-mask-repeat: no-repeat;
+          mask-size: 1000px 1000px; /* Large mask area to allow movement */
+          -webkit-mask-size: 1000px 1000px;
+          animation: spotlightMove 15s infinite ease-in-out;
         }
-        @keyframes searchlight {
-          0% { left: 15%; top: 15%; }
-          33% { left: 65%; top: 45%; }
-          66% { left: 25%; top: 75%; }
-          100% { left: 15%; top: 15%; }
-        }
-        .light-beam {
-          position: absolute;
-          width: 130px; 
-          height: 130px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.2) 60%, transparent 100%);
-          pointer-events: none;
-          z-index: 10;
-          animation: searchlight 20s infinite ease-in-out;
-        }
-        .data-container {
-          display: flex;
-          gap: 10px;
-          color: white;
-          /* Masking logic: only show what is under the spotlight */
-          -webkit-mask-image: radial-gradient(circle 65px at var(--x) var(--y), black 0%, transparent 100%);
-          mask-image: radial-gradient(circle 65px at var(--x) var(--y), black 0%, transparent 100%);
+        .column {
+          animation: slowStream 60s linear infinite;
         }
       `}</style>
 
-      {/* The Torch Beam */}
-      <div className="light-beam" id="torch"></div>
+      {/* The Visual Spotlight Ring (Aesthetic only) */}
+      <div style={{ 
+        position: 'absolute', width: '100%', height: '100%', zIndex: 5, pointerEvents: 'none',
+        background: 'radial-gradient(circle 80px at center, transparent 80%, rgba(0,0,0,0.8) 100%)'
+      }}></div>
 
-      {/* The Data: Set to be completely hidden outside the mask */}
-      <div className="data-container" id="mask-layer">
+      <div className="data-layer">
         {streams.map((content, i) => (
-          <div key={i} className="stream-col">
+          <div key={i} className="column">
             {content}
           </div>
         ))}
       </div>
-
-      <script dangerouslySetInnerHTML={{ __html: `
-        const torch = document.getElementById('torch');
-        const layer = document.getElementById('mask-layer');
-        function moveMask() {
-          const rect = torch.getBoundingClientRect();
-          const parentRect = torch.parentElement.getBoundingClientRect();
-          // Calculate center of the torch relative to the container
-          const x = (rect.left - parentRect.left + 65) + 'px';
-          const y = (rect.top - parentRect.top + 65) + 'px';
-          layer.style.setProperty('--x', x);
-          layer.style.setProperty('--y', y);
-          requestAnimationFrame(moveMask);
-        }
-        moveMask();
-      `}} />
     </div>
   );
 };
@@ -86,10 +66,19 @@ const DigitalSpotlight = () => {
 export default function VanitySite() {
   const [showForm, setShowForm] = useState(false);
 
+  const sectors = [
+    { name: 'DEFENCE & INTEL', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+    { name: 'MEDIA & DISINFO', icon: 'M2 3h20v14H2z M12 17v4' },
+    { name: 'ENERGY INFRA', icon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+    { name: 'HEALTHCARE', icon: 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z' },
+    { name: 'LOGISTICS', icon: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
+    { name: 'PRIVATE EQUITY', icon: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
+    { name: 'FINANCE', icon: 'M18 20V4 M6 20v-4 M12 20v-10' }
+  ];
+
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '60px 20px', scrollBehavior: 'smooth' }}>
       
-      {/* Centered Navigation Alignment */}
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
         <div style={{ width: '380px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '10%' }}>
@@ -111,28 +100,31 @@ export default function VanitySite() {
             REQUEST SECURE BRIEFING
           </button>
         </div>
-        
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-10%', marginTop: '-30px' }}>
           <DigitalSpotlight />
         </div>
       </section>
 
-      {/* Methodology Section */}
+      {/* METHODOLOGY SECTION */}
       <section id="method" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
-          <div>
-            <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[01] THE FEED</h3>
-            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Ingesting non-traditional data streams to bypass standard market lag.</p>
-          </div>
-          <div>
-            <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[02] PATTERN ISOLATION</h3>
-            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Identifying deviations that precede major geopolitical and market shifts.</p>
-          </div>
-          <div>
-            <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[03] ADVISORY DELIVERY</h3>
-            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Intelligence delivered via secure nodes to providing critical lead time.</p>
-          </div>
+          <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[01] THE FEED</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Ingesting non-traditional data streams to bypass market lag.</p></div>
+          <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Identifying deviations that precede major geopolitical shifts.</p></div>
+          <div><h3 style={{ fontSize: '14px', margin: '0 0 15px' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#6b7280', fontSize: '14px' }}>Intelligence delivered via secure nodes for critical lead time.</p></div>
+        </div>
+      </section>
+
+      {/* RESTORED SECTORS SECTION */}
+      <section id="sectors" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
+        <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }}>
+          {sectors.map((s) => (
+            <div key={s.name} style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '40px 20px', textAlign: 'center' }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.icon} /></svg>
+              <h4 style={{ fontSize: '12px', letterSpacing: '0.1em' }}>{s.name}</h4>
+            </div>
+          ))}
         </div>
       </section>
 
