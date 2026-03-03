@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 
-// THE LIVING ORB: 16% Opacity, Cream Signal, High-Speed Spotlight
+// THE LIVING ORB: Responsive sizing (280px Desktop / 220px Mobile)
 const DataOrb = () => {
   const cols = 22; 
   const rows = 40;
@@ -11,23 +11,34 @@ const DataOrb = () => {
   );
 
   return (
-    <div style={{ 
-      position: 'relative', width: '280px', height: '280px', backgroundColor: '#000', borderRadius: '50%', overflow: 'hidden',
-      WebkitMaskImage: 'radial-gradient(circle, black 65%, transparent 100%)',
-      maskImage: 'radial-gradient(circle, black 65%, transparent 100%)'
-    }}>
+    <div className="orb-container">
       <style>{`
+        .orb-container {
+          position: relative;
+          width: 280px;
+          height: 280px;
+          background-color: #000;
+          border-radius: 50%;
+          overflow: hidden;
+          -webkit-mask-image: radial-gradient(circle, black 65%, transparent 100%);
+          mask-image: radial-gradient(circle, black 65%, transparent 100%);
+        }
+        /* MOBILE TWEAK: Shrink for smaller screens */
+        @media (max-width: 768px) {
+          .orb-container {
+            width: 220px;
+            height: 220px;
+            margin: 40px auto;
+          }
+        }
         @keyframes streamFall { 0% { transform: translateY(-50%); } 100% { transform: translateY(0%); } }
         .data-column { font-family: 'Courier New', monospace; font-size: 10px; line-height: 1.2; white-space: pre; animation: streamFall 60s linear infinite; will-change: transform; }
-        
-        /* INCREASED SPEED: 12s instead of 20s */
         @keyframes spotlightMove { 
           0% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } 
           33% { -webkit-mask-position: 85% 35%; mask-position: 85% 35%; } 
           66% { -webkit-mask-position: 25% 85%; mask-position: 25% 85%; } 
           100% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } 
         }
-        
         .signal-layer { 
           position: absolute; inset: 0; display: flex; gap: 10px; padding: 10px; color: #FFFDD0; font-weight: bold; z-index: 2; 
           -webkit-mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%); 
@@ -68,37 +79,50 @@ export default function VanitySite() {
       </header>
 
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <section style={{ position: 'relative', marginTop: '140px', marginBottom: '140px', minHeight: '450px' }}>
+        <section className="hero-section">
+          <style>{`
+            .hero-section { position: relative; margin-top: 140px; margin-bottom: 140px; min-height: 450px; }
+            .hero-graphic { position: absolute; top: 35%; left: 75%; transform: translate(-50%, -50%); z-index: 1; }
+            
+            @media (max-width: 1024px) {
+              .hero-section { display: flex; flex-direction: column; align-items: flex-start; margin-top: 80px; }
+              .hero-graphic { position: relative; top: 0; left: 0; transform: none; width: 100%; display: flex; justify-content: center; margin-top: 40px; }
+            }
+          `}</style>
+          
           <div style={{ maxWidth: '600px', position: 'relative', zIndex: 2 }}>
             <h1 style={{ fontSize: 'clamp(40px, 8vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span></h1>
             <p style={{ color: '#9ca3af', maxWidth: '480px', marginBottom: '25px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>Predictive analytics for high-stakes decision makers.</p>
             <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>We find and monitor non-obvious data pipelines to detect trend breaks first and before impact.</p>
             <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>REQUEST SECURE BRIEFING</button>
           </div>
-          <div style={{ position: 'absolute', top: '35%', left: '75%', transform: 'translate(-50%, -50%)', zIndex: 1 }}><DataOrb /></div>
+          
+          <div className="hero-graphic"><DataOrb /></div>
         </section>
 
+        {/* Operational Methodology */}
         <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '80px' }}>
             <div>
               <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3>
-              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Unfiltered ingestion of non-traditional data streams to bypass market lag.</p>
+              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Unfiltered ingestion of non-traditional data streams.</p>
               <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Standard intelligence relies on delayed reporting. We operate at the edge, ingesting raw data from peripheral nodes—geopolitical shifts and logistical disruptions—before impact.</p>
             </div>
             <div>
               <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[02] PATTERN ISOLATION</h3>
-              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Identifying microscopic deviations that precede major systemic shifts.</p>
+              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Identifying microscopic deviations that precede systemic shifts.</p>
               <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>We look for trend-breaks. Our proprietary logic filters the abyss to isolate specific anomalies that represent early-warning signs of volatility.</p>
             </div>
             <div>
               <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3>
-              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Intelligence delivered via secure channels to provide critical lead time.</p>
+              <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Intelligence delivered via secure channels to provide lead time.</p>
               <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Insights delivered with zero-latency, giving decision-makers a window of opportunity to position themselves before the curve.</p>
             </div>
           </div>
         </section>
 
+        {/* Sectors Grid */}
         <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
