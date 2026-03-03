@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 
-// THE HIGH-FIDELITY GLOBAL ORB
+// THE HIGH-VISIBILITY GLOBAL ORB
 const WorldDataOrb = () => {
   const cols = 35; 
   const rows = 45;
@@ -16,8 +16,8 @@ const WorldDataOrb = () => {
       <style>{`
         .orb-container { 
           position: relative; width: 320px; height: 320px; background-color: #000; border-radius: 50%; overflow: hidden; 
-          -webkit-mask-image: radial-gradient(circle, black 65%, transparent 100%); 
-          mask-image: radial-gradient(circle, black 65%, transparent 100%); 
+          -webkit-mask-image: radial-gradient(circle, black 70%, transparent 100%); 
+          mask-image: radial-gradient(circle, black 70%, transparent 100%); 
         }
         @media (max-width: 1024px) { 
           .orb-container { width: 240px; height: 240px; margin: 40px auto; } 
@@ -28,14 +28,14 @@ const WorldDataOrb = () => {
           animation: streamFall 75s linear infinite; will-change: transform; 
         }
         @keyframes spotlightMove { 
-          0% { -webkit-mask-position: 10% 20%; mask-position: 10% 20%; } 
-          50% { -webkit-mask-position: 90% 60%; mask-position: 90% 60%; } 
-          100% { -webkit-mask-position: 10% 20%; mask-position: 10% 20%; } 
+          0% { -webkit-mask-position: 5% 20%; mask-position: 5% 20%; } 
+          50% { -webkit-mask-position: 95% 60%; mask-position: 95% 60%; } 
+          100% { -webkit-mask-position: 5% 20%; mask-position: 5% 20%; } 
         }
         
         /* THE GEOGRAPHIC CLIPPING MASK */
         .map-mask {
-          -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cpath d='M25 20h15v10h-15zM60 15h30v20h-30zM120 20h40v30h-40zM35 50h20v30h-20zM140 65h25v20h-25zM100 20h10v10h-10z'/%3E%3C/svg%3E");
+          -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cpath d='M15 25c5-2 12-4 22-2s15 1 20-3 10-8 15-5 12 4 18 2 15-6 25-4 15 5 22 1 12-8 18-5 8 8 12 12-2 12-10 15-15 0-22-5-12-8-18-4-8 10-15 15-18 2-25-8-10-15-18-12-15 0-20 8-12 15-22 12-15-5-22-10-12-8-15-5z'/%3E%3C/svg%3E");
           mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cpath d='M15 25c5-2 12-4 22-2s15 1 20-3 10-8 15-5 12 4 18 2 15-6 25-4 15 5 22 1 12-8 18-5 8 8 12 12-2 12-10 15-15 0-22-5-12-8-18-4-8 10-15 15-18 2-25-8-10-15-18-12-15 0-20 8-12 15-22 12-15-5-22-10-12-8-15-5z'/%3E%3C/svg%3E");
           mask-size: contain;
           mask-repeat: no-repeat;
@@ -44,17 +44,16 @@ const WorldDataOrb = () => {
 
         .signal-layer { 
           position: absolute; inset: 0; display: flex; gap: 7px; padding: 15px; color: #FFFDD0; font-weight: bold; z-index: 2; 
-          -webkit-mask-image: radial-gradient(circle 45px at center, black 100%, transparent 100%); 
-          mask-image: radial-gradient(circle 45px at center, black 100%, transparent 100%); 
+          -webkit-mask-image: radial-gradient(circle 50px at center, black 100%, transparent 100%); 
+          mask-image: radial-gradient(circle 50px at center, black 100%, transparent 100%); 
           -webkit-mask-repeat: no-repeat; -webkit-mask-size: 200% 200%; 
-          animation: spotlightMove 12s infinite ease-in-out; 
+          animation: spotlightMove 10s infinite ease-in-out; 
         }
         .noise-layer { 
-          position: absolute; inset: 0; display: flex; gap: 7px; padding: 15px; color: white; opacity: 0.16; z-index: 1; 
+          position: absolute; inset: 0; display: flex; gap: 7px; padding: 15px; color: white; opacity: 0.45; z-index: 1; 
         }
       `}</style>
       
-      {/* Container for the map-shaped data */}
       <div className="map-mask" style={{ position: 'absolute', inset: 0 }}>
         <div className="noise-layer">
           {streams.map((content, i) => (
@@ -72,7 +71,8 @@ const WorldDataOrb = () => {
   );
 };
 
-// ... (Rest of the code for Header, Methodology, and Sectors remains the same)
+// ... Rest of component remains the same for Method, Sectors, and Footer
+// [OperationalFlow remains the same as previous build]
 
 export default function VanitySite() {
   const [showForm, setShowForm] = useState(false);
