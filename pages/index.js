@@ -1,6 +1,48 @@
 import React, { useState, useMemo } from 'react';
 
-// THE LIVING ORB: Responsive sizing (280px Desktop / 220px Mobile)
+// SECURE NODE VISUAL: Pulsing delivery network
+const SecureNodeVisual = () => (
+  <svg width="100%" height="160" viewBox="0 0 200 100" style={{ marginTop: '20px', opacity: 0.8 }}>
+    <defs>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+        <feMerge>
+          <feMergeNode in="coloredBlur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    
+    {/* Connection Lines */}
+    <g stroke="white" strokeWidth="0.5" opacity="0.1">
+      <line x1="20" y1="50" x2="60" y2="20" />
+      <line x1="20" y1="50" x2="60" y2="80" />
+      <line x1="60" y1="20" x2="110" y2="50" />
+      <line x1="60" y1="80" x2="110" y2="50" />
+      <line x1="110" y1="50" x2="160" y2="50" stroke="#FFFDD0" strokeWidth="1" opacity="0.4" />
+    </g>
+
+    {/* Background Nodes */}
+    <circle cx="20" cy="50" r="2" fill="white" opacity="0.2" />
+    <circle cx="60" cy="20" r="2" fill="white" opacity="0.2" />
+    <circle cx="60" cy="80" r="2" fill="white" opacity="0.2" />
+    
+    {/* The Advisory Node (Cream) */}
+    <circle cx="110" cy="50" r="3" fill="#FFFDD0" filter="url(#glow)">
+      <animate attributeName="r" values="3;4;3" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite" />
+    </circle>
+
+    {/* The Secure Delivery Destination */}
+    <rect x="157" y="47" width="6" height="6" fill="#FFFDD0" opacity="0.6">
+       <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2s" repeatCount="indefinite" />
+    </rect>
+
+    <text x="110" y="40" fill="#FFFDD0" fontSize="5" fontFamily="monospace" textAnchor="middle" opacity="0.5">SECURE NODE [03]</text>
+  </svg>
+);
+
+// THE LIVING ORB (Same as previous build)
 const DataOrb = () => {
   const cols = 22; 
   const rows = 40;
@@ -13,39 +55,12 @@ const DataOrb = () => {
   return (
     <div className="orb-container">
       <style>{`
-        .orb-container {
-          position: relative;
-          width: 280px;
-          height: 280px;
-          background-color: #000;
-          border-radius: 50%;
-          overflow: hidden;
-          -webkit-mask-image: radial-gradient(circle, black 65%, transparent 100%);
-          mask-image: radial-gradient(circle, black 65%, transparent 100%);
-        }
-        /* MOBILE TWEAK: Shrink for smaller screens */
-        @media (max-width: 768px) {
-          .orb-container {
-            width: 220px;
-            height: 220px;
-            margin: 40px auto;
-          }
-        }
+        .orb-container { position: relative; width: 280px; height: 280px; background-color: #000; border-radius: 50%; overflow: hidden; -webkit-mask-image: radial-gradient(circle, black 65%, transparent 100%); mask-image: radial-gradient(circle, black 65%, transparent 100%); }
+        @media (max-width: 768px) { .orb-container { width: 220px; height: 220px; margin: 40px auto; } }
         @keyframes streamFall { 0% { transform: translateY(-50%); } 100% { transform: translateY(0%); } }
         .data-column { font-family: 'Courier New', monospace; font-size: 10px; line-height: 1.2; white-space: pre; animation: streamFall 60s linear infinite; will-change: transform; }
-        @keyframes spotlightMove { 
-          0% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } 
-          33% { -webkit-mask-position: 85% 35%; mask-position: 85% 35%; } 
-          66% { -webkit-mask-position: 25% 85%; mask-position: 25% 85%; } 
-          100% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } 
-        }
-        .signal-layer { 
-          position: absolute; inset: 0; display: flex; gap: 10px; padding: 10px; color: #FFFDD0; font-weight: bold; z-index: 2; 
-          -webkit-mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%); 
-          mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%); 
-          -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 200% 200%; 
-          animation: spotlightMove 12s infinite ease-in-out; 
-        }
+        @keyframes spotlightMove { 0% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } 33% { -webkit-mask-position: 85% 35%; mask-position: 85% 35%; } 66% { -webkit-mask-position: 25% 85%; mask-position: 25% 85%; } 100% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } }
+        .signal-layer { position: absolute; inset: 0; display: flex; gap: 10px; padding: 10px; color: #FFFDD0; font-weight: bold; z-index: 2; -webkit-mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%); mask-image: radial-gradient(circle 35px at center, black 100%, transparent 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 200% 200%; animation: spotlightMove 12s infinite ease-in-out; }
         .noise-layer { position: absolute; inset: 0; display: flex; gap: 10px; padding: 10px; color: white; opacity: 0.16; z-index: 1; }
       `}</style>
       <div className="noise-layer">{streams.map((content, i) => (<div key={i} className="data-column">{content}</div>))}</div>
@@ -83,7 +98,6 @@ export default function VanitySite() {
           <style>{`
             .hero-section { position: relative; margin-top: 140px; margin-bottom: 140px; min-height: 450px; }
             .hero-graphic { position: absolute; top: 35%; left: 75%; transform: translate(-50%, -50%); z-index: 1; }
-            
             @media (max-width: 1024px) {
               .hero-section { display: flex; flex-direction: column; align-items: flex-start; margin-top: 80px; }
               .hero-graphic { position: relative; top: 0; left: 0; transform: none; width: 100%; display: flex; justify-content: center; margin-top: 40px; }
@@ -96,13 +110,13 @@ export default function VanitySite() {
             <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>We find and monitor non-obvious data pipelines to detect trend breaks first and before impact.</p>
             <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>REQUEST SECURE BRIEFING</button>
           </div>
-          
           <div className="hero-graphic"><DataOrb /></div>
         </section>
 
-        {/* Operational Methodology */}
+        {/* METHODOLOGY SECTION WITH INTEGRATED VISUAL */}
         <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
+          
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '80px' }}>
             <div>
               <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3>
@@ -118,11 +132,14 @@ export default function VanitySite() {
               <h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3>
               <p style={{ color: '#fff', fontSize: '15px', fontWeight: '500', marginBottom: '15px', lineHeight: '1.4' }}>Intelligence delivered via secure channels to provide lead time.</p>
               <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Insights delivered with zero-latency, giving decision-makers a window of opportunity to position themselves before the curve.</p>
+              
+              {/* THE NEW VISUAL ELEMENT */}
+              <SecureNodeVisual />
             </div>
           </div>
         </section>
 
-        {/* Sectors Grid */}
+        {/* SECTORS Grid */}
         <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
