@@ -5,6 +5,7 @@ const DataOrb = () => {
   const cols = 22; 
   const rows = 40;
 
+  // Generate binary strings for the waterfall effect
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
       [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('\n')
@@ -14,7 +15,7 @@ const DataOrb = () => {
   return (
     <div style={{ 
       position: 'relative', 
-      width: '280px', // Slightly scaled down for better mid-point fit
+      width: '280px', 
       height: '280px', 
       backgroundColor: '#000',
       borderRadius: '50%',
@@ -32,7 +33,7 @@ const DataOrb = () => {
           font-size: 10px;
           line-height: 1.2;
           white-space: pre;
-          animation: streamFall 65s linear infinite;
+          animation: streamFall 60s linear infinite; /* THE MOVEMENT */
           will-change: transform;
         }
         @keyframes spotlightMove {
@@ -100,8 +101,8 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
-      {/* HEADER: Aligned to Page Frame */}
-      <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      {/* HEADER: Nav moved LEFT to follow the logo axis */}
+      <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '60px' }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
           AUTHENTIC INTELLIGENCE
         </strong>
@@ -115,7 +116,6 @@ export default function VanitySite() {
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <section style={{ position: 'relative', marginTop: '140px', marginBottom: '140px', minHeight: '450px' }}>
           
-          {/* TEXT BLOCK */}
           <div style={{ maxWidth: '600px', position: 'relative', zIndex: 2 }}>
             <h1 style={{ fontSize: 'clamp(40px, 8vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>
               FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
@@ -134,11 +134,11 @@ export default function VanitySite() {
             </button>
           </div>
           
-          {/* GRAPHIC: Anchored to the Mid-Point between text and frame */}
+          {/* GRAPHIC: Higher vertical position (top: 35%) */}
           <div style={{ 
             position: 'absolute', 
-            top: '50%', 
-            left: '75%', // Positioned exactly at the mid-point of the right-side whitespace
+            top: '35%', 
+            left: '75%', 
             transform: 'translate(-50%, -50%)',
             zIndex: 1 
           }}>
@@ -147,7 +147,6 @@ export default function VanitySite() {
 
         </section>
 
-        {/* Operational Methodology */}
         <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '50px' }}>
