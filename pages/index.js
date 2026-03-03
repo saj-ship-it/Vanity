@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from 'react';
 
-// THE SEARCHLIGHT: 12% baseline visibility with 100% signal reveal
+// THE SEARCHLIGHT: 18% visibility noise with Golden Signal reveal
 const DigitalSpotlight = () => {
   const cols = 28; 
-  const rows = 50;
+  const rows = 60;
 
+  // Generate binary strings
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
       [...Array(rows)].map(() => (Math.random() > 0.5 ? '1' : '0'))
@@ -15,42 +16,42 @@ const DigitalSpotlight = () => {
     <div style={{ position: 'relative', width: '480px', height: '550px', backgroundColor: '#000', borderRadius: '4px', overflow: 'hidden', border: '1px solid #111' }}>
       <style>{`
         @keyframes streamFall {
-          0% { transform: translateY(-20%); }
+          0% { transform: translateY(-33%); }
           100% { transform: translateY(0%); }
         }
         .falling-data {
-          animation: streamFall 100s linear infinite;
+          animation: streamFall 70s linear infinite;
         }
       `}</style>
 
       <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
         <defs>
-          {/* THE MASK: Surgical precision beam */}
+          {/* THE MASK: Precision beam for signal detection */}
           <mask id="spotlightMask">
-            <circle r="5.5" fill="white">
-              <animate attributeName="cx" values="25;75;35;25" dur="22s" repeatCount="indefinite" />
-              <animate attributeName="cy" values="25;55;85;25" dur="22s" repeatCount="indefinite" />
+            <circle r="6" fill="white">
+              <animate attributeName="cx" values="20;80;40;20" dur="20s" repeatCount="indefinite" />
+              <animate attributeName="cy" values="20;40;80;20" dur="20s" repeatCount="indefinite" />
             </circle>
           </mask>
         </defs>
 
-        {/* THE NOISE: Dimly visible background (Increased to 12% opacity) */}
-        <g className="falling-data" opacity="0.12">
+        {/* THE NOISE: Background data (Increased to 18% visibility) */}
+        <g className="falling-data" opacity="0.18">
           {streams.map((column, i) => (
-            <g key={`dark-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
+            <g key={`noise-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
               {column.map((char, j) => (
-                <text key={`dark-char-${j}`} y={j * 4} fill="white" fontSize="3" fontFamily="monospace" textAnchor="middle">{char}</text>
+                <text key={`noise-char-${j}`} y={j * 4} fill="white" fontSize="3" fontFamily="monospace" textAnchor="middle">{char}</text>
               ))}
             </g>
           ))}
         </g>
 
-        {/* THE CLARITY: Full intensity Signal (Revealed by Mask) */}
+        {/* THE SIGNAL: Yellow/Gold Reveal (Revealed by Mask) */}
         <g className="falling-data" mask="url(#spotlightMask)">
           {streams.map((column, i) => (
-            <g key={`light-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
+            <g key={`signal-col-${i}`} transform={`translate(${5 + i * 3.5}, 0)`}>
               {column.map((char, j) => (
-                <text key={`light-char-${j}`} y={j * 4} fill="white" fontSize="3" fontFamily="monospace" textAnchor="middle">{char}</text>
+                <text key={`signal-char-${j}`} y={j * 4} fill="#FFD700" fontSize="3.2" fontWeight="bold" fontFamily="monospace" textAnchor="middle">{char}</text>
               ))}
             </g>
           ))}
@@ -76,7 +77,7 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '60px 20px', scrollBehavior: 'smooth' }}>
       
-      {/* Centered Navigation Alignment */}
+      {/* Navigation aligned to the 480px graphic */}
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
         <div style={{ width: '480px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
