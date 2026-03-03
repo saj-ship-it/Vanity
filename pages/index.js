@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from 'react';
 
-// THE ORB: A circular field of falling binary data with a surgical lemon-yellow reveal
+// THE ORB: 30% smaller, cream signal, blurred edges, 14% noise
 const DataOrb = () => {
-  const cols = 32; 
-  const rows = 60;
+  const cols = 28; 
+  const rows = 50;
 
   const streams = useMemo(() => 
     [...Array(cols)].map(() => 
@@ -12,60 +12,61 @@ const DataOrb = () => {
   );
 
   return (
-    <div style={{ position: 'relative', width: '480px', height: '550px', backgroundColor: 'transparent' }}>
+    <div style={{ position: 'relative', width: '336px', height: '385px', backgroundColor: 'transparent' }}>
       <style>{`
         @keyframes streamFall {
           0% { transform: translateY(-33%); }
           100% { transform: translateY(0%); }
         }
         .falling-data {
-          animation: streamFall 70s linear infinite;
+          animation: streamFall 90s linear infinite;
         }
       `}</style>
 
       <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
         <defs>
-          {/* THE CIRCULAR BOUNDARY: Clips the entire stream into a circle */}
-          <clipPath id="orbClip">
-            <circle cx="50" cy="50" r="48" />
-          </clipPath>
+          {/* THE SOFT EDGE: Blurs the entire orb into the black background */}
+          <mask id="edgeFade">
+            <radialGradient id="fadeGradient" cx="50%" cy="50%" r="50%">
+              <stop offset="80%" stopColor="white" stopOpacity="1" />
+              <stop offset="100%" stopColor="white" stopOpacity="0" />
+            </radialGradient>
+            <circle cx="50%" cy="50%" r="48" fill="url(#fadeGradient)" />
+          </mask>
 
           {/* THE SPOTLIGHT: Surgical signal detection radius */}
           <mask id="spotlightMask">
-            <circle r="7" fill="white">
-              <animate attributeName="cx" values="25;75;35;25" dur="18s" repeatCount="indefinite" />
-              <animate attributeName="cy" values="25;55;85;25" dur="18s" repeatCount="indefinite" />
+            <circle r="6" fill="white">
+              <animate attributeName="cx" values="25;75;35;25" dur="20s" repeatCount="indefinite" />
+              <animate attributeName="cy" values="25;55;85;25" dur="20s" repeatCount="indefinite" />
             </circle>
           </mask>
         </defs>
 
-        {/* Apply the circular clip to the entire group */}
-        <g clipPath="url(#orbClip)">
-          {/* THE NOISE: Faint White Background (18% visibility) */}
-          <g className="falling-data" opacity="0.18">
+        {/* The Entire Field is contained within the Edge Fade Mask */}
+        <g mask="url(#edgeFade)">
+          {/* THE NOISE: Faint White Background (Reduced to 14% visibility) */}
+          <g className="falling-data" opacity="0.14">
             {streams.map((column, i) => (
-              <g key={`noise-col-${i}`} transform={`translate(${2 + i * 3}, 0)`}>
+              <g key={`noise-col-${i}`} transform={`translate(${5 + i * 3.3}, 0)`}>
                 {column.map((char, j) => (
-                  <text key={`noise-char-${j}`} y={j * 4} fill="white" fontSize="3" fontFamily="monospace" textAnchor="middle">{char}</text>
+                  <text key={`noise-char-${j}`} y={j * 4} fill="white" fontSize="3.2" fontFamily="monospace" textAnchor="middle">{char}</text>
                 ))}
               </g>
             ))}
           </g>
 
-          {/* THE SIGNAL: Lemon Yellow Reveal (Revealed by Mask) */}
+          {/* THE SIGNAL: Cream Reveal (Revealed by Spotlight) */}
           <g className="falling-data" mask="url(#spotlightMask)">
             {streams.map((column, i) => (
-              <g key={`signal-col-${i}`} transform={`translate(${2 + i * 3}, 0)`}>
+              <g key={`signal-col-${i}`} transform={`translate(${5 + i * 3.3}, 0)`}>
                 {column.map((char, j) => (
-                  <text key={`signal-char-${j}`} y={j * 4} fill="#FFFF00" fontSize="3.3" fontWeight="bold" fontFamily="monospace" textAnchor="middle">{char}</text>
+                  <text key={`signal-char-${j}`} y={j * 4} fill="#FFFDD0" fontSize="3.5" fontWeight="bold" fontFamily="monospace" textAnchor="middle">{char}</text>
                 ))}
               </g>
             ))}
           </g>
         </g>
-
-        {/* Subtle Outer Edge: A thin rim to define the orb */}
-        <circle cx="50" cy="50" r="48" fill="none" stroke="white" strokeWidth="0.1" strokeOpacity="0.2" />
       </svg>
     </div>
   );
@@ -89,7 +90,7 @@ export default function VanitySite() {
       
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
-        <div style={{ width: '480px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
+        <div style={{ width: '336px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
           <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>METHOD</a>
           <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>SECTORS</a>
         </div>
@@ -108,12 +109,11 @@ export default function VanitySite() {
             REQUEST SECURE BRIEFING
           </button>
         </div>
-        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-5%', marginTop: '-50px' }}>
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-5%', marginTop: '-30px' }}>
           <DataOrb />
         </div>
       </section>
 
-      {/* Methodology Section */}
       <section id="method" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
@@ -123,7 +123,6 @@ export default function VanitySite() {
         </div>
       </section>
 
-      {/* Sectors Section */}
       <section id="sectors" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }}>
