@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-// THE IRIS: High-Fidelity Neural Focus
-const TheIris = () => (
+// THE ASSEMBLER: Noise shards converging into a crisp, pulsating Signal Core
+const TheAssembler = () => (
   <svg 
     width="330" 
     height="330" 
@@ -13,45 +13,74 @@ const TheIris = () => (
     }}
   >
     <defs>
-      <radialGradient id="pupilGlow" cx="50%" cy="50%" r="50%">
+      <radialGradient id="signalPulse" cx="50%" cy="50%" r="50%">
         <stop offset="0%" stopColor="white" stopOpacity="1" />
-        <stop offset="40%" stopColor="#2563eb" stopOpacity="0.6" />
+        <stop offset="60%" stopColor="#2563eb" stopOpacity="0.3" />
         <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
       </radialGradient>
     </defs>
-    <g stroke="white" strokeWidth="0.05" strokeOpacity="0.3">
-      {[...Array(60)].map((_, i) => {
-        const angle = (i * Math.PI) / 30;
-        const x1 = 50 + Math.cos(angle) * 35;
-        const y1 = 50 + Math.sin(angle) * 35;
-        const x2 = 50 + Math.cos(angle) * 48;
-        const y2 = 50 + Math.sin(angle) * 48;
-        return <line key={`o-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} />;
-      })}
-    </g>
-    <g stroke="white" strokeWidth="0.08" strokeOpacity="0.6">
-      {[...Array(72)].map((_, i) => {
-        const angle = (i * Math.PI) / 36;
-        const x1 = 50 + Math.cos(angle) * 12;
-        const y1 = 50 + Math.sin(angle) * 12;
-        const x2 = 50 + Math.cos(angle) * 32;
-        const y2 = 50 + Math.sin(angle) * 32;
-        const x3 = 50 + Math.cos(angle + 0.2) * 25;
-        const y3 = 50 + Math.sin(angle + 0.2) * 25;
+
+    {/* THE NOISE: Chaotic Vector Shards */}
+    <g stroke="white" strokeWidth="0.12" strokeOpacity="0.2">
+      {[...Array(90)].map((_, i) => {
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 38 + Math.random() * 12;
+        const x = 50 + Math.cos(angle) * dist;
+        const y = 50 + Math.sin(angle) * dist;
+        const size = 0.8 + Math.random() * 1.5;
         return (
-          <React.Fragment key={`i-${i}`}>
-            <line x1={x1} y1={y1} x2={x2} y2={y2} />
-            <line x1={x1} y1={y1} x2={x3} y2={y3} strokeOpacity="0.15" />
-          </React.Fragment>
+          <path 
+            key={`noise-${i}`} 
+            d={`M ${x} ${y} l ${size} -${size} l ${size} ${size} z`} 
+            transform={`rotate(${Math.random() * 360} ${x} ${y})`}
+          />
         );
       })}
     </g>
-    <ellipse cx="50" cy="50" rx="45" ry="15" stroke="#2563eb" strokeWidth="0.07" strokeOpacity="0.4" transform="rotate(45 50 50)" />
-    <ellipse cx="50" cy="50" rx="45" ry="15" stroke="#2563eb" strokeWidth="0.07" strokeOpacity="0.4" transform="rotate(-45 50 50)" />
-    <circle cx="50" cy="50" r="12" fill="url(#pupilGlow)" opacity="0.3" />
-    <circle cx="50" cy="50" r="4" fill="white">
-      <animate attributeName="r" values="3.8;4.5;3.8" dur="4s" repeatCount="indefinite" />
-    </circle>
+
+    {/* THE CONVERGENCE: Accelerated alignment lines */}
+    <g stroke="white" strokeWidth="0.06" strokeOpacity="0.4">
+      {[...Array(48)].map((_, i) => {
+        const angle = (i * Math.PI) / 24;
+        const r1 = 14; 
+        const r2 = 36;
+        return (
+          <line 
+            key={`line-${i}`} 
+            x1={50 + Math.cos(angle) * r1} 
+            y1={50 + Math.sin(angle) * r1} 
+            x2={50 + Math.cos(angle) * r2} 
+            y2={50 + Math.sin(angle) * r2} 
+            strokeDasharray={i % 2 === 0 ? "0.5 1.5" : "none"}
+          />
+        );
+      })}
+    </g>
+
+    {/* THE SIGNAL: Pulsating Faceted Core */}
+    <g>
+      <circle cx="50" cy="50" r="14" fill="url(#signalPulse)" opacity="0.4">
+        <animate attributeName="r" values="12;16;12" dur="3s" repeatCount="indefinite" />
+      </circle>
+      
+      {/* Intricate Geometric Resolve */}
+      <g stroke="white" strokeWidth="0.25">
+        <path d="M50 35 L62 42 L62 58 L50 65 L38 58 L38 42 Z">
+          <animateTransform attributeName="transform" type="scale" values="1;1.08;1" dur="3s" repeatCount="indefinite" additive="sum" origin="50 50" />
+        </path>
+        <path d="M50 35 L50 65 M38 42 L62 58 M62 42 L38 58" strokeOpacity="0.4" strokeWidth="0.1" />
+      </g>
+      
+      <circle cx="50" cy="50" r="1.5" fill="white" />
+    </g>
+
+    {/* Technical HUD Overlays */}
+    <g opacity="0.5" stroke="white" strokeWidth="0.3">
+      <path d="M40 5 H50 H60 M50 5 V12" />
+      <path d="M40 95 H50 H60 M50 95 V88" />
+      <path d="M5 40 V50 V60 M5 50 H12" />
+      <path d="M95 40 V50 V60 M95 50 H88" />
+    </g>
   </svg>
 );
 
@@ -71,6 +100,7 @@ export default function VanitySite() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: '60px 20px', scrollBehavior: 'smooth' }}>
       
+      {/* Centered Navigation */}
       <nav style={{ maxWidth: '1200px', margin: '0 auto 80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px' }}>AUTHENTIC INTELLIGENCE</strong>
         <div style={{ width: '330px', display: 'flex', justifyContent: 'center', gap: '40px', marginRight: '5%' }}>
@@ -93,12 +123,13 @@ export default function VanitySite() {
           </button>
         </div>
         
+        {/* The Assembler Graphic */}
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', marginLeft: '-5%' }}>
-          <TheIris />
+          <TheAssembler />
         </div>
       </section>
 
-      {/* CORRECTED METHODOLOGY SECTION */}
+      {/* Methodology Section */}
       <section id="method" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
@@ -115,11 +146,12 @@ export default function VanitySite() {
           <div>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             <h3 style={{ fontSize: '14px', margin: '20px 0 15px' }}>[03] ADVISORY DELIVERY</h3>
-            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Intelligence delivered via secure nodes to providing critical lead time for decision makers.</p>
+            <p style={{ color: '#6b7280', fontSize: '14px', lineHeight: '1.8' }}>Intelligence delivered via secure nodes to provide critical lead time for decision makers.</p>
           </div>
         </div>
       </section>
 
+      {/* Sectors Section */}
       <section id="sectors" style={{ maxWidth: '1200px', margin: '0 auto 140px', borderTop: '1px solid #1f2937', paddingTop: '80px' }}>
         <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
@@ -131,6 +163,7 @@ export default function VanitySite() {
         </div>
       </section>
 
+      {/* Contact Form Modal */}
       {showForm && (
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.98)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, backdropFilter: 'blur(10px)' }}>
           <form action="https://formspree.io/f/YOUR_ID_HERE" method="POST" style={{ width: '90%', maxWidth: '450px', padding: '60px', border: '1px solid #222', backgroundColor: '#050505' }}>
