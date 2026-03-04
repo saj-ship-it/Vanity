@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 
 // THE RESTORED STABLE ORB: Abstract Binary, 16% Opacity, Vertical Rain, 12s Sweep
 const DataOrb = () => {
@@ -70,6 +71,7 @@ const OperationalFlow = () => {
 
 export default function App() {
   const [showForm, setShowForm] = useState(false);
+  const [state, handleSubmit] = useForm("mgolgper"); // Your Formspree ID
 
   const sectors = [
     { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
@@ -84,7 +86,6 @@ export default function App() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
-      {/* HEADER */}
       <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '60px' }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>AUTHENTIC INTELLIGENCE</strong>
         <nav style={{ display: 'flex', gap: '40px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
@@ -94,7 +95,6 @@ export default function App() {
       </header>
 
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        {/* HERO */}
         <section className="hero-section">
           <style>{`
             .hero-section { position: relative; margin-top: 140px; margin-bottom: 140px; min-height: 450px; }
@@ -107,19 +107,18 @@ export default function App() {
           <div style={{ maxWidth: '600px', position: 'relative', zIndex: 2 }}>
             <h1 style={{ fontSize: 'clamp(40px, 8vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span></h1>
             <p style={{ color: '#9ca3af', maxWidth: '480px', marginBottom: '25px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>Predictive analytics for high-stakes decision makers.</p>
-            <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>We find and monitor non-obvious data pipelines to detect trend breaks first and before impact.</p>
+            <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>We monitor **occluded** data pipelines to detect trend breaks first and before impact.</p>
             <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>REQUEST SECURE BRIEFING</button>
           </div>
           <div className="hero-graphic"><DataOrb /></div>
         </section>
 
-        {/* METHODOLOGY */}
         <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '40px' }}>
             <style>{` @media (max-width: 1024px) { #method-grid { grid-template-columns: 1fr !important; } } `}</style>
             <div id="method-grid" style={{ display: 'contents' }}>
-              <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Raw Ingestion.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Ingesting peripheral nodes—geopolitical shifts and disruptions—before they reach market lag.</p></div>
+              <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[01] THE FEED</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Raw Ingestion.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Ingesting **peripheral** nodes—geopolitical shifts and disruptions—before they reach market lag.</p></div>
               <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[02] PATTERN ISOLATION</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Anomalous Detection.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Our proprietary logic filters the abyss to isolate anomalies that represent warning signs of volatility.</p></div>
               <div><h3 style={{ fontSize: '14px', margin: '0 0 20px', letterSpacing: '0.1em' }}>[03] ADVISORY DELIVERY</h3><p style={{ color: '#fff', fontSize: '14px', fontWeight: '500', marginBottom: '10px' }}>Zero-Latency Access.</p><p style={{ color: '#6b7280', fontSize: '13px', lineHeight: '1.6' }}>Insights delivered via secure channels, giving decision-makers a window of opportunity to position before impact.</p></div>
               <OperationalFlow />
@@ -127,7 +126,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTORS - RESTORED SECTION */}
         <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
@@ -141,18 +139,33 @@ export default function App() {
         </section>
       </main>
 
-      {/* MODAL */}
+      {/* SECURE MODAL: Active Formspree Integration */}
       {showForm && (
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '400px', border: '1px solid #333', backgroundColor: '#050505', padding: '40px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-              <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v2.9]</span>
-              <button onClick={() => setShowForm(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '12px' }}>[X] CLOSE</button>
-            </div>
-            <form action="https://formspree.io/f/your-form-id" method="POST">
-              <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #FFFDD0', padding: '15px', color: 'white', fontFamily: 'monospace', marginBottom: '30px', outline: 'none' }} placeholder="user@organization.tld" />
-              <button type="submit" style={{ width: '100%', backgroundColor: '#FFFDD0', color: 'black', padding: '20px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>INITIALIZE BRIEFING</button>
-            </form>
+            
+            {state.succeeded ? (
+              <div style={{ textAlign: 'center' }}>
+                <p style={{ color: '#FFFDD0', fontSize: '14px', letterSpacing: '0.1em' }}>TRANSMISSION RECEIVED.</p>
+                <button onClick={() => setShowForm(false)} style={{ background: 'none', border: '1px solid #333', color: 'white', padding: '10px 20px', marginTop: '20px', cursor: 'pointer' }}>RETURN</button>
+              </div>
+            ) : (
+              <>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
+                  <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v3.0]</span>
+                  <button onClick={() => setShowForm(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '12px' }}>[X] CLOSE</button>
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <label htmlFor="email" style={{ display: 'block', fontSize: '10px', color: '#9ca3af', marginBottom: '10px', letterSpacing: '0.1em' }}>ENTER WORK EMAIL</label>
+                  <input id="email" type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #FFFDD0', padding: '15px', color: 'white', fontFamily: 'monospace', marginBottom: '10px', outline: 'none' }} placeholder="user@organization.tld" />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} style={{ color: '#eb4034', fontSize: '10px', marginBottom: '20px' }} />
+                  
+                  <button type="submit" disabled={state.submitting} style={{ width: '100%', backgroundColor: '#FFFDD0', color: 'black', padding: '20px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px', marginTop: '20px' }}>
+                    {state.submitting ? "UPLOADING..." : "INITIALIZE BRIEFING"}
+                  </button>
+                </form>
+              </>
+            )}
           </div>
         </div>
       )}
