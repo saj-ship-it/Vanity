@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 
-// THE RESTORED ORB: Abstract Binary, 16% Opacity, Vertical Rain, 12s Sweep
+// THE RESTORED STABLE ORB: Abstract Binary, 16% Opacity, Vertical Rain, 12s Sweep
 const DataOrb = () => {
   const cols = 22; 
   const rows = 40;
@@ -49,7 +49,7 @@ const DataOrb = () => {
   );
 };
 
-// STEP 04 VISUAL: Restored Operational Pipeline
+// STEP 04 VISUAL: Operational Pipeline
 const OperationalFlow = () => {
   const steps = ["MONITOR", "DETECT", "ANALYZE", "ALERT"];
   return (
@@ -71,9 +71,20 @@ const OperationalFlow = () => {
 export default function App() {
   const [showForm, setShowForm] = useState(false);
 
+  const sectors = [
+    { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+    { name: 'MEDIA & DISINFO', path: 'M2 3h20v14H2z M12 17v4' },
+    { name: 'ENERGY INFRA', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+    { name: 'HEALTHCARE', path: 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z' },
+    { name: 'LOGISTICS', path: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
+    { name: 'PRIVATE EQUITY', path: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
+    { name: 'FINANCE', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
+  ];
+
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
+      {/* HEADER */}
       <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 0 0', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '60px' }}>
         <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>AUTHENTIC INTELLIGENCE</strong>
         <nav style={{ display: 'flex', gap: '40px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.7 }}>
@@ -83,6 +94,7 @@ export default function App() {
       </header>
 
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        {/* HERO */}
         <section className="hero-section">
           <style>{`
             .hero-section { position: relative; margin-top: 140px; margin-bottom: 140px; min-height: 450px; }
@@ -92,7 +104,6 @@ export default function App() {
               .hero-graphic { position: relative; top: 0; left: 0; transform: none; width: 100%; display: flex; justify-content: center; margin-top: 40px; }
             }
           `}</style>
-          
           <div style={{ maxWidth: '600px', position: 'relative', zIndex: 2 }}>
             <h1 style={{ fontSize: 'clamp(40px, 8vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span></h1>
             <p style={{ color: '#9ca3af', maxWidth: '480px', marginBottom: '25px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>Predictive analytics for high-stakes decision makers.</p>
@@ -102,6 +113,7 @@ export default function App() {
           <div className="hero-graphic"><DataOrb /></div>
         </section>
 
+        {/* METHODOLOGY */}
         <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL METHODOLOGY</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '40px' }}>
@@ -114,13 +126,27 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        {/* SECTORS - RESTORED SECTION */}
+        <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
+          <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+            {sectors.map((s) => (
+              <div key={s.name} style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '40px 20px', textAlign: 'center' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.path} /></svg>
+                <h4 style={{ fontSize: '11px', letterSpacing: '0.1em' }}>{s.name}</h4>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
 
+      {/* MODAL */}
       {showForm && (
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '400px', border: '1px solid #333', backgroundColor: '#050505', padding: '40px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-              <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v2.8]</span>
+              <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v2.9]</span>
               <button onClick={() => setShowForm(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '12px' }}>[X] CLOSE</button>
             </div>
             <form action="https://formspree.io/f/your-form-id" method="POST">
