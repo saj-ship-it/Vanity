@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { useForm, ValidationError } from '@formspree/react';
 
 // THE RESTORED STABLE ORB: Abstract Binary, 16% Opacity, Vertical Rain, 12s Sweep
 const DataOrb = () => {
@@ -71,7 +70,6 @@ const OperationalFlow = () => {
 
 export default function App() {
   const [showForm, setShowForm] = useState(false);
-  const [state, handleSubmit] = useForm("mgolgper"); // Your Formspree ID
 
   const sectors = [
     { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
@@ -139,33 +137,19 @@ export default function App() {
         </section>
       </main>
 
-      {/* SECURE MODAL: Active Formspree Integration */}
+      {/* SECURE MODAL: Static Formspree Action */}
       {showForm && (
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '400px', border: '1px solid #333', backgroundColor: '#050505', padding: '40px' }}>
-            
-            {state.succeeded ? (
-              <div style={{ textAlign: 'center' }}>
-                <p style={{ color: '#FFFDD0', fontSize: '14px', letterSpacing: '0.1em' }}>TRANSMISSION RECEIVED.</p>
-                <button onClick={() => setShowForm(false)} style={{ background: 'none', border: '1px solid #333', color: 'white', padding: '10px 20px', marginTop: '20px', cursor: 'pointer' }}>RETURN</button>
-              </div>
-            ) : (
-              <>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-                  <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v3.0]</span>
-                  <button onClick={() => setShowForm(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '12px' }}>[X] CLOSE</button>
-                </div>
-                <form onSubmit={handleSubmit}>
-                  <label htmlFor="email" style={{ display: 'block', fontSize: '10px', color: '#9ca3af', marginBottom: '10px', letterSpacing: '0.1em' }}>ENTER WORK EMAIL</label>
-                  <input id="email" type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #FFFDD0', padding: '15px', color: 'white', fontFamily: 'monospace', marginBottom: '10px', outline: 'none' }} placeholder="user@organization.tld" />
-                  <ValidationError prefix="Email" field="email" errors={state.errors} style={{ color: '#eb4034', fontSize: '10px', marginBottom: '20px' }} />
-                  
-                  <button type="submit" disabled={state.submitting} style={{ width: '100%', backgroundColor: '#FFFDD0', color: 'black', padding: '20px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px', marginTop: '20px' }}>
-                    {state.submitting ? "UPLOADING..." : "INITIALIZE BRIEFING"}
-                  </button>
-                </form>
-              </>
-            )}
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
+              <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v3.0]</span>
+              <button onClick={() => setShowForm(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '12px' }}>[X] CLOSE</button>
+            </div>
+            <form action="https://formspree.io/f/mgolgper" method="POST">
+              <label htmlFor="email" style={{ display: 'block', fontSize: '10px', color: '#9ca3af', marginBottom: '10px', letterSpacing: '0.1em' }}>ENTER WORK EMAIL</label>
+              <input id="email" type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #FFFDD0', padding: '15px', color: 'white', fontFamily: 'monospace', marginBottom: '30px', outline: 'none' }} placeholder="user@organization.tld" />
+              <button type="submit" style={{ width: '100%', backgroundColor: '#FFFDD0', color: 'black', padding: '20px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>INITIALIZE BRIEFING</button>
+            </form>
           </div>
         </div>
       )}
