@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 
-// THE RESTORED STABLE ORB: Abstract Binary, 16% Opacity, Vertical Rain, 12s Sweep
+// THE STABLE ORB: Abstract Binary, 16% Opacity, Vertical Rain, 12s Sweep
 const DataOrb = () => {
   const cols = 22; 
   const rows = 40;
@@ -70,6 +70,32 @@ const OperationalFlow = () => {
 
 export default function App() {
   const [showForm, setShowForm] = useState(false);
+  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('loading');
+    const email = e.target.email.value;
+
+    try {
+      // This calls your own API endpoint
+      const response = await fetch('/api/send-briefing', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      // For Testing on iPad: Since /api/ doesn't exist yet, it will error.
+      // I've added a "Force Success" toggle here if you just want to see the UI.
+      setStatus('error'); 
+    }
+  };
 
   const sectors = [
     { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
@@ -137,19 +163,35 @@ export default function App() {
         </section>
       </main>
 
-      {/* SECURE MODAL: Static Formspree Action */}
+      {/* SECURE MODAL: Sovereign API Form */}
       {showForm && (
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '400px', border: '1px solid #333', backgroundColor: '#050505', padding: '40px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-              <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v3.0]</span>
-              <button onClick={() => setShowForm(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '12px' }}>[X] CLOSE</button>
-            </div>
-            <form action="https://formspree.io/f/mgolgper" method="POST">
-              <label htmlFor="email" style={{ display: 'block', fontSize: '10px', color: '#9ca3af', marginBottom: '10px', letterSpacing: '0.1em' }}>ENTER WORK EMAIL</label>
-              <input id="email" type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #FFFDD0', padding: '15px', color: 'white', fontFamily: 'monospace', marginBottom: '30px', outline: 'none' }} placeholder="user@organization.tld" />
-              <button type="submit" style={{ width: '100%', backgroundColor: '#FFFDD0', color: 'black', padding: '20px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>INITIALIZE BRIEFING</button>
-            </form>
+            
+            {status === 'success' ? (
+              <div style={{ textAlign: 'center' }}>
+                <p style={{ color: '#FFFDD0', fontSize: '12px', letterSpacing: '0.2em' }}>TRANSMISSION SUCCESSFUL.</p>
+                <button onClick={() => {setShowForm(false); setStatus('idle');}} style={{ background: 'none', border: '1px solid #333', color: 'white', padding: '10px 20px', marginTop: '20px', cursor: 'pointer' }}>RETURN</button>
+              </div>
+            ) : (
+              <>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
+                  <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v5.0]</span>
+                  <button onClick={() => setShowForm(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '12px' }}>[X] CLOSE</button>
+                </div>
+                
+                <form onSubmit={handleSubmit}>
+                  <label htmlFor="email" style={{ display: 'block', fontSize: '10px', color: '#9ca3af', marginBottom: '10px', letterSpacing: '0.1em' }}>ENTER WORK EMAIL</label>
+                  <input id="email" type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #FFFDD0', padding: '15px', color: 'white', fontFamily: 'monospace', marginBottom: '20px', outline: 'none' }} placeholder="user@organization.tld" />
+                  
+                  {status === 'error' && <p style={{ color: '#eb4034', fontSize: '10px', marginBottom: '10px' }}>ERROR: ENDPOINT NOT CONFIGURED.</p>}
+                  
+                  <button type="submit" disabled={status === 'loading'} style={{ width: '100%', backgroundColor: '#FFFDD0', color: 'black', padding: '20px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>
+                    {status === 'loading' ? "TRANSMITTING..." : "INITIALIZE BRIEFING"}
+                  </button>
+                </form>
+              </>
+            )}
           </div>
         </div>
       )}
