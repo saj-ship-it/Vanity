@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 
-// THE STABLE ORB: Abstract Binary, 16% Opacity, Vertical Rain, 12s Sweep
 const DataOrb = () => {
   const cols = 22; 
   const rows = 40;
@@ -16,7 +15,8 @@ const DataOrb = () => {
         .orb-container { 
           position: relative; width: 300px; height: 300px; background-color: #000; border-radius: 50%; overflow: hidden; 
           -webkit-mask-image: radial-gradient(circle, black 65%, transparent 100%); 
-          mask-image: radial-gradient(circle, black 65%, transparent 100%); 
+          mask-image: radial-gradient(circle, black 65%, transparent 100%);
+          z-index: 1; /* LOCK TO BACKGROUND */
         }
         @media (max-width: 1024px) { 
           .orb-container { width: 240px; height: 240px; margin: 40px auto; } 
@@ -49,7 +49,6 @@ const DataOrb = () => {
   );
 };
 
-// STEP 04 VISUAL: Operational Pipeline
 const OperationalFlow = () => {
   const steps = ["MONITOR", "DETECT", "ANALYZE", "ALERT"];
   return (
@@ -76,14 +75,12 @@ export default function App() {
     e.preventDefault();
     setStatus('loading');
     const email = e.target.email.value;
-
     try {
       const response = await fetch('/api/send-briefing', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       });
-
       if (response.ok) setStatus('success');
       else setStatus('error');
     } catch (err) {
@@ -113,22 +110,16 @@ export default function App() {
       </header>
 
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <section className="hero-section">
-          <style>{`
-            .hero-section { position: relative; margin-top: 140px; margin-bottom: 140px; min-height: 450px; }
-            .hero-graphic { position: absolute; top: 35%; left: 75%; transform: translate(-50%, -50%); z-index: 1; }
-            @media (max-width: 1024px) {
-              .hero-section { display: flex; flex-direction: column; align-items: flex-start; margin-top: 80px; }
-              .hero-graphic { position: relative; top: 0; left: 0; transform: none; width: 100%; display: flex; justify-content: center; margin-top: 40px; }
-            }
-          `}</style>
-          <div style={{ maxWidth: '600px', position: 'relative', zIndex: 2 }}>
+        <section className="hero-section" style={{ position: 'relative', marginTop: '140px', marginBottom: '140px', minHeight: '450px' }}>
+          <div style={{ maxWidth: '600px', position: 'relative', zIndex: 10 }}>
             <h1 style={{ fontSize: 'clamp(40px, 8vw, 76px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.05em', marginBottom: '40px' }}>FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span></h1>
             <p style={{ color: '#9ca3af', maxWidth: '480px', marginBottom: '25px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>Predictive analytics for high-stakes decision makers.</p>
             <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>We monitor latent data pipelines to detect trend breaks first and before impact.</p>
-            <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>REQUEST SECURE BRIEFING</button>
+            <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer', position: 'relative', zIndex: 20 }}>REQUEST SECURE BRIEFING</button>
           </div>
-          <div className="hero-graphic"><DataOrb /></div>
+          <div className="hero-graphic" style={{ position: 'absolute', top: '35%', left: '75%', transform: 'translate(-50%, -50%)', zIndex: 1 }}>
+            <DataOrb />
+          </div>
         </section>
 
         <section id="method" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
@@ -144,7 +135,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* RESTORED SECTORS SECTION */}
         <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
           <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
@@ -158,8 +148,18 @@ export default function App() {
         </section>
       </main>
 
+      {/* THE FIXED MODAL OVERLAY: Isolated on top layer */}
       {showForm && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', zSegIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ 
+          position: 'fixed', 
+          inset: 0, 
+          backgroundColor: 'rgba(0,0,0,0.9)', 
+          backdropFilter: 'blur(15px)', 
+          zIndex: 9999, // FORCED TO TOP
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center' 
+        }}>
           <div style={{ width: '400px', border: '1px solid #333', backgroundColor: '#050505', padding: '40px' }}>
             {status === 'success' ? (
               <div style={{ textAlign: 'center' }}>
