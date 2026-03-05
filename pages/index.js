@@ -91,6 +91,16 @@ export default function App() {
     }
   };
 
+  const sectors = [
+    { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+    { name: 'MEDIA & DISINFO', path: 'M2 3h20v14H2z M12 17v4' },
+    { name: 'ENERGY INFRA', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+    { name: 'HEALTHCARE', path: 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z' },
+    { name: 'LOGISTICS', path: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
+    { name: 'PRIVATE EQUITY', path: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
+    { name: 'FINANCE', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
+  ];
+
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
@@ -133,10 +143,23 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        {/* RESTORED SECTORS SECTION */}
+        <section id="sectors" style={{ borderTop: '1px solid #1f2937', paddingTop: '80px', marginBottom: '140px' }}>
+          <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>OPERATIONAL SECTORS</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+            {sectors.map((s) => (
+              <div key={s.name} style={{ backgroundColor: '#0a0a0a', border: '1px solid #1a1a1a', padding: '40px 20px', textAlign: 'center' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.path} /></svg>
+                <h4 style={{ fontSize: '11px', letterSpacing: '0.1em' }}>{s.name}</h4>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
 
       {showForm && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)', zSegIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '400px', border: '1px solid #333', backgroundColor: '#050505', padding: '40px' }}>
             {status === 'success' ? (
               <div style={{ textAlign: 'center' }}>
@@ -146,7 +169,7 @@ export default function App() {
             ) : (
               <>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-                  <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v5.0]</span>
+                  <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>SECURE INTAKE [v5.1]</span>
                   <button onClick={() => setShowForm(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '12px' }}>[X] CLOSE</button>
                 </div>
                 <form onSubmit={handleSubmit}>
