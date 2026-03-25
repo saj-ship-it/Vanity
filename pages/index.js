@@ -31,7 +31,7 @@ const DataOrb = () => {
   );
 
   return (
-    <div className="orb-container shadow-filter">
+    <div className="orb-container">
       <style>{`
         .orb-container { 
           position: relative; width: 300px; height: 300px; background-color: #000; border-radius: 50%; overflow: hidden; 
@@ -60,19 +60,16 @@ const DataOrb = () => {
   );
 };
 
-// --- MAIN APPLICATION ---
-
-export default function AUI_Terminal() {
+export default function AUITerminal() {
   const [showForm, setShowForm] = useState(false);
   const [status, setStatus] = useState('idle');
 
-  // Prevent scroll when modal is open
   useEffect(() => {
     if (showForm) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
   }, [showForm]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setStatus('loading');
     setTimeout(() => setStatus('error'), 1200);
@@ -90,104 +87,114 @@ export default function AUI_Terminal() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
-      {/* HEADER */}
-      <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 0', borderBottom: '1px solid #111' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-          <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.8 }}>AUTHENTIC INTELLIGENCE</strong>
-          <SystemStatus />
-        </div>
-        <nav style={{ display: 'flex', gap: '40px', letterSpacing: '0.4em', fontSize: '9px', opacity: 0.6 }}>
-          <a href="#architecture" style={{ color: 'white', textDecoration: 'none' }}>01_ARCHITECTURE</a>
-          <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>02_METHODOLOGY</a>
-          <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>03_SECTORS</a>
-        </nav>
-      </header>
-
-      <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        
-        {/* HERO */}
-        <section style={{ position: 'relative', marginTop: '120px', marginBottom: '180px', minHeight: '450px' }}>
-          <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
-            <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '40px' }}>
-              FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
-            </h1>
-            <p style={{ color: '#9ca3af', maxWidth: '480px', marginBottom: '25px', lineHeight: '1.6', fontSize: '19px', fontWeight: '300' }}>
-              Strategic lead-time for high-stakes decision makers.
-            </p>
-            <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
-              AUI monitors latent data pipelines to detect trend breaks before they manifest in the public narrative.
-            </p>
-            <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>
-              SCHEDULE STRATEGIC CONSULT
-            </button>
+      {/* FIX: Wrap everything in a main div that scales down and dims 
+         when the modal is open to stop visual interference.
+      */}
+      <div style={{ 
+        opacity: showForm ? 0.15 : 1, 
+        filter: showForm ? 'grayscale(100%)' : 'none',
+        transform: showForm ? 'scale(0.98)' : 'scale(1)',
+        transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+        pointerEvents: showForm ? 'none' : 'auto'
+      }}>
+        <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 0', borderBottom: '1px solid #111' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.8 }}>AUTHENTIC INTELLIGENCE</strong>
+            <SystemStatus />
           </div>
-          <div style={{ position: 'absolute', top: '35%', left: '75%', transform: 'translate(-50%, -50%)', zIndex: 1 }}>
-            <DataOrb />
-          </div>
-        </section>
+          <nav style={{ display: 'flex', gap: '40px', letterSpacing: '0.4em', fontSize: '9px', opacity: 0.6 }}>
+            <a href="#architecture" style={{ color: 'white', textDecoration: 'none' }}>01_ARCHITECTURE</a>
+            <a href="#method" style={{ color: 'white', textDecoration: 'none' }}>02_METHODOLOGY</a>
+            <a href="#sectors" style={{ color: 'white', textDecoration: 'none' }}>03_SECTORS</a>
+          </nav>
+        </header>
 
-        {/* ARCHITECTURE SCHEMATIC */}
-        <section id="architecture" style={{ borderTop: '1px solid #111', paddingTop: '100px', marginBottom: '140px' }}>
-          <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[01] INGESTION ARCHITECTURE</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '80px', alignItems: 'center' }}>
-            <div style={{ border: '1px solid #1a1a1a', padding: '40px' }}>
-               <div style={{ fontSize: '10px', color: '#2563eb', marginBottom: '20px', fontFamily: 'monospace' }}>MESH_NETWORK_V4.8</div>
-               <p style={{ fontSize: '14px', lineHeight: '1.8', color: '#9ca3af' }}>We operate a distributed mesh of peripheral nodes that ingest raw telemetry—logistics logs and geopolitical micro-signals—bypassing sanitized reporting.</p>
-               <div style={{ marginTop: '30px', height: '1px', width: '100%', backgroundColor: '#333' }} />
-               <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', fontSize: '8px', fontFamily: 'monospace', color: '#374151' }}>
-                 <span>LATENCY: &lt;12MS</span>
-                 <span>INTEGRITY: 99.9%</span>
-               </div>
+        <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <section style={{ position: 'relative', marginTop: '120px', marginBottom: '180px', minHeight: '450px' }}>
+            <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
+              <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '40px' }}>FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span></h1>
+              <p style={{ color: '#9ca3af', maxWidth: '480px', marginBottom: '25px', lineHeight: '1.6', fontSize: '19px', fontWeight: '300' }}>Strategic lead-time for high-stakes decision makers.</p>
+              <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>AUI monitors latent data pipelines to detect trend breaks before they manifest in the public narrative.</p>
+              <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>SCHEDULE STRATEGIC CONSULT</button>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                {[ 'PERIPHERAL_NODES', 'LATENT_INVENTORY', 'SIGNAL_ISOLATION' ].map((label, i) => (
-                  <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                    <span style={{ fontSize: '9px', fontFamily: 'monospace', color: '#2563eb' }}>0{i+1}</span>
-                    <div style={{ height: '1px', flexGrow: 1, backgroundColor: '#111' }} />
-                    <span style={{ fontSize: '10px', letterSpacing: '0.2em', opacity: 0.5 }}>{label}</span>
-                  </div>
-                ))}
+            <div style={{ position: 'absolute', top: '35%', left: '75%', transform: 'translate(-50%, -50%)', zIndex: 1 }}>
+              <DataOrb />
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* SECTORS GRID */}
-        <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '100px', marginBottom: '140px' }}>
-          <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1px', backgroundColor: '#111', border: '1px solid #111' }}>
-            {sectors.map((s) => (
-              <div key={s.name} style={{ backgroundColor: '#050505', padding: '60px 20px', textAlign: 'center' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.path} /></svg>
-                <h4 style={{ fontSize: '10px', letterSpacing: '0.2em', color: '#fff' }}>{s.name}</h4>
+          <section id="architecture" style={{ borderTop: '1px solid #111', paddingTop: '100px', marginBottom: '140px' }}>
+            <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[01] INGESTION ARCHITECTURE</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '80px', alignItems: 'center' }}>
+              <div style={{ border: '1px solid #1a1a1a', padding: '40px' }}>
+                 <div style={{ fontSize: '10px', color: '#2563eb', marginBottom: '20px', fontFamily: 'monospace' }}>MESH_NETWORK_V4.8</div>
+                 <p style={{ fontSize: '14px', lineHeight: '1.8', color: '#9ca3af' }}>We operate a distributed mesh of peripheral nodes that ingest raw telemetry—logistics logs and geopolitical micro-signals—bypassing sanitized reporting.</p>
               </div>
-            ))}
-          </div>
-        </section>
-      </main>
-
-      {/* FIXED MODAL OVERLAY: Isolated Stacking */}
-      {showForm && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.95)', backdropFilter: 'blur(20px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ width: '420px', border: '1px solid #333', backgroundColor: '#050505', padding: '50px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-              <span style={{ fontSize: '10px', letterSpacing: '0.4em', color: '#4b5563' }}>CONSULT_INTAKE [v6.0]</span>
-              <button onClick={() => setShowForm(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '10px' }}>[CLOSE]</button>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                  {[ 'PERIPHERAL_NODES', 'LATENT_INVENTORY', 'SIGNAL_ISOLATION' ].map((label, i) => (
+                    <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                      <span style={{ fontSize: '9px', fontFamily: 'monospace', color: '#2563eb' }}>0{i+1}</span>
+                      <div style={{ height: '1px', flexGrow: 1, backgroundColor: '#111' }} />
+                      <span style={{ fontSize: '10px', letterSpacing: '0.2em', opacity: 0.5 }}>{label}</span>
+                    </div>
+                  ))}
+              </div>
             </div>
-            <form onSubmit={handleSubmit}>
-              <label style={{ display: 'block', fontSize: '9px', color: '#4b5563', marginBottom: '10px', letterSpacing: '0.1em' }}>CORPORATE_IDENTITY</label>
-              <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #333', padding: '15px', color: 'white', fontFamily: 'monospace', marginBottom: '30px', outline: 'none' }} placeholder="identity@org.sovereign" />
-              <button type="submit" style={{ width: '100%', backgroundColor: 'white', color: 'black', padding: '20px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>
-                {status === 'loading' ? "ESTABLISHING..." : "INITIALIZE CONTACT"}
-              </button>
-              {status === 'error' && <p style={{ color: '#ef4444', fontSize: '10px', marginTop: '20px', fontFamily: 'monospace' }}>ERR: ENDPOINT_NOT_ACTIVE. CONFIG_REQUIRED.</p>}
-            </form>
+          </section>
+
+          <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '100px', marginBottom: '140px' }}>
+            <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1px', backgroundColor: '#111', border: '1px solid #111' }}>
+              {sectors.map((s) => (
+                <div key={s.name} style={{ backgroundColor: '#050505', padding: '60px 20px', textAlign: 'center' }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.path} /></svg>
+                  <h4 style={{ fontSize: '10px', letterSpacing: '0.2em', color: '#fff' }}>{s.name}</h4>
+                </div>
+              ))}
+            </div>
+          </section>
+        </main>
+
+        <footer style={{ padding: '80px 0', borderTop: '1px solid #111', fontSize: '8px', color: '#1f2937', letterSpacing: '0.5em', textAlign: 'center' }}>
+          RESTRICTED ACCESS // © 2026 AUTHENTIC INTELLIGENCE INC.
+        </footer>
+      </div>
+
+      {/* FULLY ISOLATED MODAL LAYER */}
+      {showForm && (
+        <div style={{ 
+          position: 'fixed', 
+          inset: 0, 
+          backgroundColor: 'rgba(5, 5, 5, 0.8)', // Semi-deep black
+          zIndex: 99999, 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          animation: 'modalFadeIn 0.4s ease-out'
+        }}>
+          <style>{`@keyframes modalFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }`}</style>
+          <div style={{ width: '420px', border: '1px solid #222', backgroundColor: '#0a0a0a', padding: '60px 40px', boxShadow: '0 20px 60px rgba(0,0,0,1)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '50px' }}>
+              <span style={{ fontSize: '9px', letterSpacing: '0.4em', color: '#4b5563', fontWeight: 'bold' }}>CONSULT_INTAKE [v7.0]</span>
+              <button onClick={() => {setShowForm(false); setStatus('idle');}} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px' }}>[ESC] CLOSE</button>
+            </div>
+            {status === 'success' ? (
+              <div style={{ textAlign: 'center', padding: '40px 0' }}>
+                <div style={{ fontSize: '11px', letterSpacing: '0.3em', color: '#FFFDD0', marginBottom: '10px' }}>TRANSMISSION_COMPLETE</div>
+                <p style={{ color: '#4b5563', fontSize: '13px' }}>Identity validated. Stand by for contact.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                <label style={{ display: 'block', fontSize: '9px', color: '#4b5563', marginBottom: '15px', letterSpacing: '0.2em' }}>ENTITY_IDENTITY</label>
+                <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #222', padding: '18px', color: 'white', fontFamily: 'monospace', marginBottom: '35px', outline: 'none', fontSize: '14px' }} placeholder="identity@org.sovereign" />
+                <button type="submit" disabled={status === 'loading'} style={{ width: '100%', backgroundColor: 'white', color: 'black', padding: '22px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>
+                  {status === 'loading' ? "INITIALIZING..." : "SECURE CONNECTION"}
+                </button>
+                {status === 'error' && <p style={{ color: '#ef4444', fontSize: '10px', marginTop: '25px', fontFamily: 'monospace', textAlign: 'center' }}>ERR_0x54: ENDPOINT_NOT_RESOLVED.</p>}
+              </form>
+            )}
           </div>
         </div>
       )}
-
-      <footer style={{ padding: '80px 0', borderTop: '1px solid #111', fontSize: '8px', color: '#1f2937', letterSpacing: '0.5em', textAlign: 'center' }}>
-        RESTRICTED ACCESS // © 2026 AUTHENTIC INTELLIGENCE INC.
-      </footer>
     </div>
   );
 }
