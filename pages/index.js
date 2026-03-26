@@ -1,7 +1,6 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-// --- SYSTEM COMPONENTS ---
-
+// --- STABLE SYSTEM STATUS ---
 const SystemStatus = () => {
   const [time, setTime] = useState(new Date().toUTCString());
   useEffect(() => {
@@ -20,46 +19,8 @@ const SystemStatus = () => {
   );
 };
 
-const DataOrb = () => {
-  const cols = 22; 
-  const rows = 40;
-  const streams = useMemo(() => 
-    [...Array(cols)].map(() => 
-      [...Array(rows * 2)].map(() => (Math.random() > 0.5 ? '1' : '0')).join('\n')
-    ), []
-  );
-
-  return (
-    <div className="orb-container">
-      <style>{`
-        .orb-container { 
-          position: relative; width: 300px; height: 300px; background-color: #000; border-radius: 50%; overflow: hidden; 
-          -webkit-mask-image: radial-gradient(circle, black 65%, transparent 100%); 
-          mask-image: radial-gradient(circle, black 65%, transparent 100%);
-        }
-        @keyframes streamFall { 0% { transform: translateY(-50%); } 100% { transform: translateY(0%); } }
-        .data-column { font-family: 'Courier New', monospace; font-size: 10px; line-height: 1.2; white-space: pre; animation: streamFall 60s linear infinite; }
-        @keyframes spotlightMove { 
-          0% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } 
-          50% { -webkit-mask-position: 85% 50%; mask-position: 85% 50%; } 
-          100% { -webkit-mask-position: 15% 15%; mask-position: 15% 15%; } 
-        }
-        .signal-layer { 
-          position: absolute; inset: 0; display: flex; gap: 10px; padding: 10px; color: #FFFDD0; font-weight: bold; z-index: 2; 
-          -webkit-mask-image: radial-gradient(circle 45px at center, black 100%, transparent 100%);
-          mask-image: radial-gradient(circle 45px at center, black 100%, transparent 100%);
-          -webkit-mask-repeat: no-repeat; -webkit-mask-size: 200% 200%; animation: spotlightMove 12s infinite ease-in-out; 
-        }
-        .noise-layer { position: absolute; inset: 0; display: flex; gap: 10px; padding: 10px; color: white; opacity: 0.12; z-index: 1; }
-      `}</style>
-      <div className="noise-layer">{streams.map((content, i) => (<div key={i} className="data-column">{content}</div>))}</div>
-      <div className="signal-layer">{streams.map((content, i) => (<div key={i} className="data-column">{content}</div>))}</div>
-    </div>
-  );
-};
-
 export default function AUITerminal() {
-  const [showForm, setShowForm] = useState(false);
+  const [view, setView] = useState('home'); 
   const [status, setStatus] = useState('idle');
 
   const sectors = [
@@ -72,30 +33,33 @@ export default function AUITerminal() {
   ];
 
   return (
-    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 40px' }}>
+    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
-      {/* HEADER: Persistent */}
       <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 0', borderBottom: '1px solid #111' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.8 }}>AUTHENTIC INTELLIGENCE</strong>
-          {!showForm && <SystemStatus />}
+          {view === 'home' && <SystemStatus />}
         </div>
       </header>
 
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
         
-        {/* HERO: ONLY RENDERS IF FORM IS HIDDEN */}
-        {!showForm ? (
-          <>
-            <section style={{ position: 'relative', marginTop: '120px', marginBottom: '180px', minHeight: '450px' }}>
+        {view === 'home' ? (
+          <div style={{ animation: 'fadeIn 0.5s ease' }}>
+            <section style={{ position: 'relative', marginTop: '120px', marginBottom: '180px', minHeight: '450px', display: 'flex', alignItems: 'center' }}>
               <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
                 <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '40px' }}>FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span></h1>
-                <p style={{ color: '#9ca3af', maxWidth: '480px', marginBottom: '25px', lineHeight: '1.6', fontSize: '19px', fontWeight: '300' }}>Strategic lead-time for high-stakes decision makers.</p>
-                <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>AUI monitors latent data pipelines to detect trend breaks before they manifest in the public narrative.</p>
-                <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>SCHEDULE STRATEGIC CONSULT</button>
+                <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '19px', fontWeight: '300' }}>AUI monitors latent data pipelines to detect trend breaks before they manifest in the public narrative.</p>
+                <button onClick={() => setView('intake')} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>SCHEDULE STRATEGIC CONSULT</button>
               </div>
-              <div style={{ position: 'absolute', top: '35%', left: '75%', transform: 'translate(-50%, -50%)', zIndex: 1 }}>
-                <DataOrb />
+              
+              {/* THE IMAGE FIX: High-Fidelity Binary Globe Image */}
+              <div style={{ position: 'absolute', right: '-10%', top: '50%', transform: 'translateY(-50%)', width: '700px', opacity: 0.9 }}>
+                <img 
+                  src="https://r.jina.ai/i/44b93b223c31405cb6b20697d4b46903" 
+                  alt="Sovereign Binary Globe" 
+                  style={{ width: '100%', height: 'auto', pointerEvents: 'none' }} 
+                />
               </div>
             </section>
 
@@ -110,24 +74,19 @@ export default function AUITerminal() {
                 ))}
               </div>
             </section>
-          </>
+          </div>
         ) : (
-          /* MODAL VIEW: ZERO INTERFERENCE */
-          <div style={{ minHeight: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'fadeIn 0.4s ease' }}>
-            <style>{`@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
+          <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ width: '420px', border: '1px solid #222', backgroundColor: '#0a0a0a', padding: '60px 40px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '50px' }}>
-                <span style={{ fontSize: '9px', letterSpacing: '0.4em', color: '#4b5563', fontWeight: 'bold' }}>CONSULT_INTAKE [v8.0]</span>
-                <button onClick={() => {setShowForm(false); setStatus('idle');}} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px' }}>[X] CANCEL</button>
+                <span style={{ fontSize: '9px', letterSpacing: '0.4em', color: '#4b5563', fontWeight: 'bold' }}>CONSULT_INTAKE [v10.0]</span>
+                <button onClick={() => {setView('home'); setStatus('idle');}} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px' }}>[X] CANCEL</button>
               </div>
-              
-              <form onSubmit={(e) => { e.preventDefault(); setStatus('loading'); setTimeout(() => setStatus('error'), 1200); }}>
-                <label style={{ display: 'block', fontSize: '9px', color: '#4b5563', marginBottom: '15px', letterSpacing: '0.2em' }}>ENTITY_IDENTITY</label>
-                <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #222', padding: '18px', color: 'white', fontFamily: 'monospace', marginBottom: '35px', outline: 'none', fontSize: '14px' }} placeholder="identity@org.sovereign" />
+              <form onSubmit={(e) => { e.preventDefault(); setStatus('loading'); setTimeout(() => setStatus('error'), 1800); }}>
+                <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #222', padding: '18px', color: 'white', fontFamily: 'monospace', marginBottom: '35px', outline: 'none' }} placeholder="identity@org.sovereign" />
                 <button type="submit" style={{ width: '100%', backgroundColor: 'white', color: 'black', padding: '22px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>
-                  {status === 'loading' ? "INITIALIZING..." : "SECURE CONNECTION"}
+                  {status === 'loading' ? "ESTABLISHING..." : "SECURE CONNECTION"}
                 </button>
-                {status === 'error' && <p style={{ color: '#ef4444', fontSize: '10px', marginTop: '25px', fontFamily: 'monospace', textAlign: 'center' }}>ERR: ENDPOINT_OFFLINE</p>}
               </form>
             </div>
           </div>
