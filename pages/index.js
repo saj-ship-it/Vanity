@@ -73,7 +73,7 @@ export default function AUITerminal() {
             <style>{`
               @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
               
-              /* ADJUSTMENT: Recalibrated coordinates locked tightly within the globe bounds */
+              /* Bounded coordinate vectors tracking the spherical globe contours */
               @keyframes dynamicSpotlight {
                 0% { cx: 320px; cy: 300px; r: 75px; }
                 25% { cx: 480px; cy: 340px; r: 80px; }
@@ -99,7 +99,7 @@ export default function AUITerminal() {
                 </button>
               </div>
               
-              {/* SINGLE-CONTEXT SVG REVEAL ENGINE */}
+              {/* COMPOSITED VECTOR ENGINE HOUSING */}
               <div style={{ 
                 position: 'absolute', 
                 right: '-15%', 
@@ -112,14 +112,14 @@ export default function AUITerminal() {
                 <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
                   <defs>
                     <mask id="lensReveal">
-                      {/* White base allows complete visibility underneath */}
+                      {/* White base allows total visibility underneath */}
                       <rect width="780" height="780" fill="white" />
-                      {/* Black circle punches a hole into the mask veil to show the image */}
+                      {/* Black circle punches a hole into the mask veil to expose the image */}
                       <circle className="spotlight-lens" fill="black" filter="blur(25px)" />
                     </mask>
                   </defs>
 
-                  {/* LAYER 1: Your high-fidelity code graphic */}
+                  {/* LAYER 1: Custom Production Image Asset */}
                   <image 
                     href="/globe-signal.png" 
                     width="780" 
@@ -127,12 +127,12 @@ export default function AUITerminal() {
                     style={{ mixBlendMode: 'screen' }}
                   />
 
-                  {/* LAYER 2: Pure black veil, selectively revealed by the lens loop */}
+                  {/* LAYER 2: Corrected Mask Veil (Brings darkness factor down to 65% exposure baseline) */}
                   <rect 
                     width="780" 
                     height="780" 
                     fill="#050505" 
-                    fillOpacity="0.95" 
+                    fillOpacity="0.65" // ADJUSTMENT: Lowered from 0.95 to 0.65 so the rest of the globe remains clearly visible
                     mask="url(#lensReveal)" 
                   />
                 </svg>
