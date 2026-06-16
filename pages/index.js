@@ -57,8 +57,8 @@ export default function AUITerminal() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
-      {/* GLOBAL RUNTIME HEADER */}
-      <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 0', borderBottom: '1px solid #111' }}>
+      {/* HEADER FIXED POSITIONING - Tighter padding to pull layout up */}
+      <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '25px 0 15px 0', borderBottom: '1px solid #111' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.8 }}>AUTHENTIC INTELLIGENCE</strong>
           {view === 'home' && <SystemStatus />}
@@ -68,16 +68,29 @@ export default function AUITerminal() {
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
         
         {view === 'home' ? (
-          /* MAIN CORE SCREEN */
+          /* VIEW 01: CORE ACTIVE SYSTEM PORTAL */
           <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
-            <style>{`@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
+            <style>{`
+              @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+              
+              /* Dynamic moving spotlight loop optimized for SVG masking paths */
+              @keyframes dynamicSpotlight {
+                0% { cx: 20%; cy: 30%; r: 110px; }
+                50% { cx: 75%; cy: 65%; r: 130px; }
+                100% { cx: 20%; cy: 30%; r: 110px; }
+              }
+              .spotlight-lens {
+                animation: dynamicSpotlight 12s infinite ease-in-out;
+              }
+            `}</style>
             
-            <section style={{ position: 'relative', marginTop: '120px', marginBottom: '180px', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
+            {/* HERO HERO CONTAINER: marginTop minimized to 50px to eliminate initial viewport blank space */}
+            <section style={{ position: 'relative', marginTop: '50px', marginBottom: '140px', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
               <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
-                <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '40px' }}>
+                <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '35px' }}>
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
                 </h1>
-                <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '19px', fontWeight: '300' }}>
+                <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '50px', lineHeight: '1.6', fontSize: '19px', fontWeight: '300' }}>
                   AUI monitors latent data pipelines to detect trend breaks before they manifest in the public narrative.
                 </p>
                 <button onClick={() => setView('intake')} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>
@@ -85,27 +98,41 @@ export default function AUITerminal() {
                 </button>
               </div>
               
-              {/* FIXED HOISTED POSITIONING FOR YOUR NEW GLOBE IMAGE */}
+              {/* IMAGE WINDOW FRAME WITH SVG HOISTED OVERLAY MASK */}
               <div style={{ 
                 position: 'absolute', 
                 right: '-15%', 
-                top: '50%', 
+                top: '45%', 
                 transform: 'translateY(-50%)', 
                 width: '780px', 
-                opacity: 0.85, 
                 pointerEvents: 'none',
-                mixBlendMode: 'screen' // Ensures background blacks match flawlessly
+                overflow: 'hidden'
               }}>
+                {/* SVG Vector Mask Controller Layer */}
+                <svg viewBox="0 0 780 780" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2 }}>
+                  <defs>
+                    <mask id="spotlightMask">
+                      {/* Global mask base bounds: white area allows details to shine, alpha opacity isolates ambient noise */}
+                      <rect width="780" height="780" fill="white" fillOpacity="0.08" />
+                      {/* The hardware tracking focus sweep coordinates */}
+                      <circle className="spotlight-lens" fill="white" fillOpacity="0.92" filter="blur(15px)" />
+                    </mask>
+                  </defs>
+                  {/* Absolute blackout panel applying target mask criteria to clean image alpha bounds */}
+                  <rect width="780" height="780" fill="#050505" mask="url(#spotlightMask)" style={{ mixBlendMode: 'multiply' }} />
+                </svg>
+
+                {/* Fixed Flat Asset Image Layer */}
                 <img 
                   src="/globe-signal.png" 
                   alt="Sovereign Terminal Data Globe" 
-                  style={{ width: '100%', height: 'auto', display: 'block' }} 
+                  style={{ width: '100%', height: 'auto', display: 'block', mixBlendMode: 'screen' }} 
                 />
               </div>
             </section>
 
-            {/* OPERATIONAL SECTORS */}
-            <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '100px', marginBottom: '140px' }}>
+            {/* OPERATIONAL SECTORS SECTION */}
+            <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '140px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1px', backgroundColor: '#111', border: '1px solid #111' }}>
                 {sectors.map((s) => (
@@ -118,7 +145,7 @@ export default function AUITerminal() {
             </section>
           </div>
         ) : (
-          /* SECURE APPLICATION FORM PORTAL (Completely separates from main DOM grid context) */
+          /* VIEW 02: APPLICATION INTAKE PANEL (Absolute Memory Unmount Clears Stacking Elements) */
           <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'terminalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}>
             <style>{`@keyframes terminalSlideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }`}</style>
             
