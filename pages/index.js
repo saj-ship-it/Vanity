@@ -73,7 +73,7 @@ export default function AUITerminal() {
             <style>{`
               @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
               
-              /* Bounded coordinate vectors tracking the spherical globe contours */
+              /* Targeted focal path constrained beautifully within the code orb boundaries */
               @keyframes dynamicSpotlight {
                 0% { cx: 320px; cy: 300px; r: 75px; }
                 25% { cx: 480px; cy: 340px; r: 80px; }
@@ -112,9 +112,9 @@ export default function AUITerminal() {
                 <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
                   <defs>
                     <mask id="lensReveal">
-                      {/* White base allows total visibility underneath */}
+                      {/* White canvas context handles baseline transparency */}
                       <rect width="780" height="780" fill="white" />
-                      {/* Black circle punches a hole into the mask veil to expose the image */}
+                      {/* Black vector circle clears path to pass pristine image assets through */}
                       <circle className="spotlight-lens" fill="black" filter="blur(25px)" />
                     </mask>
                   </defs>
@@ -127,12 +127,12 @@ export default function AUITerminal() {
                     style={{ mixBlendMode: 'screen' }}
                   />
 
-                  {/* LAYER 2: Corrected Mask Veil (Brings darkness factor down to 65% exposure baseline) */}
+                  {/* LAYER 2: Calibrated Dark Mask Veil (Shifted 10% darker to 0.75 opacity) */}
                   <rect 
                     width="780" 
                     height="780" 
                     fill="#050505" 
-                    fillOpacity="0.65" // ADJUSTMENT: Lowered from 0.95 to 0.65 so the rest of the globe remains clearly visible
+                    fillOpacity="0.75" // ADJUSTMENT: Incremented from 0.65 to 0.75 for deeper ambient contrast
                     mask="url(#lensReveal)" 
                   />
                 </svg>
