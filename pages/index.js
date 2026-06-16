@@ -57,7 +57,7 @@ export default function AUITerminal() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
-      {/* COMPRESSED HEADER HEADER */}
+      {/* HEADER SECTION */}
       <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '25px 0 15px 0', borderBottom: '1px solid #111' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.8 }}>AUTHENTIC INTELLIGENCE</strong>
@@ -73,18 +73,19 @@ export default function AUITerminal() {
             <style>{`
               @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
               
-              /* Precision lens movement looping over the data map vectors */
+              /* FIX: 30% smaller radius scale, vastly expanded trajectory matrix pathways */
               @keyframes dynamicSpotlight {
-                0% { cx: 160px; cy: 200px; r: 110px; }
-                50% { cx: 580px; cy: 460px; r: 140px; }
-                100% { cx: 160px; cy: 200px; r: 110px; }
+                0% { cx: 100px; cy: 120px; r: 75px; }
+                25% { cx: 680px; cy: 180px; r: 85px; }
+                50% { cx: 620px; cy: 640px; r: 95px; }
+                75% { cx: 140px; cy: 580px; r: 85px; }
+                100% { cx: 100px; cy: 120px; r: 75px; }
               }
               .spotlight-lens {
-                animation: dynamicSpotlight 14s infinite ease-in-out;
+                animation: dynamicSpotlight 18s infinite ease-in-out;
               }
             `}</style>
             
-            {/* COMPRESSED VERTICAL VIEWPORT */}
             <section style={{ position: 'relative', marginTop: '50px', marginBottom: '140px', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
               <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
                 <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '35px' }}>
@@ -110,16 +111,15 @@ export default function AUITerminal() {
               }}>
                 <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
                   <defs>
-                    {/* The structural reveal mask layer definitions */}
                     <mask id="lensReveal">
-                      {/* Base context: solid white allows everything to be completely visible */}
+                      {/* White base context makes everything completely clear */}
                       <rect width="780" height="780" fill="white" />
-                      {/* Moving black circle cuts a literal hole into the background block, exposing the image */}
-                      <circle className="spotlight-lens" fill="black" filter="blur(22px)" />
+                      {/* Moving black circle burns a selective reveal path window layer out of the shadow veil */}
+                      <circle className="spotlight-lens" fill="black" filter="blur(20px)" />
                     </mask>
                   </defs>
 
-                  {/* LAYER 1: The underlying clean image vector asset */}
+                  {/* LAYER 1: Underlying clean static asset rendering background data */}
                   <image 
                     href="/globe-signal.png" 
                     width="780" 
@@ -127,12 +127,12 @@ export default function AUITerminal() {
                     style={{ mixBlendMode: 'screen' }}
                   />
 
-                  {/* LAYER 2: The absolute darkness veil, with a hole cut through it by the mask to let the asset reveal */}
+                  {/* LAYER 2: Pitch dark overlay veil, windows are cleanly punched open via the masked lens path */}
                   <rect 
                     width="780" 
                     height="780" 
                     fill="#050505" 
-                    fillOpacity="0.94" // Controls the darkness of unlit sections (0.94 = barely visible)
+                    fillOpacity="0.96" // High opacity (96%) locks the rest of the globe in mystery
                     mask="url(#lensReveal)" 
                   />
                 </svg>
