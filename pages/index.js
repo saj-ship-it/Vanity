@@ -73,16 +73,16 @@ export default function AUITerminal() {
             <style>{`
               @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
               
-              /* FIX: 30% smaller radius scale, vastly expanded trajectory matrix pathways */
+              /* ADJUSTMENT: Recalibrated coordinates locked tightly within the globe bounds */
               @keyframes dynamicSpotlight {
-                0% { cx: 100px; cy: 120px; r: 75px; }
-                25% { cx: 680px; cy: 180px; r: 85px; }
-                50% { cx: 620px; cy: 640px; r: 95px; }
-                75% { cx: 140px; cy: 580px; r: 85px; }
-                100% { cx: 100px; cy: 120px; r: 75px; }
+                0% { cx: 320px; cy: 300px; r: 75px; }
+                25% { cx: 480px; cy: 340px; r: 80px; }
+                50% { cx: 450px; cy: 500px; r: 85px; }
+                75% { cx: 300px; cy: 460px; r: 80px; }
+                100% { cx: 320px; cy: 300px; r: 75px; }
               }
               .spotlight-lens {
-                animation: dynamicSpotlight 18s infinite ease-in-out;
+                animation: dynamicSpotlight 16s infinite ease-in-out;
               }
             `}</style>
             
@@ -99,7 +99,7 @@ export default function AUITerminal() {
                 </button>
               </div>
               
-              {/* NATIVE SINGLE-CONTEXT SVG REVEAL ENGINE */}
+              {/* SINGLE-CONTEXT SVG REVEAL ENGINE */}
               <div style={{ 
                 position: 'absolute', 
                 right: '-15%', 
@@ -112,14 +112,14 @@ export default function AUITerminal() {
                 <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
                   <defs>
                     <mask id="lensReveal">
-                      {/* White base context makes everything completely clear */}
+                      {/* White base allows complete visibility underneath */}
                       <rect width="780" height="780" fill="white" />
-                      {/* Moving black circle burns a selective reveal path window layer out of the shadow veil */}
-                      <circle className="spotlight-lens" fill="black" filter="blur(20px)" />
+                      {/* Black circle punches a hole into the mask veil to show the image */}
+                      <circle className="spotlight-lens" fill="black" filter="blur(25px)" />
                     </mask>
                   </defs>
 
-                  {/* LAYER 1: Underlying clean static asset rendering background data */}
+                  {/* LAYER 1: Your high-fidelity code graphic */}
                   <image 
                     href="/globe-signal.png" 
                     width="780" 
@@ -127,12 +127,12 @@ export default function AUITerminal() {
                     style={{ mixBlendMode: 'screen' }}
                   />
 
-                  {/* LAYER 2: Pitch dark overlay veil, windows are cleanly punched open via the masked lens path */}
+                  {/* LAYER 2: Pure black veil, selectively revealed by the lens loop */}
                   <rect 
                     width="780" 
                     height="780" 
                     fill="#050505" 
-                    fillOpacity="0.96" // High opacity (96%) locks the rest of the globe in mystery
+                    fillOpacity="0.95" 
                     mask="url(#lensReveal)" 
                   />
                 </svg>
