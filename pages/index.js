@@ -57,7 +57,7 @@ export default function AUITerminal() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
-      {/* HEADER FIXED POSITIONING */}
+      {/* COMPRESSED HEADER HEADER */}
       <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '25px 0 15px 0', borderBottom: '1px solid #111' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.8 }}>AUTHENTIC INTELLIGENCE</strong>
@@ -73,18 +73,18 @@ export default function AUITerminal() {
             <style>{`
               @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
               
-              /* Controlled sweep path illuminating raw intelligence telemetry data maps */
+              /* Precision lens movement looping over the data map vectors */
               @keyframes dynamicSpotlight {
-                0% { cx: 15%; cy: 25%; r: 120px; }
-                50% { cx: 65%; cy: 55%; r: 150px; }
-                100% { cx: 15%; cy: 25%; r: 120px; }
+                0% { cx: 160px; cy: 200px; r: 110px; }
+                50% { cx: 580px; cy: 460px; r: 140px; }
+                100% { cx: 160px; cy: 200px; r: 110px; }
               }
               .spotlight-lens {
                 animation: dynamicSpotlight 14s infinite ease-in-out;
               }
             `}</style>
             
-            {/* COMPRESSED HERO VIEWPORT BLOCK */}
+            {/* COMPRESSED VERTICAL VIEWPORT */}
             <section style={{ position: 'relative', marginTop: '50px', marginBottom: '140px', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
               <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
                 <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '35px' }}>
@@ -98,36 +98,44 @@ export default function AUITerminal() {
                 </button>
               </div>
               
-              {/* IMAGE HOUSING CONTROLLER - CORRECTED EXPOSURE MASK */}
+              {/* NATIVE SINGLE-CONTEXT SVG REVEAL ENGINE */}
               <div style={{ 
                 position: 'absolute', 
                 right: '-15%', 
                 top: '45%', 
                 transform: 'translateY(-50%)', 
                 width: '780px', 
-                pointerEvents: 'none',
-                overflow: 'hidden'
+                height: '780px',
+                pointerEvents: 'none'
               }}>
-                {/* SVG Reveal Engine Layout */}
-                <svg viewBox="0 0 780 780" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2 }}>
+                <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
                   <defs>
-                    <mask id="revealSpotlight">
-                      {/* FIX: Darkened baseline environment canvas bounds (Black hides things, low opacity creates the "barely visible" ghost background look) */}
-                      <rect width="780" height="780" fill="black" fillOpacity="0.95" />
-                      {/* Pure solid white cuts cleanly through the mask to expose the map data fully */}
-                      <circle className="spotlight-lens" fill="white" filter="blur(25px)" />
+                    {/* The structural reveal mask layer definitions */}
+                    <mask id="lensReveal">
+                      {/* Base context: solid white allows everything to be completely visible */}
+                      <rect width="780" height="780" fill="white" />
+                      {/* Moving black circle cuts a literal hole into the background block, exposing the image */}
+                      <circle className="spotlight-lens" fill="black" filter="blur(22px)" />
                     </mask>
                   </defs>
-                  {/* Applying masked configuration explicitly onto a dark canvas layout */}
-                  <rect width="780" height="780" fill="#050505" mask="url(#revealSpotlight)" />
-                </svg>
 
-                {/* Fixed Flat Image Asset Layer */}
-                <img 
-                  src="/globe-signal.png" 
-                  alt="Sovereign Terminal Data Globe" 
-                  style={{ width: '100%', height: 'auto', display: 'block', mixBlendMode: 'screen' }} 
-                />
+                  {/* LAYER 1: The underlying clean image vector asset */}
+                  <image 
+                    href="/globe-signal.png" 
+                    width="780" 
+                    height="780" 
+                    style={{ mixBlendMode: 'screen' }}
+                  />
+
+                  {/* LAYER 2: The absolute darkness veil, with a hole cut through it by the mask to let the asset reveal */}
+                  <rect 
+                    width="780" 
+                    height="780" 
+                    fill="#050505" 
+                    fillOpacity="0.94" // Controls the darkness of unlit sections (0.94 = barely visible)
+                    mask="url(#lensReveal)" 
+                  />
+                </svg>
               </div>
             </section>
 
@@ -165,3 +173,26 @@ export default function AUITerminal() {
                 <form onSubmit={handleFormSubmit}>
                   <label style={{ display: 'block', fontSize: '9px', color: '#4b5563', marginBottom: '15px', letterSpacing: '0.2em' }}>ENTITY_IDENTITY</label>
                   <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #222', padding: '18px', color: 'white', fontFamily: 'monospace', marginBottom: '35px', outline: 'none', fontSize: '14px' }} placeholder="identity@org.sovereign" />
+                  
+                  <button type="submit" disabled={status === 'loading'} style={{ width: '100%', backgroundColor: 'white', color: 'black', padding: '22px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>
+                    {status === 'loading' ? "ROUTING HANDSHAKE..." : "INITIALIZE SECURE CONNECTION"}
+                  </button>
+
+                  {status === 'error' && (
+                    <p style={{ color: '#ef4444', fontSize: '10px', marginTop: '25px', fontFamily: 'monospace', textAlign: 'center' }}>
+                      TRANSMISSION LINK FAULT. VERIFY MAIL COMPONENT VARIABLES.
+                    </p>
+                  )}
+                </form>
+              )}
+            </div>
+          </div>
+        )}
+      </main>
+
+      <footer style={{ padding: '80px 0', borderTop: '1px solid #111', fontSize: '8px', color: '#1f2937', letterSpacing: '0.5em', textAlign: 'center' }}>
+        RESTRICTED ACCESS // © 2026 AUTHENTIC INTELLIGENCE INC.
+      </footer>
+    </div>
+  );
+}
