@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-// --- STABLE SYSTEM STATUS ---
+// --- PERSISTENT INSTITUTIONAL HEADER STATUS ---
 const SystemStatus = () => {
   const [time, setTime] = useState(new Date().toUTCString());
   useEffect(() => {
@@ -20,7 +20,7 @@ const SystemStatus = () => {
 };
 
 export default function AUITerminal() {
-  const [view, setView] = useState('home'); 
+  const [view, setView] = useState('home'); // 'home' or 'intake'
   const [status, setStatus] = useState('idle');
 
   const sectors = [
@@ -32,9 +32,32 @@ export default function AUITerminal() {
     { name: 'FINANCE', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
   ];
 
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('loading');
+    const inputEmail = e.target.email.value;
+
+    try {
+      const response = await fetch('/api/send-briefing', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: inputEmail }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      setStatus('error');
+    }
+  };
+
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
       
+      {/* GLOBAL RUNTIME HEADER */}
       <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 0', borderBottom: '1px solid #111' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.8 }}>AUTHENTIC INTELLIGENCE</strong>
@@ -45,24 +68,43 @@ export default function AUITerminal() {
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
         
         {view === 'home' ? (
-          <div style={{ animation: 'fadeIn 0.5s ease' }}>
-            <section style={{ position: 'relative', marginTop: '120px', marginBottom: '180px', minHeight: '450px', display: 'flex', alignItems: 'center' }}>
+          /* MAIN CORE SCREEN */
+          <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
+            <style>{`@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
+            
+            <section style={{ position: 'relative', marginTop: '120px', marginBottom: '180px', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
               <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
-                <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '40px' }}>FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span></h1>
-                <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '19px', fontWeight: '300' }}>AUI monitors latent data pipelines to detect trend breaks before they manifest in the public narrative.</p>
-                <button onClick={() => setView('intake')} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>SCHEDULE STRATEGIC CONSULT</button>
+                <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '40px' }}>
+                  FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
+                </h1>
+                <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '60px', lineHeight: '1.6', fontSize: '19px', fontWeight: '300' }}>
+                  AUI monitors latent data pipelines to detect trend breaks before they manifest in the public narrative.
+                </p>
+                <button onClick={() => setView('intake')} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>
+                  SCHEDULE STRATEGIC CONSULT
+                </button>
               </div>
               
-              {/* THE IMAGE FIX: High-Fidelity Binary Globe Image */}
-              <div style={{ position: 'absolute', right: '-10%', top: '50%', transform: 'translateY(-50%)', width: '700px', opacity: 0.9 }}>
+              {/* FIXED HOISTED POSITIONING FOR YOUR NEW GLOBE IMAGE */}
+              <div style={{ 
+                position: 'absolute', 
+                right: '-15%', 
+                top: '50%', 
+                transform: 'translateY(-50%)', 
+                width: '780px', 
+                opacity: 0.85, 
+                pointerEvents: 'none',
+                mixBlendMode: 'screen' // Ensures background blacks match flawlessly
+              }}>
                 <img 
-                  src="https://r.jina.ai/i/44b93b223c31405cb6b20697d4b46903" 
-                  alt="Sovereign Binary Globe" 
-                  style={{ width: '100%', height: 'auto', pointerEvents: 'none' }} 
+                  src="/globe-signal.png" 
+                  alt="Sovereign Terminal Data Globe" 
+                  style={{ width: '100%', height: 'auto', display: 'block' }} 
                 />
               </div>
             </section>
 
+            {/* OPERATIONAL SECTORS */}
             <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '100px', marginBottom: '140px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1px', backgroundColor: '#111', border: '1px solid #111' }}>
@@ -76,18 +118,38 @@ export default function AUITerminal() {
             </section>
           </div>
         ) : (
-          <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ width: '420px', border: '1px solid #222', backgroundColor: '#0a0a0a', padding: '60px 40px' }}>
+          /* SECURE APPLICATION FORM PORTAL (Completely separates from main DOM grid context) */
+          <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'terminalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+            <style>{`@keyframes terminalSlideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }`}</style>
+            
+            <div style={{ width: '440px', border: '1px solid #222', backgroundColor: '#0a0a0a', padding: '60px 40px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '50px' }}>
-                <span style={{ fontSize: '9px', letterSpacing: '0.4em', color: '#4b5563', fontWeight: 'bold' }}>CONSULT_INTAKE [v10.0]</span>
-                <button onClick={() => {setView('home'); setStatus('idle');}} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px' }}>[X] CANCEL</button>
+                <span style={{ fontSize: '9px', letterSpacing: '0.4em', color: '#4b5563', fontWeight: 'bold' }}>CONSULT_INTAKE [v12.0]</span>
+                <button onClick={() => { setView('home'); setStatus('idle'); }} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px' }}>[X] CANCEL</button>
               </div>
-              <form onSubmit={(e) => { e.preventDefault(); setStatus('loading'); setTimeout(() => setStatus('error'), 1800); }}>
-                <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #222', padding: '18px', color: 'white', fontFamily: 'monospace', marginBottom: '35px', outline: 'none' }} placeholder="identity@org.sovereign" />
-                <button type="submit" style={{ width: '100%', backgroundColor: 'white', color: 'black', padding: '22px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>
-                  {status === 'loading' ? "ESTABLISHING..." : "SECURE CONNECTION"}
-                </button>
-              </form>
+
+              {status === 'success' ? (
+                <div style={{ padding: '20px 0', textAlign: 'center' }}>
+                  <div style={{ fontSize: '11px', letterSpacing: '0.3em', color: '#22c55e', marginBottom: '15px', fontWeight: 'bold' }}>TRANSMISSION_SUCCESSFUL</div>
+                  <p style={{ color: '#9ca3af', fontSize: '13px', lineHeight: '1.6', marginBottom: '30px' }}>Secure digital handshake recorded. Advisory routing initiated via encrypted communication tunnels.</p>
+                  <button onClick={() => { setView('home'); setStatus('idle'); }} style={{ border: '1px solid #333', color: 'white', background: 'none', padding: '12px 30px', fontSize: '10px', letterSpacing: '0.1em', cursor: 'pointer' }}>RETURN_TO_CORE</button>
+                </div>
+              ) : (
+                <form onSubmit={handleFormSubmit}>
+                  <label style={{ display: 'block', fontSize: '9px', color: '#4b5563', marginBottom: '15px', letterSpacing: '0.2em' }}>ENTITY_IDENTITY</label>
+                  <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #222', padding: '18px', color: 'white', fontFamily: 'monospace', marginBottom: '35px', outline: 'none', fontSize: '14px' }} placeholder="identity@org.sovereign" />
+                  
+                  <button type="submit" disabled={status === 'loading'} style={{ width: '100%', backgroundColor: 'white', color: 'black', padding: '22px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>
+                    {status === 'loading' ? "ROUTING HANDSHAKE..." : "INITIALIZE SECURE CONNECTION"}
+                  </button>
+
+                  {status === 'error' && (
+                    <p style={{ color: '#ef4444', fontSize: '10px', marginTop: '25px', fontFamily: 'monospace', textAlign: 'center' }}>
+                      TRANSMISSION LINK FAULT. VERIFY MAIL COMPONENT VARIABLES.
+                    </p>
+                  )}
+                </form>
+              )}
             </div>
           </div>
         )}
