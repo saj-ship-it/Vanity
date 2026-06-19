@@ -64,7 +64,7 @@ export default function AUITerminal() {
   };
 
   return (
-    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden', scrollBehavior: 'smooth', scrollPaddingTop: '130px' }}>
+    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden', scrollBehavior: 'smooth', scrollPaddingTop: '150px' }}>
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes dynamicSpotlight {
@@ -89,19 +89,18 @@ export default function AUITerminal() {
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
           border-bottom: 1px solid #111;
-          padding: 15px 15px 12px 15px;
+          padding: 15px 20px 12px 20px;
         }
         
         .header-container { display: flex; flex-direction: column; gap: 12px; max-width: 1200px; margin: 0 auto; width: 100%; }
         .header-meta-row { display: flex; flex-direction: row; justify-content: space-between; align-items: center; width: 100%; }
         
-        /* MOBILE OVERRIDES: Hide raw time strings to protect layout horizontal width */
         .time-ticker-desktop { display: none; }
         
         .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 130px; margin-bottom: 20px; min-height: auto; align-items: center; text-align: center; }
         
-        /* MOBILE FIX: Globe fills screen width, pulled upwards to kill dead spacer canyon */
-        .globe-container { position: relative; width: 100vw; max-width: 540px; height: 380px; margin-top: -20px; margin-bottom: -20px; overflow: hidden; pointer-events: none; left: 50%; transform: translateX(-50%); }
+        /* MOBILE FIX: Exact viewport dimensions, perfectly centered across device screens */
+        .globe-container { position: relative; width: 90vw; max-width: 480px; height: 420px; margin-top: -10px; margin-bottom: -10px; overflow: hidden; pointer-events: none; display: flex; justify-content: center; align-items: center; margin-left: auto; margin-right: auto; }
         
         .process-img { width: 100%; height: auto; display: block; opacity: 0.9; mix-blend-mode: screen; }
         .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
@@ -114,12 +113,12 @@ export default function AUITerminal() {
           flex-direction: column;
           border-radius: 4px;
           cursor: pointer;
-          transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        /* Mobile-First Tight Navigation Track */
-        .nav-links { display: flex; justify-content: space-between; width: 100%; gap: 8px; font-family: monospace; letter-spacing: 0.05em; }
-        .nav-links a { color: #a3a3a3; text-decoration: none; font-size: 10px; font-weight: bold; white-space: nowrap; }
+        /* MOBILE FIX: Justify space-around and loose raw punctuation markers to fit screen grid width */
+        .nav-links { display: flex; justify-content: space-around; width: 100%; gap: 4px; font-family: monospace; letter-spacing: 0.05em; }
+        .nav-links a { color: #a3a3a3; text-decoration: none; font-size: 11px; font-weight: bold; white-space: nowrap; }
+        .mobile-prefix-marker { display: none; }
 
         /* Tablet & Desktop Adjustments Override */
         @media (min-width: 768px) {
@@ -128,11 +127,12 @@ export default function AUITerminal() {
           .header-meta-row { align-items: center; gap: 15px; }
           
           .time-ticker-desktop { display: inline; }
+          .mobile-prefix-marker { display: inline; }
           
           .hero-layout { flex-direction: row; text-align: left; align-items: center; min-height: 460px; margin-bottom: 40px; margin-top: 160px; }
           
           /* Balanced Tablet / Desktop View Globe */
-          .globe-container { position: absolute; right: -5vw; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; margin-bottom: 0; left: auto; }
+          .globe-container { position: absolute; right: -5vw; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; margin-bottom: 0; left: auto; margin-left: 0; margin-right: 0; }
           
           .process-img { width: 60%; }
           .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
@@ -154,9 +154,9 @@ export default function AUITerminal() {
           
           {view === 'home' && (
             <nav className="nav-links">
-              <a href="#objective">// 01_OBJ</a>
-              <a href="#process">// 02_PROCESS</a>
-              <a href="#sectors">// 03_SECTORS</a>
+              <a href="#objective"><span className="mobile-prefix-marker">// </span>01_OBJ</a>
+              <a href="#process"><span className="mobile-prefix-marker">// </span>02_PROCESS</a>
+              <a href="#sectors"><span className="mobile-prefix-marker">// </span>03_SECTORS</a>
             </nav>
           )}
         </header>
