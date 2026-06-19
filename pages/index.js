@@ -23,6 +23,15 @@ export default function AUITerminal() {
   const [view, setView] = useState('home'); // 'home' or 'intake'
   const [status, setStatus] = useState('idle');
 
+  // CRITICAL MOBILE RESET: Forces viewport frame coordinates to (0,0) every time view state splits
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (typeof document !== 'undefined') {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+  }, [view]);
+
   // Descriptive 4-Step Operational Narrative Grid
   const processSteps = [
     { title: 'PHASE 01 // MAP LANDSCAPE', desc: 'Identify custom, non-obvious vulnerabilities and strategic variables specific to your sector.' },
@@ -40,18 +49,6 @@ export default function AUITerminal() {
     { name: 'Politics', status: 'ASYMMETRIC_SURVEILLANCE // ONLINE', path: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
     { name: 'Financial Markets', status: 'VOLATILITY_INTERCEPT // SHIELDED', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
   ];
-
-  // FIX: Force viewport window coordinates to immediate top frame upon execution
-  const triggerIntakePortal = () => {
-    setView('intake');
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  };
-
-  const returnToCorePortal = () => {
-    setView('home');
-    setStatus('idle');
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -243,7 +240,7 @@ export default function AUITerminal() {
                 {sectors.map((s) => (
                   <div 
                     key={s.name} 
-                    onClick={triggerIntakePortal}
+                    onClick={() => setView('intake')}
                     className="sector-node-card"
                   >
                     <div style={{ textAlign: 'center', width: '100%' }}>
@@ -272,14 +269,14 @@ export default function AUITerminal() {
             <div className="intake-terminal-box">
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
                 <span style={{ fontSize: '9px', letterSpacing: '0.3em', color: '#4b5563', fontWeight: 'bold', fontFamily: 'monospace' }}>CONSULT_INTAKE [v12.0]</span>
-                <button onClick={returnToCorePortal} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px', fontFamily: 'monospace' }}>[X] CANCEL</button>
+                <button onClick={() => setView('home')} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px', fontFamily: 'monospace' }}>[X] CANCEL</button>
               </div>
 
               {status === 'success' ? (
                 <div style={{ padding: '10px 0', textAlign: 'center' }}>
                   <div style={{ fontSize: '11px', letterSpacing: '0.3em', color: '#22c55e', marginBottom: '15px', fontWeight: 'bold', fontFamily: 'monospace' }}>TRANSMISSION_SUCCESSFUL</div>
                   <p style={{ color: '#9ca3af', fontSize: '13px', lineHeight: '1.6', marginBottom: '30px', fontWeight: '300' }}>Secure digital handshake recorded. Advisory routing initiated via encrypted communication tunnels.</p>
-                  <button onClick={returnToCorePortal} style={{ border: '1px solid #333', color: 'white', background: 'none', padding: '12px 30px', fontSize: '10px', letterSpacing: '0.1em', cursor: 'pointer', fontFamily: 'monospace' }}>RETURN_TO_CORE</button>
+                  <button onClick={() => setView('home')} style={{ border: '1px solid #333', color: 'white', background: 'none', padding: '12px 30px', fontSize: '10px', letterSpacing: '0.1em', cursor: 'pointer', fontFamily: 'monospace' }}>RETURN_TO_CORE</button>
                 </div>
               ) : (
                 <form onSubmit={handleFormSubmit}>
