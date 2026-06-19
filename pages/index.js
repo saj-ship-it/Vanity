@@ -23,7 +23,7 @@ export default function AUITerminal() {
   const [view, setView] = useState('home'); // 'home' or 'intake'
   const [status, setStatus] = useState('idle');
 
-  // Restored: Complete Descriptive 4-Step Operational Narrative Grid
+  // Descriptive 4-Step Operational Narrative Grid
   const processSteps = [
     { title: 'PHASE 01 // MAP LANDSCAPE', desc: 'Identify custom, non-obvious vulnerabilities and strategic variables specific to your sector.' },
     { title: 'PHASE 02 // BUILD PIPELINES', desc: 'Construct dedicated data architecture traps to ingest, filter, and verify pristine data feeds.' },
@@ -31,7 +31,7 @@ export default function AUITerminal() {
     { title: 'PHASE 04 // ADVANCE WARNING', desc: 'Issue predictive trend break alerts directly to your secure dashboard before the market reacts.' }
   ];
 
-  // Restored: Operational Sectors Array
+  // Operational Sectors Array
   const sectors = [
     { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
     { name: 'MEDIA & DISINFO', path: 'M2 3h20v14H2z M12 17v4' },
@@ -93,13 +93,15 @@ export default function AUITerminal() {
               }
             `}</style>
             
-            <section style={{ position: 'relative', marginTop: '50px', marginBottom: '100px', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
+            {/* HERO SECTION */}
+            <section style={{ position: 'relative', marginTop: '50px', marginBottom: '80px', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
               <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
                 <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '35px' }}>
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
                 </h1>
-                <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '50px', lineHeight: '1.6', fontSize: '19px', fontWeight: '300' }}>
-                  Data is not intelligence. We track complex, hidden variables to deliver actionable foresight before a trend even forms.
+                {/* SIMPLIFIED HERO COPY */}
+                <p style={{ color: '#9ca3af', maxWidth: '440px', marginBottom: '50px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
+                  Predictive Intelligence for Enterprise
                 </p>
                 <button onClick={() => setView('intake')} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>
                   SCHEDULE STRATEGIC CONSULT
@@ -121,11 +123,18 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* RESTORED: INTEGRATED ARCHITECTURE PROCESS TIMELINE DISPLAY */}
+            {/* SECTION [01.5]: THE MANIFESTO BRIDGE */}
+            <section style={{ borderTop: '1px solid #111', paddingTop: '100px', paddingBottom: '40px', maxWidth: '1000px' }}>
+              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '40px' }}>[01] CORE MISSION OBJECTIVE</h2>
+              <p style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#fff' }}>
+                We deploy <span style={{ color: '#2563eb' }}>customized intelligence pipelines</span> engineered to detect hidden risks, opportunities, and threats—giving high-stakes decision-makers the absolute advance warning required to act first.
+              </p>
+            </section>
+
+            {/* INTEGRATED ARCHITECTURE PROCESS TIMELINE DISPLAY */}
             <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS</h2>
               
-              {/* Restored: UI frame wrapper displaying the centered 4-step process-map.png exclusively */}
               <div style={{ width: '100%', backgroundColor: '#0a0a0a', border: '1px solid #111', padding: '40px 20px', marginBottom: '60px', borderRadius: '4px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
                 <img 
                   src="/process-map.png" 
@@ -135,7 +144,6 @@ export default function AUITerminal() {
                 />
               </div>
 
-              {/* Restored: Text Layout Descriptions Grid Breakdown */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '30px' }}>
                 {processSteps.map((step) => (
                   <div key={step.title} style={{ borderLeft: '2px solid #2563eb', paddingLeft: '20px' }}>
