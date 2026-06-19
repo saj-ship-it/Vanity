@@ -23,7 +23,7 @@ export default function AUITerminal() {
   const [view, setView] = useState('home'); // 'home' or 'intake'
   const [status, setStatus] = useState('idle');
 
-  // BULLETPROOF MOBILE RESET: Asynchronously bypasses Safari layout repaint loops
+  // Async multi-layer scroll reset to catch deep repaint rendering frames
   useEffect(() => {
     const executeForceScroll = () => {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -32,11 +32,7 @@ export default function AUITerminal() {
         document.body.scrollTop = 0;
       }
     };
-
-    // Run instantly
     executeForceScroll();
-
-    // Run again a split second later to catch browser repaint engine lag
     const scrollTimer = setTimeout(executeForceScroll, 30);
     return () => clearTimeout(scrollTimer);
   }, [view]);
@@ -118,7 +114,8 @@ export default function AUITerminal() {
         }
         
         .nav-links { display: flex; justify-content: space-around; width: 100%; gap: 4px; font-family: monospace; letter-spacing: 0.05em; }
-        .nav-links a { color: #a3a3a3; text-decoration: none; font-size: 11px; font-weight: bold; white-space: nowrap; }
+        .nav-links a, .nav-links button { color: #a3a3a3; background: none; border: none; padding: 0; text-decoration: none; font-size: 11px; font-weight: bold; white-space: nowrap; font-family: monospace; cursor: pointer; }
+        .nav-links a:hover, .nav-links button:hover { color: #2563eb; }
         .mobile-prefix-marker { display: none; }
 
         .intake-terminal-box {
@@ -149,10 +146,7 @@ export default function AUITerminal() {
           .sector-node-card:hover { border-color: #2563eb; transform: translateY(-2px); }
           
           .nav-links { justify-content: flex-start; gap: 30px; letter-spacing: 0.2em; }
-          .nav-links a { font-size: 11px; }
-          .nav-links a:hover { color: #2563eb; }
-          
-          .intake-terminal-box { padding: 40px 25px; margin-top: 180px; }
+          .nav-links a, .nav-links button { font-size: 11px; }
         }
       `}</style>
       
@@ -161,16 +155,23 @@ export default function AUITerminal() {
         <header className="header-container">
           <div className="header-meta-row">
             <strong style={{ border: '1px solid #333', padding: '6px 12px', letterSpacing: '0.3em', fontSize: '9px', opacity: 0.9, display: 'inline-block' }}>AUTHENTIC INTELLIGENCE</strong>
-            {view === 'home' && <SystemStatus />}
+            <SystemStatus />
           </div>
           
-          {view === 'home' && (
-            <nav className="nav-links">
-              <a href="#objective"><span className="mobile-prefix-marker">// </span>01_OBJ</a>
-              <a href="#process"><span className="mobile-prefix-marker">// </span>02_PROCESS</a>
-              <a href="#sectors"><span className="mobile-prefix-marker">// </span>03_SECTORS</a>
-            </nav>
-          )}
+          {/* LINK ROW: Dynamically switches options to prevent mobile viewport trap locks */}
+          <nav className="nav-links">
+            {view === 'home' ? (
+              <>
+                <a href="#objective"><span className="mobile-prefix-marker">// </span>01_OBJ</a>
+                <a href="#process"><span className="mobile-prefix-marker">// </span>02_PROCESS</a>
+                <a href="#sectors"><span className="mobile-prefix-marker">// </span>03_SECTORS</a>
+              </>
+            ) : (
+              <button onClick={() => setView('home')} style={{ color: '#fff', letterSpacing: '0.1em' }}>
+                [X] RETURN_TO_CORE_INTERFACE
+              </button>
+            )}
+          </nav>
         </header>
       </div>
 
