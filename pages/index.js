@@ -23,7 +23,7 @@ export default function AUITerminal() {
   const [view, setView] = useState('home'); // 'home' or 'intake'
   const [status, setStatus] = useState('idle');
 
-  // Forces frames back to coordinates (0,0) safely when layout splits
+  // Forces window frames back to coordinates (0,0) safely when layout splits
   useEffect(() => {
     window.scrollTo(0, 0);
     if (typeof document !== 'undefined') {
@@ -106,27 +106,6 @@ export default function AUITerminal() {
           border-radius: 4px;
         }
         
-        /* Dedicated, isolated actionable node trigger style sheets */
-        .node-action-trigger {
-          width: 100%;
-          background: none;
-          border: 1px solid #222;
-          color: #a3a3a3;
-          font-family: monospace;
-          font-size: 10px;
-          font-weight: bold;
-          padding: 14px;
-          letter-spacing: 0.15em;
-          margin-top: 25px;
-          cursor: pointer;
-          transition: border-color 0.2s, color 0.2s;
-          -webkit-tap-highlight-color: transparent;
-        }
-        .node-action-trigger:hover {
-          border-color: #2563eb;
-          color: #fff;
-        }
-        
         .nav-links { display: flex; justify-content: space-around; width: 100%; gap: 4px; font-family: monospace; letter-spacing: 0.05em; }
         .nav-links a, .nav-links button { color: #a3a3a3; background: none; border: none; padding: 0; text-decoration: none; font-size: 11px; font-weight: bold; white-space: nowrap; font-family: monospace; cursor: pointer; }
         .nav-links a:hover, .nav-links button:hover { color: #2563eb; }
@@ -203,7 +182,7 @@ export default function AUITerminal() {
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
                 </h1>
                 <p style={{ color: '#9ca3af', maxWidth: '440px', margin: '0 auto', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
-                  Predict Intelligence for Enterprise
+                  Predictive Intelligence for Enterprise
                 </p>
               </div>
               
@@ -267,12 +246,13 @@ export default function AUITerminal() {
                     key={s.name} 
                     className="sector-node-card"
                   >
+                    {/* FIXED: Removed broken inner click references to resolve build log syntax crash */}
                     <div style={{ textAlign: 'center', width: '100%' }}>
                       <h4 style={{ fontSize: '16px', letterSpacing: '0.1em', color: '#fff', fontWeight: 'bold', fontFamily: 'monospace', margin: '0 0 25px 0' }}>
                         {s.name.toUpperCase()}
                       </h4>
                       
-                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', marginBottom: '20px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', marginBottom: '45px' }}>
                         <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.15">
                           <path d={s.path} />
                         </svg>
@@ -282,14 +262,6 @@ export default function AUITerminal() {
                     <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#9ca3af', borderTop: '1px solid #1a1a1a', paddingTop: '15px', textAlign: 'center', marginTop: 'auto' }}>
                       {s.status}
                     </div>
-
-                    {/* FIXED: CLICK CAPTURE ASSIGNED EXCLUSIVELY TO INTERNAL CTAS */}
-                    <button 
-                      onClick={() => setView('intake')}
-                      className="node-action-trigger"
-                    >
-                      INITIALIZE SECURE PIPELINE
-                    </button>
                   </div>
                 ))}
               </div>
