@@ -31,12 +31,12 @@ export default function AUITerminal() {
     { title: 'PHASE 04 // ADVANCE WARNING', desc: 'Issue predictive trend break alerts directly to your secure dashboard before the market reacts.' }
   ];
 
-  // Updated Operational Sectors (New Renamed Titles)
+  // Harmonized Operational Sectors (Unified Casing & Status Copy)
   const sectors = [
     { name: 'Defence & Intelligence', status: 'SIGNAL_ISOLATION // ACTIVE', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
     { name: 'Media & Entertainment', status: 'NARRATIVE_TRACKING // LIVE', path: 'M2 3h20v14H2z M12 17v4' },
     { name: 'Energy & Infrastructure', status: 'ANOMALY_DETECTION // MONITORING', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
-    { name: 'LOGISTICS', status: 'SUPPLY_CHAIN_FORWARD // TRAPPING', path: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
+    { name: 'Logistics', status: 'SUPPLY_CHAIN_INTERCEPT // TRACKING', path: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
     { name: 'Politics', status: 'ASYMMETRIC_SURVEILLANCE // ONLINE', path: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
     { name: 'Financial Markets', status: 'VOLATILITY_INTERCEPT // SHIELDED', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
   ];
@@ -165,9 +165,15 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* HARMONIZED OPERATIONAL SECTORS MATRIX (TIGHTENED VERTICAL FRAME) */}
+            {/* HARMONIZED OPERATIONAL SECTORS MATRIX */}
             <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
-              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
+              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '20px' }}>[03] OPERATIONAL SECTORS</h2>
+              
+              {/* UPDATED ABSOLUTE USER CONTROL SUBTITLE BLOCK */}
+              <p style={{ color: '#9ca3af', maxWidth: '680px', marginBottom: '50px', lineHeight: '1.6', fontSize: '16px', fontWeight: '300', letterSpacing: '-0.01em' }}>
+                Each node represents a fully isolated, 100% custom architecture under the absolute control of the user, deployed to secure sovereign operational advantages.
+              </p>
+
               <div className="responsive-sectors">
                 {sectors.map((s) => (
                   <div key={s.name} style={{ backgroundColor: '#050505', border: '1px solid #1a1a1a', padding: '40px 30px 30px 30px', display: 'flex', flexDirection: 'column', borderRadius: '4px' }}>
@@ -178,7 +184,7 @@ export default function AUITerminal() {
                         {s.name}
                       </h4>
                       
-                      {/* COMPACT INTENSITY ICON BLOCK */}
+                      {/* CENTERED VECTOR ICON BLOCK */}
                       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', marginBottom: '45px' }}>
                         <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.15">
                           <path d={s.path} />
@@ -240,7 +246,7 @@ export default function AUITerminal() {
 
       {/* FIXED LEGIBILITY COMPRESSED FOOTER */}
       <footer style={{ padding: '0 0 60px 0', fontSize: '8px', color: '#6b7280', letterSpacing: '0.5em', textAlign: 'center' }}>
-        RESTRICTED ACCESS // © 2026 AUTHENTIC INTELLIGENCE INC.
+        © 2026 AUTHENTIC INTELLIGENCE INC.
       </footer>
     </div>
   );
