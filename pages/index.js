@@ -23,13 +23,12 @@ export default function AUITerminal() {
   const [view, setView] = useState('home'); // 'home' or 'intake'
   const [status, setStatus] = useState('idle');
 
-  const sectors = [
-    { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
-    { name: 'MEDIA & DISINFO', path: 'M2 3h20v14H2z M12 17v4' },
-    { name: 'ENERGY INFRA', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
-    { name: 'LOGISTICS', path: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
-    { name: 'PRIVATE EQUITY', path: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
-    { name: 'FINANCE', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
+  // Descriptions explicitly tailored to support the baked-in text on your uploaded image
+  const processSteps = [
+    { title: 'PHASE 01 // MAPPING', desc: 'Identify custom, non-obvious vulnerabilities and strategic variables specific to your sector.' },
+    { title: 'PHASE 02 // PIPELINES', desc: 'Construct dedicated data architecture traps to ingest, filter, and verify pristine data feeds.' },
+    { title: 'PHASE 03 // MONITORING', desc: 'Machine learning tracks raw streams 24/7, watching for subtle pattern breaks and anomalies.' },
+    { title: 'PHASE 04 // WARNING', desc: 'Issue predictive trend break alerts directly to your secure dashboard before the market reacts.' }
   ];
 
   const handleFormSubmit = async (e) => {
@@ -72,8 +71,6 @@ export default function AUITerminal() {
           <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
             <style>{`
               @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-              
-              /* Targeted focal path constrained beautifully within the code orb boundaries */
               @keyframes dynamicSpotlight {
                 0% { cx: 320px; cy: 300px; r: 75px; }
                 25% { cx: 480px; cy: 340px; r: 80px; }
@@ -86,7 +83,7 @@ export default function AUITerminal() {
               }
             `}</style>
             
-            <section style={{ position: 'relative', marginTop: '50px', marginBottom: '140px', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
+            <section style={{ position: 'relative', marginTop: '50px', marginBottom: '100px', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
               <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
                 <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '35px' }}>
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
@@ -99,54 +96,41 @@ export default function AUITerminal() {
                 </button>
               </div>
               
-              {/* COMPOSITED VECTOR ENGINE HOUSING */}
-              <div style={{ 
-                position: 'absolute', 
-                right: '-15%', 
-                top: '45%', 
-                transform: 'translateY(-50%)', 
-                width: '780px', 
-                height: '780px',
-                pointerEvents: 'none'
-              }}>
+              {/* FIXED HOISTED MASKED CONTEXT GLOBE */}
+              <div style={{ position: 'absolute', right: '-15%', top: '45%', transform: 'translateY(-50%)', width: '780px', height: '780px', pointerEvents: 'none' }}>
                 <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
                   <defs>
                     <mask id="lensReveal">
-                      {/* White canvas context handles baseline transparency */}
                       <rect width="780" height="780" fill="white" />
-                      {/* Black vector circle clears path to pass pristine image assets through */}
                       <circle className="spotlight-lens" fill="black" filter="blur(25px)" />
                     </mask>
                   </defs>
-
-                  {/* LAYER 1: Custom Production Image Asset */}
-                  <image 
-                    href="/globe-signal.png" 
-                    width="780" 
-                    height="780" 
-                    style={{ mixBlendMode: 'screen' }}
-                  />
-
-                  {/* LAYER 2: Calibrated Dark Mask Veil (Shifted 10% darker to 0.75 opacity) */}
-                  <rect 
-                    width="780" 
-                    height="780" 
-                    fill="#050505" 
-                    fillOpacity="0.75" // ADJUSTMENT: Incremented from 0.65 to 0.75 for deeper ambient contrast
-                    mask="url(#lensReveal)" 
-                  />
+                  <image href="/globe-signal.png" width="780" height="780" style={{ mixBlendMode: 'screen' }} />
+                  <rect width="780" height="780" fill="#050505" fillOpacity="0.75" mask="url(#lensReveal)" />
                 </svg>
               </div>
             </section>
 
-            {/* OPERATIONAL SECTORS SECTION */}
-            <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '140px' }}>
-              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1px', backgroundColor: '#111', border: '1px solid #111' }}>
-                {sectors.map((s) => (
-                  <div key={s.name} style={{ backgroundColor: '#050505', padding: '60px 20px', textAlign: 'center' }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.path} /></svg>
-                    <h4 style={{ fontSize: '10px', letterSpacing: '0.2em', color: '#fff' }}>{s.name}</h4>
+            {/* INTEGRATED ARCHITECTURE PROCESS TIMELINE DISPLAY */}
+            <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '140px' }}>
+              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS</h2>
+              
+              {/* UI frame wrapper for your new diagram */}
+              <div style={{ width: '100%', backgroundColor: '#0a0a0a', border: '1px solid #111', padding: '20px', marginBottom: '60px', borderRadius: '4px' }}>
+                <img 
+                  src="/process-map.png" 
+                  alt="AUI 4-Phase System Infrastructure Map" 
+                  style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.9 }} 
+                  onError={(e) => { e.target.style.display = 'none'; }} 
+                />
+              </div>
+
+              {/* Text Layout Descriptions Grid Breakdown */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '30px' }}>
+                {processSteps.map((step) => (
+                  <div key={step.title} style={{ borderLeft: '2px solid #1d4ed8', paddingLeft: '20px' }}>
+                    <h4 style={{ fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.2em', color: '#fff', marginBottom: '15px' }}>{step.title}</h4>
+                    <p style={{ fontSize: '14px', color: '#9ca3af', lineHeight: '1.6', fontWeight: '300' }}>{step.desc}</p>
                   </div>
                 ))}
               </div>
