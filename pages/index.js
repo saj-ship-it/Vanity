@@ -31,14 +31,14 @@ export default function AUITerminal() {
     { title: 'PHASE 04 // ADVANCE WARNING', desc: 'Issue predictive trend break alerts directly to your secure dashboard before the market reacts.' }
   ];
 
-  // Refined Operational Sectors Array
+  // Updated Operational Sectors (New Renamed Titles)
   const sectors = [
-    { name: 'DEFENCE & INTEL', status: 'SIGNAL_ISOLATION // ACTIVE', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
-    { name: 'MEDIA & DISINFO', status: 'NARRATIVE_TRACKING // LIVE', path: 'M2 3h20v14H2z M12 17v4' },
-    { name: 'ENERGY INFRA', status: 'ANOMALY_DETECTION // MONITORING', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+    { name: 'Defence & Intelligence', status: 'SIGNAL_ISOLATION // ACTIVE', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+    { name: 'Media & Entertainment', status: 'NARRATIVE_TRACKING // LIVE', path: 'M2 3h20v14H2z M12 17v4' },
+    { name: 'Energy & Infrastructure', status: 'ANOMALY_DETECTION // MONITORING', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
     { name: 'LOGISTICS', status: 'SUPPLY_CHAIN_FORWARD // TRAPPING', path: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
-    { name: 'PRIVATE EQUITY', status: 'ASYMMETRIC_SURVEILLANCE // ONLINE', path: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
-    { name: 'FINANCE', status: 'VOLATILITY_INTERCEPT // SHIELDED', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
+    { name: 'Politics', status: 'ASYMMETRIC_SURVEILLANCE // ONLINE', path: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
+    { name: 'Financial Markets', status: 'VOLATILITY_INTERCEPT // SHIELDED', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
   ];
 
   const handleFormSubmit = async (e) => {
@@ -165,21 +165,21 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* HARMONIZED OPERATIONAL SECTORS MATRIX */}
+            {/* HARMONIZED OPERATIONAL SECTORS MATRIX (TIGHTENED VERTICAL FRAME) */}
             <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
               <div className="responsive-sectors">
                 {sectors.map((s) => (
-                  <div key={s.name} style={{ backgroundColor: '#050505', border: '1px solid #1a1a1a', padding: '50px 35px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '320px', borderRadius: '4px' }}>
+                  <div key={s.name} style={{ backgroundColor: '#050505', border: '1px solid #1a1a1a', padding: '40px 30px 30px 30px', display: 'flex', flexDirection: 'column', borderRadius: '4px' }}>
                     
-                    {/* TOP: UNIFIED TYPOGRAPHY SECTION */}
-                    <div>
-                      <h4 style={{ fontSize: '20px', letterSpacing: '-0.02em', color: '#fff', fontWeight: '600', margin: '0 0 40px 0', textAlign: 'left' }}>
+                    {/* TOP: TITLE AND PROPORTIONAL ICON PLACEMENT */}
+                    <div style={{ textAlign: 'center', width: '100%' }}>
+                      <h4 style={{ fontSize: '20px', letterSpacing: '-0.02em', color: '#fff', fontWeight: '600', margin: '0 0 25px 0' }}>
                         {s.name}
                       </h4>
                       
-                      {/* CENTERED, MASSIVE 54PX VECTOR ICON CONTAINER */}
-                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', padding: '10px 0' }}>
+                      {/* COMPACT INTENSITY ICON BLOCK */}
+                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', marginBottom: '45px' }}>
                         <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.15">
                           <path d={s.path} />
                         </svg>
@@ -187,7 +187,7 @@ export default function AUITerminal() {
                     </div>
 
                     {/* BOTTOM: SYSTEM STATUS TERMINAL FOOTER */}
-                    <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#9ca3af', borderTop: '1px solid #1a1a1a', paddingTop: '15px', textAlign: 'left' }}>
+                    <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#9ca3af', borderTop: '1px solid #1a1a1a', paddingTop: '15px', textAlign: 'center', marginTop: 'auto' }}>
                       {s.status}
                     </div>
                   </div>
