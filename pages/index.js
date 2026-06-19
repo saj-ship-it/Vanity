@@ -90,8 +90,9 @@ export default function AUITerminal() {
                 <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '35px' }}>
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
                 </h1>
+                {/* REVISED COMPANION SUBHEADLINE COPY */}
                 <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '50px', lineHeight: '1.6', fontSize: '19px', fontWeight: '300' }}>
-                  AUI monitors latent data pipelines to detect trend breaks before they manifest in the public narrative.
+                  Data is not intelligence. We track complex, hidden variables to deliver actionable foresight before a trend even forms.
                 </p>
                 <button onClick={() => setView('intake')} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>
                   SCHEDULE STRATEGIC CONSULT
@@ -117,8 +118,8 @@ export default function AUITerminal() {
             <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS</h2>
               
-              {/* UI frame wrapper displaying the 4-step diagram exclusively */}
-              <div style={{ width: '100%', backgroundColor: '#0a0a0a', border: '1px solid #111', padding: '40px 20px', marginBottom: '60px', borderRadius: '4px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+              {/* Process diagram centered inline image frame without residual text box scaffolding */}
+              <div style={{ width: '100%', display: 'flex', justifyContent: 'center', overflow: 'hidden', marginBottom: '20px' }}>
                 <img 
                   src="/process-map.png" 
                   alt="AUI 4-Phase System Infrastructure Map" 
@@ -179,12 +180,13 @@ export default function AUITerminal() {
         )}
       </main>
 
-      {/* NEW SYSTEM SUB-FOOTER LINE: Inquiries Text Target Integration */}
-      <div style={{ width: '100%', textAlign: 'center', fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.3em', color: '#4b5563', opacity: 0.7, paddingBottom: '30px', borderTop: '1px solid #111', paddingTop: '40px', maxWidth: '1200px', margin: '0 auto' }}>
+      {/* FIXED LEGIBILITY SYSTEM SUB-FOOTER LINE */}
+      <div style={{ width: '100%', textAlign: 'center', fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.3em', color: '#9ca3af', paddingBottom: '30px', borderTop: '1px solid #111', paddingTop: '40px', maxWidth: '1200px', margin: '0 auto' }}>
         INQUIRIES // info@findsignal.ai
       </div>
 
-      <footer style={{ padding: '0 0 80px 0', fontSize: '8px', color: '#1f2937', letterSpacing: '0.5em', textAlign: 'center' }}>
+      {/* FIXED LEGIBILITY COMPRESSED FOOTER */}
+      <footer style={{ padding: '0 0 80px 0', fontSize: '8px', color: '#6b7280', letterSpacing: '0.5em', textAlign: 'center' }}>
         RESTRICTED ACCESS // © 2026 AUTHENTIC INTELLIGENCE INC.
       </footer>
     </div>
