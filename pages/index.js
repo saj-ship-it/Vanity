@@ -64,7 +64,7 @@ export default function AUITerminal() {
   };
 
   return (
-    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden', scrollBehavior: 'smooth' }}>
+    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden', scrollBehavior: 'smooth', scrollPaddingTop: '130px' }}>
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes dynamicSpotlight {
@@ -77,17 +77,31 @@ export default function AUITerminal() {
         .spotlight-lens {
           animation: dynamicSpotlight 16s infinite ease-in-out;
         }
-        /* Layout Grid Control */
-        .header-container { display: flex; flex-direction: column; gap: 20px; max-width: 1200px; margin: 0 auto; padding: 25px 0 15px 0; border-bottom: 1px solid #111; }
-        .header-meta-row { display: flex; flex-direction: column; gap: 15px; justify-content: space-between; align-items: flex-start; }
         
-        .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 40px; margin-bottom: 20px; min-height: auto; align-items: flex-start; }
+        /* FIX: LOCKED FIXED STICKY HEADER PLATFORM ARCHITECTURE */
+        .header-fixed-carrier {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 200;
+          background-color: rgba(5, 5, 5, 0.85);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-bottom: 1px solid #111;
+          padding: 20px 20px 15px 20px;
+        }
+        
+        .header-container { display: flex; flex-direction: column; gap: 15px; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .header-meta-row { display: flex; flex-direction: column; gap: 10px; justify-content: space-between; align-items: flex-start; width: 100%; }
+        
+        /* Hero compensation push due to sticky header layout */
+        .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 140px; margin-bottom: 20px; min-height: auto; align-items: flex-start; }
         .globe-container { position: relative; width: 100%; max-width: 480px; height: 350px; margin-top: 20px; overflow: hidden; pointer-events: none; }
         
         .process-img { width: 100%; height: auto; display: block; opacity: 0.9; mix-blend-mode: screen; }
         .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
         
-        /* Interactive Sector Nodes UI Feedback */
         .sector-node-card {
           backgroundColor: #050505;
           border: 1px solid #1a1a1a;
@@ -109,8 +123,9 @@ export default function AUITerminal() {
 
         /* Media Queries across Screens (Tablet / Desktop / Mobile) */
         @media (min-width: 768px) {
-          .header-meta-row { flex-direction: row; align-items: center; }
-          .hero-layout { flex-direction: row; align-items: center; min-height: 460px; margin-bottom: 40px; }
+          .header-fixed-carrier { padding: 25px 40px 15px 40px; }
+          .header-meta-row { flex-direction: row; align-items: center; gap: 15px; }
+          .hero-layout { flex-direction: row; align-items: center; min-height: 460px; margin-bottom: 40px; margin-top: 160px; }
           .globe-container { position: absolute; right: -15%; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; }
           .process-img { width: 60%; }
           .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
@@ -118,22 +133,23 @@ export default function AUITerminal() {
         }
       `}</style>
       
-      {/* HEADER SECTION CONTAINER */}
-      <header className="header-container">
-        <div className="header-meta-row">
-          <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.9, display: 'inline-block' }}>AUTHENTIC INTELLIGENCE</strong>
-          {view === 'home' && <SystemStatus />}
-        </div>
-        
-        {/* NAVIGATION LINKS CONTAINER */}
-        {view === 'home' && (
-          <nav className="nav-links" style={{ paddingTop: '5px' }}>
-            <a href="#objective">// 01_OBJECTIVE</a>
-            <a href="#process">// 02_PROCESS</a>
-            <a href="#sectors">// 03_SECTORS</a>
-          </nav>
-        )}
-      </header>
+      {/* LOCKED FIXED STICKY HEADER WRAPPER */}
+      <div className="header-fixed-carrier">
+        <header className="header-container">
+          <div className="header-meta-row">
+            <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.9, display: 'inline-block' }}>AUTHENTIC INTELLIGENCE</strong>
+            {view === 'home' && <SystemStatus />}
+          </div>
+          
+          {view === 'home' && (
+            <nav className="nav-links" style={{ paddingTop: '5px' }}>
+              <a href="#objective">// 01_OBJECTIVE</a>
+              <a href="#process">// 02_PROCESS</a>
+              <a href="#sectors">// 03_SECTORS</a>
+            </nav>
+          )}
+        </header>
+      </div>
 
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
         
@@ -168,7 +184,7 @@ export default function AUITerminal() {
             </section>
 
             {/* SECTION [01.5]: THE MANIFESTO BRIDGE */}
-            <section id="objective" style={{ borderTop: '1px solid #111', paddingTop: '60px', paddingBottom: '40px', maxWidth: '1000px', scrollMarginTop: '40px' }}>
+            <section id="objective" style={{ borderTop: '1px solid #111', paddingTop: '60px', paddingBottom: '40px', maxWidth: '1000px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '30px' }}>[01] CORE MISSION OBJECTIVE</h2>
               <p style={{ fontSize: 'clamp(22px, 3.5vw, 36px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#fff' }}>
                 We deploy <span style={{ color: '#2563eb' }}>customized intelligence pipelines</span> engineered to detect hidden risks, opportunities, and threats—giving high-stakes decision-makers the absolute advance warning required to act first.
@@ -176,7 +192,7 @@ export default function AUITerminal() {
             </section>
 
             {/* INTEGRATED ARCHITECTURE PROCESS TIMELINE DISPLAY */}
-            <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px', scrollMarginTop: '40px' }}>
+            <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS</h2>
               
               <div style={{ width: '100%', padding: '20px 0', marginBottom: '50px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
@@ -199,7 +215,7 @@ export default function AUITerminal() {
             </section>
 
             {/* HARMONIZED OPERATIONAL SECTORS MATRIX */}
-            <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px', scrollMarginTop: '40px' }}>
+            <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '20px' }}>[03] OPERATIONAL SECTORS</h2>
               
               <p style={{ fontSize: 'clamp(20px, 3.2vw, 30px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#9ca3af', maxWidth: '1000px', marginBottom: '60px' }}>
@@ -213,13 +229,11 @@ export default function AUITerminal() {
                     onClick={() => setView('intake')}
                     className="sector-node-card"
                   >
-                    {/* TOP: UNIFIED MONOSPACE CORE HEADERS */}
                     <div style={{ textAlign: 'center', width: '100%' }}>
                       <h4 style={{ fontSize: '16px', letterSpacing: '0.1em', color: '#fff', fontWeight: 'bold', fontFamily: 'monospace', margin: '0 0 25px 0' }}>
                         {s.name.toUpperCase()}
                       </h4>
                       
-                      {/* CENTERED VECTOR ICON BLOCK */}
                       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', marginBottom: '45px' }}>
                         <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.15">
                           <path d={s.path} />
@@ -227,7 +241,6 @@ export default function AUITerminal() {
                       </div>
                     </div>
 
-                    {/* BOTTOM: SYSTEM STATUS TERMINAL FOOTER */}
                     <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#9ca3af', borderTop: '1px solid #1a1a1a', paddingTop: '15px', textAlign: 'center', marginTop: 'auto' }}>
                       {s.status}
                     </div>
@@ -238,10 +251,10 @@ export default function AUITerminal() {
           </div>
         ) : (
           /* VIEW 02: APPLICATION INTAKE PORTAL */
-          <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'terminalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+          <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingUp: '120px', animation: 'terminalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}>
             <style>{`@keyframes terminalSlideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }`}</style>
             
-            <div style={{ width: '100%', maxWidth: '440px', border: '1px solid #222', backgroundColor: '#0a0a0a', padding: '40px 25px' }}>
+            <div style={{ width: '100%', maxWidth: '440px', border: '1px solid #222', backgroundColor: '#0a0a0a', padding: '40px 25px', marginTop: '140px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '50px' }}>
                 <span style={{ fontSize: '9px', letterSpacing: '0.4em', color: '#4b5563', fontWeight: 'bold' }}>CONSULT_INTAKE [v12.0]</span>
                 <button onClick={() => { setView('home'); setStatus('idle'); }} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px' }}>[X] CANCEL</button>
