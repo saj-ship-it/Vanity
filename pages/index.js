@@ -23,18 +23,13 @@ export default function AUITerminal() {
   const [view, setView] = useState('home'); // 'home' or 'intake'
   const [status, setStatus] = useState('idle');
 
-  // Async multi-layer scroll reset to catch deep repaint rendering frames
+  // Forces window frames back to the top whenever the viewport switches views
   useEffect(() => {
-    const executeForceScroll = () => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      if (typeof document !== 'undefined') {
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-      }
-    };
-    executeForceScroll();
-    const scrollTimer = setTimeout(executeForceScroll, 30);
-    return () => clearTimeout(scrollTimer);
+    window.scrollTo(0, 0);
+    if (typeof document !== 'undefined') {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
   }, [view]);
 
   // Descriptive 4-Step Operational Narrative Grid
@@ -58,7 +53,12 @@ export default function AUITerminal() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setStatus('loading');
-    setTimeout(() => { setStatus('success'); }, 1200);
+    setTimeout(() => { setStatus('success'); }, 1000);
+  };
+
+  const selectSectorNode = () => {
+    setView('intake');
+    setStatus('idle');
   };
 
   return (
@@ -102,8 +102,9 @@ export default function AUITerminal() {
         .process-img { width: 100%; height: auto; display: block; opacity: 0.9; mix-blend-mode: screen; }
         .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
         
+        /* FIXED: Corrected style declarations to standard CSS background properties */
         .sector-node-card {
-          backgroundColor: '#050505';
+          background-color: #050505;
           border: 1px solid #1a1a1a;
           padding: 40px 30px 30px 30px;
           display: flex;
@@ -146,7 +147,9 @@ export default function AUITerminal() {
           .sector-node-card:hover { border-color: #2563eb; transform: translateY(-2px); }
           
           .nav-links { justify-content: flex-start; gap: 30px; letter-spacing: 0.2em; }
-          .nav-links a, .nav-links button { font-size: 11px; }
+          .nav-links a { font-size: 11px; }
+          
+          .intake-terminal-box { padding: 40px 25px; margin-top: 180px; }
         }
       `}</style>
       
@@ -158,7 +161,7 @@ export default function AUITerminal() {
             <SystemStatus />
           </div>
           
-          {/* LINK ROW: Dynamically switches options to prevent mobile viewport trap locks */}
+          {/* LINK ROW */}
           <nav className="nav-links">
             {view === 'home' ? (
               <>
@@ -250,7 +253,7 @@ export default function AUITerminal() {
                 {sectors.map((s) => (
                   <div 
                     key={s.name} 
-                    onClick={() => setView('intake')}
+                    onClick={triggerIntakePortal}
                     className="sector-node-card"
                   >
                     <div style={{ textAlign: 'center', width: '100%' }}>
