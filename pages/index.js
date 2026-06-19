@@ -31,7 +31,7 @@ export default function AUITerminal() {
     { title: 'PHASE 04 // ADVANCE WARNING', desc: 'Issue predictive trend break alerts directly to your secure dashboard before the market reacts.' }
   ];
 
-  // TIGHTENED & STRATEGICALLY EXPANDED OPERATIONAL SECTORS
+  // Refined Operational Sectors Array
   const sectors = [
     { name: 'DEFENCE & INTEL', status: 'SIGNAL_ISOLATION // ACTIVE', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
     { name: 'MEDIA & DISINFO', status: 'NARRATIVE_TRACKING // LIVE', path: 'M2 3h20v14H2z M12 17v4' },
@@ -153,17 +153,18 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* IMPROVED & TIGHTENED OPERATIONAL SECTORS SECTION */}
+            {/* FIX: OPERATIONAL SECTORS MATRIX (BORDER & CONTRAST FIXES) */}
             <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '140px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1px', backgroundColor: '#141414', border: '1px solid #141414' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', backgroundColor: '#161616', gap: '1px', border: '1px solid #161616' }}>
                 {sectors.map((s) => (
-                  <div key={s.name} style={{ backgroundColor: '#050505', padding: '50px 30px', textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px' }}>
+                  <div key={s.name} style={{ backgroundColor: '#050505', padding: '50px 30px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '220px' }}>
                     <div>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '25px', display: 'block' }}><path d={s.path} /></svg>
-                      <h4 style={{ fontSize: '12px', letterSpacing: '0.25em', color: '#fff', fontWeight: '700', marginBottom: '6px', fontFamily: 'monospace' }}>{s.name}</h4>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '35px', display: 'block' }}><path d={s.path} /></svg>
+                      <h4 style={{ fontSize: '12px', letterSpacing: '0.25em', color: '#fff', fontWeight: '700', fontFamily: 'monospace', margin: 0 }}>{s.name}</h4>
                     </div>
-                    <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#4b5563', borderTop: '1px solid #111', paddingTop: '15px' }}>
+                    {/* BUMPED COLOR VALUE FOR HIGH PORTAL VISIBILITY */}
+                    <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#8a8f98', borderTop: '1px solid #111', paddingTop: '20px' }}>
                       {s.status}
                     </div>
                   </div>
