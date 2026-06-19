@@ -64,7 +64,7 @@ export default function AUITerminal() {
   };
 
   return (
-    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden' }}>
+    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden', scrollBehavior: 'smooth' }}>
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes dynamicSpotlight {
@@ -82,20 +82,36 @@ export default function AUITerminal() {
         .globe-container { position: relative; width: 100%; max-width: 480px; height: 350px; margin-top: 20px; overflow: hidden; pointer-events: none; }
         .process-img { width: 100%; height: auto; display: block; opacity: 0.9; }
         .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
+        
+        .nav-links { display: none; gap: 25px; font-family: monospace; fontSize: 10px; letter-spacing: 0.2em; }
+        .nav-links a { color: #6b7280; text-decoration: none; transition: color 0.2s ease; font-size: 10px; }
+        .nav-links a:hover { color: #fff; }
 
         @media (min-width: 768px) {
           .hero-layout { flex-direction: row; align-items: center; min-height: 460px; margin-bottom: 40px; }
           .globe-container { position: absolute; right: -15%; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; }
           .process-img { width: 60%; }
           .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+          .nav-links { display: flex; }
         }
       `}</style>
       
-      {/* HEADER SECTION */}
+      {/* HEADER SECTION WITH INTEGRATED MENU ARCHITECTURE */}
       <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '25px 0 15px 0', borderBottom: '1px solid #111' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.8 }}>AUTHENTIC INTELLIGENCE</strong>
-          {view === 'home' && <SystemStatus />}
+          
+          {view === 'home' && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '40px' }}>
+              {/* INTERNAL SCROLL NAVIGATION ANCHORS */}
+              <nav className="nav-links">
+                <a href="#objective">01_OBJECTIVE</a>
+                <a href="#process">02_PROCESS</a>
+                <a href="#sectors">03_SECTORS</a>
+              </nav>
+              <SystemStatus />
+            </div>
+          )}
         </div>
       </header>
 
@@ -105,7 +121,7 @@ export default function AUITerminal() {
           /* VIEW 01: CORE ACTIVE SYSTEM PORTAL */
           <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
             
-            {/* HERO SECTION (BUTTON MOVED, BOTTOM SPACING REDUCED) */}
+            {/* HERO SECTION */}
             <section className="hero-layout">
               <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
                 <h1 style={{ fontSize: 'clamp(40px, 7vw, 82px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.04em', marginBottom: '35px' }}>
@@ -131,8 +147,8 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* SECTION [01.5]: THE MANIFESTO BRIDGE (DEAD SPACE LIGHTENED) */}
-            <section style={{ borderTop: '1px solid #111', paddingTop: '60px', paddingBottom: '40px', maxWidth: '1000px' }}>
+            {/* SECTION [01.5]: THE MANIFESTO BRIDGE */}
+            <section id="objective" style={{ borderTop: '1px solid #111', paddingTop: '80px', paddingBottom: '40px', maxWidth: '1000px', scrollMarginTop: '40px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '30px' }}>[01] CORE MISSION OBJECTIVE</h2>
               <p style={{ fontSize: 'clamp(22px, 3.5vw, 36px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#fff' }}>
                 We deploy <span style={{ color: '#2563eb' }}>customized intelligence pipelines</span> engineered to detect hidden risks, opportunities, and threats—giving high-stakes decision-makers the absolute advance warning required to act first.
@@ -140,7 +156,7 @@ export default function AUITerminal() {
             </section>
 
             {/* INTEGRATED ARCHITECTURE PROCESS TIMELINE DISPLAY */}
-            <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px' }}>
+            <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px', scrollMarginTop: '40px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS</h2>
               
               <div style={{ width: '100%', backgroundColor: '#0a0a0a', border: '1px solid #111', padding: '40px 20px', marginBottom: '50px', borderRadius: '4px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
@@ -163,7 +179,7 @@ export default function AUITerminal() {
             </section>
 
             {/* HARMONIZED OPERATIONAL SECTORS MATRIX */}
-            <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
+            <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px', scrollMarginTop: '40px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '20px' }}>[03] OPERATIONAL SECTORS</h2>
               
               <p style={{ fontSize: 'clamp(20px, 3.2vw, 30px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#9ca3af', maxWidth: '1000px', marginBottom: '60px' }}>
