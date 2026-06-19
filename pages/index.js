@@ -41,6 +41,18 @@ export default function AUITerminal() {
     { name: 'Financial Markets', status: 'VOLATILITY_INTERCEPT // SHIELDED', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
   ];
 
+  // FIX: Force viewport window coordinates to immediate top frame upon execution
+  const triggerIntakePortal = () => {
+    setView('intake');
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  };
+
+  const returnToCorePortal = () => {
+    setView('home');
+    setStatus('idle');
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setStatus('loading');
@@ -96,6 +108,7 @@ export default function AUITerminal() {
           flex-direction: column;
           border-radius: 4px;
           cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
         }
         
         .nav-links { display: flex; justify-content: space-around; width: 100%; gap: 4px; font-family: monospace; letter-spacing: 0.05em; }
@@ -123,7 +136,6 @@ export default function AUITerminal() {
           
           .hero-layout { flex-direction: row; text-align: left; align-items: center; min-height: 460px; margin-bottom: 40px; margin-top: 160px; }
           
-          /* FIX: Tuned diameter bounding boxes to correctly contain the cropped asset profile */
           .globe-container { position: absolute; right: -2vw; top: 45%; transform: translateY(-50%); width: 580px; height: 580px; max-width: none; margin-top: 0; margin-bottom: 0; left: auto; margin-left: 0; margin-right: 0; }
           
           .process-img { width: 60%; }
@@ -173,7 +185,7 @@ export default function AUITerminal() {
                 </p>
               </div>
               
-              {/* RESPONSIVE MASKED GLOBE (RESIZED FOR TABLET) */}
+              {/* RESPONSIVE MASKED GLOBE */}
               <div className="globe-container">
                 <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
                   <defs>
@@ -231,7 +243,7 @@ export default function AUITerminal() {
                 {sectors.map((s) => (
                   <div 
                     key={s.name} 
-                    onClick={() => setView('intake')}
+                    onClick={triggerIntakePortal}
                     className="sector-node-card"
                   >
                     <div style={{ textAlign: 'center', width: '100%' }}>
@@ -260,14 +272,14 @@ export default function AUITerminal() {
             <div className="intake-terminal-box">
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
                 <span style={{ fontSize: '9px', letterSpacing: '0.3em', color: '#4b5563', fontWeight: 'bold', fontFamily: 'monospace' }}>CONSULT_INTAKE [v12.0]</span>
-                <button onClick={() => { setView('home'); setStatus('idle'); }} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px', fontFamily: 'monospace' }}>[X] CANCEL</button>
+                <button onClick={returnToCorePortal} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px', fontFamily: 'monospace' }}>[X] CANCEL</button>
               </div>
 
               {status === 'success' ? (
                 <div style={{ padding: '10px 0', textAlign: 'center' }}>
                   <div style={{ fontSize: '11px', letterSpacing: '0.3em', color: '#22c55e', marginBottom: '15px', fontWeight: 'bold', fontFamily: 'monospace' }}>TRANSMISSION_SUCCESSFUL</div>
                   <p style={{ color: '#9ca3af', fontSize: '13px', lineHeight: '1.6', marginBottom: '30px', fontWeight: '300' }}>Secure digital handshake recorded. Advisory routing initiated via encrypted communication tunnels.</p>
-                  <button onClick={() => { setView('home'); setStatus('idle'); }} style={{ border: '1px solid #333', color: 'white', background: 'none', padding: '12px 30px', fontSize: '10px', letterSpacing: '0.1em', cursor: 'pointer', fontFamily: 'monospace' }}>RETURN_TO_CORE</button>
+                  <button onClick={returnToCorePortal} style={{ border: '1px solid #333', color: 'white', background: 'none', padding: '12px 30px', fontSize: '10px', letterSpacing: '0.1em', cursor: 'pointer', fontFamily: 'monospace' }}>RETURN_TO_CORE</button>
                 </div>
               ) : (
                 <form onSubmit={handleFormSubmit}>
