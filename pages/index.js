@@ -84,9 +84,24 @@ export default function AUITerminal() {
         .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 40px; margin-bottom: 20px; min-height: auto; align-items: flex-start; }
         .globe-container { position: relative; width: 100%; max-width: 480px; height: 350px; margin-top: 20px; overflow: hidden; pointer-events: none; }
         
-        /* FIX: SCREEN BLENDING REMOVES BACKDROP DISCOLORATION FROM IMAGE */
         .process-img { width: 100%; height: auto; display: block; opacity: 0.9; mix-blend-mode: screen; }
         .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
+        
+        /* Interactive Sector Nodes UI Feedback */
+        .sector-node-card {
+          backgroundColor: #050505;
+          border: 1px solid #1a1a1a;
+          padding: 40px 30px 30px 30px;
+          display: flex;
+          flex-direction: column;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sector-node-card:hover {
+          border-color: #2563eb;
+          transform: translateY(-2px);
+        }
         
         .nav-links { display: flex; gap: 20px; font-family: monospace; letter-spacing: 0.2em; flex-wrap: wrap; }
         .nav-links a { color: #a3a3a3; text-decoration: none; transition: color 0.2s ease; font-size: 11px; font-weight: bold; }
@@ -110,7 +125,7 @@ export default function AUITerminal() {
           {view === 'home' && <SystemStatus />}
         </div>
         
-        {/* LOWER ROW EXCLUSIVELY FOR HIGH-CONTRAST NAVIGATION */}
+        {/* NAVIGATION LINKS CONTAINER */}
         {view === 'home' && (
           <nav className="nav-links" style={{ paddingTop: '5px' }}>
             <a href="#objective">// 01_OBJECTIVE</a>
@@ -164,7 +179,6 @@ export default function AUITerminal() {
             <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px', scrollMarginTop: '40px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS</h2>
               
-              {/* FIXED CONTAINER REMOVES BACKGROUND VALUE BOX OFFSET */}
               <div style={{ width: '100%', padding: '20px 0', marginBottom: '50px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
                 <img 
                   src="/process-map.png" 
@@ -194,12 +208,15 @@ export default function AUITerminal() {
 
               <div className="responsive-sectors">
                 {sectors.map((s) => (
-                  <div key={s.name} style={{ backgroundColor: '#050505', border: '1px solid #1a1a1a', padding: '40px 30px 30px 30px', display: 'flex', flexDirection: 'column', borderRadius: '4px' }}>
-                    
-                    {/* TOP: TITLE AND PROPORTIONAL ICON PLACEMENT */}
+                  <div 
+                    key={s.name} 
+                    onClick={() => setView('intake')}
+                    className="sector-node-card"
+                  >
+                    {/* TOP: UNIFIED MONOSPACE CORE HEADERS */}
                     <div style={{ textAlign: 'center', width: '100%' }}>
-                      <h4 style={{ fontSize: '20px', letterSpacing: '-0.02em', color: '#fff', fontWeight: '600', margin: '0 0 25px 0' }}>
-                        {s.name}
+                      <h4 style={{ fontSize: '16px', letterSpacing: '0.1em', color: '#fff', fontWeight: 'bold', fontFamily: 'monospace', margin: '0 0 25px 0' }}>
+                        {s.name.toUpperCase()}
                       </h4>
                       
                       {/* CENTERED VECTOR ICON BLOCK */}
