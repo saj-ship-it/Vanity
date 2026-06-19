@@ -72,6 +72,7 @@ export default function AUITerminal() {
           animation: dynamicSpotlight 16s infinite ease-in-out;
         }
         
+        /* FIXED: Added box-sizing: border-box to contain width math and eliminate horizontal wobbles completely */
         .header-fixed-carrier {
           position: fixed;
           top: 0;
@@ -83,6 +84,7 @@ export default function AUITerminal() {
           -webkit-backdrop-filter: blur(12px);
           border-bottom: 1px solid #111;
           padding: 15px 20px 12px 20px;
+          box-sizing: border-box;
         }
         
         .header-container { display: flex; flex-direction: column; gap: 12px; max-width: 1200px; margin: 0 auto; width: 100%; }
@@ -90,7 +92,6 @@ export default function AUITerminal() {
         
         .time-ticker-desktop { display: none; }
         
-        /* ADJUSTED: Mobile landing page compression tuning */
         .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 115px; margin-bottom: 15px; min-height: auto; align-items: center; text-align: center; }
         
         .globe-container { position: relative; width: 90vw; max-width: 480px; height: 420px; margin-top: -10px; margin-bottom: -10px; overflow: hidden; pointer-events: none; display: flex; justify-content: center; align-items: center; margin-left: auto; margin-right: auto; }
@@ -112,7 +113,6 @@ export default function AUITerminal() {
         .nav-links a:hover, .nav-links button:hover { color: #2563eb; }
         .mobile-prefix-marker { display: none; }
 
-        /* ADJUSTED: Mobile box container adjustments to ensure edge clearance */
         .intake-terminal-box {
           width: 100%;
           max-width: 440px;
@@ -286,7 +286,6 @@ export default function AUITerminal() {
               ) : (
                 <form onSubmit={handleFormSubmit}>
                   <label style={{ display: 'block', fontSize: '9px', color: '#4b5563', marginBottom: '15px', letterSpacing: '0.2em', fontFamily: 'monospace' }}>ENTITY_IDENTITY</label>
-                  {/* ADJUSTED: Set minimum font-size rules to 16px to prevent iOS input container zooming shifts */}
                   <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #222', padding: '18px', color: 'white', fontFamily: 'monospace', marginBottom: '35px', outline: 'none', fontSize: '16px', boxSizing: 'border-box', borderRadius: '0' }} placeholder="identity@org.sovereign" />
                   
                   <button type="submit" disabled={status === 'loading'} style={{ width: '100%', backgroundColor: 'white', color: 'black', padding: '22px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>
