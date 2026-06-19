@@ -78,12 +78,14 @@ export default function AUITerminal() {
           animation: dynamicSpotlight 16s infinite ease-in-out;
         }
         /* Layout Grid Control */
-        .header-container { display: flex; flex-direction: column; gap: 20px; max-width: 1200px; margin: 0 auto; padding: 25px 0 15px 0; border-bottom: '1px solid #111'; }
+        .header-container { display: flex; flex-direction: column; gap: 20px; max-width: 1200px; margin: 0 auto; padding: 25px 0 15px 0; border-bottom: 1px solid #111; }
         .header-meta-row { display: flex; flex-direction: column; gap: 15px; justify-content: space-between; align-items: flex-start; }
         
         .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 40px; margin-bottom: 20px; min-height: auto; align-items: flex-start; }
         .globe-container { position: relative; width: 100%; max-width: 480px; height: 350px; margin-top: 20px; overflow: hidden; pointer-events: none; }
-        .process-img { width: 100%; height: auto; display: block; opacity: 0.9; }
+        
+        /* FIX: SCREEN BLENDING REMOVES BACKDROP DISCOLORATION FROM IMAGE */
+        .process-img { width: 100%; height: auto; display: block; opacity: 0.9; mix-blend-mode: screen; }
         .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
         
         .nav-links { display: flex; gap: 20px; font-family: monospace; letter-spacing: 0.2em; flex-wrap: wrap; }
@@ -101,8 +103,8 @@ export default function AUITerminal() {
         }
       `}</style>
       
-      {/* REBUILT SEPARATED HEADER SECTION CONTAINER */}
-      <header className="header-container" style={{ borderBottom: '1px solid #111' }}>
+      {/* HEADER SECTION CONTAINER */}
+      <header className="header-container">
         <div className="header-meta-row">
           <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.9, display: 'inline-block' }}>AUTHENTIC INTELLIGENCE</strong>
           {view === 'home' && <SystemStatus />}
@@ -162,7 +164,8 @@ export default function AUITerminal() {
             <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px', scrollMarginTop: '40px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS</h2>
               
-              <div style={{ width: '100%', backgroundColor: '#0a0a0a', border: '1px solid #111', padding: '40px 20px', marginBottom: '50px', borderRadius: '4px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+              {/* FIXED CONTAINER REMOVES BACKGROUND VALUE BOX OFFSET */}
+              <div style={{ width: '100%', padding: '20px 0', marginBottom: '50px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
                 <img 
                   src="/process-map.png" 
                   alt="AUI 4-Phase System Infrastructure Map" 
