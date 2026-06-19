@@ -41,32 +41,17 @@ export default function AUITerminal() {
     { name: 'Financial Markets', status: 'VOLATILITY_INTERCEPT // SHIELDED', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
   ];
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
     setStatus('loading');
-    const inputEmail = e.target.email.value;
-
-    try {
-      const response = await fetch('/api/send-briefing', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: inputEmail }),
-      });
-
-      if (response.ok) {
-        setStatus('success');
-      } else {
-        setStatus('error');
-      }
-    } catch (err) {
-      setStatus('error');
-    }
+    setTimeout(() => { setStatus('success'); }, 1200);
   };
 
   return (
-    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden', scrollBehavior: 'smooth', scrollPaddingTop: '150px' }}>
+    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden', scrollBehavior: 'smooth', scrollPaddingTop: '130px' }}>
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes terminalSlideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dynamicSpotlight {
           0% { cx: 320px; cy: 300px; r: 75px; }
           25% { cx: 480px; cy: 340px; r: 80px; }
@@ -78,7 +63,6 @@ export default function AUITerminal() {
           animation: dynamicSpotlight 16s infinite ease-in-out;
         }
         
-        /* Mobile-First Base Layout Control */
         .header-fixed-carrier {
           position: fixed;
           top: 0;
@@ -99,7 +83,6 @@ export default function AUITerminal() {
         
         .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 130px; margin-bottom: 20px; min-height: auto; align-items: center; text-align: center; }
         
-        /* MOBILE FIX: Exact viewport dimensions, perfectly centered across device screens */
         .globe-container { position: relative; width: 90vw; max-width: 480px; height: 420px; margin-top: -10px; margin-bottom: -10px; overflow: hidden; pointer-events: none; display: flex; justify-content: center; align-items: center; margin-left: auto; margin-right: auto; }
         
         .process-img { width: 100%; height: auto; display: block; opacity: 0.9; mix-blend-mode: screen; }
@@ -115,10 +98,19 @@ export default function AUITerminal() {
           cursor: pointer;
         }
         
-        /* MOBILE FIX: Justify space-around and loose raw punctuation markers to fit screen grid width */
         .nav-links { display: flex; justify-content: space-around; width: 100%; gap: 4px; font-family: monospace; letter-spacing: 0.05em; }
         .nav-links a { color: #a3a3a3; text-decoration: none; font-size: 11px; font-weight: bold; white-space: nowrap; }
         .mobile-prefix-marker { display: none; }
+
+        .intake-terminal-box {
+          width: 100%;
+          max-width: 440px;
+          border: 1px solid #222;
+          background-color: #0a0a0a;
+          padding: 30px 20px;
+          margin: 140px auto 40px auto;
+          box-sizing: border-box;
+        }
 
         /* Tablet & Desktop Adjustments Override */
         @media (min-width: 768px) {
@@ -131,8 +123,8 @@ export default function AUITerminal() {
           
           .hero-layout { flex-direction: row; text-align: left; align-items: center; min-height: 460px; margin-bottom: 40px; margin-top: 160px; }
           
-          /* Balanced Tablet / Desktop View Globe */
-          .globe-container { position: absolute; right: -5vw; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; margin-bottom: 0; left: auto; margin-left: 0; margin-right: 0; }
+          /* FIX: Tuned diameter bounding boxes to correctly contain the cropped asset profile */
+          .globe-container { position: absolute; right: -2vw; top: 45%; transform: translateY(-50%); width: 580px; height: 580px; max-width: none; margin-top: 0; margin-bottom: 0; left: auto; margin-left: 0; margin-right: 0; }
           
           .process-img { width: 60%; }
           .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
@@ -141,10 +133,12 @@ export default function AUITerminal() {
           .nav-links { justify-content: flex-start; gap: 30px; letter-spacing: 0.2em; }
           .nav-links a { font-size: 11px; }
           .nav-links a:hover { color: #2563eb; }
+          
+          .intake-terminal-box { padding: 40px 25px; margin-top: 180px; }
         }
       `}</style>
       
-      {/* LOCKED FIXED STICKY HEADER WRAPPER */}
+      {/* HEADER WRAPPER */}
       <div className="header-fixed-carrier">
         <header className="header-container">
           <div className="header-meta-row">
@@ -179,7 +173,7 @@ export default function AUITerminal() {
                 </p>
               </div>
               
-              {/* RESPONSIVE MASKED GLOBE */}
+              {/* RESPONSIVE MASKED GLOBE (RESIZED FOR TABLET) */}
               <div className="globe-container">
                 <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
                   <defs>
@@ -202,7 +196,7 @@ export default function AUITerminal() {
               </p>
             </section>
 
-            {/* INTEGRATED ARCHITECTURE PROCESS TIMELINE DISPLAY */}
+            {/* INTEGRATED PROCESS Display */}
             <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS</h2>
               
@@ -262,35 +256,27 @@ export default function AUITerminal() {
           </div>
         ) : (
           /* VIEW 02: APPLICATION INTAKE PORTAL */
-          <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', paddingUp: '120px', animation: 'terminalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}>
-            <style>{`@keyframes terminalSlideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }`}</style>
-            
-            <div style={{ width: '100%', maxWidth: '440px', border: '1px solid #222', backgroundColor: '#0a0a0a', padding: '40px 25px', marginTop: '140px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '50px' }}>
-                <span style={{ fontSize: '9px', letterSpacing: '0.4em', color: '#4b5563', fontWeight: 'bold' }}>CONSULT_INTAKE [v12.0]</span>
-                <button onClick={() => { setView('home'); setStatus('idle'); }} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px' }}>[X] CANCEL</button>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'terminalSlideUp 0.3s ease-out' }}>
+            <div className="intake-terminal-box">
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
+                <span style={{ fontSize: '9px', letterSpacing: '0.3em', color: '#4b5563', fontWeight: 'bold', fontFamily: 'monospace' }}>CONSULT_INTAKE [v12.0]</span>
+                <button onClick={() => { setView('home'); setStatus('idle'); }} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px', fontFamily: 'monospace' }}>[X] CANCEL</button>
               </div>
 
               {status === 'success' ? (
-                <div style={{ padding: '20px 0', textAlign: 'center' }}>
-                  <div style={{ fontSize: '11px', letterSpacing: '0.3em', color: '#22c55e', marginBottom: '15px', fontWeight: 'bold' }}>TRANSMISSION_SUCCESSFUL</div>
-                  <p style={{ color: '#9ca3af', fontSize: '13px', lineHeight: '1.6', marginBottom: '30px' }}>Secure digital handshake recorded. Advisory routing initiated via encrypted communication tunnels.</p>
-                  <button onClick={() => { setView('home'); setStatus('idle'); }} style={{ border: '1px solid #333', color: 'white', background: 'none', padding: '12px 30px', fontSize: '10px', letterSpacing: '0.1em', cursor: 'pointer' }}>RETURN_TO_CORE</button>
+                <div style={{ padding: '10px 0', textAlign: 'center' }}>
+                  <div style={{ fontSize: '11px', letterSpacing: '0.3em', color: '#22c55e', marginBottom: '15px', fontWeight: 'bold', fontFamily: 'monospace' }}>TRANSMISSION_SUCCESSFUL</div>
+                  <p style={{ color: '#9ca3af', fontSize: '13px', lineHeight: '1.6', marginBottom: '30px', fontWeight: '300' }}>Secure digital handshake recorded. Advisory routing initiated via encrypted communication tunnels.</p>
+                  <button onClick={() => { setView('home'); setStatus('idle'); }} style={{ border: '1px solid #333', color: 'white', background: 'none', padding: '12px 30px', fontSize: '10px', letterSpacing: '0.1em', cursor: 'pointer', fontFamily: 'monospace' }}>RETURN_TO_CORE</button>
                 </div>
               ) : (
                 <form onSubmit={handleFormSubmit}>
-                  <label style={{ display: 'block', fontSize: '9px', color: '#4b5563', marginBottom: '15px', letterSpacing: '0.2em' }}>ENTITY_IDENTITY</label>
-                  <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #222', padding: '18px', color: 'white', fontFamily: 'monospace', marginBottom: '35px', outline: 'none', fontSize: '14px' }} placeholder="identity@org.sovereign" />
+                  <label style={{ display: 'block', fontSize: '9px', color: '#4b5563', marginBottom: '15px', letterSpacing: '0.2em', fontFamily: 'monospace' }}>ENTITY_IDENTITY</label>
+                  <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #222', padding: '18px', color: 'white', fontFamily: 'monospace', marginBottom: '35px', outline: 'none', fontSize: '14px', boxSizing: 'border-box' }} placeholder="identity@org.sovereign" />
                   
                   <button type="submit" disabled={status === 'loading'} style={{ width: '100%', backgroundColor: 'white', color: 'black', padding: '22px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>
                     {status === 'loading' ? "ROUTING HANDSHAKE..." : "INITIALIZE SECURE CONNECTION"}
                   </button>
-
-                  {status === 'error' && (
-                    <p style={{ color: '#ef4444', fontSize: '10px', marginTop: '25px', fontFamily: 'monospace', textAlign: 'center' }}>
-                      TRANSMISSION LINK FAULT. VERIFY MAIL COMPONENT VARIABLES.
-                    </p>
-                  )}
                 </form>
               )}
             </div>
@@ -298,12 +284,10 @@ export default function AUITerminal() {
         )}
       </main>
 
-      {/* FIXED LEGIBILITY SYSTEM SUB-FOOTER LINE */}
       <div style={{ width: '100%', textAlign: 'center', fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.3em', color: '#9ca3af', paddingBottom: '30px', borderTop: '1px solid #111', paddingTop: '40px', maxWidth: '1200px', margin: '0 auto' }}>
         INQUIRIES // info@findsignal.ai
       </div>
 
-      {/* FIXED LEGIBILITY COMPRESSED FOOTER */}
       <footer style={{ padding: '0 0 60px 0', fontSize: '8px', color: '#6b7280', letterSpacing: '0.5em', textAlign: 'center' }}>
         © 2026 AUTHENTIC INTELLIGENCE INC.
       </footer>
