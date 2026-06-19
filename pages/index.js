@@ -165,20 +165,29 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* REFINED OPERATIONAL SECTORS SECTION (IMPROVED SCALE & CONTRAST) */}
+            {/* HARMONIZED OPERATIONAL SECTORS MATRIX */}
             <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
               <div className="responsive-sectors">
                 {sectors.map((s) => (
-                  <div key={s.name} style={{ backgroundColor: '#050505', border: '1px solid #1a1a1a', padding: '50px 35px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '250px', borderRadius: '4px' }}>
+                  <div key={s.name} style={{ backgroundColor: '#050505', border: '1px solid #1a1a1a', padding: '50px 35px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '320px', borderRadius: '4px' }}>
+                    
+                    {/* TOP: UNIFIED TYPOGRAPHY SECTION */}
                     <div>
-                      {/* BUMPED ICON SIZE TO 36PX */}
-                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.25" style={{ marginBottom: '35px', display: 'block' }}><path d={s.path} /></svg>
-                      {/* BUMPED HEADING TO 18PX MONOSPACE */}
-                      <h4 style={{ fontSize: '18px', letterSpacing: '0.15em', color: '#fff', fontWeight: '700', fontFamily: 'monospace', margin: 0 }}>{s.name}</h4>
+                      <h4 style={{ fontSize: '20px', letterSpacing: '-0.02em', color: '#fff', fontWeight: '600', margin: '0 0 40px 0', textAlign: 'left' }}>
+                        {s.name}
+                      </h4>
+                      
+                      {/* CENTERED, MASSIVE 54PX VECTOR ICON CONTAINER */}
+                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', padding: '10px 0' }}>
+                        <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.15">
+                          <path d={s.path} />
+                        </svg>
+                      </div>
                     </div>
-                    {/* ENHANCED LIGHT SILVER READABILITY STATUS */}
-                    <div style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', color: '#d4d4d4', borderTop: '1px solid #1a1a1a', paddingTop: '20px' }}>
+
+                    {/* BOTTOM: SYSTEM STATUS TERMINAL FOOTER */}
+                    <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#9ca3af', borderTop: '1px solid #1a1a1a', paddingTop: '15px', textAlign: 'left' }}>
                       {s.status}
                     </div>
                   </div>
