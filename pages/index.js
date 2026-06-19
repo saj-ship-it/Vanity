@@ -9,12 +9,12 @@ const SystemStatus = () => {
   }, []);
 
   return (
-    <div style={{ display: 'flex', gap: '20px', alignItems: 'center', fontSize: '9px', fontFamily: 'monospace', color: '#4b5563', letterSpacing: '0.1em', flexWrap: 'wrap' }}>
+    <div className="system-status-container" style={{ display: 'flex', gap: '20px', alignItems: 'center', fontSize: '9px', fontFamily: 'monospace', color: '#4b5563', letterSpacing: '0.1em' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 8px #22c55e' }} />
         <span>SYSTEM_OPERATIONAL</span>
       </div>
-      <span>{time}</span>
+      <span className="time-ticker-desktop">{time}</span>
     </div>
   );
 };
@@ -78,6 +78,7 @@ export default function AUITerminal() {
           animation: dynamicSpotlight 16s infinite ease-in-out;
         }
         
+        /* Mobile-First Base Layout Control */
         .header-fixed-carrier {
           position: fixed;
           top: 0;
@@ -88,14 +89,19 @@ export default function AUITerminal() {
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
           border-bottom: 1px solid #111;
-          padding: 20px 20px 15px 20px;
+          padding: 15px 15px 12px 15px;
         }
         
-        .header-container { display: flex; flex-direction: column; gap: 15px; max-width: 1200px; margin: 0 auto; width: 100%; }
-        .header-meta-row { display: flex; flex-direction: column; gap: 10px; justify-content: space-between; align-items: flex-start; width: 100%; }
+        .header-container { display: flex; flex-direction: column; gap: 12px; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .header-meta-row { display: flex; flex-direction: row; justify-content: space-between; align-items: center; width: 100%; }
         
-        .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 140px; margin-bottom: 20px; min-height: auto; align-items: flex-start; }
-        .globe-container { position: relative; width: 100%; max-width: 480px; height: 350px; margin-top: 20px; overflow: hidden; pointer-events: none; }
+        /* MOBILE OVERRIDES: Hide raw time strings to protect layout horizontal width */
+        .time-ticker-desktop { display: none; }
+        
+        .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 130px; margin-bottom: 20px; min-height: auto; align-items: center; text-align: center; }
+        
+        /* MOBILE FIX: Globe fills screen width, pulled upwards to kill dead spacer canyon */
+        .globe-container { position: relative; width: 100vw; max-width: 540px; height: 380px; margin-top: -20px; margin-bottom: -20px; overflow: hidden; pointer-events: none; left: 50%; transform: translateX(-50%); }
         
         .process-img { width: 100%; height: auto; display: block; opacity: 0.9; mix-blend-mode: screen; }
         .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
@@ -110,41 +116,45 @@ export default function AUITerminal() {
           cursor: pointer;
           transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .sector-node-card:hover {
-          border-color: #2563eb;
-          transform: translateY(-2px);
-        }
         
-        .nav-links { display: flex; gap: 20px; font-family: monospace; letter-spacing: 0.2em; flex-wrap: wrap; }
-        .nav-links a { color: #a3a3a3; text-decoration: none; transition: color 0.2s ease; font-size: 11px; font-weight: bold; }
-        .nav-links a:hover { color: #2563eb; }
+        /* Mobile-First Tight Navigation Track */
+        .nav-links { display: flex; justify-content: space-between; width: 100%; gap: 8px; font-family: monospace; letter-spacing: 0.05em; }
+        .nav-links a { color: #a3a3a3; text-decoration: none; font-size: 10px; font-weight: bold; white-space: nowrap; }
 
-        /* Media Queries across Screens (Tablet / Desktop / Mobile) */
+        /* Tablet & Desktop Adjustments Override */
         @media (min-width: 768px) {
           .header-fixed-carrier { padding: 25px 40px 15px 40px; }
-          .header-meta-row { flex-direction: row; align-items: center; gap: 15px; }
-          .hero-layout { flex-direction: row; align-items: center; min-height: 460px; margin-bottom: 40px; margin-top: 160px; }
+          .header-container { gap: 15px; }
+          .header-meta-row { align-items: center; gap: 15px; }
           
-          /* FIX: BALANCED VIEWPORT POSITIONING TO PREVENT TEXT CLIPPING */
-          .globe-container { position: absolute; right: -5vw; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; }
+          .time-ticker-desktop { display: inline; }
+          
+          .hero-layout { flex-direction: row; text-align: left; align-items: center; min-height: 460px; margin-bottom: 40px; margin-top: 160px; }
+          
+          /* Balanced Tablet / Desktop View Globe */
+          .globe-container { position: absolute; right: -5vw; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; margin-bottom: 0; left: auto; }
           
           .process-img { width: 60%; }
           .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-          .nav-links { gap: 30px; }
+          .sector-node-card:hover { border-color: #2563eb; transform: translateY(-2px); }
+          
+          .nav-links { justify-content: flex-start; gap: 30px; letter-spacing: 0.2em; }
+          .nav-links a { font-size: 11px; }
+          .nav-links a:hover { color: #2563eb; }
         }
       `}</style>
       
-      {/* FIXED HEADER WRAPPER */}
+      {/* LOCKED FIXED STICKY HEADER WRAPPER */}
       <div className="header-fixed-carrier">
         <header className="header-container">
           <div className="header-meta-row">
-            <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.9, display: 'inline-block' }}>AUTHENTIC INTELLIGENCE</strong>
+            <strong style={{ border: '1px solid #333', padding: '6px 12px', letterSpacing: '0.3em', fontSize: '9px', opacity: 0.9, display: 'inline-block' }}>AUTHENTIC INTELLIGENCE</strong>
             {view === 'home' && <SystemStatus />}
           </div>
           
           {view === 'home' && (
-            <nav className="nav-links" style={{ paddingTop: '5px' }}>
-              <a href="#objective">// 01_OBJECTIVE</a>
+            <nav className="nav-links">
+              <a href="#objective">// 01_OBJ</a>
               <a href="#process">// 02_PROCESS</a>
               <a href="#sectors">// 03_SECTORS</a>
             </nav>
@@ -160,11 +170,11 @@ export default function AUITerminal() {
             
             {/* HERO SECTION */}
             <section className="hero-layout">
-              <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
-                <h1 style={{ fontSize: 'clamp(40px, 7vw, 82px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.04em', marginBottom: '35px' }}>
+              <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10, padding: '0 10px' }}>
+                <h1 style={{ fontSize: 'clamp(40px, 7vw, 82px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.04em', marginBottom: '25px' }}>
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
                 </h1>
-                <p style={{ color: '#9ca3af', maxWidth: '440px', margin: 0, lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
+                <p style={{ color: '#9ca3af', maxWidth: '440px', margin: '0 auto', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
                   Predictive Intelligence for Enterprise
                 </p>
               </div>
