@@ -19,9 +19,90 @@ const SystemStatus = () => {
   );
 };
 
+// THE IRIS: High-Fidelity Neural Focus (Adjusted 40% Smaller)
+const TheIris = () => (
+  <svg 
+    width="330" 
+    height="330" 
+    viewBox="0 0 100 100" 
+    fill="none" 
+    style={{ 
+      marginLeft: '40px', 
+      flexShrink: 0,
+      opacity: 0.95,
+      filter: 'drop-shadow(0 0 12px rgba(37, 99, 235, 0.2))'
+    }}
+  >
+    <defs>
+      <radialGradient id="pupilGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="white" stopOpacity="1" />
+        <stop offset="40%" stopColor="#2563eb" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
+      </radialGradient>
+    </defs>
+
+    {/* Outer Neural Ring - 60 Micro-Vectors */}
+    <g stroke="white" strokeWidth="0.05" strokeOpacity="0.3">
+      {[...Array(60)].map((_, i) => {
+        const angle = (i * Math.PI) / 30;
+        const x1 = 50 + Math.cos(angle) * 35;
+        const y1 = 50 + Math.sin(angle) * 35;
+        const x2 = 50 + Math.cos(angle) * 48;
+        const y2 = 50 + Math.sin(angle) * 48;
+        return <line key={`o-${i}`} x1={x1} y1={y1} x2={x2} y2={y2} />;
+      })}
+    </g>
+
+    {/* The Intricate Iris - Converging Geometry */}
+    <g stroke="white" strokeWidth="0.08" strokeOpacity="0.6">
+      {[...Array(72)].map((_, i) => {
+        const angle = (i * Math.PI) / 36;
+        const x1 = 50 + Math.cos(angle) * 12;
+        const y1 = 50 + Math.sin(angle) * 12;
+        const x2 = 50 + Math.cos(angle) * 32;
+        const y2 = 50 + Math.sin(angle) * 32;
+        const x3 = 50 + Math.cos(angle + 0.2) * 25;
+        const y3 = 50 + Math.sin(angle + 0.2) * 25;
+        return (
+          <React.Fragment key={`i-${i}`}>
+            <line x1={x1} y1={y1} x2={x2} y2={y2} />
+            <line x1={x1} y1={y1} x2={x3} y2={y3} strokeOpacity="0.15" />
+          </React.Fragment>
+        );
+      })}
+    </g>
+
+    {/* Surreal Orbital Paths */}
+    <ellipse cx="50" cy="50" rx="45" ry="15" stroke="#2563eb" strokeWidth="0.07" strokeOpacity="0.4" transform="rotate(45 50 50)" />
+    <ellipse cx="50" cy="50" rx="45" ry="15" stroke="#2563eb" strokeWidth="0.07" strokeOpacity="0.4" transform="rotate(-45 50 50)" />
+
+    {/* The Pupil Core */}
+    <circle cx="50" cy="50" r="12" fill="url(#pupilGlow)" opacity="0.3" />
+    <circle cx="50" cy="50" r="4" fill="white">
+      <animate attributeName="r" values="3.8;4.5;3.8" dur="4s" repeatCount="indefinite" />
+    </circle>
+    
+    {/* Tech Tracking Markers */}
+    <g opacity="0.6" fill="white">
+        <rect x="49.7" y="2" width="0.6" height="6" />
+        <rect x="49.7" y="92" width="0.6" height="6" />
+        <rect x="2" y="49.7" width="6" height="0.6" />
+        <rect x="92" y="49.7" width="6" height="0.6" />
+    </g>
+  </svg>
+);
+
 export default function AUITerminal() {
   const [view, setView] = useState('home'); // 'home' or 'intake'
   const [status, setStatus] = useState('idle');
+
+  // Complete Descriptive 4-Step Operational Narrative Grid
+  const processSteps = [
+    { title: 'PHASE 01 // MAP LANDSCAPE', desc: 'Identify custom, non-obvious vulnerabilities and strategic variables specific to your sector.' },
+    { title: 'PHASE 02 // BUILD PIPELINES', desc: 'Construct dedicated data architecture traps to ingest, filter, and verify pristine data feeds.' },
+    { title: 'PHASE 03 // MONITOR SHIFTS', desc: 'Machine learning tracks raw streams 24/7, watching for subtle pattern breaks and anomalies.' },
+    { title: 'PHASE 04 // ADVANCE WARNING', desc: 'Issue predictive trend break alerts directly to your secure dashboard before the market reacts.' }
+  ];
 
   // Restored Operational Sectors Array
   const sectors = [
@@ -73,24 +154,13 @@ export default function AUITerminal() {
           <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
             <style>{`
               @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-              @keyframes dynamicSpotlight {
-                0% { cx: 320px; cy: 300px; r: 75px; }
-                25% { cx: 480px; cy: 340px; r: 80px; }
-                50% { cx: 450px; cy: 500px; r: 85px; }
-                75% { cx: 300px; cy: 460px; r: 80px; }
-                100% { cx: 320px; cy: 300px; r: 75px; }
-              }
-              .spotlight-lens {
-                animation: dynamicSpotlight 16s infinite ease-in-out;
-              }
             `}</style>
             
-            <section style={{ position: 'relative', marginTop: '50px', marginBottom: '100px', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
+            <section style={{ position: 'relative', marginTop: '50px', marginBottom: '100px', minHeight: '450px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
                 <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '35px' }}>
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
                 </h1>
-                {/* REVISED COMPANION SUBHEADLINE COPY */}
                 <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '50px', lineHeight: '1.6', fontSize: '19px', fontWeight: '300' }}>
                   Data is not intelligence. We track complex, hidden variables to deliver actionable foresight before a trend even forms.
                 </p>
@@ -99,40 +169,27 @@ export default function AUITerminal() {
                 </button>
               </div>
               
-              {/* FIXED HOISTED MASKED CONTEXT GLOBE */}
-              <div style={{ position: 'absolute', right: '-15%', top: '45%', transform: 'translateY(-50%)', width: '780px', height: '780px', pointerEvents: 'none' }}>
-                <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
-                  <defs>
-                    <mask id="lensReveal">
-                      <rect width="780" height="780" fill="white" />
-                      <circle className="spotlight-lens" fill="black" filter="blur(25px)" />
-                    </mask>
-                  </defs>
-                  <image href="/globe-signal.png" width="780" height="780" style={{ mixBlendMode: 'screen' }} />
-                  <rect width="780" height="780" fill="#050505" fillOpacity="0.75" mask="url(#lensReveal)" />
-                </svg>
-              </div>
+              {/* THE INLINE MATHEMATICAL IRIS COMPONENT */}
+              <TheIris />
             </section>
 
-            {/* INTEGRATED ARCHITECTURE PROCESS TIMELINE DISPLAY */}
+            {/* PREDICTIVE PROCESS GRID */}
             <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS</h2>
-              
-              {/* Process diagram centered inline image frame without residual text box scaffolding */}
-              <div style={{ width: '100%', display: 'flex', justifyContent: 'center', overflow: 'hidden', marginBottom: '20px' }}>
-                <img 
-                  src="/process-map.png" 
-                  alt="AUI 4-Phase System Infrastructure Map" 
-                  style={{ width: '60%', height: 'auto', display: 'block', opacity: 0.9 }}
-                  onError={(e) => { e.target.style.display = 'none'; }} 
-                />
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '30px' }}>
+                {processSteps.map((step) => (
+                  <div key={step.title} style={{ borderLeft: '2px solid #2563eb', paddingLeft: '20px' }}>
+                    <h4 style={{ fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.2em', color: '#fff', marginBottom: '15px' }}>{step.title}</h4>
+                    <p style={{ fontSize: '14px', color: '#9ca3af', lineHeight: '1.6', fontWeight: '300' }}>{step.desc}</p>
+                  </div>
+                ))}
               </div>
             </section>
 
             {/* OPERATIONAL SECTORS SECTION */}
-            <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px' }}>
+            <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '140px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1px', backgroundColor: '#111', border: '1px solid #111' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1px', backgroundColor: '#111', border: '1px solid #111' }}>
                 {sectors.map((s) => (
                   <div key={s.name} style={{ backgroundColor: '#050505', padding: '60px 20px', textAlign: 'center' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.path} /></svg>
@@ -180,12 +237,12 @@ export default function AUITerminal() {
         )}
       </main>
 
-      {/* FIXED LEGIBILITY SYSTEM SUB-FOOTER LINE */}
+      {/* INQUIRIES ROUTE LINE */}
       <div style={{ width: '100%', textAlign: 'center', fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.3em', color: '#9ca3af', paddingBottom: '30px', borderTop: '1px solid #111', paddingTop: '40px', maxWidth: '1200px', margin: '0 auto' }}>
         INQUIRIES // info@findsignal.ai
       </div>
 
-      {/* FIXED LEGIBILITY COMPRESSED FOOTER */}
+      {/* COMPRESSED REGULATORY FOOTER */}
       <footer style={{ padding: '0 0 80px 0', fontSize: '8px', color: '#6b7280', letterSpacing: '0.5em', textAlign: 'center' }}>
         RESTRICTED ACCESS // © 2026 AUTHENTIC INTELLIGENCE INC.
       </footer>
