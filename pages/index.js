@@ -23,7 +23,7 @@ export default function AUITerminal() {
   const [view, setView] = useState('home'); // 'home' or 'intake'
   const [status, setStatus] = useState('idle');
 
-  // Forces window frames back to the top whenever the viewport switches views
+  // Forces frames back to coordinates (0,0) safely when layout splits
   useEffect(() => {
     window.scrollTo(0, 0);
     if (typeof document !== 'undefined') {
@@ -54,11 +54,6 @@ export default function AUITerminal() {
     e.preventDefault();
     setStatus('loading');
     setTimeout(() => { setStatus('success'); }, 1000);
-  };
-
-  const selectSectorNode = () => {
-    setView('intake');
-    setStatus('idle');
   };
 
   return (
@@ -102,7 +97,6 @@ export default function AUITerminal() {
         .process-img { width: 100%; height: auto; display: block; opacity: 0.9; mix-blend-mode: screen; }
         .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
         
-        /* FIXED: Corrected style declarations to standard CSS background properties */
         .sector-node-card {
           background-color: #050505;
           border: 1px solid #1a1a1a;
@@ -110,8 +104,27 @@ export default function AUITerminal() {
           display: flex;
           flex-direction: column;
           border-radius: 4px;
+        }
+        
+        /* Dedicated, isolated actionable node trigger style sheets */
+        .node-action-trigger {
+          width: 100%;
+          background: none;
+          border: 1px solid #222;
+          color: #a3a3a3;
+          font-family: monospace;
+          font-size: 10px;
+          font-weight: bold;
+          padding: 14px;
+          letter-spacing: 0.15em;
+          margin-top: 25px;
           cursor: pointer;
+          transition: border-color 0.2s, color 0.2s;
           -webkit-tap-highlight-color: transparent;
+        }
+        .node-action-trigger:hover {
+          border-color: #2563eb;
+          color: #fff;
         }
         
         .nav-links { display: flex; justify-content: space-around; width: 100%; gap: 4px; font-family: monospace; letter-spacing: 0.05em; }
@@ -144,7 +157,6 @@ export default function AUITerminal() {
           
           .process-img { width: 60%; }
           .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-          .sector-node-card:hover { border-color: #2563eb; transform: translateY(-2px); }
           
           .nav-links { justify-content: flex-start; gap: 30px; letter-spacing: 0.2em; }
           .nav-links a { font-size: 11px; }
@@ -191,7 +203,7 @@ export default function AUITerminal() {
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
                 </h1>
                 <p style={{ color: '#9ca3af', maxWidth: '440px', margin: '0 auto', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
-                  Predictive Intelligence for Enterprise
+                  Predict Intelligence for Enterprise
                 </p>
               </div>
               
@@ -253,7 +265,6 @@ export default function AUITerminal() {
                 {sectors.map((s) => (
                   <div 
                     key={s.name} 
-                    onClick={triggerIntakePortal}
                     className="sector-node-card"
                   >
                     <div style={{ textAlign: 'center', width: '100%' }}>
@@ -261,7 +272,7 @@ export default function AUITerminal() {
                         {s.name.toUpperCase()}
                       </h4>
                       
-                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', marginBottom: '45px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', marginBottom: '20px' }}>
                         <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.15">
                           <path d={s.path} />
                         </svg>
@@ -271,6 +282,14 @@ export default function AUITerminal() {
                     <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#9ca3af', borderTop: '1px solid #1a1a1a', paddingTop: '15px', textAlign: 'center', marginTop: 'auto' }}>
                       {s.status}
                     </div>
+
+                    {/* FIXED: CLICK CAPTURE ASSIGNED EXCLUSIVELY TO INTERNAL CTAS */}
+                    <button 
+                      onClick={() => setView('intake')}
+                      className="node-action-trigger"
+                    >
+                      INITIALIZE SECURE PIPELINE
+                    </button>
                   </div>
                 ))}
               </div>
