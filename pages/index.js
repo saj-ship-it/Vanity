@@ -125,8 +125,8 @@ export default function AUITerminal() {
           .header-meta-row { flex-direction: row; align-items: center; gap: 15px; }
           .hero-layout { flex-direction: row; align-items: center; min-height: 460px; margin-bottom: 40px; margin-top: 160px; }
           
-          /* FIX: MOVED GLOBE 20% OF CANVAS TO LEFT FOR PERFECT TABLET PLACEMENT */
-          .globe-container { position: absolute; right: 5%; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; }
+          /* FIX: BALANCED VIEWPORT POSITIONING TO PREVENT TEXT CLIPPING */
+          .globe-container { position: absolute; right: -5vw; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; }
           
           .process-img { width: 60%; }
           .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
