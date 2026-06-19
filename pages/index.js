@@ -31,14 +31,14 @@ export default function AUITerminal() {
     { title: 'PHASE 04 // ADVANCE WARNING', desc: 'Issue predictive trend break alerts directly to your secure dashboard before the market reacts.' }
   ];
 
-  // Operational Sectors Array
+  // TIGHTENED & STRATEGICALLY EXPANDED OPERATIONAL SECTORS
   const sectors = [
-    { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
-    { name: 'MEDIA & DISINFO', path: 'M2 3h20v14H2z M12 17v4' },
-    { name: 'ENERGY INFRA', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
-    { name: 'LOGISTICS', path: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
-    { name: 'PRIVATE EQUITY', path: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
-    { name: 'FINANCE', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
+    { name: 'DEFENCE & INTEL', status: 'SIGNAL_ISOLATION // ACTIVE', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+    { name: 'MEDIA & DISINFO', status: 'NARRATIVE_TRACKING // LIVE', path: 'M2 3h20v14H2z M12 17v4' },
+    { name: 'ENERGY INFRA', status: 'ANOMALY_DETECTION // MONITORING', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+    { name: 'LOGISTICS', status: 'SUPPLY_CHAIN_FORWARD // TRAPPING', path: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
+    { name: 'PRIVATE EQUITY', status: 'ASYMMETRIC_SURVEILLANCE // ONLINE', path: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
+    { name: 'FINANCE', status: 'VOLATILITY_INTERCEPT // SHIELDED', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
   ];
 
   const handleFormSubmit = async (e) => {
@@ -99,7 +99,6 @@ export default function AUITerminal() {
                 <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '35px' }}>
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
                 </h1>
-                {/* SIMPLIFIED HERO COPY */}
                 <p style={{ color: '#9ca3af', maxWidth: '440px', marginBottom: '50px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
                   Predictive Intelligence for Enterprise
                 </p>
@@ -154,14 +153,19 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* OPERATIONAL SECTORS SECTION */}
+            {/* IMPROVED & TIGHTENED OPERATIONAL SECTORS SECTION */}
             <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '140px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1px', backgroundColor: '#111', border: '1px solid #111' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1px', backgroundColor: '#141414', border: '1px solid #141414' }}>
                 {sectors.map((s) => (
-                  <div key={s.name} style={{ backgroundColor: '#050505', padding: '60px 20px', textAlign: 'center' }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '20px' }}><path d={s.path} /></svg>
-                    <h4 style={{ fontSize: '10px', letterSpacing: '0.2em', color: '#fff' }}>{s.name}</h4>
+                  <div key={s.name} style={{ backgroundColor: '#050505', padding: '50px 30px', textAlign: 'left', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px' }}>
+                    <div>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '25px', display: 'block' }}><path d={s.path} /></svg>
+                      <h4 style={{ fontSize: '12px', letterSpacing: '0.25em', color: '#fff', fontWeight: '700', marginBottom: '6px', fontFamily: 'monospace' }}>{s.name}</h4>
+                    </div>
+                    <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#4b5563', borderTop: '1px solid #111', paddingTop: '15px' }}>
+                      {s.status}
+                    </div>
                   </div>
                 ))}
               </div>
