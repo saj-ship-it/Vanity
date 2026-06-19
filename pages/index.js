@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 
 // --- PERSISTENT INSTITUTIONAL HEADER STATUS ---
 const SystemStatus = () => {
@@ -58,6 +59,13 @@ export default function AUITerminal() {
 
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden', scrollBehavior: 'smooth', scrollPaddingTop: '130px' }}>
+      
+      {/* CUSTOM TAB HEADING HEADER MANIPULATION */}
+      <Head>
+        <title>AUTHENTIC INTELLIGENCE // FIND SIGNAL</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      </Head>
+
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes terminalSlideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -72,7 +80,6 @@ export default function AUITerminal() {
           animation: dynamicSpotlight 16s infinite ease-in-out;
         }
         
-        /* FIXED: Added box-sizing: border-box to contain width math and eliminate horizontal wobbles completely */
         .header-fixed-carrier {
           position: fixed;
           top: 0;
