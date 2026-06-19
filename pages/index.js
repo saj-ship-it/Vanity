@@ -77,18 +77,17 @@ export default function AUITerminal() {
         .spotlight-lens {
           animation: dynamicSpotlight 16s infinite ease-in-out;
         }
-        /* Mobile-First Layout Rules */
+        /* Responsiveness Framework */
         .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 40px; margin-bottom: 60px; min-height: auto; align-items: flex-start; }
         .globe-container { position: relative; width: 100%; max-width: 480px; height: 350px; margin-top: 40px; overflow: hidden; pointer-events: none; }
         .process-img { width: 100%; height: auto; display: block; opacity: 0.9; }
-        .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
 
-        /* Tablet & Desktop Adjustments */
         @media (min-width: 768px) {
           .hero-layout { flex-direction: row; align-items: center; min-height: 520px; margin-bottom: 80px; }
-          .globe-container { position: absolute; right: -15%; top: '45%'; transform: translateY(-50%); width: '780px'; height: '780px'; max-width: none; margin-top: 0; }
+          .globe-container { position: absolute; right: -15%; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; }
           .process-img { width: 60%; }
-          .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+          .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
         }
       `}</style>
       
@@ -112,7 +111,7 @@ export default function AUITerminal() {
                 <h1 style={{ fontSize: 'clamp(40px, 7vw, 82px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.04em', marginBottom: '35px' }}>
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
                 </h1>
-                <p style={{ color: '#9ca3af', maxWidth: '440px', marginBottom: '40px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
+                <p style={{ color: '#9ca3af', maxWidth: '440px', marginBottom: '50px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
                   Predictive Intelligence for Enterprise
                 </p>
                 <button onClick={() => setView('intake')} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>
@@ -120,7 +119,7 @@ export default function AUITerminal() {
                 </button>
               </div>
               
-              {/* RESPONSIBLY HOISTED MASKED CONTEXT GLOBE */}
+              {/* RESPONSIVE MASKED GLOBE */}
               <div className="globe-container">
                 <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
                   <defs>
@@ -166,17 +165,20 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* RESPONSIVE OPERATIONAL SECTORS MATRIX */}
+            {/* REFINED OPERATIONAL SECTORS SECTION (IMPROVED SCALE & CONTRAST) */}
             <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
               <div className="responsive-sectors">
                 {sectors.map((s) => (
-                  <div key={s.name} style={{ backgroundColor: '#050505', border: '1px solid #1a1a1a', padding: '40px 30px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '200px', borderRadius: '2px' }}>
+                  <div key={s.name} style={{ backgroundColor: '#050505', border: '1px solid #1a1a1a', padding: '50px 35px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '250px', borderRadius: '4px' }}>
                     <div>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '30px', display: 'block' }}><path d={s.path} /></svg>
-                      <h4 style={{ fontSize: '12px', letterSpacing: '0.25em', color: '#fff', fontWeight: '700', fontFamily: 'monospace', margin: 0 }}>{s.name}</h4>
+                      {/* BUMPED ICON SIZE TO 36PX */}
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.25" style={{ marginBottom: '35px', display: 'block' }}><path d={s.path} /></svg>
+                      {/* BUMPED HEADING TO 18PX MONOSPACE */}
+                      <h4 style={{ fontSize: '18px', letterSpacing: '0.15em', color: '#fff', fontWeight: '700', fontFamily: 'monospace', margin: 0 }}>{s.name}</h4>
                     </div>
-                    <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#9ca3af', borderTop: '1px solid #111', paddingTop: '15px' }}>
+                    {/* ENHANCED LIGHT SILVER READABILITY STATUS */}
+                    <div style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', color: '#d4d4d4', borderTop: '1px solid #1a1a1a', paddingTop: '20px' }}>
                       {s.status}
                     </div>
                   </div>
