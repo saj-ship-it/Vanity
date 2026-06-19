@@ -9,7 +9,7 @@ const SystemStatus = () => {
   }, []);
 
   return (
-    <div style={{ display: 'flex', gap: '30px', alignItems: 'center', fontSize: '9px', fontFamily: 'monospace', color: '#4b5563', letterSpacing: '0.1em' }}>
+    <div style={{ display: 'flex', gap: '20px', alignItems: 'center', fontSize: '9px', fontFamily: 'monospace', color: '#4b5563', letterSpacing: '0.1em', flexWrap: 'wrap' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 8px #22c55e' }} />
         <span>SYSTEM_OPERATIONAL</span>
@@ -77,42 +77,45 @@ export default function AUITerminal() {
         .spotlight-lens {
           animation: dynamicSpotlight 16s infinite ease-in-out;
         }
-        /* Responsiveness Framework */
+        /* Layout Grid Control */
+        .header-container { display: flex; flex-direction: column; gap: 20px; max-width: 1200px; margin: 0 auto; padding: 25px 0 15px 0; border-bottom: '1px solid #111'; }
+        .header-meta-row { display: flex; flex-direction: column; gap: 15px; justify-content: space-between; align-items: flex-start; }
+        
         .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 40px; margin-bottom: 20px; min-height: auto; align-items: flex-start; }
         .globe-container { position: relative; width: 100%; max-width: 480px; height: 350px; margin-top: 20px; overflow: hidden; pointer-events: none; }
         .process-img { width: 100%; height: auto; display: block; opacity: 0.9; }
         .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
         
-        .nav-links { display: none; gap: 25px; font-family: monospace; fontSize: 10px; letter-spacing: 0.2em; }
-        .nav-links a { color: #6b7280; text-decoration: none; transition: color 0.2s ease; font-size: 10px; }
-        .nav-links a:hover { color: #fff; }
+        .nav-links { display: flex; gap: 20px; font-family: monospace; letter-spacing: 0.2em; flex-wrap: wrap; }
+        .nav-links a { color: #a3a3a3; text-decoration: none; transition: color 0.2s ease; font-size: 11px; font-weight: bold; }
+        .nav-links a:hover { color: #2563eb; }
 
+        /* Media Queries across Screens (Tablet / Desktop / Mobile) */
         @media (min-width: 768px) {
+          .header-meta-row { flex-direction: row; align-items: center; }
           .hero-layout { flex-direction: row; align-items: center; min-height: 460px; margin-bottom: 40px; }
           .globe-container { position: absolute; right: -15%; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; }
           .process-img { width: 60%; }
           .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-          .nav-links { display: flex; }
+          .nav-links { gap: 30px; }
         }
       `}</style>
       
-      {/* HEADER SECTION WITH INTEGRATED MENU ARCHITECTURE */}
-      <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '25px 0 15px 0', borderBottom: '1px solid #111' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.8 }}>AUTHENTIC INTELLIGENCE</strong>
-          
-          {view === 'home' && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '40px' }}>
-              {/* INTERNAL SCROLL NAVIGATION ANCHORS */}
-              <nav className="nav-links">
-                <a href="#objective">01_OBJECTIVE</a>
-                <a href="#process">02_PROCESS</a>
-                <a href="#sectors">03_SECTORS</a>
-              </nav>
-              <SystemStatus />
-            </div>
-          )}
+      {/* REBUILT SEPARATED HEADER SECTION CONTAINER */}
+      <header className="header-container" style={{ borderBottom: '1px solid #111' }}>
+        <div className="header-meta-row">
+          <strong style={{ border: '1px solid #333', padding: '8px 15px', letterSpacing: '0.4em', fontSize: '10px', opacity: 0.9, display: 'inline-block' }}>AUTHENTIC INTELLIGENCE</strong>
+          {view === 'home' && <SystemStatus />}
         </div>
+        
+        {/* LOWER ROW EXCLUSIVELY FOR HIGH-CONTRAST NAVIGATION */}
+        {view === 'home' && (
+          <nav className="nav-links" style={{ paddingTop: '5px' }}>
+            <a href="#objective">// 01_OBJECTIVE</a>
+            <a href="#process">// 02_PROCESS</a>
+            <a href="#sectors">// 03_SECTORS</a>
+          </nav>
+        )}
       </header>
 
       <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
@@ -148,7 +151,7 @@ export default function AUITerminal() {
             </section>
 
             {/* SECTION [01.5]: THE MANIFESTO BRIDGE */}
-            <section id="objective" style={{ borderTop: '1px solid #111', paddingTop: '80px', paddingBottom: '40px', maxWidth: '1000px', scrollMarginTop: '40px' }}>
+            <section id="objective" style={{ borderTop: '1px solid #111', paddingTop: '60px', paddingBottom: '40px', maxWidth: '1000px', scrollMarginTop: '40px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '30px' }}>[01] CORE MISSION OBJECTIVE</h2>
               <p style={{ fontSize: 'clamp(22px, 3.5vw, 36px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#fff' }}>
                 We deploy <span style={{ color: '#2563eb' }}>customized intelligence pipelines</span> engineered to detect hidden risks, opportunities, and threats—giving high-stakes decision-makers the absolute advance warning required to act first.
