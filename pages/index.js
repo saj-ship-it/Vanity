@@ -23,13 +23,22 @@ export default function AUITerminal() {
   const [view, setView] = useState('home'); // 'home' or 'intake'
   const [status, setStatus] = useState('idle');
 
-  // CRITICAL MOBILE RESET: Forces viewport frame coordinates to (0,0) every time view state splits
+  // BULLETPROOF MOBILE RESET: Asynchronously bypasses Safari layout repaint loops
   useEffect(() => {
-    window.scrollTo(0, 0);
-    if (typeof document !== 'undefined') {
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    }
+    const executeForceScroll = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      if (typeof document !== 'undefined') {
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+    };
+
+    // Run instantly
+    executeForceScroll();
+
+    // Run again a split second later to catch browser repaint engine lag
+    const scrollTimer = setTimeout(executeForceScroll, 30);
+    return () => clearTimeout(scrollTimer);
   }, [view]);
 
   // Descriptive 4-Step Operational Narrative Grid
@@ -98,7 +107,7 @@ export default function AUITerminal() {
         .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
         
         .sector-node-card {
-          backgroundColor: #050505;
+          backgroundColor: '#050505';
           border: 1px solid #1a1a1a;
           padding: 40px 30px 30px 30px;
           display: flex;
