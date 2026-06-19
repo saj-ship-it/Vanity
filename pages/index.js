@@ -167,11 +167,11 @@ export default function AUITerminal() {
 
             {/* HARMONIZED OPERATIONAL SECTORS MATRIX */}
             <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
-              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '20px' }}>[03] OPERATIONAL SECTORS</h2>
+              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '30px' }}>[03] OPERATIONAL SECTORS</h2>
               
-              {/* UPDATED ABSOLUTE USER CONTROL SUBTITLE BLOCK */}
-              <p style={{ color: '#9ca3af', maxWidth: '680px', marginBottom: '50px', lineHeight: '1.6', fontSize: '16px', fontWeight: '300', letterSpacing: '-0.01em' }}>
-                Each node represents a fully isolated, 100% custom architecture under the absolute control of the user, deployed to secure sovereign operational advantages.
+              {/* FIXED: TYPOGRAPHICALLY IDENTICAL SUBTITLE LAYER MATCHED TO CORE MISSION BLOCK */}
+              <p style={{ fontSize: 'clamp(20px, 3.2vw, 30px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#9ca3af', maxWidth: '1000px', marginBottom: '60px' }}>
+                Each node represents a fully isolated, <span style={{ color: '#fff' }}>100% custom architecture</span> under the absolute control of the user, deployed to secure sovereign operational advantages.
               </p>
 
               <div className="responsive-sectors">
