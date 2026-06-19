@@ -64,7 +64,33 @@ export default function AUITerminal() {
   };
 
   return (
-    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 40px', overflowX: 'hidden' }}>
+    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden' }}>
+      <style>{`
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes dynamicSpotlight {
+          0% { cx: 320px; cy: 300px; r: 75px; }
+          25% { cx: 480px; cy: 340px; r: 80px; }
+          50% { cx: 450px; cy: 500px; r: 85px; }
+          75% { cx: 300px; cy: 460px; r: 80px; }
+          100% { cx: 320px; cy: 300px; r: 75px; }
+        }
+        .spotlight-lens {
+          animation: dynamicSpotlight 16s infinite ease-in-out;
+        }
+        /* Mobile-First Layout Rules */
+        .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 40px; margin-bottom: 60px; min-height: auto; align-items: flex-start; }
+        .globe-container { position: relative; width: 100%; max-width: 480px; height: 350px; margin-top: 40px; overflow: hidden; pointer-events: none; }
+        .process-img { width: 100%; height: auto; display: block; opacity: 0.9; }
+        .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 20px; }
+
+        /* Tablet & Desktop Adjustments */
+        @media (min-width: 768px) {
+          .hero-layout { flex-direction: row; align-items: center; min-height: 520px; margin-bottom: 80px; }
+          .globe-container { position: absolute; right: -15%; top: '45%'; transform: translateY(-50%); width: '780px'; height: '780px'; max-width: none; margin-top: 0; }
+          .process-img { width: 60%; }
+          .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        }
+      `}</style>
       
       {/* HEADER SECTION */}
       <header style={{ maxWidth: '1200px', margin: '0 auto', padding: '25px 0 15px 0', borderBottom: '1px solid #111' }}>
@@ -79,27 +105,14 @@ export default function AUITerminal() {
         {view === 'home' ? (
           /* VIEW 01: CORE ACTIVE SYSTEM PORTAL */
           <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
-            <style>{`
-              @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-              @keyframes dynamicSpotlight {
-                0% { cx: 320px; cy: 300px; r: 75px; }
-                25% { cx: 480px; cy: 340px; r: 80px; }
-                50% { cx: 450px; cy: 500px; r: 85px; }
-                75% { cx: 300px; cy: 460px; r: 80px; }
-                100% { cx: 320px; cy: 300px; r: 75px; }
-              }
-              .spotlight-lens {
-                animation: dynamicSpotlight 16s infinite ease-in-out;
-              }
-            `}</style>
             
             {/* HERO SECTION */}
-            <section style={{ position: 'relative', marginTop: '50px', marginBottom: '80px', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
+            <section className="hero-layout">
               <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
-                <h1 style={{ fontSize: 'clamp(44px, 8vw, 82px)', fontWeight: '900', lineHeight: '0.85', letterSpacing: '-0.04em', marginBottom: '35px' }}>
+                <h1 style={{ fontSize: 'clamp(40px, 7vw, 82px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.04em', marginBottom: '35px' }}>
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
                 </h1>
-                <p style={{ color: '#9ca3af', maxWidth: '440px', marginBottom: '50px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
+                <p style={{ color: '#9ca3af', maxWidth: '440px', marginBottom: '40px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
                   Predictive Intelligence for Enterprise
                 </p>
                 <button onClick={() => setView('intake')} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>
@@ -107,8 +120,8 @@ export default function AUITerminal() {
                 </button>
               </div>
               
-              {/* FIXED HOISTED MASKED CONTEXT GLOBE */}
-              <div style={{ position: 'absolute', right: '-15%', top: '45%', transform: 'translateY(-50%)', width: '780px', height: '780px', pointerEvents: 'none' }}>
+              {/* RESPONSIBLY HOISTED MASKED CONTEXT GLOBE */}
+              <div className="globe-container">
                 <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
                   <defs>
                     <mask id="lensReveal">
@@ -123,22 +136,22 @@ export default function AUITerminal() {
             </section>
 
             {/* SECTION [01.5]: THE MANIFESTO BRIDGE */}
-            <section style={{ borderTop: '1px solid #111', paddingTop: '100px', paddingBottom: '40px', maxWidth: '1000px' }}>
-              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '40px' }}>[01] CORE MISSION OBJECTIVE</h2>
-              <p style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#fff' }}>
+            <section style={{ borderTop: '1px solid #111', paddingTop: '80px', paddingBottom: '40px', maxWidth: '1000px' }}>
+              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '30px' }}>[01] CORE MISSION OBJECTIVE</h2>
+              <p style={{ fontSize: 'clamp(22px, 3.5vw, 36px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#fff' }}>
                 We deploy <span style={{ color: '#2563eb' }}>customized intelligence pipelines</span> engineered to detect hidden risks, opportunities, and threats—giving high-stakes decision-makers the absolute advance warning required to act first.
               </p>
             </section>
 
             {/* INTEGRATED ARCHITECTURE PROCESS TIMELINE DISPLAY */}
-            <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
+            <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS</h2>
               
-              <div style={{ width: '100%', backgroundColor: '#0a0a0a', border: '1px solid #111', padding: '40px 20px', marginBottom: '60px', borderRadius: '4px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+              <div style={{ width: '100%', backgroundColor: '#0a0a0a', border: '1px solid #111', padding: '40px 20px', marginBottom: '50px', borderRadius: '4px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
                 <img 
                   src="/process-map.png" 
                   alt="AUI 4-Phase System Infrastructure Map" 
-                  style={{ width: '60%', height: 'auto', display: 'block', opacity: 0.9 }}
+                  className="process-img"
                   onError={(e) => { e.target.style.display = 'none'; }} 
                 />
               </div>
@@ -153,18 +166,17 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* FIX: OPERATIONAL SECTORS MATRIX (BORDER & CONTRAST FIXES) */}
-            <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '140px' }}>
+            {/* RESPONSIVE OPERATIONAL SECTORS MATRIX */}
+            <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', backgroundColor: '#161616', gap: '1px', border: '1px solid #161616' }}>
+              <div className="responsive-sectors">
                 {sectors.map((s) => (
-                  <div key={s.name} style={{ backgroundColor: '#050505', padding: '50px 30px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '220px' }}>
+                  <div key={s.name} style={{ backgroundColor: '#050505', border: '1px solid #1a1a1a', padding: '40px 30px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '200px', borderRadius: '2px' }}>
                     <div>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '35px', display: 'block' }}><path d={s.path} /></svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" style={{ marginBottom: '30px', display: 'block' }}><path d={s.path} /></svg>
                       <h4 style={{ fontSize: '12px', letterSpacing: '0.25em', color: '#fff', fontWeight: '700', fontFamily: 'monospace', margin: 0 }}>{s.name}</h4>
                     </div>
-                    {/* BUMPED COLOR VALUE FOR HIGH PORTAL VISIBILITY */}
-                    <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#8a8f98', borderTop: '1px solid #111', paddingTop: '20px' }}>
+                    <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#9ca3af', borderTop: '1px solid #111', paddingTop: '15px' }}>
                       {s.status}
                     </div>
                   </div>
@@ -177,7 +189,7 @@ export default function AUITerminal() {
           <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'terminalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}>
             <style>{`@keyframes terminalSlideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }`}</style>
             
-            <div style={{ width: '440px', border: '1px solid #222', backgroundColor: '#0a0a0a', padding: '60px 40px' }}>
+            <div style={{ width: '100%', maxWidth: '440px', border: '1px solid #222', backgroundColor: '#0a0a0a', padding: '40px 25px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '50px' }}>
                 <span style={{ fontSize: '9px', letterSpacing: '0.4em', color: '#4b5563', fontWeight: 'bold' }}>CONSULT_INTAKE [v12.0]</span>
                 <button onClick={() => { setView('home'); setStatus('idle'); }} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px' }}>[X] CANCEL</button>
@@ -216,7 +228,7 @@ export default function AUITerminal() {
       </div>
 
       {/* FIXED LEGIBILITY COMPRESSED FOOTER */}
-      <footer style={{ padding: '0 0 80px 0', fontSize: '8px', color: '#6b7280', letterSpacing: '0.5em', textAlign: 'center' }}>
+      <footer style={{ padding: '0 0 60px 0', fontSize: '8px', color: '#6b7280', letterSpacing: '0.5em', textAlign: 'center' }}>
         RESTRICTED ACCESS // © 2026 AUTHENTIC INTELLIGENCE INC.
       </footer>
     </div>
