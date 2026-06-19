@@ -23,7 +23,7 @@ export default function AUITerminal() {
   const [view, setView] = useState('home'); // 'home' or 'intake'
   const [status, setStatus] = useState('idle');
 
-  // Descriptions explicitly tailored to support the baked-in text on your uploaded image
+  // Descriptions explicitly tailored to support the baked-in text on your uploaded image [cite: 74, 134]
   const processSteps = [
     { title: 'PHASE 01 // MAPPING', desc: 'Identify custom, non-obvious vulnerabilities and strategic variables specific to your sector.' },
     { title: 'PHASE 02 // PIPELINES', desc: 'Construct dedicated data architecture traps to ingest, filter, and verify pristine data feeds.' },
@@ -31,7 +31,7 @@ export default function AUITerminal() {
     { title: 'PHASE 04 // WARNING', desc: 'Issue predictive trend break alerts directly to your secure dashboard before the market reacts.' }
   ];
 
-  // Restored Operational Sectors Array
+  // Restored Operational Sectors Array [cite: 15, 93, 95]
   const sectors = [
     { name: 'DEFENCE & INTEL', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
     { name: 'MEDIA & DISINFO', path: 'M2 3h20v14H2z M12 17v4' },
@@ -99,7 +99,7 @@ export default function AUITerminal() {
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
                 </h1>
                 <p style={{ color: '#fff', maxWidth: '480px', marginBottom: '50px', lineHeight: '1.6', fontSize: '19px', fontWeight: '300' }}>
-                  AUI monitors latent data pipelines to detect trend breaks before they manifest in the public narrative.
+                  AUI monitors latent data pipelines to detect trend breaks before they manifest in the public narrative. [cite: 61]
                 </p>
                 <button onClick={() => setView('intake')} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>
                   SCHEDULE STRATEGIC CONSULT
@@ -123,14 +123,14 @@ export default function AUITerminal() {
 
             {/* INTEGRATED ARCHITECTURE PROCESS TIMELINE DISPLAY */}
             <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
-              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS</h2>
+              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS [cite: 134]</h2>
               
-              {/* UI frame wrapper with flexbox centering applied */}
-              <div style={{ width: '100%', backgroundColor: '#0a0a0a', border: '1px solid #111', padding: '40px 20px', marginBottom: '60px', borderRadius: '4px', display: 'flex', justifyContent: 'center' }}>
+              {/* UI frame wrapper with flexbox centering and crop patch applied */}
+              <div style={{ width: '100%', backgroundColor: '#0a0a0a', border: '1px solid #111', padding: '40px 20px', marginBottom: '60px', borderRadius: '4px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
                 <img 
                   src="/process-map.png" 
                   alt="AUI 4-Phase System Infrastructure Map" 
-                  style={{ width: '60%', height: 'auto', display: 'block', opacity: 0.9 }}
+                  style={{ width: '60%', height: 'auto', display: 'block', opacity: 0.9, clipPath: 'inset(0px 0px 8% 0px)' }}
                   onError={(e) => { e.target.style.display = 'none'; }} 
                 />
               </div>
@@ -146,9 +146,9 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* RESTORED OPERATIONAL SECTORS SECTION */}
+            {/* OPERATIONAL SECTORS SECTION */}
             <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '140px' }}>
-              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS</h2>
+              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '60px' }}>[03] OPERATIONAL SECTORS [cite: 93, 95]</h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1px', backgroundColor: '#111', border: '1px solid #111' }}>
                 {sectors.map((s) => (
                   <div key={s.name} style={{ backgroundColor: '#050505', padding: '60px 20px', textAlign: 'center' }}>
