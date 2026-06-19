@@ -90,7 +90,8 @@ export default function AUITerminal() {
         
         .time-ticker-desktop { display: none; }
         
-        .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 130px; margin-bottom: 20px; min-height: auto; align-items: center; text-align: center; }
+        /* ADJUSTED: Mobile landing page compression tuning */
+        .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 115px; margin-bottom: 15px; min-height: auto; align-items: center; text-align: center; }
         
         .globe-container { position: relative; width: 90vw; max-width: 480px; height: 420px; margin-top: -10px; margin-bottom: -10px; overflow: hidden; pointer-events: none; display: flex; justify-content: center; align-items: center; margin-left: auto; margin-right: auto; }
         
@@ -111,13 +112,14 @@ export default function AUITerminal() {
         .nav-links a:hover, .nav-links button:hover { color: #2563eb; }
         .mobile-prefix-marker { display: none; }
 
+        /* ADJUSTED: Mobile box container adjustments to ensure edge clearance */
         .intake-terminal-box {
           width: 100%;
           max-width: 440px;
           border: 1px solid #222;
           background-color: #0a0a0a;
           padding: 30px 20px;
-          margin: 140px auto 40px auto;
+          margin: 125px auto 40px auto;
           box-sizing: border-box;
         }
 
@@ -246,7 +248,6 @@ export default function AUITerminal() {
                     key={s.name} 
                     className="sector-node-card"
                   >
-                    {/* FIXED: Removed broken inner click references to resolve build log syntax crash */}
                     <div style={{ textAlign: 'center', width: '100%' }}>
                       <h4 style={{ fontSize: '16px', letterSpacing: '0.1em', color: '#fff', fontWeight: 'bold', fontFamily: 'monospace', margin: '0 0 25px 0' }}>
                         {s.name.toUpperCase()}
@@ -285,7 +286,8 @@ export default function AUITerminal() {
               ) : (
                 <form onSubmit={handleFormSubmit}>
                   <label style={{ display: 'block', fontSize: '9px', color: '#4b5563', marginBottom: '15px', letterSpacing: '0.2em', fontFamily: 'monospace' }}>ENTITY_IDENTITY</label>
-                  <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #222', padding: '18px', color: 'white', fontFamily: 'monospace', marginBottom: '35px', outline: 'none', fontSize: '14px', boxSizing: 'border-box' }} placeholder="identity@org.sovereign" />
+                  {/* ADJUSTED: Set minimum font-size rules to 16px to prevent iOS input container zooming shifts */}
+                  <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #222', padding: '18px', color: 'white', fontFamily: 'monospace', marginBottom: '35px', outline: 'none', fontSize: '16px', boxSizing: 'border-box', borderRadius: '0' }} placeholder="identity@org.sovereign" />
                   
                   <button type="submit" disabled={status === 'loading'} style={{ width: '100%', backgroundColor: 'white', color: 'black', padding: '22px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>
                     {status === 'loading' ? "ROUTING HANDSHAKE..." : "INITIALIZE SECURE CONNECTION"}
