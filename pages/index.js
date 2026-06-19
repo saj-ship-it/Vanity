@@ -78,7 +78,6 @@ export default function AUITerminal() {
           animation: dynamicSpotlight 16s infinite ease-in-out;
         }
         
-        /* FIX: LOCKED FIXED STICKY HEADER PLATFORM ARCHITECTURE */
         .header-fixed-carrier {
           position: fixed;
           top: 0;
@@ -95,7 +94,6 @@ export default function AUITerminal() {
         .header-container { display: flex; flex-direction: column; gap: 15px; max-width: 1200px; margin: 0 auto; width: 100%; }
         .header-meta-row { display: flex; flex-direction: column; gap: 10px; justify-content: space-between; align-items: flex-start; width: 100%; }
         
-        /* Hero compensation push due to sticky header layout */
         .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 140px; margin-bottom: 20px; min-height: auto; align-items: flex-start; }
         .globe-container { position: relative; width: 100%; max-width: 480px; height: 350px; margin-top: 20px; overflow: hidden; pointer-events: none; }
         
@@ -126,14 +124,17 @@ export default function AUITerminal() {
           .header-fixed-carrier { padding: 25px 40px 15px 40px; }
           .header-meta-row { flex-direction: row; align-items: center; gap: 15px; }
           .hero-layout { flex-direction: row; align-items: center; min-height: 460px; margin-bottom: 40px; margin-top: 160px; }
-          .globe-container { position: absolute; right: -15%; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; }
+          
+          /* FIX: MOVED GLOBE 20% OF CANVAS TO LEFT FOR PERFECT TABLET PLACEMENT */
+          .globe-container { position: absolute; right: 5%; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; }
+          
           .process-img { width: 60%; }
           .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
           .nav-links { gap: 30px; }
         }
       `}</style>
       
-      {/* LOCKED FIXED STICKY HEADER WRAPPER */}
+      {/* FIXED HEADER WRAPPER */}
       <div className="header-fixed-carrier">
         <header className="header-container">
           <div className="header-meta-row">
