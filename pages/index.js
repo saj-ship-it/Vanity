@@ -60,9 +60,9 @@ export default function AUITerminal() {
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden', scrollBehavior: 'smooth', scrollPaddingTop: '130px' }}>
       
-      {/* CUSTOM TAB HEADING HEADER MANIPULATION */}
+      
       <Head>
-        <title>AUTHENTIC INTELLIGENCE // FIND SIGNAL</title>
+        <title>Find Signal</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </Head>
 
@@ -153,15 +153,15 @@ export default function AUITerminal() {
         }
       `}</style>
       
-      {/* HEADER WRAPPER */}
+      
       <div className="header-fixed-carrier">
         <header className="header-container">
           <div className="header-meta-row">
             <strong style={{ border: '1px solid #333', padding: '6px 12px', letterSpacing: '0.3em', fontSize: '9px', opacity: 0.9, display: 'inline-block' }}>AUTHENTIC INTELLIGENCE</strong>
-            <SystemStatus />
+            <SystemStatus/>
           </div>
           
-          {/* LINK ROW */}
+          
           <nav className="nav-links">
             {view === 'home' ? (
               <>
@@ -184,7 +184,7 @@ export default function AUITerminal() {
           /* VIEW 01: CORE ACTIVE SYSTEM PORTAL */
           <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
             
-            {/* HERO SECTION */}
+            
             <section className="hero-layout">
               <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10, padding: '0 10px' }}>
                 <h1 style={{ fontSize: 'clamp(40px, 7vw, 82px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.04em', marginBottom: '25px' }}>
@@ -195,7 +195,7 @@ export default function AUITerminal() {
                 </p>
               </div>
               
-              {/* RESPONSIVE MASKED GLOBE */}
+              
               <div className="globe-container">
                 <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
                   <defs>
@@ -210,11 +210,11 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* SECTION [01.5]: THE MANIFESTO BRIDGE */}
+            
             <section id="objective" style={{ borderTop: '1px solid #111', paddingTop: '60px', paddingBottom: '40px', maxWidth: '1000px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '30px' }}>[01] CORE MISSION OBJECTIVE</h2>
               <p style={{ fontSize: 'clamp(22px, 3.5vw, 36px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#fff' }}>
-                We deploy <span style={{ color: '#2563eb' }}>customized intelligence pipelines</span> engineered to detect hidden risks, opportunities, and threats, giving high stakes decision makers the absolute advance warning required to act first.
+                We deploy <span style={{ color: '#2563eb' }}>customized intelligence pipelines</span> engineered to detect hidden risks, opportunities, and threats—giving high-stakes decision-makers the absolute advance warning required to act first.
               </p>
             </section>
 
@@ -241,7 +241,7 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* HARMONIZED OPERATIONAL SECTORS MATRIX */}
+            
             <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '20px' }}>[03] OPERATIONAL SECTORS</h2>
               
