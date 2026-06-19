@@ -78,13 +78,13 @@ export default function AUITerminal() {
           animation: dynamicSpotlight 16s infinite ease-in-out;
         }
         /* Responsiveness Framework */
-        .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 40px; margin-bottom: 60px; min-height: auto; align-items: flex-start; }
-        .globe-container { position: relative; width: 100%; max-width: 480px; height: 350px; margin-top: 40px; overflow: hidden; pointer-events: none; }
+        .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 40px; margin-bottom: 20px; min-height: auto; align-items: flex-start; }
+        .globe-container { position: relative; width: 100%; max-width: 480px; height: 350px; margin-top: 20px; overflow: hidden; pointer-events: none; }
         .process-img { width: 100%; height: auto; display: block; opacity: 0.9; }
         .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
 
         @media (min-width: 768px) {
-          .hero-layout { flex-direction: row; align-items: center; min-height: 520px; margin-bottom: 80px; }
+          .hero-layout { flex-direction: row; align-items: center; min-height: 460px; margin-bottom: 40px; }
           .globe-container { position: absolute; right: -15%; top: 45%; transform: translateY(-50%); width: 780px; height: 780px; max-width: none; margin-top: 0; }
           .process-img { width: 60%; }
           .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
@@ -105,18 +105,15 @@ export default function AUITerminal() {
           /* VIEW 01: CORE ACTIVE SYSTEM PORTAL */
           <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
             
-            {/* HERO SECTION */}
+            {/* HERO SECTION (BUTTON MOVED, BOTTOM SPACING REDUCED) */}
             <section className="hero-layout">
               <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10 }}>
                 <h1 style={{ fontSize: 'clamp(40px, 7vw, 82px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.04em', marginBottom: '35px' }}>
                   FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
                 </h1>
-                <p style={{ color: '#9ca3af', maxWidth: '440px', marginBottom: '50px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
+                <p style={{ color: '#9ca3af', maxWidth: '440px', margin: 0, lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
                   Predictive Intelligence for Enterprise
                 </p>
-                <button onClick={() => setView('intake')} style={{ backgroundColor: 'white', color: 'black', padding: '22px 45px', fontWeight: '900', border: 'none', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer' }}>
-                  SCHEDULE STRATEGIC CONSULT
-                </button>
               </div>
               
               {/* RESPONSIVE MASKED GLOBE */}
@@ -134,8 +131,8 @@ export default function AUITerminal() {
               </div>
             </section>
 
-            {/* SECTION [01.5]: THE MANIFESTO BRIDGE */}
-            <section style={{ borderTop: '1px solid #111', paddingTop: '80px', paddingBottom: '40px', maxWidth: '1000px' }}>
+            {/* SECTION [01.5]: THE MANIFESTO BRIDGE (DEAD SPACE LIGHTENED) */}
+            <section style={{ borderTop: '1px solid #111', paddingTop: '60px', paddingBottom: '40px', maxWidth: '1000px' }}>
               <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '30px' }}>[01] CORE MISSION OBJECTIVE</h2>
               <p style={{ fontSize: 'clamp(22px, 3.5vw, 36px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#fff' }}>
                 We deploy <span style={{ color: '#2563eb' }}>customized intelligence pipelines</span> engineered to detect hidden risks, opportunities, and threats—giving high-stakes decision-makers the absolute advance warning required to act first.
@@ -167,9 +164,8 @@ export default function AUITerminal() {
 
             {/* HARMONIZED OPERATIONAL SECTORS MATRIX */}
             <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
-              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '30px' }}>[03] OPERATIONAL SECTORS</h2>
+              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '20px' }}>[03] OPERATIONAL SECTORS</h2>
               
-              {/* FIXED: TYPOGRAPHICALLY IDENTICAL SUBTITLE LAYER MATCHED TO CORE MISSION BLOCK */}
               <p style={{ fontSize: 'clamp(20px, 3.2vw, 30px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#9ca3af', maxWidth: '1000px', marginBottom: '60px' }}>
                 Each node represents a fully isolated, <span style={{ color: '#fff' }}>100% custom architecture</span> under the absolute control of the user, deployed to secure sovereign operational advantages.
               </p>
