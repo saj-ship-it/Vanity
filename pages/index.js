@@ -122,7 +122,7 @@ export default function AUITerminal() {
     { label: 'DURATION', value: 'Four months' },
     { label: 'SCOPE', value: 'One region, site or operational service' },
     { label: 'SOURCES', value: 'Two or three feeds you already use' },
-    { label: 'OUTCOME', value: 'A go or no-go evaluation built on your own data' },
+    { label: 'OUTCOME', value: 'An evaluation built on your own data' },
     { label: 'TERMS', value: 'Fixed price' }
   ];
 
@@ -363,7 +363,7 @@ export default function AUITerminal() {
         <section id="pilot" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
           <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[05] NEXT STEP</h2>
           <p style={{ ...statement, maxWidth: '1000px', marginBottom: '50px' }}>
-            Prove the advantage on <span style={{ color: '#2563eb' }}>your own data</span>. A four-month, fixed-price pilot with a clear go or no-go at the end.
+            Prove the advantage on <span style={{ color: '#2563eb' }}>your own data</span>. A four-month, fixed-price pilot.
           </p>
 
           <div style={{ maxWidth: '800px', marginBottom: '50px', borderBottom: '1px solid #1a1a1a' }}>
