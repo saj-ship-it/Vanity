@@ -372,7 +372,7 @@ export default function AUITerminal() {
             ))}
           </div>
 
-          <a className="cta-button" href={`mailto:${CONTACT_EMAIL}?subject=AUi%20Terminal%20pilot`}>REQUEST_A_PILOT</a>
+          <a className="cta-button" href={`mailto:${CONTACT_EMAIL}?subject=AUi%20Terminal%20pilot`}>REQUEST A PILOT</a>
         </section>
       </main>
 
