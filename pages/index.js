@@ -3,22 +3,26 @@ import Head from 'next/head';
 
 const CONTACT_EMAIL = 'info@findsignal.ai';
 
-// --- PERSISTENT INSTITUTIONAL HEADER STATUS ---
-const SystemStatus = () => {
-  const [time, setTime] = useState(new Date().toUTCString());
+const SITE_URL = 'https://www.authenticintel.com';
+const SITE_TITLE = 'Authentic Intelligence | AUi Terminal';
+const SITE_DESCRIPTION = 'AUi Terminal is the AI-powered fusion and command layer for enterprise, government and critical national infrastructure. One view. Every source. Every decision on record.';
+
+// Colour tokens: every text colour below meets WCAG AA (4.5:1) on the #050505 background
+const LABEL_GREY = '#8b93a1';
+const LINK_BLUE = '#5b8def';
+
+// --- HEADER CLOCK (UTC, desktop only; empty until mounted so server and client markup match) ---
+const UtcClock = () => {
+  const [time, setTime] = useState('');
   useEffect(() => {
-    const timer = setInterval(() => setTime(new Date().toUTCString()), 1000);
+    const tick = () => setTime(new Date().toUTCString().replace('GMT', 'UTC'));
+    tick();
+    const timer = setInterval(tick, 1000);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="system-status-container" style={{ display: 'flex', gap: '20px', alignItems: 'center', fontSize: '9px', fontFamily: 'monospace', color: '#4b5563', letterSpacing: '0.1em' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 8px #22c55e' }} />
-        <span>SYSTEM OPERATIONAL</span>
-      </div>
-      <span className="time-ticker-desktop" suppressHydrationWarning>{time}</span>
-    </div>
+    <span className="time-ticker-desktop" style={{ fontSize: '10px', fontFamily: 'monospace', color: LABEL_GREY, letterSpacing: '0.1em' }}>{time}</span>
   );
 };
 
@@ -96,7 +100,7 @@ export default function AUITerminal() {
     { title: 'GAPS DISCLOSED, NEVER HIDDEN', desc: 'Every source carries a status: live, simulated or not connected. Missing telemetry is flagged explicitly, so silence is never mistaken for safety.' },
     { title: 'DEFENSIBLE AUDIT TRAIL', desc: 'A time-stamped, tamper-evident record of what was known, who decided and when. Any decision can be reconstructed for post-incident review, audit or legal scrutiny.' },
     { title: 'REGULATORY ALIGNMENT', desc: 'Architected for the human-oversight, transparency and record-keeping obligations placed on high-risk AI systems, from the EU AI Act to emerging national and sector frameworks.' },
-    { title: 'DATA SOVEREIGNTY', desc: 'Each client’s data stays isolated and is never pooled. Models run locally with no data leaving the deployment, on a certified sovereign cloud or your own infrastructure.' }
+    { title: 'DATA SOVEREIGNTY', desc: 'Each client’s data stays isolated and is never pooled. Models can run locally with no data leaving the deployment, deployable on a certified sovereign cloud or on your own infrastructure.' }
   ];
 
   // Who the platform serves
@@ -126,22 +130,42 @@ export default function AUITerminal() {
     { label: 'TERMS', value: 'Fixed price' }
   ];
 
-  const sectionLabel = { fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563' };
+  const sectionLabel = { fontSize: '11px', letterSpacing: '0.4em', color: LABEL_GREY, fontWeight: 'normal', margin: 0 };
   const statement = { fontSize: 'clamp(22px, 3.5vw, 36px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#fff' };
   const subStatement = { fontSize: 'clamp(20px, 3.2vw, 30px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#9ca3af', maxWidth: '1000px' };
-  const cardTitle = { fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.2em', color: '#fff', marginBottom: '15px' };
+  const cardTitle = { fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.2em', color: '#fff', margin: '0 0 15px 0' };
   const cardBody = { fontSize: '14px', color: '#9ca3af', lineHeight: '1.6', fontWeight: '300', margin: 0 };
 
   return (
-    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden', scrollBehavior: 'smooth', scrollPaddingTop: '130px' }}>
+    <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden' }}>
 
       <Head>
-        <title>Authentic Intelligence | AUi Terminal</title>
-        <meta name="description" content="AUi Terminal is the AI-powered fusion and command layer for enterprise, government and critical national infrastructure. Predictive intelligence, applied: see what is coming and act first." />
+        <title>{SITE_TITLE}</title>
+        <meta name="description" content={SITE_DESCRIPTION} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#050505" />
+        <link rel="canonical" href={`${SITE_URL}/`} />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Authentic Intelligence" />
+        <meta property="og:title" content={SITE_TITLE} />
+        <meta property="og:description" content={SITE_DESCRIPTION} />
+        <meta property="og:url" content={`${SITE_URL}/`} />
+        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="One view. Every source. Every decision on record. AUi Terminal by Authentic Intelligence." />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={SITE_TITLE} />
+        <meta name="twitter:description" content={SITE_DESCRIPTION} />
+        <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
       </Head>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .spotlight-lens { animation: none; } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes dynamicSpotlight {
           0% { cx: 320px; cy: 300px; r: 75px; }
@@ -192,7 +216,7 @@ export default function AUITerminal() {
           border-radius: 4px;
           transition: border-color 0.2s ease;
         }
-        .sector-card:hover { border-color: #2563eb; }
+        .sector-card:hover, .sector-card:focus-visible { border-color: #2563eb; }
         .sector-card-cta { border-style: dashed; border-color: #333; text-decoration: none; }
         .sector-icon { width: 44px; height: 44px; border: 1px solid #1f2937; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
 
@@ -203,11 +227,12 @@ export default function AUITerminal() {
 
         .nav-links { display: flex; justify-content: space-between; width: 100%; gap: 4px; font-family: monospace; letter-spacing: 0.02em; }
         .nav-links a { color: #a3a3a3; text-decoration: none; font-size: 10px; font-weight: bold; white-space: nowrap; font-family: monospace; }
-        .nav-links a:hover { color: #2563eb; }
+        .nav-links a:hover, .nav-links a:focus-visible { color: #5b8def; }
         .mobile-prefix-marker { display: none; }
 
-        /* Tablet & Desktop Adjustments Override */
+        /* Tablet and desktop */
         @media (min-width: 768px) {
+          html { scroll-padding-top: 96px; }
           .header-fixed-carrier { padding: 25px 40px 15px 40px; }
           .header-container { gap: 15px; }
           .header-meta-row { align-items: center; gap: 15px; }
@@ -228,20 +253,21 @@ export default function AUITerminal() {
           .nav-links { justify-content: flex-start; gap: 30px; letter-spacing: 0.2em; }
           .nav-links a { font-size: 11px; }
         }
-      `}</style>
+      ` }} />
 
       <div className="header-fixed-carrier">
         <header className="header-container">
           <div className="header-meta-row">
-            <strong style={{ border: '1px solid #333', padding: '6px 12px', letterSpacing: '0.3em', fontSize: '9px', opacity: 0.9, display: 'inline-block' }}>AUTHENTIC INTELLIGENCE</strong>
-            <SystemStatus/>
+            <strong style={{ border: '1px solid #333', padding: '6px 12px', letterSpacing: '0.3em', fontSize: '10px', display: 'inline-block' }}>AUTHENTIC INTELLIGENCE</strong>
+            <UtcClock />
           </div>
 
           <nav className="nav-links">
-            <a href="#objective"><span className="mobile-prefix-marker">// </span>01 OBJ</a>
-            <a href="#process"><span className="mobile-prefix-marker">// </span>02 PROCESS</a>
-            <a href="#control"><span className="mobile-prefix-marker">// </span>03 CONTROL</a>
-            <a href="#sectors"><span className="mobile-prefix-marker">// </span>04 SERVE</a>
+            <a href="#objective"><span className="mobile-prefix-marker">// 01 </span>MISSION</a>
+            <a href="#process"><span className="mobile-prefix-marker">// 02 </span>PROCESS</a>
+            <a href="#control"><span className="mobile-prefix-marker">// 03 </span>TRUST</a>
+            <a href="#sectors"><span className="mobile-prefix-marker">// 04 </span>WHO WE SERVE</a>
+            <a href="#pilot"><span className="mobile-prefix-marker">// 05 </span>PILOT</a>
           </nav>
         </header>
       </div>
@@ -259,14 +285,14 @@ export default function AUITerminal() {
           </div>
 
           <div className="globe-container">
-            <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
+            <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }} aria-hidden="true">
               <defs>
                 <mask id="lensReveal">
                   <rect width="780" height="780" fill="white" />
                   <circle className="spotlight-lens" fill="black" filter="blur(25px)" />
                 </mask>
               </defs>
-              <image href="/globe-signal.png" width="780" height="780" style={{ mixBlendMode: 'screen' }} />
+              <image href="/globe-signal.webp" width="780" height="780" style={{ mixBlendMode: 'screen' }} />
               <rect width="780" height="780" fill="#050505" fillOpacity="0.75" mask="url(#lensReveal)" />
             </svg>
           </div>
@@ -278,11 +304,11 @@ export default function AUITerminal() {
             AUi turns fragmented data into <span style={{ color: '#2563eb' }}>decision advantage</span>. It fuses every source you own or license into one live operating picture, uses AI to detect the weak signals and pattern breaks that precede disruption, and puts a ranked, explained recommendation in front of decision-makers while there is still time to act.
           </p>
 
-          <h3 style={{ ...sectionLabel, fontSize: '10px', marginBottom: '30px' }}>THE SIGNAL IS ALREADY IN YOUR DATA. NO ONE SEES IT IN TIME.</h3>
+          <p style={{ ...sectionLabel, marginBottom: '30px' }}>THE SIGNAL IS ALREADY IN YOUR DATA. NO ONE SEES IT IN TIME.</p>
           <div className="card-grid">
             {problems.map((p) => (
               <div key={p.title} style={{ borderLeft: '2px solid #333', paddingLeft: '20px' }}>
-                <h4 style={cardTitle}>{p.title}</h4>
+                <h3 style={cardTitle}>{p.title}</h3>
                 <p style={cardBody}>{p.desc}</p>
               </div>
             ))}
@@ -299,7 +325,7 @@ export default function AUITerminal() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '30px' }}>
             {processSteps.map((step) => (
               <div key={step.title} style={{ borderLeft: '2px solid #2563eb', paddingLeft: '20px' }}>
-                <h4 style={cardTitle}>{step.title}</h4>
+                <h3 style={cardTitle}>{step.title}</h3>
                 <p style={cardBody}>{step.desc}</p>
               </div>
             ))}
@@ -315,7 +341,7 @@ export default function AUITerminal() {
           <div className="card-grid">
             {safeguards.map((s) => (
               <div key={s.title} style={{ borderLeft: '2px solid #2563eb', paddingLeft: '20px' }}>
-                <h4 style={cardTitle}>{s.title}</h4>
+                <h3 style={cardTitle}>{s.title}</h3>
                 <p style={cardBody}>{s.desc}</p>
               </div>
             ))}
@@ -332,17 +358,17 @@ export default function AUITerminal() {
           <div className="card-grid" style={{ marginBottom: '60px' }}>
             {audiences.map((a) => (
               <div key={a.title} style={{ borderLeft: '2px solid #2563eb', paddingLeft: '20px' }}>
-                <h4 style={cardTitle}>{a.title}</h4>
+                <h3 style={cardTitle}>{a.title}</h3>
                 <p style={{ fontSize: '17px', color: '#fff', fontWeight: '600', margin: '0 0 10px 0' }}>{a.lead}</p>
                 <p style={cardBody}>{a.desc}</p>
               </div>
             ))}
           </div>
 
-          <h3 style={{ ...sectionLabel, fontSize: '10px', marginBottom: '30px' }}>SECTORS</h3>
+          <p style={{ ...sectionLabel, marginBottom: '30px' }}>SECTORS</p>
 
           <div className="responsive-sectors">
-            {sectors.map((s, i) => (
+            {sectors.map((s) => (
               <div key={s.name} className="sector-card">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
                   <div className="sector-icon">
@@ -350,13 +376,11 @@ export default function AUITerminal() {
                       <path d={s.path} />
                     </svg>
                   </div>
-                  {s.tag ? (
-                    <span style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#22c55e', border: '1px solid #14532d', padding: '4px 8px', borderRadius: '2px', textTransform: 'uppercase' }}>{s.tag}</span>
-                  ) : (
-                    <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', color: '#374151' }}>{String(i + 1).padStart(2, '0')}</span>
+                  {s.tag && (
+                    <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', color: '#22c55e', border: '1px solid #14532d', padding: '4px 8px', borderRadius: '2px', textTransform: 'uppercase' }}>{s.tag}</span>
                   )}
                 </div>
-                <h4 style={{ fontSize: '17px', fontWeight: '600', color: '#fff', margin: '0 0 10px 0', letterSpacing: '-0.01em' }}>{s.name}</h4>
+                <h3 style={{ fontSize: '17px', fontWeight: '600', color: '#fff', margin: '0 0 10px 0', letterSpacing: '-0.01em' }}>{s.name}</h3>
                 <p style={{ ...cardBody, fontSize: '14px' }}>{s.desc}</p>
               </div>
             ))}
@@ -367,15 +391,15 @@ export default function AUITerminal() {
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14 M5 12h14" /></svg>
                 </div>
               </div>
-              <h4 style={{ fontSize: '17px', fontWeight: '600', color: '#fff', margin: '0 0 10px 0', letterSpacing: '-0.01em' }}>Your sector</h4>
+              <h3 style={{ fontSize: '17px', fontWeight: '600', color: '#fff', margin: '0 0 10px 0', letterSpacing: '-0.01em' }}>Your sector</h3>
               <p style={{ ...cardBody, fontSize: '14px', marginBottom: '20px' }}>Not listed? Every deployment is engineered for your mission.</p>
-              <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.2em', color: '#2563eb', marginTop: 'auto' }}>DISCUSS YOUR USE CASE &rarr;</span>
+              <span style={{ fontFamily: 'monospace', fontSize: '11px', letterSpacing: '0.2em', color: LINK_BLUE, marginTop: 'auto' }}>DISCUSS YOUR USE CASE &rarr;</span>
             </a>
           </div>
         </section>
 
         <section id="pilot" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
-          <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[05] NEXT STEP</h2>
+          <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[05] PILOT</h2>
           <p style={{ ...statement, maxWidth: '1000px', marginBottom: '50px' }}>
             Prove the advantage on <span style={{ color: '#2563eb' }}>your own data</span>. A four-month, fixed-price pilot.
           </p>
@@ -383,7 +407,7 @@ export default function AUITerminal() {
           <div style={{ maxWidth: '800px', marginBottom: '50px', borderBottom: '1px solid #1a1a1a' }}>
             {pilot.map((row) => (
               <div key={row.label} className="pilot-row">
-                <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.2em', color: '#4b5563', minWidth: '120px' }}>{row.label}</span>
+                <span style={{ fontFamily: 'monospace', fontSize: '11px', letterSpacing: '0.2em', color: LABEL_GREY, minWidth: '120px' }}>{row.label}</span>
                 <span style={{ fontSize: '16px', color: '#e5e7eb', fontWeight: '300' }}>{row.value}</span>
               </div>
             ))}
@@ -393,11 +417,11 @@ export default function AUITerminal() {
         </section>
       </main>
 
-      <div style={{ width: '100%', textAlign: 'center', fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.3em', color: '#9ca3af', paddingBottom: '30px', borderTop: '1px solid #111', paddingTop: '40px', maxWidth: '1200px', margin: '0 auto' }}>
+      <div style={{ width: '100%', textAlign: 'center', fontFamily: 'monospace', fontSize: '11px', letterSpacing: '0.3em', color: '#9ca3af', paddingBottom: '30px', borderTop: '1px solid #111', paddingTop: '40px', maxWidth: '1200px', margin: '0 auto' }}>
         INQUIRIES // <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: '#9ca3af', textDecoration: 'none' }}>{CONTACT_EMAIL}</a>
       </div>
 
-      <footer style={{ padding: '0 0 60px 0', fontSize: '8px', color: '#6b7280', letterSpacing: '0.5em', textAlign: 'center' }}>
+      <footer style={{ padding: '0 20px 60px 20px', fontSize: '11px', color: LABEL_GREY, letterSpacing: '0.3em', textAlign: 'center' }}>
         © 2026 AUTHENTIC INTELLIGENCE INC.
       </footer>
     </div>

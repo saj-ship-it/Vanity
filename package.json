@@ -1,7 +1,14 @@
 {
+  "name": "authenticintel-site",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
   "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "next": "latest"
+    "next": "16.4.6",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   }
 }
