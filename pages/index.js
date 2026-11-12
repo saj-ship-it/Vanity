@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 
+const CONTACT_EMAIL = 'info@findsignal.ai';
+
 // --- PERSISTENT INSTITUTIONAL HEADER STATUS ---
 const SystemStatus = () => {
   const [time, setTime] = useState(new Date().toUTCString());
@@ -15,59 +17,122 @@ const SystemStatus = () => {
         <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 8px #22c55e' }} />
         <span>SYSTEM_OPERATIONAL</span>
       </div>
-      <span className="time-ticker-desktop">{time}</span>
+      <span className="time-ticker-desktop" suppressHydrationWarning>{time}</span>
     </div>
   );
 };
 
+// --- 4-PHASE PROCESS DIAGRAM (line icons joined by a blue rail) ---
+const ProcessDiagram = () => {
+  const icon = { fill: 'none', stroke: '#fff', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round' };
+  const label = { fill: '#fff', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 30, fontWeight: 500, textAnchor: 'middle', letterSpacing: '0.02em' };
+  return (
+    <svg viewBox="0 0 1600 420" className="process-img" role="img" aria-label="Connect, verify, prioritize, decide and record">
+      {/* Connector rail */}
+      {[[330, 470], [730, 870], [1130, 1270]].map(([x1, x2]) => (
+        <line key={x1} x1={x1} y1="160" x2={x2} y2="160" stroke="#2563eb" strokeWidth="3" />
+      ))}
+
+      {/* 01 CONNECT: many feeds converging into one node */}
+      <g {...icon}>
+        <circle cx="270" cy="160" r="26" />
+        <path d="M244 160 H150 M247 148 Q200 100 140 90 M247 172 Q200 220 140 230 M253 141 Q215 60 170 40 M253 179 Q215 260 170 280" />
+        <circle cx="140" cy="90" r="6" fill="#fff" /><circle cx="140" cy="230" r="6" fill="#fff" />
+        <circle cx="150" cy="160" r="6" fill="#fff" /><circle cx="170" cy="40" r="6" fill="#fff" /><circle cx="170" cy="280" r="6" fill="#fff" />
+      </g>
+
+      {/* 02 VERIFY: overlapping sources with a check */}
+      <g {...icon}>
+        <circle cx="570" cy="160" r="85" />
+        <circle cx="630" cy="160" r="85" />
+        <path d="M570 165 L595 190 L640 135" strokeWidth="5" />
+      </g>
+
+      {/* 03 PRIORITIZE: ranked bars */}
+      <g {...icon}>
+        <rect x="930" y="70" width="180" height="34" rx="4" fill="#2563eb" stroke="#2563eb" />
+        <rect x="930" y="128" width="130" height="34" rx="4" />
+        <rect x="930" y="186" width="90" height="34" rx="4" />
+        <rect x="930" y="244" width="50" height="34" rx="4" />
+      </g>
+
+      {/* 04 DECIDE & RECORD: logbook with a validation tick */}
+      <g {...icon}>
+        <rect x="1330" y="60" width="160" height="210" rx="6" />
+        <path d="M1360 105 H1460 M1360 145 H1460 M1360 185 H1420" />
+        <circle cx="1480" cy="250" r="40" fill="#050505" />
+        <path d="M1462 250 L1476 264 L1500 236" strokeWidth="5" />
+      </g>
+
+      <text x="230" y="370" style={label}>1. CONNECT</text>
+      <text x="600" y="370" style={label}>2. VERIFY</text>
+      <text x="1000" y="370" style={label}>3. PRIORITIZE</text>
+      <text x="1410" y="350" style={label}>4. DECIDE</text>
+      <text x="1410" y="390" style={label}>&amp; RECORD</text>
+    </svg>
+  );
+};
+
 export default function AUITerminal() {
-  const [view, setView] = useState('home'); // 'home' or 'intake'
-  const [status, setStatus] = useState('idle');
+  // The gap the platform closes (from the AUi Terminal deck, Oct 2026)
+  const problems = [
+    { title: 'SCATTERED', desc: 'Weather, satellites, sensors, field reports and aircraft positions each live in their own tool.' },
+    { title: 'FRAGMENTED', desc: 'Every command level rebuilds its own picture, under pressure, from the same raw inputs.' },
+    { title: 'POORLY RECORDED', desc: 'Decisions take minutes. The record of what was known, and who decided what, lags behind.' }
+  ];
 
-  // Forces window frames back to coordinates (0,0) safely when layout splits
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    if (typeof document !== 'undefined') {
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    }
-  }, [view]);
-
-  // Descriptive 4-Step Operational Narrative Grid
+  // Connect → Verify → Prioritize → Decide & record
   const processSteps = [
-    { title: 'PHASE 01 // MAP LANDSCAPE', desc: 'Identify custom, non-obvious vulnerabilities and strategic variables specific to your sector.' },
-    { title: 'PHASE 02 // BUILD PIPELINES', desc: 'Construct dedicated data architecture traps to ingest, filter, and verify pristine data feeds.' },
-    { title: 'PHASE 03 // MONITOR SHIFTS', desc: 'Machine learning tracks raw streams 24/7, watching for subtle pattern breaks and anomalies.' },
-    { title: 'PHASE 04 // ADVANCE WARNING', desc: 'Issue predictive trend break alerts directly to your secure dashboard before the market reacts.' }
+    { title: 'PHASE 01 // CONNECT', desc: 'Ready-made adapters ingest the feeds you already own or license (satellite, weather, IoT sensors, video, field reports, existing operational systems) and add new sources as needed.' },
+    { title: 'PHASE 02 // VERIFY', desc: 'Source health is monitored continuously. Broken feeds are flagged and live data is cross-checked for agreement or contradiction.' },
+    { title: 'PHASE 03 // PRIORITIZE', desc: 'AI turns the fused picture into ranked priorities, ordering operational areas by urgency and showing the reasoning behind every recommendation.' },
+    { title: 'PHASE 04 // DECIDE & RECORD', desc: 'AI proposes; human authority decides. The recommendation, the officer who authorised it and the supervisor who validated it are logged.' }
   ];
 
-  // Harmonized Operational Sectors (Unified Casing & Status Copy)
+  // Safeguards: human control, explainability and sovereignty
+  const safeguards = [
+    { title: 'PEOPLE DECIDE', desc: 'The platform only recommends. Every decision is taken by the competent authority, under a four-eyes rule: whoever proposes cannot validate.' },
+    { title: 'EXPLAINABLE BY DESIGN', desc: 'No black boxes. The raw data and the logic behind every priority are on screen, next to the recommendation itself.' },
+    { title: 'GAPS MADE VISIBLE', desc: 'Each source shows whether it is live, simulated or not yet connected. Missing telemetry is flagged, and silence is never read as safety.' },
+    { title: 'DECISIONS ON RECORD', desc: 'A time-stamped, tamper-evident log of who decided what, when, and on what information. Built for post-incident review.' },
+    { title: 'EU AI ACT READY', desc: 'Designed around the human-oversight requirements the EU AI Act sets for high-risk systems.' },
+    { title: 'SOVEREIGN DATA', desc: 'Data is kept separate per client and never pooled. The AI runs locally, hosted on a certified sovereign cloud or on your own infrastructure.' }
+  ];
+
+  // One core architecture, configured per sector
   const sectors = [
-    { name: 'Defence & Intelligence', status: 'SIGNAL_ISOLATION // ACTIVE', path: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
-    { name: 'Media & Entertainment', status: 'NARRATIVE_TRACKING // LIVE', path: 'M2 3h20v14H2z M12 17v4' },
-    { name: 'Energy & Infrastructure', status: 'ANOMALY_DETECTION // MONITORING', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
-    { name: 'Logistics', status: 'SUPPLY_CHAIN_INTERCEPT // TRACKING', path: 'M1 3h15v13H1z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
-    { name: 'Politics', status: 'ASYMMETRIC_SURVEILLANCE // ONLINE', path: 'M12 5c4.97 0 9 1.34 9 3s-4.03 3-9 3-9-1.34-9-3 4.03-3 9-3z M3 8v11c0 1.66 4.03 3 9 3s9-1.34 9-3V8' },
-    { name: 'Financial Markets', status: 'VOLATILITY_INTERCEPT // SHIELDED', path: 'M18 20V4 M6 20v-4 M12 20v-10' }
+    { name: 'Civil Protection & Wildfire', status: 'LEAD_MODULE // PILOTS_OPEN', path: 'M12 2c1 3 4 5 4 9a4 4 0 01-8 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 0-8z M5 14a7 7 0 0014 0' },
+    { name: 'Energy & Utilities', status: 'CORE_PLATFORM // CONFIGURABLE', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+    { name: 'Transport & Logistics', status: 'CORE_PLATFORM // CONFIGURABLE', path: 'M1 3h15v13H1z M16 8h4l3 3v5h-7z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
+    { name: 'Telecommunications', status: 'CORE_PLATFORM // CONFIGURABLE', path: 'M12 12v10 M8 22h8 M12 12a1 1 0 100-.01 M8.5 8.5a5 5 0 017 0 M5.5 5.5a9 9 0 0113 0' }
   ];
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setStatus('loading');
-    setTimeout(() => { setStatus('success'); }, 1000);
-  };
+  // Pilot terms
+  const pilot = [
+    { label: 'DURATION', value: 'Four months' },
+    { label: 'SCOPE', value: 'One region, site or operational service' },
+    { label: 'SOURCES', value: 'Two or three feeds you already use' },
+    { label: 'OUTCOME', value: 'An evaluation report built on your own data' },
+    { label: 'TERMS', value: 'Fixed price' }
+  ];
+
+  const sectionLabel = { fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563' };
+  const statement = { fontSize: 'clamp(22px, 3.5vw, 36px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#fff' };
+  const subStatement = { fontSize: 'clamp(20px, 3.2vw, 30px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#9ca3af', maxWidth: '1000px' };
+  const cardTitle = { fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.2em', color: '#fff', marginBottom: '15px' };
+  const cardBody = { fontSize: '14px', color: '#9ca3af', lineHeight: '1.6', fontWeight: '300', margin: 0 };
 
   return (
     <div style={{ backgroundColor: '#050505', color: 'white', minHeight: '100vh', fontFamily: 'Inter, system-ui, sans-serif', padding: '0 20px', overflowX: 'hidden', scrollBehavior: 'smooth', scrollPaddingTop: '130px' }}>
-      
+
       <Head>
-        <title>Find Signal</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>Authentic Intelligence | AUi Terminal</title>
+        <meta name="description" content="AUi Terminal fuses every source into one qualified picture, ranks what matters, and records every decision. Decision support for crisis response, with people in control." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes terminalSlideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes dynamicSpotlight {
           0% { cx: 320px; cy: 300px; r: 75px; }
           25% { cx: 480px; cy: 340px; r: 80px; }
@@ -78,7 +143,7 @@ export default function AUITerminal() {
         .spotlight-lens {
           animation: dynamicSpotlight 16s infinite ease-in-out;
         }
-        
+
         .header-fixed-carrier {
           position: fixed;
           top: 0;
@@ -92,19 +157,20 @@ export default function AUITerminal() {
           padding: 15px 20px 12px 20px;
           box-sizing: border-box;
         }
-        
+
         .header-container { display: flex; flex-direction: column; gap: 12px; max-width: 1200px; margin: 0 auto; width: 100%; }
         .header-meta-row { display: flex; flex-direction: row; justify-content: space-between; align-items: center; width: 100%; }
-        
+
         .time-ticker-desktop { display: none; }
-        
+
         .hero-layout { display: flex; flex-direction: column; position: relative; margin-top: 115px; margin-bottom: 15px; min-height: auto; align-items: center; text-align: center; }
-        
+
         .globe-container { position: relative; width: 90vw; max-width: 480px; height: 420px; margin-top: -10px; margin-bottom: -10px; overflow: hidden; pointer-events: none; display: flex; justify-content: center; align-items: center; margin-left: auto; margin-right: auto; }
-        
-        .process-img { width: 100%; height: auto; display: block; opacity: 0.9; mix-blend-mode: screen; }
+
+        .process-img { width: 100%; height: auto; display: block; opacity: 0.9; }
         .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
-        
+        .card-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+
         .sector-node-card {
           background-color: #050505;
           border: 1px solid #1a1a1a;
@@ -113,20 +179,20 @@ export default function AUITerminal() {
           flex-direction: column;
           border-radius: 4px;
         }
-        
-        .nav-links { display: flex; justify-content: space-around; width: 100%; gap: 4px; font-family: monospace; letter-spacing: 0.05em; }
-        .nav-links a, .nav-links button { color: #a3a3a3; background: none; border: none; padding: 0; text-decoration: none; font-size: 11px; font-weight: bold; white-space: nowrap; font-family: monospace; cursor: pointer; }
-        .nav-links a:hover, .nav-links button:hover { color: #2563eb; }
+
+        .pilot-row { display: flex; flex-direction: column; gap: 6px; padding: 18px 0; border-top: 1px solid #1a1a1a; }
+
+        .cta-button { display: inline-block; background-color: #fff; color: #000; padding: 20px 36px; font-weight: 900; letter-spacing: 0.2em; font-size: 11px; text-decoration: none; font-family: monospace; }
+        .cta-button:hover { background-color: #2563eb; color: #fff; }
+
+        .nav-links { display: flex; justify-content: space-between; width: 100%; gap: 4px; font-family: monospace; letter-spacing: 0.02em; }
+        .nav-links a { color: #a3a3a3; text-decoration: none; font-size: 10px; font-weight: bold; white-space: nowrap; font-family: monospace; }
+        .nav-links a:hover { color: #2563eb; }
         .mobile-prefix-marker { display: none; }
 
-        .intake-terminal-box {
-          width: 100%;
-          max-width: 440px;
-          border: 1px solid #222;
-          background-color: #0a0a0a;
-          padding: 30px 20px;
-          margin: 125px auto 40px auto;
-          box-sizing: border-box;
+        @media (max-width: 374px) {
+          .nav-links { flex-wrap: wrap; justify-content: flex-start; column-gap: 14px; row-gap: 8px; }
+          .hero-layout { margin-top: 135px; }
         }
 
         /* Tablet & Desktop Adjustments Override */
@@ -134,180 +200,175 @@ export default function AUITerminal() {
           .header-fixed-carrier { padding: 25px 40px 15px 40px; }
           .header-container { gap: 15px; }
           .header-meta-row { align-items: center; gap: 15px; }
-          
+
           .time-ticker-desktop { display: inline; }
           .mobile-prefix-marker { display: inline; }
-          
+
           .hero-layout { flex-direction: row; text-align: left; align-items: center; min-height: 460px; margin-bottom: 40px; margin-top: 160px; }
-          
+
           .globe-container { position: absolute; right: -2vw; top: 45%; transform: translateY(-50%); width: 580px; height: 580px; max-width: none; margin-top: 0; margin-bottom: 0; left: auto; margin-left: 0; margin-right: 0; }
-          
-          .process-img { width: 60%; }
-          .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-          
+
+          .process-img { width: 75%; }
+          .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+          .card-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+          .pilot-row { flex-direction: row; gap: 40px; }
+
           .nav-links { justify-content: flex-start; gap: 30px; letter-spacing: 0.2em; }
           .nav-links a { font-size: 11px; }
-          
-          .intake-terminal-box { padding: 40px 25px; margin-top: 180px; }
         }
       `}</style>
-      
+
       <div className="header-fixed-carrier">
         <header className="header-container">
           <div className="header-meta-row">
             <strong style={{ border: '1px solid #333', padding: '6px 12px', letterSpacing: '0.3em', fontSize: '9px', opacity: 0.9, display: 'inline-block' }}>AUTHENTIC INTELLIGENCE</strong>
             <SystemStatus/>
           </div>
-          
+
           <nav className="nav-links">
-            {view === 'home' ? (
-              <>
-                <a href="#objective"><span className="mobile-prefix-marker">// </span>01_OBJ</a>
-                <a href="#process"><span className="mobile-prefix-marker">// </span>02_PROCESS</a>
-                <a href="#sectors"><span className="mobile-prefix-marker">// </span>03_SECTORS</a>
-                <a 
-                  href="https://app.authenticintel.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  style={{ color: '#2563eb', fontWeight: 'bold' }}
-                >
-                  <span className="mobile-prefix-marker">// </span>LAUNCH_TERMINAL
-                </a>
-              </>
-            ) : (
-              <button onClick={() => setView('home')} style={{ color: '#fff', letterSpacing: '0.1em' }}>
-                [X] RETURN_TO_CORE_INTERFACE
-              </button>
-            )}
+            <a href="#objective"><span className="mobile-prefix-marker">// </span>01_OBJ</a>
+            <a href="#process"><span className="mobile-prefix-marker">// </span>02_PROCESS</a>
+            <a href="#control"><span className="mobile-prefix-marker">// </span>03_CONTROL</a>
+            <a href="#sectors"><span className="mobile-prefix-marker">// </span>04_SECTORS</a>
+            <a
+              href="https://app.authenticintel.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#2563eb', fontWeight: 'bold' }}
+            >
+              <span className="mobile-prefix-marker">// </span>LAUNCH_TERMINAL
+            </a>
           </nav>
         </header>
       </div>
 
-      <main style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        
-        {view === 'home' ? (
-          /* VIEW 01: CORE ACTIVE SYSTEM PORTAL */
-          <div style={{ animation: 'fadeIn 0.4s ease-out' }}>
-            
-            <section className="hero-layout">
-              <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10, padding: '0 10px' }}>
-                <h1 style={{ fontSize: 'clamp(40px, 7vw, 82px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.04em', marginBottom: '25px' }}>
-                  FIND SIGNAL <br /> <span style={{ color: '#2563eb' }}>IN THE NOISE.</span>
-                </h1>
-                <p style={{ color: '#9ca3af', maxWidth: '440px', margin: '0 auto', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
-                  Predictive Intelligence for Enterprise
-                </p>
-              </div>
-              
-              <div className="globe-container">
-                <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
-                  <defs>
-                    <mask id="lensReveal">
-                      <rect width="780" height="780" fill="white" />
-                      <circle className="spotlight-lens" fill="black" filter="blur(25px)" />
-                    </mask>
-                  </defs>
-                  <image href="/globe-signal.png" width="780" height="780" style={{ mixBlendMode: 'screen' }} />
-                  <rect width="780" height="780" fill="#050505" fillOpacity="0.75" mask="url(#lensReveal)" />
-                </svg>
-              </div>
-            </section>
+      <main style={{ maxWidth: '1200px', margin: '0 auto', animation: 'fadeIn 0.4s ease-out' }}>
 
-            <section id="objective" style={{ borderTop: '1px solid #111', paddingTop: '60px', paddingBottom: '40px', maxWidth: '1000px' }}>
-              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '30px' }}>[01] CORE MISSION OBJECTIVE</h2>
-              <p style={{ fontSize: 'clamp(22px, 3.5vw, 36px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#fff' }}>
-                We deploy <span style={{ color: '#2563eb' }}>customized intelligence pipelines</span> engineered to detect hidden risks, opportunities, and threats, giving high stakes decision makers the absolute advance warning required to act first.
-              </p>
-            </section>
-
-            {/* INTEGRATED PROCESS Display */}
-            <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px' }}>
-              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '50px' }}>[02] PREDICTIVE INTELLIGENCE PROCESS</h2>
-              
-              <div style={{ width: '100%', padding: '20px 0', marginBottom: '50px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
-                <img 
-                  src="/process-map.png" 
-                  alt="AUI 4-Phase System Infrastructure Map" 
-                  className="process-img"
-                  onError={(e) => { e.target.style.display = 'none'; }} 
-                />
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '30px' }}>
-                {processSteps.map((step) => (
-                  <div key={step.title} style={{ borderLeft: '2px solid #2563eb', paddingLeft: '20px' }}>
-                    <h4 style={{ fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.2em', color: '#fff', marginBottom: '15px' }}>{step.title}</h4>
-                    <p style={{ fontSize: '14px', color: '#9ca3af', lineHeight: '1.6', fontWeight: '300' }}>{step.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
-              <h2 style={{ fontSize: '11px', letterSpacing: '0.4em', color: '#4b5563', marginBottom: '20px' }}>[03] OPERATIONAL SECTORS</h2>
-              
-              <p style={{ fontSize: 'clamp(20px, 3.2vw, 30px)', fontWeight: '600', lineHeight: '1.4', letterSpacing: '-0.02em', color: '#9ca3af', maxWidth: '1000px', marginBottom: '60px' }}>
-                Each node represents a fully isolated, <span style={{ color: '#fff' }}>100% custom architecture</span> under the absolute control of the user, deployed to secure sovereign operational advantages.
-              </p>
-
-              <div className="responsive-sectors">
-                {sectors.map((s) => (
-                  <div 
-                    key={s.name} 
-                    className="sector-node-card"
-                  >
-                    <div style={{ textAlign: 'center', width: '100%' }}>
-                      <h4 style={{ fontSize: '16px', letterSpacing: '0.1em', color: '#fff', fontWeight: 'bold', fontFamily: 'monospace', margin: '0 0 25px 0' }}>
-                        {s.name.toUpperCase()}
-                      </h4>
-                      
-                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', marginBottom: '45px' }}>
-                        <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.15">
-                          <path d={s.path} />
-                        </svg>
-                      </div>
-                    </div>
-
-                    <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#9ca3af', borderTop: '1px solid #1a1a1a', paddingTop: '15px', textAlign: 'center', marginTop: 'auto' }}>
-                      {s.status}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
+        <section className="hero-layout">
+          <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10, padding: '0 10px' }}>
+            <h1 style={{ fontSize: 'clamp(38px, 6.5vw, 76px)', fontWeight: '900', lineHeight: '0.95', letterSpacing: '-0.04em', marginBottom: '25px' }}>
+              ONE VIEW. <br /> EVERY SOURCE. <br /> <span style={{ color: '#2563eb' }}>EVERY DECISION ON RECORD.</span>
+            </h1>
+            <p style={{ color: '#9ca3af', maxWidth: '460px', margin: '0 auto', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
+              AUi Terminal: decision support for crisis response, with people in control.
+            </p>
           </div>
-        ) : (
-          /* VIEW 02: APPLICATION INTAKE PORTAL */
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'terminalSlideUp 0.3s ease-out' }}>
-            <div className="intake-terminal-box">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-                <span style={{ fontSize: '9px', letterSpacing: '0.3em', color: '#4b5563', fontWeight: 'bold', fontFamily: 'monospace' }}>CONSULT_INTAKE [v12.0]</span>
-                <button onClick={() => setView('home')} style={{ background: 'none', border: 'none', color: '#4b5563', cursor: 'pointer', fontSize: '10px', fontFamily: 'monospace' }}>[X] CANCEL</button>
-              </div>
 
-              {status === 'success' ? (
-                <div style={{ padding: '10px 0', textAlign: 'center' }}>
-                  <div style={{ fontSize: '11px', letterSpacing: '0.3em', color: '#22c55e', marginBottom: '15px', fontWeight: 'bold', fontFamily: 'monospace' }}>TRANSMISSION_SUCCESSFUL</div>
-                  <p style={{ color: '#9ca3af', fontSize: '13px', lineHeight: '1.6', marginBottom: '30px', fontWeight: '300' }}>Secure digital handshake recorded. Advisory routing initiated via encrypted communication tunnels.</p>
-                  <button onClick={() => setView('home')} style={{ border: '1px solid #333', color: 'white', background: 'none', padding: '12px 30px', fontSize: '10px', letterSpacing: '0.1em', cursor: 'pointer', fontFamily: 'monospace' }}>RETURN_TO_CORE</button>
+          <div className="globe-container">
+            <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
+              <defs>
+                <mask id="lensReveal">
+                  <rect width="780" height="780" fill="white" />
+                  <circle className="spotlight-lens" fill="black" filter="blur(25px)" />
+                </mask>
+              </defs>
+              <image href="/globe-signal.png" width="780" height="780" style={{ mixBlendMode: 'screen' }} />
+              <rect width="780" height="780" fill="#050505" fillOpacity="0.75" mask="url(#lensReveal)" />
+            </svg>
+          </div>
+        </section>
+
+        <section id="objective" style={{ borderTop: '1px solid #111', paddingTop: '60px', paddingBottom: '60px' }}>
+          <h2 style={{ ...sectionLabel, marginBottom: '30px' }}>[01] CORE MISSION OBJECTIVE</h2>
+          <p style={{ ...statement, maxWidth: '1000px', marginBottom: '60px' }}>
+            AUi is the <span style={{ color: '#2563eb' }}>decision layer of crisis response</span>. It fuses the data you already own or license into one qualified picture, shows how reliable each source is, ranks what matters most and records who decided what.
+          </p>
+
+          <h3 style={{ ...sectionLabel, fontSize: '10px', marginBottom: '30px' }}>THE DATA EXISTS. THE OVERALL PICTURE IS MISSING.</h3>
+          <div className="card-grid">
+            {problems.map((p) => (
+              <div key={p.title} style={{ borderLeft: '2px solid #333', paddingLeft: '20px' }}>
+                <h4 style={cardTitle}>{p.title}</h4>
+                <p style={cardBody}>{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px' }}>
+          <h2 style={{ ...sectionLabel, marginBottom: '50px' }}>[02] FROM TELEMETRY TO DECISION</h2>
+
+          <div style={{ width: '100%', padding: '20px 0', marginBottom: '50px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+            <ProcessDiagram />
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '30px' }}>
+            {processSteps.map((step) => (
+              <div key={step.title} style={{ borderLeft: '2px solid #2563eb', paddingLeft: '20px' }}>
+                <h4 style={cardTitle}>{step.title}</h4>
+                <p style={cardBody}>{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="control" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px' }}>
+          <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[03] HUMAN CONTROL &amp; SOVEREIGNTY</h2>
+          <p style={{ ...subStatement, marginBottom: '60px' }}>
+            AI proposes. <span style={{ color: '#fff' }}>Human authority decides.</span> Every recommendation is explainable, every gap is visible and every decision is on record.
+          </p>
+
+          <div className="card-grid">
+            {safeguards.map((s) => (
+              <div key={s.title} style={{ borderLeft: '2px solid #2563eb', paddingLeft: '20px' }}>
+                <h4 style={cardTitle}>{s.title}</h4>
+                <p style={cardBody}>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px' }}>
+          <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[04] OPERATIONAL SECTORS</h2>
+
+          <p style={{ ...subStatement, marginBottom: '60px' }}>
+            One core architecture, <span style={{ color: '#fff' }}>configured to each client</span>: its territory, risk profile, existing data feeds and command procedures. It works alongside the systems you already run and does not replace them.
+          </p>
+
+          <div className="responsive-sectors">
+            {sectors.map((s) => (
+              <div key={s.name} className="sector-node-card">
+                <div style={{ textAlign: 'center', width: '100%' }}>
+                  <h4 style={{ fontSize: '15px', letterSpacing: '0.1em', color: '#fff', fontWeight: 'bold', fontFamily: 'monospace', margin: '0 0 25px 0' }}>
+                    {s.name.toUpperCase()}
+                  </h4>
+
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', marginBottom: '45px' }}>
+                    <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.15" strokeLinecap="round" strokeLinejoin="round">
+                      <path d={s.path} />
+                    </svg>
+                  </div>
                 </div>
-              ) : (
-                <form onSubmit={handleFormSubmit}>
-                  <label style={{ display: 'block', fontSize: '9px', color: '#4b5563', marginBottom: '15px', letterSpacing: '0.2em', fontFamily: 'monospace' }}>ENTITY_IDENTITY</label>
-                  <input type="email" name="email" required style={{ width: '100%', backgroundColor: '#000', border: '1px solid #222', padding: '18px', color: 'white', fontFamily: 'monospace', marginBottom: '35px', outline: 'none', fontSize: '16px', boxSizing: 'border-box', borderRadius: '0' }} placeholder="identity@org.sovereign" />
-                  
-                  <button type="submit" disabled={status === 'loading'} style={{ width: '100%', backgroundColor: 'white', color: 'black', padding: '22px', fontWeight: '900', border: 'none', cursor: 'pointer', letterSpacing: '0.2em', fontSize: '11px' }}>
-                    {status === 'loading' ? "ROUTING HANDSHAKE..." : "INITIALIZE SECURE CONNECTION"}
-                  </button>
-                </form>
-              )}
-            </div>
+
+                <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#9ca3af', borderTop: '1px solid #1a1a1a', paddingTop: '15px', textAlign: 'center', marginTop: 'auto' }}>
+                  {s.status}
+                </div>
+              </div>
+            ))}
           </div>
-        )}
+        </section>
+
+        <section id="pilot" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
+          <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[05] NEXT STEP</h2>
+          <p style={{ ...statement, maxWidth: '1000px', marginBottom: '50px' }}>
+            Judge it on <span style={{ color: '#2563eb' }}>your own data</span>. A four-month pilot on the sources you already use.
+          </p>
+
+          <div style={{ maxWidth: '800px', marginBottom: '50px', borderBottom: '1px solid #1a1a1a' }}>
+            {pilot.map((row) => (
+              <div key={row.label} className="pilot-row">
+                <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.2em', color: '#4b5563', minWidth: '120px' }}>{row.label}</span>
+                <span style={{ fontSize: '16px', color: '#e5e7eb', fontWeight: '300' }}>{row.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <a className="cta-button" href={`mailto:${CONTACT_EMAIL}?subject=AUi%20Terminal%20pilot`}>REQUEST_A_PILOT</a>
+        </section>
       </main>
 
       <div style={{ width: '100%', textAlign: 'center', fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.3em', color: '#9ca3af', paddingBottom: '30px', borderTop: '1px solid #111', paddingTop: '40px', maxWidth: '1200px', margin: '0 auto' }}>
-        INQUIRIES // info@findsignal.ai
+        INQUIRIES // <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: '#9ca3af', textDecoration: 'none' }}>{CONTACT_EMAIL}</a>
       </div>
 
       <footer style={{ padding: '0 0 60px 0', fontSize: '8px', color: '#6b7280', letterSpacing: '0.5em', textAlign: 'center' }}>
