@@ -243,8 +243,8 @@ export default function AUITerminal() {
 
         <section className="hero-layout">
           <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10, padding: '0 10px' }}>
-            <h1 style={{ fontSize: 'clamp(40px, 7vw, 82px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.04em', marginBottom: '25px' }}>
-              SEE WHAT&apos;S COMING. <br /> <span style={{ color: '#2563eb' }}>ACT FIRST.</span>
+            <h1 style={{ fontSize: 'clamp(38px, 6.5vw, 76px)', fontWeight: '900', lineHeight: '0.95', letterSpacing: '-0.04em', marginBottom: '25px' }}>
+              ONE VIEW. <br /> EVERY SOURCE. <br /> <span style={{ color: '#2563eb' }}>EVERY DECISION ON RECORD.</span>
             </h1>
             <p className="hero-sub" style={{ color: '#9ca3af', maxWidth: '460px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
               Predictive intelligence, applied. AUi Terminal is the AI-powered fusion and command layer for enterprise, government and critical national infrastructure.
