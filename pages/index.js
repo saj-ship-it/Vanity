@@ -95,7 +95,7 @@ export default function AUITerminal() {
     { title: 'EXPLAINABLE BY DESIGN', desc: 'No black boxes. The raw data and the logic behind every priority are on screen, next to the recommendation itself.' },
     { title: 'GAPS MADE VISIBLE', desc: 'Each source shows whether it is live, simulated or not yet connected. Missing telemetry is flagged, and silence is never read as safety.' },
     { title: 'DECISIONS ON RECORD', desc: 'A time-stamped, tamper-evident log of who decided what, when, and on what information. Built for post-incident review.' },
-    { title: 'EU AI ACT READY', desc: 'Designed around the human-oversight requirements the EU AI Act sets for high-risk systems.' },
+    { title: 'BUILT FOR AI REGULATION', desc: 'Designed around the human-oversight and accountability requirements that AI rules worldwide set for high-risk systems, from the EU AI Act to national frameworks.' },
     { title: 'SOVEREIGN DATA', desc: 'Data is kept separate per client and never pooled. The AI runs locally, hosted on a certified sovereign cloud or on your own infrastructure.' }
   ];
 
@@ -190,11 +190,6 @@ export default function AUITerminal() {
         .nav-links a:hover { color: #2563eb; }
         .mobile-prefix-marker { display: none; }
 
-        @media (max-width: 374px) {
-          .nav-links { flex-wrap: wrap; justify-content: flex-start; column-gap: 14px; row-gap: 8px; }
-          .hero-layout { margin-top: 135px; }
-        }
-
         /* Tablet & Desktop Adjustments Override */
         @media (min-width: 768px) {
           .header-fixed-carrier { padding: 25px 40px 15px 40px; }
@@ -230,14 +225,6 @@ export default function AUITerminal() {
             <a href="#process"><span className="mobile-prefix-marker">// </span>02_PROCESS</a>
             <a href="#control"><span className="mobile-prefix-marker">// </span>03_CONTROL</a>
             <a href="#sectors"><span className="mobile-prefix-marker">// </span>04_SECTORS</a>
-            <a
-              href="https://app.authenticintel.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: '#2563eb', fontWeight: 'bold' }}
-            >
-              <span className="mobile-prefix-marker">// </span>LAUNCH_TERMINAL
-            </a>
           </nav>
         </header>
       </div>
