@@ -152,9 +152,9 @@ export const content = {
       diagram: { aria: 'Fusionner, vérifier, prédire, décider et agir', steps: ['1. FUSIONNER', '2. VÉRIFIER', '3. PRÉDIRE', '4. DÉCIDER'], last: 'ET AGIR' },
       steps: [
         { title: 'PHASE 01 // FUSIONNER', desc: 'Des connecteurs prêts à l’emploi intègrent et fusionnent en une vue unique les flux dont vous disposez déjà ou que vous exploitez sous licence (systèmes opérationnels, capteurs IoT, satellites, météo, vidéo, rapports de terrain), et en ajoutent de nouveaux selon les besoins.' },
-        { title: 'PHASE 02 // VÉRIFIER', desc: 'L’état des sources est surveillé en continu. Les flux interrompus sont signalés et les données en direct sont recoupées pour détecter concordances et contradictions.' },
+        { title: 'PHASE 02 // VÉRIFIER', desc: 'L’état des sources est surveillé en continu. Les flux interrompus sont signalés et les données en direct sont recoupées pour détecter les concordances et les contradictions.' },
         { title: 'PHASE 03 // PRÉDIRE', desc: 'L’apprentissage automatique surveille chaque flux en permanence, détecte les anomalies et les ruptures de tendance dès qu’elles se forment, et classe les risques et opportunités émergents par urgence, raisonnement à l’appui.' },
-        { title: 'PHASE 04 // DÉCIDER ET AGIR', desc: 'L’IA recommande, vos équipes décident. Chaque recommandation est expliquée et inscrite avec le nom de qui l’a approuvée : l’organisation agit plus vite, en toute confiance.' }
+        { title: 'PHASE 04 // DÉCIDER ET AGIR', desc: 'L’IA recommande, vos équipes décident. Chaque recommandation est expliquée et inscrite avec le nom de la personne qui l’a approuvée : l’organisation agit plus vite, en toute confiance.' }
       ]
     },
     trust: {
@@ -176,20 +176,20 @@ export const content = {
       accent: 'Conçu pour votre mission.',
       after: ' Chaque déploiement est adapté à votre environnement opérationnel, à votre profil de risque, à votre patrimoine de données et à la manière dont votre organisation prend réellement ses décisions. Il se place au-dessus des systèmes que vous exploitez déjà et renforce la valeur de chacun.',
       audiences: [
-        { title: 'ENTREPRISES', lead: 'Voir la perturbation avant qu’elle ne touche vos résultats.', desc: 'Anticipez les risques opérationnels, logistiques et de sites dans toutes vos régions, prenez l’avantage sur vos concurrents et étayez chaque décision importante par des éléments reconnus par les conseils d’administration, les assureurs et les régulateurs.' },
+        { title: 'ENTREPRISES', lead: 'Voir la perturbation avant qu’elle ne touche vos résultats.', desc: 'Anticipez les risques opérationnels, logistiques et liés à vos sites dans toutes vos régions, prenez l’avantage sur vos concurrents et étayez chaque décision importante par des éléments reconnus par les conseils d’administration, les assureurs et les régulateurs.' },
         { title: 'ÉTAT ET SECTEUR PUBLIC', lead: 'L’avantage décisionnel à chaque niveau.', desc: 'Donnez aux services et à chaque niveau de commandement une même vue prédictive, des opérations courantes aux crises nationales, et agissez sur les menaces émergentes avant qu’elles ne s’aggravent.' },
-        { title: 'INFRASTRUCTURES CRITIQUES', lead: 'Anticiper la prochaine panne.', desc: 'Détectez assez tôt pour intervenir les défaillances, menaces et effets en cascade sur les réseaux interdépendants d’énergie, d’eau, de transport et de télécommunications, et assurez la continuité des services essentiels.' }
+        { title: 'INFRASTRUCTURES CRITIQUES', lead: 'Anticiper la prochaine panne.', desc: 'Détectez les défaillances, menaces et effets en cascade sur les réseaux interdépendants d’énergie, d’eau, de transport et de télécommunications assez tôt pour intervenir, et assurez la continuité des services essentiels.' }
       ],
       sectorsLabel: 'SECTEURS',
       sectors: [
-        { name: 'Protection civile et feux de forêt', tag: 'Pilotes ouverts', desc: 'Fusionnez points chauds satellitaires, météo et signalements de terrain pour confirmer les feux plus tôt et prioriser les moyens aériens et terrestres.', path: icons.wildfire },
+        { name: 'Protection civile et feux de forêt', tag: 'Pilotes ouverts', desc: 'Fusionnez les détections satellitaires de points chauds, la météo et les signalements de terrain pour confirmer les feux plus tôt et prioriser les moyens aériens et terrestres.', path: icons.wildfire },
         { name: 'Énergie et services publics', desc: 'Anticipez les tensions sur le réseau, les défaillances d’équipements et les ruptures d’approvisionnement avant qu’elles n’atteignent vos clients.', path: icons.energy },
         { name: 'Transport et logistique', desc: 'Repérez les perturbations qui se forment sur les itinéraires, dans les ports et chez les fournisseurs, et réorientez les flux avant que les retards ne s’enchaînent.', path: icons.transport },
         { name: 'Télécommunications', desc: 'Détectez tôt la dégradation des réseaux, les coupures de câbles et les interférences, et priorisez le rétablissement.', path: icons.telecoms },
         { name: 'Santé', desc: 'Anticipez les pics de demande et les pénuries dans vos établissements, et ajustez les capacités avant qu’ils ne surviennent.', path: icons.health },
         { name: 'Médias et divertissement', desc: 'Suivez les récits et le sentiment du public dès qu’ils émergent, et signalez les risques de réputation avant qu’ils ne se propagent.', path: icons.media },
         { name: 'Marchés financiers', desc: 'Détectez les événements réels et les changements de régime qui font bouger les marchés, et mesurez le risque sur vos positions avant que les prix ne le reflètent.', path: icons.finance },
-        { name: 'Marketing', desc: 'Repérez tôt l’évolution de la demande, du sentiment et de l’activité concurrente, et réallouez vos budgets avant le marché.', path: icons.marketing }
+        { name: 'Marketing', desc: 'Repérez tôt l’évolution de la demande, du sentiment et de l’activité concurrente, et réallouez vos budgets avant que le marché ne réagisse.', path: icons.marketing }
       ],
       cta: { title: 'Votre secteur', desc: 'Il n’est pas listé ? Chaque déploiement est conçu pour votre mission.', link: 'PARLONS DE VOTRE CAS D’USAGE', subject: 'AUi Terminal pour mon secteur' }
     },
