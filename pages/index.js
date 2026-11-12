@@ -15,7 +15,7 @@ const SystemStatus = () => {
     <div className="system-status-container" style={{ display: 'flex', gap: '20px', alignItems: 'center', fontSize: '9px', fontFamily: 'monospace', color: '#4b5563', letterSpacing: '0.1em' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 8px #22c55e' }} />
-        <span>SYSTEM_OPERATIONAL</span>
+        <span>SYSTEM OPERATIONAL</span>
       </div>
       <span className="time-ticker-desktop" suppressHydrationWarning>{time}</span>
     </div>
@@ -108,10 +108,13 @@ export default function AUITerminal() {
 
   // One core architecture, configured per sector
   const sectors = [
-    { name: 'Civil Protection & Wildfire', status: 'LEAD_MODULE // PILOTS_OPEN', path: 'M12 2c1 3 4 5 4 9a4 4 0 01-8 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 0-8z M5 14a7 7 0 0014 0' },
-    { name: 'Energy & Utilities', status: 'CORE_PLATFORM // CONFIGURABLE', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
-    { name: 'Transport & Logistics', status: 'CORE_PLATFORM // CONFIGURABLE', path: 'M1 3h15v13H1z M16 8h4l3 3v5h-7z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
-    { name: 'Telecommunications', status: 'CORE_PLATFORM // CONFIGURABLE', path: 'M12 12v10 M8 22h8 M12 12a1 1 0 100-.01 M8.5 8.5a5 5 0 017 0 M5.5 5.5a9 9 0 0113 0' }
+    { name: 'Civil Protection & Wildfire', status: 'LEAD MODULE // PILOTS OPEN', path: 'M12 2c1 3 4 5 4 9a4 4 0 01-8 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 0-8z M5 14a7 7 0 0014 0' },
+    { name: 'Energy & Utilities', status: 'CORE PLATFORM // CONFIGURABLE', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+    { name: 'Transport & Logistics', status: 'CORE PLATFORM // CONFIGURABLE', path: 'M1 3h15v13H1z M16 8h4l3 3v5h-7z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
+    { name: 'Telecommunications', status: 'CORE PLATFORM // CONFIGURABLE', path: 'M12 12v10 M8 22h8 M12 12a1 1 0 100-.01 M8.5 8.5a5 5 0 017 0 M5.5 5.5a9 9 0 0113 0' },
+    { name: 'Healthcare', status: 'CORE PLATFORM // CONFIGURABLE', path: 'M3 12h4l2-5 4 10 2-5h6' },
+    { name: 'Media & Entertainment', status: 'CORE PLATFORM // CONFIGURABLE', path: 'M2 4h20v14H2z M10 8l5 3-5 3z M8 21h8' },
+    { name: 'Marketing', status: 'CORE PLATFORM // CONFIGURABLE', path: 'M3 10v4h3l6 4V6L6 10z M15 9a3 3 0 010 6 M18 6a7 7 0 010 12' }
   ];
 
   // Pilot terms
@@ -119,7 +122,7 @@ export default function AUITerminal() {
     { label: 'DURATION', value: 'Four months' },
     { label: 'SCOPE', value: 'One region, site or operational service' },
     { label: 'SOURCES', value: 'Two or three feeds you already use' },
-    { label: 'OUTCOME', value: 'A go or no-go evaluation built on your own data' },
+    { label: 'OUTCOME', value: 'An evaluation built on your own data' },
     { label: 'TERMS', value: 'Fixed price' }
   ];
 
@@ -231,10 +234,10 @@ export default function AUITerminal() {
           </div>
 
           <nav className="nav-links">
-            <a href="#objective"><span className="mobile-prefix-marker">// </span>01_OBJ</a>
-            <a href="#process"><span className="mobile-prefix-marker">// </span>02_PROCESS</a>
-            <a href="#control"><span className="mobile-prefix-marker">// </span>03_CONTROL</a>
-            <a href="#sectors"><span className="mobile-prefix-marker">// </span>04_SERVE</a>
+            <a href="#objective"><span className="mobile-prefix-marker">// </span>01 OBJ</a>
+            <a href="#process"><span className="mobile-prefix-marker">// </span>02 PROCESS</a>
+            <a href="#control"><span className="mobile-prefix-marker">// </span>03 CONTROL</a>
+            <a href="#sectors"><span className="mobile-prefix-marker">// </span>04 SERVE</a>
           </nav>
         </header>
       </div>
@@ -243,8 +246,8 @@ export default function AUITerminal() {
 
         <section className="hero-layout">
           <div style={{ maxWidth: '640px', position: 'relative', zIndex: 10, padding: '0 10px' }}>
-            <h1 style={{ fontSize: 'clamp(40px, 7vw, 82px)', fontWeight: '900', lineHeight: '0.9', letterSpacing: '-0.04em', marginBottom: '25px' }}>
-              SEE WHAT&apos;S COMING. <br /> <span style={{ color: '#2563eb' }}>ACT FIRST.</span>
+            <h1 style={{ fontSize: 'clamp(38px, 6.5vw, 76px)', fontWeight: '900', lineHeight: '0.95', letterSpacing: '-0.04em', marginBottom: '25px' }}>
+              ONE VIEW. <br /> EVERY SOURCE. <br /> <span style={{ color: '#2563eb' }}>EVERY DECISION ON RECORD.</span>
             </h1>
             <p className="hero-sub" style={{ color: '#9ca3af', maxWidth: '460px', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
               Predictive intelligence, applied. AUi Terminal is the AI-powered fusion and command layer for enterprise, government and critical national infrastructure.
@@ -360,7 +363,7 @@ export default function AUITerminal() {
         <section id="pilot" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
           <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[05] NEXT STEP</h2>
           <p style={{ ...statement, maxWidth: '1000px', marginBottom: '50px' }}>
-            Prove the advantage on <span style={{ color: '#2563eb' }}>your own data</span>. A four-month, fixed-price pilot with a clear go or no-go at the end.
+            Prove the advantage on <span style={{ color: '#2563eb' }}>your own data</span>. A four-month, fixed-price pilot.
           </p>
 
           <div style={{ maxWidth: '800px', marginBottom: '50px', borderBottom: '1px solid #1a1a1a' }}>
