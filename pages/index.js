@@ -108,13 +108,13 @@ export default function AUITerminal() {
 
   // One core architecture, configured per sector
   const sectors = [
-    { name: 'Civil Protection & Wildfire', status: 'LEAD MODULE // PILOTS OPEN', path: 'M12 2c1 3 4 5 4 9a4 4 0 01-8 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 0-8z M5 14a7 7 0 0014 0' },
-    { name: 'Energy & Utilities', status: 'CORE PLATFORM // CONFIGURABLE', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
-    { name: 'Transport & Logistics', status: 'CORE PLATFORM // CONFIGURABLE', path: 'M1 3h15v13H1z M16 8h4l3 3v5h-7z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
-    { name: 'Telecommunications', status: 'CORE PLATFORM // CONFIGURABLE', path: 'M12 12v10 M8 22h8 M12 12a1 1 0 100-.01 M8.5 8.5a5 5 0 017 0 M5.5 5.5a9 9 0 0113 0' },
-    { name: 'Healthcare', status: 'CORE PLATFORM // CONFIGURABLE', path: 'M3 12h4l2-5 4 10 2-5h6' },
-    { name: 'Media & Entertainment', status: 'CORE PLATFORM // CONFIGURABLE', path: 'M2 4h20v14H2z M10 8l5 3-5 3z M8 21h8' },
-    { name: 'Marketing', status: 'CORE PLATFORM // CONFIGURABLE', path: 'M3 10v4h3l6 4V6L6 10z M15 9a3 3 0 010 6 M18 6a7 7 0 010 12' }
+    { name: 'Civil Protection & Wildfire', tag: 'Pilots open', desc: 'Fuse satellite hotspots, weather and field reports to confirm fires sooner and prioritise air and ground resources.', path: 'M12 2c1 3 4 5 4 9a4 4 0 01-8 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 0-8z M5 14a7 7 0 0014 0' },
+    { name: 'Energy & Utilities', desc: 'Anticipate grid stress, asset failure and supply disruption before they reach customers.', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+    { name: 'Transport & Logistics', desc: 'See disruption forming across routes, ports and suppliers, and reroute before delays cascade.', path: 'M1 3h15v13H1z M16 8h4l3 3v5h-7z M5.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z M18.5 18.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z' },
+    { name: 'Telecommunications', desc: 'Detect network degradation, cable faults and interference early, and prioritise restoration.', path: 'M12 12v10 M8 22h8 M12 12a1 1 0 100-.01 M8.5 8.5a5 5 0 017 0 M5.5 5.5a9 9 0 0113 0' },
+    { name: 'Healthcare', desc: 'Forecast demand surges and supply shortages across facilities, and align capacity ahead of the peak.', path: 'M3 12h4l2-5 4 10 2-5h6' },
+    { name: 'Media & Entertainment', desc: 'Track narratives and audience sentiment as they form, and flag reputational risk before it spreads.', path: 'M2 4h20v14H2z M10 8l5 3-5 3z M8 21h8' },
+    { name: 'Marketing', desc: 'Spot shifts in demand, sentiment and competitor activity early, and move budget ahead of the market.', path: 'M3 10v4h3l6 4V6L6 10z M15 9a3 3 0 010 6 M18 6a7 7 0 010 12' }
   ];
 
   // Pilot terms
@@ -180,17 +180,21 @@ export default function AUITerminal() {
         .globe-container { position: relative; width: 90vw; max-width: 480px; height: 420px; margin-top: -10px; margin-bottom: -10px; overflow: hidden; pointer-events: none; display: flex; justify-content: center; align-items: center; margin-left: auto; margin-right: auto; }
 
         .process-img { width: 100%; height: auto; display: block; opacity: 0.9; }
-        .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 24px; }
+        .responsive-sectors { display: grid; grid-template-columns: 1fr; gap: 16px; }
         .card-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
 
-        .sector-node-card {
-          background-color: #050505;
+        .sector-card {
+          background-color: #0a0a0a;
           border: 1px solid #1a1a1a;
-          padding: 40px 30px 30px 30px;
+          padding: 28px 26px;
           display: flex;
           flex-direction: column;
           border-radius: 4px;
+          transition: border-color 0.2s ease;
         }
+        .sector-card:hover { border-color: #2563eb; }
+        .sector-card-cta { border-style: dashed; border-color: #333; text-decoration: none; }
+        .sector-icon { width: 44px; height: 44px; border: 1px solid #1f2937; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
 
         .pilot-row { display: flex; flex-direction: column; gap: 6px; padding: 18px 0; border-top: 1px solid #1a1a1a; }
 
@@ -217,7 +221,7 @@ export default function AUITerminal() {
           .globe-container { position: absolute; right: -2vw; top: 45%; transform: translateY(-50%); width: 580px; height: 580px; max-width: none; margin-top: 0; margin-bottom: 0; left: auto; margin-left: 0; margin-right: 0; }
 
           .process-img { width: 75%; }
-          .responsive-sectors { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+          .responsive-sectors { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
           .card-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
           .pilot-row { flex-direction: row; gap: 40px; }
 
@@ -322,7 +326,7 @@ export default function AUITerminal() {
           <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[04] WHO WE SERVE</h2>
 
           <p style={{ ...subStatement, marginBottom: '60px' }}>
-            One platform, <span style={{ color: '#fff' }}>configured to each client</span>: its operating environment, risk profile, data estate and decision procedures. It sits above the systems you already run and makes every one of them more valuable.
+            <span style={{ color: '#fff' }}>Engineered for your mission.</span> Every deployment is shaped around your operating environment, risk profile, data estate and the way your organisation actually makes decisions. It sits above the systems you already run and makes every one of them more valuable.
           </p>
 
           <div className="card-grid" style={{ marginBottom: '60px' }}>
@@ -335,28 +339,38 @@ export default function AUITerminal() {
             ))}
           </div>
 
-          <h3 style={{ ...sectionLabel, fontSize: '10px', marginBottom: '30px' }}>SECTOR MODULES</h3>
+          <h3 style={{ ...sectionLabel, fontSize: '10px', marginBottom: '30px' }}>SECTORS</h3>
 
           <div className="responsive-sectors">
-            {sectors.map((s) => (
-              <div key={s.name} className="sector-node-card">
-                <div style={{ textAlign: 'center', width: '100%' }}>
-                  <h4 style={{ fontSize: '15px', letterSpacing: '0.1em', color: '#fff', fontWeight: 'bold', fontFamily: 'monospace', margin: '0 0 25px 0' }}>
-                    {s.name.toUpperCase()}
-                  </h4>
-
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', marginBottom: '45px' }}>
-                    <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.15" strokeLinecap="round" strokeLinejoin="round">
+            {sectors.map((s, i) => (
+              <div key={s.name} className="sector-card">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
+                  <div className="sector-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d={s.path} />
                     </svg>
                   </div>
+                  {s.tag ? (
+                    <span style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#22c55e', border: '1px solid #14532d', padding: '4px 8px', borderRadius: '2px', textTransform: 'uppercase' }}>{s.tag}</span>
+                  ) : (
+                    <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.15em', color: '#374151' }}>{String(i + 1).padStart(2, '0')}</span>
+                  )}
                 </div>
-
-                <div style={{ fontFamily: 'monospace', fontSize: '9px', letterSpacing: '0.15em', color: '#9ca3af', borderTop: '1px solid #1a1a1a', paddingTop: '15px', textAlign: 'center', marginTop: 'auto' }}>
-                  {s.status}
-                </div>
+                <h4 style={{ fontSize: '17px', fontWeight: '600', color: '#fff', margin: '0 0 10px 0', letterSpacing: '-0.01em' }}>{s.name}</h4>
+                <p style={{ ...cardBody, fontSize: '14px' }}>{s.desc}</p>
               </div>
             ))}
+
+            <a className="sector-card sector-card-cta" href={`mailto:${CONTACT_EMAIL}?subject=AUi%20Terminal%20for%20my%20sector`}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
+                <div className="sector-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14 M5 12h14" /></svg>
+                </div>
+              </div>
+              <h4 style={{ fontSize: '17px', fontWeight: '600', color: '#fff', margin: '0 0 10px 0', letterSpacing: '-0.01em' }}>Your sector</h4>
+              <p style={{ ...cardBody, fontSize: '14px', marginBottom: '20px' }}>Not listed? Every deployment is engineered for your mission.</p>
+              <span style={{ fontFamily: 'monospace', fontSize: '10px', letterSpacing: '0.2em', color: '#2563eb', marginTop: 'auto' }}>DISCUSS YOUR USE CASE &rarr;</span>
+            </a>
           </div>
         </section>
 
