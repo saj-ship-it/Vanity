@@ -322,7 +322,7 @@ export default function AUITerminal() {
           <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[04] WHO WE SERVE</h2>
 
           <p style={{ ...subStatement, marginBottom: '60px' }}>
-            <span style={{ color: '#fff' }}>Built around you, not off the shelf.</span> Every deployment is engineered around your operating environment, risk profile, data estate and the way your organisation actually makes decisions. It sits above the systems you already run and makes every one of them more valuable.
+            <span style={{ color: '#fff' }}>Engineered for your mission.</span> Every deployment is shaped around your operating environment, risk profile, data estate and the way your organisation actually makes decisions. It sits above the systems you already run and makes every one of them more valuable.
           </p>
 
           <div className="card-grid" style={{ marginBottom: '60px' }}>
