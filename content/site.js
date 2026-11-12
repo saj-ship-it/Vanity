@@ -101,7 +101,7 @@ export const content = {
       rows: [
         { label: 'DURATION', value: 'Four months' },
         { label: 'SCOPE', value: 'One region, site or operational service' },
-        { label: 'SOURCES', value: 'Two or three feeds you already use' },
+        { label: 'SOURCES', value: 'A focused selection of your existing data sources' },
         { label: 'OUTCOME', value: 'An evaluation built on your own data' },
         { label: 'TERMS', value: 'Fixed price' }
       ],
@@ -201,7 +201,7 @@ export const content = {
       rows: [
         { label: 'DURÉE', value: 'Quatre mois' },
         { label: 'PÉRIMÈTRE', value: 'Une région, un site ou un service opérationnel' },
-        { label: 'SOURCES', value: 'Deux ou trois flux que vous utilisez déjà' },
+        { label: 'SOURCES', value: 'Une sélection ciblée de vos sources de données existantes' },
         { label: 'RÉSULTAT', value: 'Une évaluation fondée sur vos propres données' },
         { label: 'CONDITIONS', value: 'Prix forfaitaire' }
       ],
