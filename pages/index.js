@@ -118,6 +118,7 @@ export default function AUITerminal() {
     { name: 'Telecommunications', desc: 'Detect network degradation, cable faults and interference early, and prioritise restoration.', path: 'M12 12v10 M8 22h8 M12 12a1 1 0 100-.01 M8.5 8.5a5 5 0 017 0 M5.5 5.5a9 9 0 0113 0' },
     { name: 'Healthcare', desc: 'Forecast demand surges and supply shortages across facilities, and align capacity ahead of the peak.', path: 'M3 12h4l2-5 4 10 2-5h6' },
     { name: 'Media & Entertainment', desc: 'Track narratives and audience sentiment as they form, and flag reputational risk before it spreads.', path: 'M2 4h20v14H2z M10 8l5 3-5 3z M8 21h8' },
+    { name: 'Financial Markets', desc: 'Detect the real-world events and regime shifts that move markets, and see the risk to positions before prices reflect it.', path: 'M3 3v18h18 M7 14l4-4 3 3 6-7 M16 6h4v4' },
     { name: 'Marketing', desc: 'Spot shifts in demand, sentiment and competitor activity early, and move budget ahead of the market.', path: 'M3 10v4h3l6 4V6L6 10z M15 9a3 3 0 010 6 M18 6a7 7 0 010 12' }
   ];
 
@@ -246,11 +247,15 @@ export default function AUITerminal() {
           .globe-container { position: absolute; right: -2vw; top: 45%; transform: translateY(-50%); width: 580px; height: 580px; max-width: none; margin-top: 0; margin-bottom: 0; left: auto; margin-left: 0; margin-right: 0; }
 
           .process-img { width: 75%; }
-          .responsive-sectors { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+          .responsive-sectors { grid-template-columns: repeat(2, 1fr); gap: 20px; }
           .card-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
           .pilot-row { flex-direction: row; gap: 40px; }
 
           .nav-links { justify-content: flex-start; gap: 30px; letter-spacing: 0.2em; }
+        }
+
+        @media (min-width: 1024px) {
+          .responsive-sectors { grid-template-columns: repeat(3, 1fr); }
           .nav-links a { font-size: 11px; }
         }
       ` }} />
