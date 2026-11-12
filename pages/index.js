@@ -91,12 +91,12 @@ export default function AUITerminal() {
 
   // Safeguards: human control, explainability and sovereignty
   const safeguards = [
-    { title: 'PEOPLE DECIDE', desc: 'The platform only recommends. Every decision is taken by the competent authority, under a four-eyes rule: whoever proposes cannot validate.' },
-    { title: 'EXPLAINABLE BY DESIGN', desc: 'No black boxes. The raw data and the logic behind every priority are on screen, next to the recommendation itself.' },
-    { title: 'GAPS MADE VISIBLE', desc: 'Each source shows whether it is live, simulated or not yet connected. Missing telemetry is flagged, and silence is never read as safety.' },
-    { title: 'DECISIONS ON RECORD', desc: 'A time-stamped, tamper-evident log of who decided what, when, and on what information. Built for post-incident review.' },
-    { title: 'BUILT FOR AI REGULATION', desc: 'Designed around the human-oversight and accountability requirements that AI rules worldwide set for high-risk systems, from the EU AI Act to national frameworks.' },
-    { title: 'SOVEREIGN DATA', desc: 'Data is kept separate per client and never pooled. The AI runs locally, hosted on a certified sovereign cloud or on your own infrastructure.' }
+    { title: 'HUMAN AUTHORITY, ALWAYS', desc: 'AUi recommends; it never acts. Decisions rest with the competent authority, and separation of duties is enforced: whoever proposes an action cannot validate it.' },
+    { title: 'EXPLAINABLE BY DESIGN', desc: 'No black boxes. Every priority traces back to its source data and the reasoning behind it, presented alongside the recommendation.' },
+    { title: 'GAPS DISCLOSED, NEVER HIDDEN', desc: 'Every source carries a status: live, simulated or not connected. Missing telemetry is flagged explicitly, so silence is never mistaken for safety.' },
+    { title: 'DEFENSIBLE AUDIT TRAIL', desc: 'A time-stamped, tamper-evident record of what was known, who decided and when. Any decision can be reconstructed for post-incident review, audit or legal scrutiny.' },
+    { title: 'REGULATORY ALIGNMENT', desc: 'Architected for the human-oversight, transparency and record-keeping obligations placed on high-risk AI systems, from the EU AI Act to emerging national and sector frameworks.' },
+    { title: 'DATA SOVEREIGNTY', desc: 'Each client’s data stays isolated and is never pooled. Models run locally with no data leaving the deployment, on a certified sovereign cloud or your own infrastructure.' }
   ];
 
   // One core architecture, configured per sector
@@ -290,9 +290,9 @@ export default function AUITerminal() {
         </section>
 
         <section id="control" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px' }}>
-          <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[03] HUMAN CONTROL &amp; SOVEREIGNTY</h2>
+          <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[03] GOVERNANCE &amp; HUMAN CONTROL</h2>
           <p style={{ ...subStatement, marginBottom: '60px' }}>
-            AI proposes. <span style={{ color: '#fff' }}>Human authority decides.</span> Every recommendation is explainable, every gap is visible and every decision is on record.
+            AI recommends. <span style={{ color: '#fff' }}>Accountable people decide.</span> Every recommendation can be explained, every data gap is disclosed and every decision can be reconstructed after the fact.
           </p>
 
           <div className="card-grid">
