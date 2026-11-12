@@ -27,13 +27,13 @@ const ProcessDiagram = () => {
   const icon = { fill: 'none', stroke: '#fff', strokeWidth: 3, strokeLinecap: 'round', strokeLinejoin: 'round' };
   const label = { fill: '#fff', fontFamily: 'Inter, system-ui, sans-serif', fontSize: 30, fontWeight: 500, textAnchor: 'middle', letterSpacing: '0.02em' };
   return (
-    <svg viewBox="0 0 1600 420" className="process-img" role="img" aria-label="Connect, verify, prioritize, decide and record">
+    <svg viewBox="0 0 1600 420" className="process-img" role="img" aria-label="Fuse, verify, prioritize, decide and record">
       {/* Connector rail */}
       {[[330, 470], [730, 870], [1130, 1270]].map(([x1, x2]) => (
         <line key={x1} x1={x1} y1="160" x2={x2} y2="160" stroke="#2563eb" strokeWidth="3" />
       ))}
 
-      {/* 01 CONNECT: many feeds converging into one node */}
+      {/* 01 FUSE: many feeds converging into one node */}
       <g {...icon}>
         <circle cx="270" cy="160" r="26" />
         <path d="M244 160 H150 M247 148 Q200 100 140 90 M247 172 Q200 220 140 230 M253 141 Q215 60 170 40 M253 179 Q215 260 170 280" />
@@ -64,7 +64,7 @@ const ProcessDiagram = () => {
         <path d="M1462 250 L1476 264 L1500 236" strokeWidth="5" />
       </g>
 
-      <text x="230" y="370" style={label}>1. CONNECT</text>
+      <text x="230" y="370" style={label}>1. FUSE</text>
       <text x="600" y="370" style={label}>2. VERIFY</text>
       <text x="1000" y="370" style={label}>3. PRIORITIZE</text>
       <text x="1410" y="350" style={label}>4. DECIDE</text>
@@ -76,27 +76,34 @@ const ProcessDiagram = () => {
 export default function AUITerminal() {
   // The gap the platform closes (from the AUi Terminal deck, Oct 2026)
   const problems = [
-    { title: 'SCATTERED', desc: 'Weather, satellites, sensors, field reports and aircraft positions each live in their own tool.' },
-    { title: 'FRAGMENTED', desc: 'Every command level rebuilds its own picture, under pressure, from the same raw inputs.' },
-    { title: 'POORLY RECORDED', desc: 'Decisions take minutes. The record of what was known, and who decided what, lags behind.' }
+    { title: 'SCATTERED', desc: 'Critical signals sit in disconnected systems (operational platforms, sensors, satellite, weather, field and commercial feeds) that were never built to work together.' },
+    { title: 'FRAGMENTED', desc: 'Every team, site and level of command assembles its own picture by hand, under pressure, and rarely the same one.' },
+    { title: 'UNACCOUNTABLE', desc: 'When decisions are reviewed, no one can reconstruct what was known, who decided and why. That is an operational, regulatory and legal exposure.' }
   ];
 
-  // Connect → Verify → Prioritize → Decide & record
+  // Fuse → Verify → Prioritize → Decide & record
   const processSteps = [
-    { title: 'PHASE 01 // CONNECT', desc: 'Ready-made adapters ingest the feeds you already own or license (satellite, weather, IoT sensors, video, field reports, existing operational systems) and add new sources as needed.' },
+    { title: 'PHASE 01 // FUSE', desc: 'Ready-made adapters ingest and fuse the feeds you already own or license (operational systems, IoT sensors, satellite, weather, video, field reports) into one picture, and add new sources as needed.' },
     { title: 'PHASE 02 // VERIFY', desc: 'Source health is monitored continuously. Broken feeds are flagged and live data is cross-checked for agreement or contradiction.' },
-    { title: 'PHASE 03 // PRIORITIZE', desc: 'AI turns the fused picture into ranked priorities, ordering operational areas by urgency and showing the reasoning behind every recommendation.' },
-    { title: 'PHASE 04 // DECIDE & RECORD', desc: 'AI proposes; human authority decides. The recommendation, the officer who authorised it and the supervisor who validated it are logged.' }
+    { title: 'PHASE 03 // PRIORITIZE', desc: 'AI turns the fused picture into ranked priorities, ranking risks, assets and locations by urgency and showing the reasoning behind every recommendation.' },
+    { title: 'PHASE 04 // DECIDE & RECORD', desc: 'AI proposes; human authority decides. The recommendation, the person who authorised it and the person who validated it are logged.' }
   ];
 
   // Safeguards: human control, explainability and sovereignty
   const safeguards = [
-    { title: 'HUMAN AUTHORITY, ALWAYS', desc: 'AUi recommends; it never acts. Decisions rest with the competent authority, and separation of duties is enforced: whoever proposes an action cannot validate it.' },
+    { title: 'HUMAN AUTHORITY, ALWAYS', desc: 'AUi recommends; it never acts. Decisions rest with the accountable owner, and separation of duties is enforced: whoever proposes an action cannot validate it.' },
     { title: 'EXPLAINABLE BY DESIGN', desc: 'No black boxes. Every priority traces back to its source data and the reasoning behind it, presented alongside the recommendation.' },
     { title: 'GAPS DISCLOSED, NEVER HIDDEN', desc: 'Every source carries a status: live, simulated or not connected. Missing telemetry is flagged explicitly, so silence is never mistaken for safety.' },
     { title: 'DEFENSIBLE AUDIT TRAIL', desc: 'A time-stamped, tamper-evident record of what was known, who decided and when. Any decision can be reconstructed for post-incident review, audit or legal scrutiny.' },
     { title: 'REGULATORY ALIGNMENT', desc: 'Architected for the human-oversight, transparency and record-keeping obligations placed on high-risk AI systems, from the EU AI Act to emerging national and sector frameworks.' },
     { title: 'DATA SOVEREIGNTY', desc: 'Each client’s data stays isolated and is never pooled. Models run locally with no data leaving the deployment, on a certified sovereign cloud or your own infrastructure.' }
+  ];
+
+  // Who the platform serves
+  const audiences = [
+    { title: 'ENTERPRISE', lead: 'Protect continuity and margin.', desc: 'See operational, supply-chain and site risk across every region in one picture, act earlier, and evidence every material decision to boards, insurers and regulators.' },
+    { title: 'GOVERNMENT & PUBLIC SECTOR', lead: 'Command from a common picture.', desc: 'Align agencies and every level of command on one qualified view, from routine operations to national emergencies, with decisions that withstand scrutiny.' },
+    { title: 'CRITICAL NATIONAL INFRASTRUCTURE', lead: 'Keep essential services running.', desc: 'Detect faults, threats and cascading failures across interdependent energy, water, transport and telecoms networks early enough to act.' }
   ];
 
   // One core architecture, configured per sector
@@ -112,7 +119,7 @@ export default function AUITerminal() {
     { label: 'DURATION', value: 'Four months' },
     { label: 'SCOPE', value: 'One region, site or operational service' },
     { label: 'SOURCES', value: 'Two or three feeds you already use' },
-    { label: 'OUTCOME', value: 'An evaluation report built on your own data' },
+    { label: 'OUTCOME', value: 'A go or no-go evaluation built on your own data' },
     { label: 'TERMS', value: 'Fixed price' }
   ];
 
@@ -127,7 +134,7 @@ export default function AUITerminal() {
 
       <Head>
         <title>Authentic Intelligence | AUi Terminal</title>
-        <meta name="description" content="AUi Terminal fuses every source into one qualified picture, ranks what matters, and records every decision. Decision support for crisis response, with people in control." />
+        <meta name="description" content="AUi Terminal is the data fusion and command layer for enterprise, government and critical national infrastructure: one qualified operating picture, clear priorities and every decision on record." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
@@ -224,7 +231,7 @@ export default function AUITerminal() {
             <a href="#objective"><span className="mobile-prefix-marker">// </span>01_OBJ</a>
             <a href="#process"><span className="mobile-prefix-marker">// </span>02_PROCESS</a>
             <a href="#control"><span className="mobile-prefix-marker">// </span>03_CONTROL</a>
-            <a href="#sectors"><span className="mobile-prefix-marker">// </span>04_SECTORS</a>
+            <a href="#sectors"><span className="mobile-prefix-marker">// </span>04_SERVE</a>
           </nav>
         </header>
       </div>
@@ -237,7 +244,7 @@ export default function AUITerminal() {
               ONE VIEW. <br /> EVERY SOURCE. <br /> <span style={{ color: '#2563eb' }}>EVERY DECISION ON RECORD.</span>
             </h1>
             <p style={{ color: '#9ca3af', maxWidth: '460px', margin: '0 auto', lineHeight: '1.6', fontSize: '18px', fontWeight: '300' }}>
-              AUi Terminal: decision support for crisis response, with people in control.
+              AUi Terminal is the data fusion and command layer for enterprise, government and critical national infrastructure, turning fragmented data into accountable decisions.
             </p>
           </div>
 
@@ -258,10 +265,10 @@ export default function AUITerminal() {
         <section id="objective" style={{ borderTop: '1px solid #111', paddingTop: '60px', paddingBottom: '60px' }}>
           <h2 style={{ ...sectionLabel, marginBottom: '30px' }}>[01] CORE MISSION OBJECTIVE</h2>
           <p style={{ ...statement, maxWidth: '1000px', marginBottom: '60px' }}>
-            AUi is the <span style={{ color: '#2563eb' }}>decision layer of crisis response</span>. It fuses the data you already own or license into one qualified picture, shows how reliable each source is, ranks what matters most and records who decided what.
+            AUi is the <span style={{ color: '#2563eb' }}>command layer between seeing and acting</span>. It fuses the data you already own or license into a single operating picture, shows what to trust, ranks what matters most and puts every decision on record, in steady-state operations and when events escalate.
           </p>
 
-          <h3 style={{ ...sectionLabel, fontSize: '10px', marginBottom: '30px' }}>THE DATA EXISTS. THE OVERALL PICTURE IS MISSING.</h3>
+          <h3 style={{ ...sectionLabel, fontSize: '10px', marginBottom: '30px' }}>THE DATA EXISTS. THE OPERATING PICTURE DOES NOT.</h3>
           <div className="card-grid">
             {problems.map((p) => (
               <div key={p.title} style={{ borderLeft: '2px solid #333', paddingLeft: '20px' }}>
@@ -273,7 +280,7 @@ export default function AUITerminal() {
         </section>
 
         <section id="process" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px' }}>
-          <h2 style={{ ...sectionLabel, marginBottom: '50px' }}>[02] FROM TELEMETRY TO DECISION</h2>
+          <h2 style={{ ...sectionLabel, marginBottom: '50px' }}>[02] FROM SIGNAL TO DECISION</h2>
 
           <div style={{ width: '100%', padding: '20px 0', marginBottom: '50px', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
             <ProcessDiagram />
@@ -306,11 +313,23 @@ export default function AUITerminal() {
         </section>
 
         <section id="sectors" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '80px' }}>
-          <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[04] OPERATIONAL SECTORS</h2>
+          <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[04] WHO WE SERVE</h2>
 
           <p style={{ ...subStatement, marginBottom: '60px' }}>
-            One core architecture, <span style={{ color: '#fff' }}>configured to each client</span>: its territory, risk profile, existing data feeds and command procedures. It works alongside the systems you already run and does not replace them.
+            One command layer, <span style={{ color: '#fff' }}>configured to each client</span>: its operating environment, risk profile, data estate and decision procedures. It sits above the systems you already run; it does not replace them.
           </p>
+
+          <div className="card-grid" style={{ marginBottom: '60px' }}>
+            {audiences.map((a) => (
+              <div key={a.title} style={{ borderLeft: '2px solid #2563eb', paddingLeft: '20px' }}>
+                <h4 style={cardTitle}>{a.title}</h4>
+                <p style={{ fontSize: '17px', color: '#fff', fontWeight: '600', margin: '0 0 10px 0' }}>{a.lead}</p>
+                <p style={cardBody}>{a.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <h3 style={{ ...sectionLabel, fontSize: '10px', marginBottom: '30px' }}>SECTOR MODULES</h3>
 
           <div className="responsive-sectors">
             {sectors.map((s) => (
@@ -338,7 +357,7 @@ export default function AUITerminal() {
         <section id="pilot" style={{ borderTop: '1px solid #111', paddingTop: '80px', marginBottom: '100px' }}>
           <h2 style={{ ...sectionLabel, marginBottom: '20px' }}>[05] NEXT STEP</h2>
           <p style={{ ...statement, maxWidth: '1000px', marginBottom: '50px' }}>
-            Judge it on <span style={{ color: '#2563eb' }}>your own data</span>. A four-month pilot on the sources you already use.
+            Prove the value on <span style={{ color: '#2563eb' }}>your own data</span>. A four-month, fixed-price pilot with a clear go or no-go at the end.
           </p>
 
           <div style={{ maxWidth: '800px', marginBottom: '50px', borderBottom: '1px solid #1a1a1a' }}>
