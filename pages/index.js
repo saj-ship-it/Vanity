@@ -1,6 +1,7 @@
 import React from 'react';
 import { processIcons } from '../content/site';
-import { useSite, PageMeta, GlobalStyles, SiteHeader, SiteFooter, Icon, mailto } from '../components/Site';
+import { useSite, PageMeta, GlobalStyles, SiteHeader, SiteFooter, Icon } from '../components/Site';
+import ContactForm from '../components/ContactForm';
 
 export default function Home() {
   const { t } = useSite();
@@ -22,7 +23,7 @@ export default function Home() {
             </h1>
             <p className="hero-sub">{t.hero.sub}</p>
             <div className="hero-cta">
-              <a className="btn btn-primary" href={mailto(t.hero.primarySubject)}>{t.hero.primary}</a>
+              <a className="btn btn-primary" href="#contact">{t.hero.primary}</a>
               <a className="btn btn-ghost" href="#platform">{t.hero.secondary} <span className="arrow" aria-hidden="true">&rarr;</span></a>
             </div>
           </div>
@@ -66,21 +67,28 @@ export default function Home() {
         <section id="platform" className="section">
           <div className="section-head">
             <h2 className="eyebrow">{t.platform.label}</h2>
-            <p className="lede">{t.platform.before}<strong>{t.platform.accent}</strong></p>
-            <p className="body" style={{ maxWidth: '720px' }}>{t.platform.body}</p>
+            <p className="statement">
+              {t.platform.before}<span className="accent">{t.platform.accent}</span>{t.platform.after}
+              <span className="statement-rest">{t.platform.body}</span>
+            </p>
           </div>
 
           <figure className="shot">
-            <div className="shot-frame">
-              <img src={t.platform.image} width="2000" height="1156" alt={t.platform.alt} loading="lazy" decoding="async" />
-            </div>
+            <a className="shot-frame" href={t.platform.image} target="_blank" rel="noopener">
+              <picture>
+                <source media="(max-width: 767px)" srcSet={t.platform.imageMobile} width="900" height="1051" />
+                <img src={t.platform.image} width="2000" height="1240" alt={t.platform.alt} loading="lazy" decoding="async" />
+              </picture>
+              <span className="shot-open">{t.platform.open} &#8599;</span>
+            </a>
             <figcaption className="shot-caption">{t.platform.caption}</figcaption>
           </figure>
 
           <div className="callouts">
             {t.platform.callouts.map((c) => (
-              <div key={c.value} className="col">
-                <p className="callout-value">{c.value}</p>
+              <div key={c.title} className="col col-accent">
+                <p className="eyebrow">{c.eyebrow}</p>
+                <h3 className="callout-title">{c.title}</h3>
                 <p className="body">{c.text}</p>
               </div>
             ))}
@@ -94,10 +102,9 @@ export default function Home() {
           </div>
           <ol className="tiles tiles-4" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
             {t.process.steps.map((step) => (
-              <li key={step.num} className="tile">
+              <li key={step.icon} className="tile">
                 <div className="tile-top">
                   <div className="tile-icon"><Icon path={processIcons[step.icon]} /></div>
-                  <span className="tile-num">{step.num}</span>
                 </div>
                 <h3 className="card-title">{step.title}</h3>
                 <p className="body">{step.desc}</p>
@@ -110,7 +117,10 @@ export default function Home() {
         <section id="control" className="section">
           <div className="section-head">
             <h2 className="eyebrow">{t.trust.label}</h2>
-            <p className="lede">{t.trust.before}<strong>{t.trust.accent}</strong>{t.trust.after}</p>
+            <p className="statement">
+              {t.trust.before}<span className="accent">{t.trust.accent}</span>{t.trust.after}
+              <span className="statement-rest">{t.trust.rest}</span>
+            </p>
           </div>
           <div className="cols-3">
             {t.trust.cards.map((s) => (
@@ -126,7 +136,10 @@ export default function Home() {
         <section id="sectors" className="section">
           <div className="section-head">
             <h2 className="eyebrow">{t.serve.label}</h2>
-            <p className="lede"><strong>{t.serve.accent}</strong>{t.serve.after}</p>
+            <p className="statement">
+              {t.serve.before}<span className="accent">{t.serve.accent}</span>{t.serve.after}
+              <span className="statement-rest">{t.serve.rest}</span>
+            </p>
           </div>
 
           <div className="cols-3" style={{ marginBottom: '72px' }}>
@@ -152,7 +165,7 @@ export default function Home() {
               </div>
             ))}
 
-            <a className="tile tile-cta" href={mailto(t.serve.cta.subject)}>
+            <a className="tile tile-cta" href="#contact">
               <div className="tile-top">
                 <div className="tile-icon"><Icon path="M12 5v14 M5 12h14" color="#9ca3af" /></div>
               </div>
@@ -171,16 +184,22 @@ export default function Home() {
             <p className="statement">{t.pilot.before}<span className="accent">{t.pilot.accent}</span>{t.pilot.after}</p>
           </div>
 
-          <div className="pilot-table">
-            {t.pilot.rows.map((row) => (
-              <div key={row.label} className="pilot-row">
-                <span className="pilot-label">{row.label}</span>
-                <span className="pilot-value">{row.value}</span>
-              </div>
-            ))}
-          </div>
+          <div className="pilot-grid">
+            <div className="pilot-table">
+              {t.pilot.rows.map((row) => (
+                <div key={row.label} className="pilot-row">
+                  <span className="pilot-label">{row.label}</span>
+                  <span className="pilot-value">{row.value}</span>
+                </div>
+              ))}
+            </div>
 
-          <a className="btn btn-primary" href={mailto(t.pilot.subject)}>{t.pilot.button} <span className="arrow" aria-hidden="true">&rarr;</span></a>
+            <div id="contact" className="contact-panel">
+              <h3>{t.form.title}</h3>
+              <p className="body">{t.form.intro}</p>
+              <ContactForm />
+            </div>
+          </div>
         </section>
       </main>
 

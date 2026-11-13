@@ -10,6 +10,7 @@ export const LOCALES = ['en', 'fr'];
 
 export const pageUrl = (locale, path = '') => `${SITE_URL}${locale === 'en' ? '' : `/${locale}`}${path}` || `${SITE_URL}/`;
 export const mailto = (subject) => `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`;
+export const contactHref = (locale) => `${locale === 'en' ? '' : `/${locale}`}/#contact`;
 
 // Current language and its copy
 export function useSite() {
@@ -126,7 +127,7 @@ export function SiteHeader({ nav }) {
           <div className="header-right">
             <UtcClock locale={locale} />
             <LanguageSwitch />
-            <a className="btn btn-ghost btn-sm header-cta" href={mailto(t.hero.primarySubject)}>{t.headerCta}</a>
+            <a className="btn btn-ghost btn-sm header-cta" href={contactHref(locale)}>{t.headerCta}</a>
           </div>
         </div>
 
@@ -134,7 +135,7 @@ export function SiteHeader({ nav }) {
           <nav className="nav-links" aria-label={t.navLabel}>
             {nav.map((n) => (
               <a key={n.href} href={n.href} aria-current={active === n.href.slice(1) ? 'true' : undefined}>
-                <span className="nav-num">{n.num} </span>{n.label}
+                {n.label}
               </a>
             ))}
           </nav>
@@ -156,7 +157,17 @@ export function SiteFooter() {
         </div>
         <div>
           <p className="eyebrow footer-heading">{t.footer.contactLabel}</p>
-          <a className="footer-link" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          <ul className="footer-list">
+            <li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
+            <li><a href={contactHref(locale)}>{t.headerCta}</a></li>
+          </ul>
+        </div>
+        <div>
+          <p className="eyebrow footer-heading">{t.footer.legalLabel}</p>
+          <ul className="footer-list">
+            <li><Link href="/privacy" locale={locale}>{t.footer.privacy}</Link></li>
+            <li><Link href="/legal" locale={locale}>{t.footer.legal}</Link></li>
+          </ul>
         </div>
         <div>
           <p className="eyebrow footer-heading">{t.languageLabel}</p>
@@ -165,10 +176,6 @@ export function SiteFooter() {
       </div>
       <div className="footer-bottom">
         <span>{t.footer.rights}</span>
-        <span className="footer-legal">
-          <Link href="/privacy" locale={locale}>{t.footer.privacy}</Link>
-          <Link href="/legal" locale={locale}>{t.footer.legal}</Link>
-        </span>
       </div>
     </footer>
   );
@@ -217,8 +224,7 @@ const CSS = `
   .nav-links a { color: #a3a3a3; text-decoration: none; white-space: nowrap; padding: 6px 0; border-bottom: 1px solid transparent; }
   .nav-links a:hover, .nav-links a:focus-visible { color: var(--blue-text); }
   .nav-links a[aria-current='true'] { color: var(--text); border-bottom-color: var(--blue); }
-  .nav-num { display: none; color: var(--muted); }
-
+  
   /* Buttons */
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 15px 24px; border-radius: 4px; font: 600 15px/1 var(--sans); letter-spacing: 0.005em; text-decoration: none; transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
   .btn-primary { background: #ffffff; color: #050505; }
@@ -233,8 +239,6 @@ const CSS = `
   .eyebrow { font: 500 11px/1.4 var(--mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0; }
   .statement { font: 600 clamp(24px, 3.4vw, 38px)/1.28 var(--sans); letter-spacing: -0.02em; color: var(--text); margin: 0; max-width: 1000px; }
   .statement-rest { display: block; margin-top: 18px; font: 500 clamp(18px, 2.1vw, 23px)/1.5 var(--sans); letter-spacing: -0.01em; color: var(--text-2); max-width: 880px; }
-  .lede { font: 600 clamp(20px, 2.7vw, 30px)/1.38 var(--sans); letter-spacing: -0.02em; color: #9ca3af; margin: 0; max-width: 1000px; }
-  .lede strong, .statement .white { color: var(--text); font-weight: 600; }
   .accent { color: var(--blue); }
   .body { font: 400 15px/1.65 var(--sans); color: var(--text-2); margin: 0; }
   .card-title { font: 600 17px/1.3 var(--sans); letter-spacing: -0.01em; color: var(--text); margin: 0 0 8px; }
@@ -248,7 +252,7 @@ const CSS = `
   .globe-container { position: absolute; z-index: 0; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 125vw; height: 125vw; max-width: 640px; max-height: 640px; opacity: 0.3; pointer-events: none; }
 
   /* Sections */
-  .section { border-top: 1px solid var(--line); padding: 72px 0; }
+  .section { border-top: 1px solid var(--line); padding: 64px 0; }
   .section-head { display: flex; flex-direction: column; gap: 20px; margin-bottom: 48px; }
   .cols-3 { display: grid; grid-template-columns: 1fr; gap: 32px 40px; }
   .col { padding-top: 20px; border-top: 1px solid var(--line-2); }
@@ -259,11 +263,14 @@ const CSS = `
 
   /* Product shot */
   .shot { margin: 0; }
-  .shot-frame { border: 1px solid #1f2937; border-radius: 10px; overflow: hidden; background: #070b14; box-shadow: 0 0 0 1px rgba(37,99,235,0.12), 0 40px 100px -30px rgba(37,99,235,0.35); }
+  .shot-frame { position: relative; display: block; border: 1px solid #1f2937; border-radius: 10px; overflow: hidden; background: #070b14; box-shadow: 0 0 0 1px rgba(37,99,235,0.12), 0 40px 100px -30px rgba(37,99,235,0.35); }
   .shot-frame img { display: block; width: 100%; height: auto; }
+  .shot-frame::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 22%; background: linear-gradient(to bottom, rgba(7,11,20,0), #070b14); pointer-events: none; }
+  .shot-open { position: absolute; right: 14px; bottom: 14px; z-index: 1; font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); background: rgba(5,5,5,0.8); border: 1px solid #333; padding: 8px 10px; border-radius: 4px; }
+  .shot-frame:hover .shot-open, .shot-frame:focus-visible .shot-open { border-color: var(--blue-text); }
   .shot-caption { margin-top: 14px; font: 400 12px/1.5 var(--mono); color: var(--muted); letter-spacing: 0.02em; }
   .callouts { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 40px; }
-  .callout-value { font: 600 30px/1 var(--mono); color: var(--text); letter-spacing: -0.02em; margin: 0 0 10px; }
+  .callout-title { font: 600 20px/1.3 var(--sans); color: var(--text); letter-spacing: -0.01em; margin: 10px 0 8px; }
 
   /* Tiles (process steps and sectors) */
   .tiles { display: grid; grid-template-columns: 1fr; gap: 16px; }
@@ -284,8 +291,28 @@ const CSS = `
     .sector-row > * { flex: 0 0 80%; scroll-snap-align: start; }
   }
 
-  /* Pilot */
-  .pilot-table { max-width: 800px; margin: 0 0 44px; border-bottom: 1px solid #1a1a1a; }
+  /* Pilot and contact */
+  .pilot-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+  .pilot-table { margin: 0; border-bottom: 1px solid #1a1a1a; }
+  .contact-panel { background: var(--surface); border: 1px solid #222; border-radius: 10px; padding: 28px 22px; scroll-margin-top: 16px; }
+  .contact-panel h3 { font: 600 22px/1.3 var(--sans); letter-spacing: -0.01em; margin: 0 0 8px; }
+  .form { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 24px; }
+  .field { display: flex; flex-direction: column; gap: 7px; }
+  .field label { font: 500 13px/1.3 var(--sans); color: #d1d5db; }
+  .field input, .field select, .field textarea { font: 400 15px/1.4 var(--sans); color: var(--text); background: #050505; border: 1px solid #2a2a2a; border-radius: 6px; padding: 12px 13px; width: 100%; box-sizing: border-box; }
+  .field textarea { min-height: 120px; resize: vertical; }
+  .field select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, #8b93a1 50%), linear-gradient(135deg, #8b93a1 50%, transparent 50%); background-position: calc(100% - 18px) 52%, calc(100% - 13px) 52%; background-size: 5px 5px; background-repeat: no-repeat; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue-text); box-shadow: 0 0 0 3px rgba(91,141,239,0.25); }
+  .req { color: var(--blue-text); margin-left: 2px; }
+  .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  .form-note { font: 400 13px/1.55 var(--sans); color: var(--muted); margin: 0; }
+  .form-note a, .form-status a { color: var(--blue-text); }
+  .form-actions { display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
+  .form .btn { border: 0; cursor: pointer; }
+  .form .btn[disabled] { opacity: 0.7; cursor: progress; }
+  .form-status { font: 400 14px/1.55 var(--sans); margin: 0; color: #fca5a5; }
+  .form-success { padding: 8px 0; }
+  .form-success h4 { font: 600 20px/1.3 var(--sans); margin: 0 0 8px; color: var(--text); }
   .pilot-row { display: flex; flex-direction: column; gap: 6px; padding: 18px 0; border-top: 1px solid #1a1a1a; }
   .pilot-label { font: 500 11px/1.4 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); min-width: 130px; }
   .pilot-value { font: 400 16px/1.5 var(--sans); color: #e5e7eb; }
@@ -296,20 +323,18 @@ const CSS = `
   .footer-brand { margin-bottom: 16px; }
   .footer-tagline { font: 400 14px/1.6 var(--sans); color: var(--text-2); max-width: 380px; margin: 0; }
   .footer-heading { margin-bottom: 14px; }
-  .footer-link { font: 400 15px/1.5 var(--sans); color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line-2); }
-  .footer-link:hover, .footer-link:focus-visible { border-bottom-color: var(--blue-text); }
+  .footer-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .footer-list a { font: 400 14px/1.5 var(--sans); color: var(--text-2); text-decoration: none; }
+  .footer-list a:hover, .footer-list a:focus-visible { color: var(--text); }
   .site-footer .lang-switch { margin-left: -7px; }
   .footer-bottom { display: flex; flex-direction: column; gap: 14px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font: 400 13px/1.5 var(--sans); color: var(--muted); }
-  .footer-legal { display: flex; gap: 20px; flex-wrap: wrap; }
-  .footer-legal a { color: var(--muted); text-decoration: none; }
-  .footer-legal a:hover, .footer-legal a:focus-visible { color: var(--text); }
 
   /* Legal pages */
   .legal { max-width: 720px; margin: 0 auto; padding: 140px 0 72px; }
   .legal h1 { font: 700 clamp(32px, 5vw, 44px)/1.15 var(--sans); letter-spacing: -0.03em; margin: 16px 0 12px; }
   .legal h2 { font: 600 19px/1.35 var(--sans); letter-spacing: -0.01em; margin: 40px 0 10px; }
-  .legal p { font: 400 16px/1.7 var(--sans); color: var(--text-2); margin: 0 0 12px; }
-  .legal a { color: var(--blue-text); }
+  .legal section p { font: 400 16px/1.7 var(--sans); color: var(--text-2); margin: 0 0 12px; }
+  .legal section a { color: var(--blue-text); }
   .back-link { font: 500 12px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
   .back-link:hover, .back-link:focus-visible { color: var(--text); }
 
@@ -329,25 +354,28 @@ const CSS = `
     .clock { display: inline; }
     .btn.header-cta { display: inline-flex; }
     .nav-links { justify-content: flex-start; gap: 28px; letter-spacing: 0.12em; }
-    .nav-num { display: inline; }
     .hero-layout { flex-direction: row; text-align: left; align-items: center; min-height: 520px; margin-top: 150px; padding: 0 0 48px; }
     .hero-sub { margin: 0; }
     .hero-cta { justify-content: flex-start; }
     .globe-container { top: 45%; left: auto; right: -2vw; transform: translateY(-50%); width: 580px; height: 580px; max-width: none; max-height: none; opacity: 1; }
-    .section { padding: 112px 0; }
-    .section-head { margin-bottom: 64px; }
+    .section { padding: 92px 0; }
+    .section-head { margin-bottom: 56px; }
     .cols-3 { grid-template-columns: repeat(3, 1fr); }
     .callouts { grid-template-columns: repeat(3, 1fr); gap: 40px; }
     .tiles { grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .swipe-hint { display: none; }
-    .pilot-row { flex-direction: row; gap: 40px; }
-    .footer-grid { grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
-    .footer-bottom { flex-direction: row; justify-content: space-between; }
+    .pilot-row { flex-direction: row; gap: 32px; }
+    .contact-panel { padding: 36px 32px; }
+    .form { grid-template-columns: 1fr 1fr; }
+    .field-wide { grid-column: 1 / -1; }
+    .form-actions { flex-direction: row; align-items: center; justify-content: space-between; }
+    .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
     .body { font-size: 16px; }
   }
 
   /* Desktop */
   @media (min-width: 1024px) {
+    .pilot-grid { grid-template-columns: 5fr 6fr; gap: 56px; align-items: start; }
     .tiles-4 { grid-template-columns: repeat(4, 1fr); }
     .tiles-3 { grid-template-columns: repeat(3, 1fr); }
   }
