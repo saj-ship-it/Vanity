@@ -286,6 +286,8 @@ export default function AUITerminal() {
           <h2 style={{ ...sectionLabel, marginBottom: '30px' }}>{t.mission.label}</h2>
           <p style={{ ...statement, maxWidth: '1000px', marginBottom: '60px' }}>
             {t.mission.before}<span style={{ color: '#2563eb' }}>{t.mission.accent}</span>{t.mission.after}
+            <br />
+            {t.mission.rest}
           </p>
 
           <p style={{ ...sectionLabel, marginBottom: '30px' }}>{t.mission.problemsLabel}</p>

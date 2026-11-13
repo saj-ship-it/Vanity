@@ -39,7 +39,9 @@ export const content = {
       label: '[01] CORE MISSION OBJECTIVE',
       before: 'AUi turns fragmented data into ',
       accent: 'decision advantage',
-      after: '. It fuses every source you own or license into one live operating picture, uses AI to detect the weak signals and pattern breaks that precede disruption, and puts a ranked, explained recommendation in front of decision-makers while there is still time to act.',
+      after: '.',
+      // Starts on its own line after the first sentence
+      rest: 'It fuses every source you own or license into one live operating picture, uses AI to detect the weak signals and pattern breaks that precede disruption, and puts a ranked, explained recommendation in front of decision-makers while there is still time to act.',
       problemsLabel: 'THE SIGNAL IS ALREADY IN YOUR DATA. NO ONE SEES IT IN TIME.',
       problems: [
         { title: 'SCATTERED', desc: 'Critical signals sit in disconnected systems (operational platforms, sensors, satellite, weather, field and commercial feeds) that were never built to work together.' },
@@ -139,7 +141,8 @@ export const content = {
       label: '[01] OBJECTIF DE LA MISSION',
       before: 'AUi transforme des données fragmentées en ',
       accent: 'avantage décisionnel',
-      after: '. Il fusionne toutes les sources dont vous disposez, ou que vous exploitez sous licence, en une vue opérationnelle unique et en temps réel, détecte grâce à l’IA les signaux faibles et les ruptures qui annoncent une crise, et présente aux décideurs une recommandation hiérarchisée et expliquée tant qu’il est encore temps d’agir.',
+      after: '.',
+      rest: 'Il fusionne toutes les sources dont vous disposez, ou que vous exploitez sous licence, en une vue opérationnelle unique et en temps réel, détecte grâce à l’IA les signaux faibles et les ruptures qui annoncent une crise, et présente aux décideurs une recommandation hiérarchisée et expliquée tant qu’il est encore temps d’agir.',
       problemsLabel: 'LE SIGNAL EST DÉJÀ DANS VOS DONNÉES. PERSONNE NE LE VOIT À TEMPS.',
       problems: [
         { title: 'DISPERSION', desc: 'Les signaux critiques sont répartis dans des systèmes cloisonnés (plateformes opérationnelles, capteurs, satellites, météo, terrain et flux commerciaux) qui n’ont jamais été conçus pour fonctionner ensemble.' },
