@@ -16,7 +16,7 @@ const icons = {
 
 // Process icons, same 24px line style as the sector icons
 export const processIcons = {
-  fuse: 'M6 3a3 3 0 100 6 3 3 0 000-6z M18 15a3 3 0 100 6 3 3 0 000-6z M6 9v12 M6 9a9 9 0 009 9',
+  fuse: 'M12 2l10 5-10 5L2 7l10-5z M2 17l10 5 10-5 M2 12l10 5 10-5',
   verify: 'M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z M9 12l2 2 4-4',
   predict: 'M22 7l-8.5 8.5-5-5L2 17 M16 7h6v6',
   decide: 'M9 2h6v4H9z M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2 M9 14l2 2 4-4'
@@ -35,11 +35,11 @@ export const content = {
     navLabel: 'Sections',
     headerCta: 'Request a briefing',
     nav: [
-      { href: '#objective', num: '01', label: 'Mission' },
-      { href: '#process', num: '02', label: 'Process' },
-      { href: '#control', num: '03', label: 'Trust' },
-      { href: '#sectors', num: '04', label: 'Who we serve' },
-      { href: '#pilot', num: '05', label: 'Pilot' }
+      { href: '#objective', label: 'Mission' },
+      { href: '#process', label: 'Process' },
+      { href: '#control', label: 'Trust' },
+      { href: '#sectors', label: 'Who we serve' },
+      { href: '#pilot', label: 'Pilot' }
     ],
     hero: {
       lines: ['ONE VIEW.', 'EVERY SOURCE.'],
@@ -50,7 +50,7 @@ export const content = {
       secondary: 'See the platform'
     },
     mission: {
-      label: '[01] Core mission objective',
+      label: 'Core mission objective',
       before: 'AUi turns fragmented data into ',
       accent: 'decision advantage',
       after: '.',
@@ -64,33 +64,38 @@ export const content = {
       ]
     },
     platform: {
-      label: 'In practice // Wildfire command',
+      label: 'In practice · Wildfire command',
       before: 'One screen for ',
-      accent: 'the people in command.',
+      accent: 'the people in command',
+      after: '.',
       body: 'From AUi’s wildfire command module: the incident, the sources that confirm it, the people and sites exposed, and the aircraft and water points available, fused on one operational map.',
       image: '/product-wildfire-en.webp',
+      imageMobile: '/product-wildfire-en-mobile.webp',
+      open: 'Open full size',
       alt: 'AUi Terminal wildfire dashboard: an active incident at La Teste-de-Buch with three of seven sources confirming, weather at the point of origin, about 1,200 people exposed, available aircraft and the operational map.',
       caption: 'Demonstration scenario: La Teste-de-Buch, Gironde. Every source is labelled live, simulated or not yet connected.',
+      // Pilot outcomes, as framed in the AUi Terminal deck
       callouts: [
-        { value: '3/7', text: 'Sources confirm the incident before anyone acts' },
-        { value: '≈ 1,200', text: 'People and sites exposed, mapped and counted' },
-        { value: '5–8', text: 'Aircraft available, with water points and scooping detours' }
+        { eyebrow: '01 · Time', title: 'Confirmed sooner', text: 'Cross-checked sources let command act on the first credible signal. Measured in pilot: time from first signal to confirmed alert.' },
+        { eyebrow: '02 · Air assets', title: 'Flight time back on the fire', text: 'When a water point drops below scooping level, AUi shows it at once, with the cost of the alternative. A 16-minute detour is more than a quarter of an hour of flight lost on every rotation.' },
+        { eyebrow: '03 · Accountability', title: 'Defensible choices', text: 'Every request is logged with who made it, on what basis and who validated it.' }
       ]
     },
     process: {
-      label: '[02] From signal to decision',
+      label: 'From signal to decision',
       steps: [
-        { num: '01', icon: 'fuse', title: 'Fuse', desc: 'Ready-made adapters ingest and fuse the feeds you already own or license (operational systems, IoT sensors, satellite, weather, video, field reports) into one picture, and add new sources as needed.' },
-        { num: '02', icon: 'verify', title: 'Verify', desc: 'Source health is monitored continuously. Broken feeds are flagged and live data is cross-checked for agreement or contradiction.' },
-        { num: '03', icon: 'predict', title: 'Predict', desc: 'Machine learning watches every stream around the clock, detects anomalies and trend breaks as they form, and ranks emerging risks and opportunities by urgency, with the reasoning shown.' },
-        { num: '04', icon: 'decide', title: 'Decide & act', desc: 'AI recommends; your people decide. Each recommendation arrives explained and is logged with who approved it, so the organisation moves faster and with confidence.' }
+        { icon: 'fuse', title: 'Fuse', desc: 'Adapters bring every feed you own or license into one picture: operational systems, sensors, satellite, weather and field reports.' },
+        { icon: 'verify', title: 'Verify', desc: 'Source health is monitored continuously, broken feeds are flagged and live data is cross-checked.' },
+        { icon: 'predict', title: 'Predict', desc: 'Machine learning spots anomalies and trend breaks as they form and ranks emerging risks by urgency, reasoning shown.' },
+        { icon: 'decide', title: 'Decide & act', desc: 'AI recommends, your people decide, and every approval is logged.' }
       ]
     },
     trust: {
-      label: '[03] AI you can trust',
+      label: 'AI you can trust',
       before: 'Powerful AI, ',
-      accent: 'with your people firmly in command.',
-      after: ' Every prediction is explained, every data gap is disclosed and every decision is on record, so speed never comes at the cost of control.',
+      accent: 'with your people firmly in command',
+      after: '.',
+      rest: 'Every prediction is explained, every data gap is disclosed and every decision is on record, so speed never comes at the cost of control.',
       cards: [
         { title: 'Human authority, always', desc: 'AUi recommends; it never acts. Decisions rest with the accountable owner, and separation of duties is enforced: whoever proposes an action cannot validate it.' },
         { title: 'Explainable by design', desc: 'No black boxes. Every priority traces back to its source data and the reasoning behind it, presented alongside the recommendation.' },
@@ -101,9 +106,11 @@ export const content = {
       ]
     },
     serve: {
-      label: '[04] Who we serve',
-      accent: 'Engineered for your mission.',
-      after: ' Every deployment is shaped around your operating environment, risk profile, data estate and the way your organisation actually makes decisions. It sits above the systems you already run and makes every one of them more valuable.',
+      label: 'Who we serve',
+      before: 'Engineered for ',
+      accent: 'your mission',
+      after: '.',
+      rest: 'Every deployment is shaped around your operating environment, risk profile, data estate and the way your organisation actually makes decisions. It sits above the systems you already run and makes every one of them more valuable.',
       audiences: [
         { title: 'Enterprise', lead: 'See disruption before it hits the P&L.', desc: 'Anticipate operational, supply-chain and site risk across every region, move ahead of competitors, and back every material decision with evidence boards, insurers and regulators trust.' },
         { title: 'Government & public sector', lead: 'Decision advantage at every level.', desc: 'Give agencies and every level of command one predictive picture, from day-to-day operations to national emergencies, and act on emerging threats before they escalate.' },
@@ -124,7 +131,7 @@ export const content = {
       cta: { title: 'Your sector', desc: 'Not listed? Every deployment is engineered for your mission.', link: 'Discuss your use case', subject: 'AUi Terminal for my sector' }
     },
     pilot: {
-      label: '[05] Pilot',
+      label: 'Pilot',
       before: 'Prove the advantage on ',
       accent: 'your own data',
       after: '. A four-month, fixed-price pilot.',
@@ -138,9 +145,32 @@ export const content = {
       button: 'Request a pilot',
       subject: 'AUi Terminal pilot'
     },
+    form: {
+      title: 'Request a briefing or pilot',
+      intro: 'Tell us what you need to decide. We reply within two working days.',
+      name: 'Name',
+      email: 'Work email',
+      org: 'Organisation',
+      interest: 'I’m interested in',
+      interests: ['A briefing', 'A pilot', 'Something else'],
+      sector: 'Sector',
+      sectorPlaceholder: 'Select a sector',
+      other: 'Other',
+      message: 'Message',
+      messagePlaceholder: 'What would you like AUi to help you see or decide?',
+      consent: 'We use these details only to reply to you. See our ',
+      privacy: 'privacy policy',
+      submit: 'Send request',
+      sending: 'Sending…',
+      successTitle: 'Thank you. Your request has been sent.',
+      successBody: 'We’ll reply to you by email shortly.',
+      error: 'Sorry, the form could not be sent. Please email us directly at ',
+      subject: 'AUi Terminal enquiry'
+    },
     footer: {
       tagline: 'AUi Terminal: the AI-powered fusion and command layer for enterprise, government and critical national infrastructure.',
       contactLabel: 'Contact',
+      legalLabel: 'Legal',
       privacy: 'Privacy policy',
       legal: 'Legal notice',
       rights: '© 2026 Authentic Intelligence Inc. All rights reserved.'
@@ -152,9 +182,9 @@ export const content = {
         title: 'Privacy policy',
         sections: [
           { h: 'Who we are', p: ['This website is operated by Authentic Intelligence Inc., which is responsible for the personal data described here. You can reach us at {email}.'] },
-          { h: 'What this website collects', p: ['This website does not use cookies, analytics or advertising trackers. Fonts and images are served from our own domain, so visiting the site does not send your data to third parties such as font or analytics providers.'] },
+          { h: 'What this website collects', p: ['This website does not use cookies, analytics or advertising trackers. Fonts and images are served from our own domain, so visiting the site does not send your data to third parties such as font or analytics providers. The only exception is the contact form, described below, which you choose to send.'] },
           { h: 'Hosting', p: ['Our host, Vercel Inc., processes technical data such as your IP address, browser type and the pages requested, in order to deliver the website and protect it against abuse. Vercel’s own privacy policy applies to that processing.'] },
-          { h: 'When you contact us', p: ['If you email us, we use your name, contact details and message only to reply to you and to manage our relationship with you. We do not sell your data or share it for marketing. We keep it only for as long as that purpose requires.'] },
+          { h: 'When you contact us', p: ['If you use the contact form or email us, we use your name, organisation, contact details and message only to reply to you and to manage our relationship with you. We do not sell your data or share it for marketing. We keep it only for as long as that purpose requires.', 'Contact form submissions are delivered to our inbox by FormSubmit (formsubmit.co), which processes them on our behalf for that purpose only.'] },
           { h: 'Your rights', p: ['Under the EU General Data Protection Regulation (GDPR) and similar laws, you can ask to access, correct or delete your personal data, and object to or restrict its processing. Write to {email} and we will respond within one month.', 'You can also lodge a complaint with your data protection authority. In France, this is the CNIL (cnil.fr).'] }
         ]
       },
@@ -163,7 +193,7 @@ export const content = {
         sections: [
           { h: 'Publisher', p: ['This website is published by Authentic Intelligence Inc. Contact: {email}.'] },
           { h: 'Hosting', p: ['This website is hosted by Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, United States (vercel.com).'] },
-          { h: 'Intellectual property', p: ['All content on this website, including text, graphics, the AUi Terminal name and interface images, belongs to Authentic Intelligence Inc. unless stated otherwise, and may not be reproduced without permission.', 'Map data shown in product images: © IGN – Géoplateforme.'] },
+          { h: 'Intellectual property', p: ['All content on this website, including text, graphics, the AUi Terminal name and interface images, belongs to Authentic Intelligence Inc. unless stated otherwise, and may not be reproduced without permission.', 'Map data shown in product images and site imagery: © IGN – Géoplateforme.'] },
           { h: 'Product images', p: ['Product images show a demonstration scenario. Values from sources marked as simulated in those images do not reflect live data.'] }
         ]
       }
@@ -182,11 +212,11 @@ export const content = {
     navLabel: 'Sections',
     headerCta: 'Demander une présentation',
     nav: [
-      { href: '#objective', num: '01', label: 'Mission' },
-      { href: '#process', num: '02', label: 'Processus' },
-      { href: '#control', num: '03', label: 'Confiance' },
-      { href: '#sectors', num: '04', label: 'Pour qui' },
-      { href: '#pilot', num: '05', label: 'Pilote' }
+      { href: '#objective', label: 'Mission' },
+      { href: '#process', label: 'Processus' },
+      { href: '#control', label: 'Confiance' },
+      { href: '#sectors', label: 'Pour qui' },
+      { href: '#pilot', label: 'Pilote' }
     ],
     hero: {
       lines: ['UNE VUE UNIQUE.', 'TOUTES LES SOURCES.'],
@@ -200,7 +230,7 @@ export const content = {
       secondary: 'Voir la plateforme'
     },
     mission: {
-      label: '[01] Objectif de la mission',
+      label: 'Objectif de la mission',
       before: 'AUi transforme des données fragmentées en ',
       accent: 'avantage décisionnel',
       after: '.',
@@ -213,33 +243,37 @@ export const content = {
       ]
     },
     platform: {
-      label: 'En pratique // Commandement feux de forêt',
+      label: 'En pratique · Commandement feux de forêt',
       before: 'Un seul écran pour ',
-      accent: 'ceux qui commandent.',
+      accent: 'ceux qui commandent',
+      after: '.',
       body: 'Le module feux de forêt d’AUi : l’incident, les sources qui le confirment, les personnes et les sites exposés, les moyens aériens et les points d’eau disponibles, fusionnés sur une seule carte opérationnelle.',
       image: '/product-wildfire-fr.webp',
+      imageMobile: '/product-wildfire-fr-mobile.webp',
+      open: 'Ouvrir en taille réelle',
       alt: 'Tableau de bord AUi Terminal feux de forêt : un incident en cours à La Teste-de-Buch confirmé par trois sources sur sept, la météo au point d’éclosion, environ 1 200 personnes exposées, les moyens aériens disponibles et la carte opérationnelle.',
       caption: 'Scénario de démonstration : La Teste-de-Buch, Gironde. Chaque source est signalée en direct, simulée ou non raccordée.',
       callouts: [
-        { value: '3/7', text: 'Sources concordantes avant toute action' },
-        { value: '≈ 1 200', text: 'Personnes et sites exposés, cartographiés et dénombrés' },
-        { value: '5–8', text: 'Moyens aériens disponibles, avec points d’eau et détours d’écopage' }
+        { eyebrow: '01 · Temps', title: 'Confirmation plus tôt', text: 'Des sources croisées permettent d’agir sur le premier signal crédible. Mesuré pendant le pilote : délai entre premier signal et alerte confirmée.' },
+        { eyebrow: '02 · Moyens aériens', title: 'Du temps de vol rendu au feu', text: 'Quand un plan d’eau passe sous le seuil d’écopage, AUi le montre aussitôt, avec le coût de l’alternative. Un détour de 16 minutes, c’est plus d’un quart d’heure de vol perdu à chaque rotation.' },
+        { eyebrow: '03 · Traçabilité', title: 'Des choix défendables', text: 'Chaque demande est inscrite avec son auteur, sa justification et son valideur.' }
       ]
     },
     process: {
-      label: '[02] Du signal à la décision',
+      label: 'Du signal à la décision',
       steps: [
-        { num: '01', icon: 'fuse', title: 'Fusionner', desc: 'Des connecteurs prêts à l’emploi intègrent et fusionnent en une vue unique les flux dont vous disposez déjà ou que vous exploitez sous licence (systèmes opérationnels, capteurs IoT, satellites, météo, vidéo, rapports de terrain), et en ajoutent de nouveaux selon les besoins.' },
-        { num: '02', icon: 'verify', title: 'Vérifier', desc: 'L’état des sources est surveillé en continu. Les flux interrompus sont signalés et les données en direct sont recoupées pour détecter les concordances et les contradictions.' },
-        { num: '03', icon: 'predict', title: 'Prédire', desc: 'L’apprentissage automatique surveille chaque flux en permanence, détecte les anomalies et les ruptures de tendance dès qu’elles se forment, et classe les risques et opportunités émergents par urgence, raisonnement à l’appui.' },
-        { num: '04', icon: 'decide', title: 'Décider et agir', desc: 'L’IA recommande, vos équipes décident. Chaque recommandation est expliquée et inscrite avec le nom de la personne qui l’a approuvée : l’organisation agit plus vite, en toute confiance.' }
+        { icon: 'fuse', title: 'Fusionner', desc: 'Des connecteurs réunissent en une vue unique tous les flux dont vous disposez : systèmes opérationnels, capteurs, satellites, météo et terrain.' },
+        { icon: 'verify', title: 'Vérifier', desc: 'L’état des sources est surveillé en continu, les flux interrompus sont signalés et les données sont recoupées.' },
+        { icon: 'predict', title: 'Prédire', desc: 'L’apprentissage automatique repère les anomalies et les ruptures de tendance dès qu’elles se forment et classe les risques par urgence, raisonnement à l’appui.' },
+        { icon: 'decide', title: 'Décider et agir', desc: 'L’IA recommande, vos équipes décident, et chaque validation est tracée.' }
       ]
     },
     trust: {
-      label: '[03] Une IA de confiance',
+      label: 'Une IA de confiance',
       before: 'Une IA puissante, ',
-      accent: 'avec vos équipes fermement aux commandes.',
-      after: ' Chaque prédiction est expliquée, chaque lacune de données est signalée et chaque décision est tracée : la vitesse ne se paie jamais d’une perte de contrôle.',
+      accent: 'avec vos équipes fermement aux commandes',
+      after: '.',
+      rest: 'Chaque prédiction est expliquée, chaque lacune de données est signalée et chaque décision est tracée : la vitesse ne se paie jamais d’une perte de contrôle.',
       cards: [
         { title: 'L’humain décide, toujours', desc: 'AUi recommande, il n’agit jamais. Les décisions reviennent au responsable désigné, et le principe des quatre yeux s’applique : celui qui propose ne valide pas.' },
         { title: 'Explicable par conception', desc: 'Aucune boîte noire. Chaque priorité renvoie à ses données sources et au raisonnement qui la fonde, présentés à côté de la recommandation.' },
@@ -250,9 +284,11 @@ export const content = {
       ]
     },
     serve: {
-      label: '[04] Pour qui',
-      accent: 'Conçu pour votre mission.',
-      after: ' Chaque déploiement est adapté à votre environnement opérationnel, à votre profil de risque, à votre patrimoine de données et à la manière dont votre organisation prend réellement ses décisions. Il se place au-dessus des systèmes que vous exploitez déjà et renforce la valeur de chacun.',
+      label: 'Pour qui',
+      before: 'Conçu pour ',
+      accent: 'votre mission',
+      after: '.',
+      rest: 'Chaque déploiement est adapté à votre environnement opérationnel, à votre profil de risque, à votre patrimoine de données et à la manière dont votre organisation prend réellement ses décisions. Il se place au-dessus des systèmes que vous exploitez déjà et renforce la valeur de chacun.',
       audiences: [
         { title: 'Entreprises', lead: 'Voir la perturbation avant qu’elle ne touche vos résultats.', desc: 'Anticipez les risques opérationnels, logistiques et liés à vos sites dans toutes vos régions, prenez l’avantage sur vos concurrents et étayez chaque décision importante par des éléments reconnus par les conseils d’administration, les assureurs et les régulateurs.' },
         { title: 'État et secteur public', lead: 'L’avantage décisionnel à chaque niveau.', desc: 'Donnez aux services et à chaque niveau de commandement une même vue prédictive, des opérations courantes aux crises nationales, et agissez sur les menaces émergentes avant qu’elles ne s’aggravent.' },
@@ -273,7 +309,7 @@ export const content = {
       cta: { title: 'Votre secteur', desc: 'Il n’est pas listé ? Chaque déploiement est conçu pour votre mission.', link: 'Parlons de votre cas d’usage', subject: 'AUi Terminal pour mon secteur' }
     },
     pilot: {
-      label: '[05] Pilote',
+      label: 'Pilote',
       before: 'Démontrez l’avantage sur ',
       accent: 'vos propres données',
       after: '. Un pilote de quatre mois, à prix forfaitaire.',
@@ -287,9 +323,32 @@ export const content = {
       button: 'Demander un pilote',
       subject: 'Pilote AUi Terminal'
     },
+    form: {
+      title: 'Demander une présentation ou un pilote',
+      intro: 'Dites-nous ce que vous devez décider. Nous répondons sous deux jours ouvrés.',
+      name: 'Nom',
+      email: 'Adresse e-mail professionnelle',
+      org: 'Organisation',
+      interest: 'Je souhaite',
+      interests: ['Une présentation', 'Un pilote', 'Autre chose'],
+      sector: 'Secteur',
+      sectorPlaceholder: 'Choisir un secteur',
+      other: 'Autre',
+      message: 'Message',
+      messagePlaceholder: 'Que souhaitez-vous qu’AUi vous aide à voir ou à décider ?',
+      consent: 'Nous utilisons ces informations uniquement pour vous répondre. Voir notre ',
+      privacy: 'politique de confidentialité',
+      submit: 'Envoyer la demande',
+      sending: 'Envoi…',
+      successTitle: 'Merci. Votre demande a bien été envoyée.',
+      successBody: 'Nous vous répondrons très vite par e-mail.',
+      error: 'Désolé, le formulaire n’a pas pu être envoyé. Écrivez-nous directement à ',
+      subject: 'Demande AUi Terminal'
+    },
     footer: {
       tagline: 'AUi Terminal : la couche de fusion et de commandement, propulsée par l’IA, des entreprises, de l’État et des infrastructures critiques.',
       contactLabel: 'Contact',
+      legalLabel: 'Informations légales',
       privacy: 'Politique de confidentialité',
       legal: 'Mentions légales',
       rights: '© 2026 Authentic Intelligence Inc. Tous droits réservés.'
@@ -301,9 +360,9 @@ export const content = {
         title: 'Politique de confidentialité',
         sections: [
           { h: 'Qui sommes-nous', p: ['Ce site est exploité par Authentic Intelligence Inc., responsable du traitement des données personnelles décrites ici. Vous pouvez nous écrire à {email}.'] },
-          { h: 'Ce que ce site collecte', p: ['Ce site n’utilise ni cookies, ni outils d’analyse d’audience, ni traceurs publicitaires. Les polices et les images sont servies depuis notre propre domaine : consulter le site n’envoie donc pas vos données à des tiers tels que des fournisseurs de polices ou de statistiques.'] },
+          { h: 'Ce que ce site collecte', p: ['Ce site n’utilise ni cookies, ni outils d’analyse d’audience, ni traceurs publicitaires. Les polices et les images sont servies depuis notre propre domaine : consulter le site n’envoie donc pas vos données à des tiers tels que des fournisseurs de polices ou de statistiques. Seule exception : le formulaire de contact, décrit ci-dessous, que vous choisissez d’envoyer.'] },
           { h: 'Hébergement', p: ['Notre hébergeur, Vercel Inc., traite des données techniques telles que votre adresse IP, le type de navigateur et les pages demandées, afin de fournir le site et de le protéger contre les abus. Ce traitement relève de la politique de confidentialité de Vercel.'] },
-          { h: 'Lorsque vous nous contactez', p: ['Si vous nous écrivez, nous utilisons votre nom, vos coordonnées et votre message uniquement pour vous répondre et gérer notre relation. Nous ne vendons pas vos données et ne les partageons pas à des fins de prospection. Nous ne les conservons que le temps nécessaire à cette finalité.'] },
+          { h: 'Lorsque vous nous contactez', p: ['Si vous utilisez le formulaire de contact ou nous écrivez, nous utilisons votre nom, votre organisation, vos coordonnées et votre message uniquement pour vous répondre et gérer notre relation. Nous ne vendons pas vos données et ne les partageons pas à des fins de prospection. Nous ne les conservons que le temps nécessaire à cette finalité.', 'Les messages du formulaire de contact sont acheminés vers notre messagerie par FormSubmit (formsubmit.co), qui les traite pour notre compte et à cette seule fin.'] },
           { h: 'Vos droits', p: ['Conformément au Règlement général sur la protection des données (RGPD) et aux lois applicables, vous pouvez demander l’accès à vos données personnelles, leur rectification ou leur effacement, et vous opposer à leur traitement ou en demander la limitation. Écrivez à {email} ; nous vous répondrons sous un mois.', 'Vous pouvez également introduire une réclamation auprès de votre autorité de protection des données. En France, il s’agit de la CNIL (cnil.fr).'] }
         ]
       },
@@ -312,7 +371,7 @@ export const content = {
         sections: [
           { h: 'Éditeur', p: ['Ce site est édité par Authentic Intelligence Inc. Contact : {email}.'] },
           { h: 'Hébergement', p: ['Ce site est hébergé par Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis (vercel.com).'] },
-          { h: 'Propriété intellectuelle', p: ['L’ensemble des contenus de ce site, notamment les textes, les éléments graphiques, le nom AUi Terminal et les images d’interface, appartient à Authentic Intelligence Inc., sauf mention contraire, et ne peut être reproduit sans autorisation.', 'Données cartographiques figurant dans les images produit : © IGN – Géoplateforme.'] },
+          { h: 'Propriété intellectuelle', p: ['L’ensemble des contenus de ce site, notamment les textes, les éléments graphiques, le nom AUi Terminal et les images d’interface, appartient à Authentic Intelligence Inc., sauf mention contraire, et ne peut être reproduit sans autorisation.', 'Données cartographiques figurant dans les images produit et les visuels du site : © IGN – Géoplateforme.'] },
           { h: 'Images produit', p: ['Les images produit présentent un scénario de démonstration. Les valeurs issues de sources signalées comme simulées dans ces images ne reflètent pas des données réelles.'] }
         ]
       }
