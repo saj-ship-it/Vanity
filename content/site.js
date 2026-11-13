@@ -118,7 +118,7 @@ export const content = {
       ],
       sectorsLabel: 'Sectors',
       sectors: [
-        { name: 'Civil Protection & Wildfire', tag: 'Pilots open', desc: 'Fuse satellite hotspots, weather and field reports to confirm fires sooner and prioritise air and ground resources.', path: icons.wildfire },
+        { name: 'Civil Protection & Wildfire', desc: 'Fuse satellite hotspots, weather and field reports to confirm fires sooner and prioritise air and ground resources.', path: icons.wildfire },
         { name: 'Energy & Utilities', desc: 'Anticipate grid stress, asset failure and supply disruption before they reach customers.', path: icons.energy },
         { name: 'Transport & Logistics', desc: 'See disruption forming across routes, ports and suppliers, and reroute before delays cascade.', path: icons.transport },
         { name: 'Telecommunications', desc: 'Detect network degradation, cable faults and interference early, and prioritise restoration.', path: icons.telecoms },
@@ -296,7 +296,7 @@ export const content = {
       ],
       sectorsLabel: 'Secteurs',
       sectors: [
-        { name: 'Protection civile et feux de forêt', tag: 'Pilotes ouverts', desc: 'Fusionnez les détections satellitaires de points chauds, la météo et les signalements de terrain pour confirmer les feux plus tôt et prioriser les moyens aériens et terrestres.', path: icons.wildfire },
+        { name: 'Protection civile et feux de forêt', desc: 'Fusionnez les détections satellitaires de points chauds, la météo et les signalements de terrain pour confirmer les feux plus tôt et prioriser les moyens aériens et terrestres.', path: icons.wildfire },
         { name: 'Énergie et services publics', desc: 'Anticipez les tensions sur le réseau, les défaillances d’équipements et les ruptures d’approvisionnement avant qu’elles n’atteignent vos clients.', path: icons.energy },
         { name: 'Transport et logistique', desc: 'Repérez les perturbations qui se forment sur les itinéraires, dans les ports et chez les fournisseurs, et réorientez les flux avant que les retards ne s’enchaînent.', path: icons.transport },
         { name: 'Télécommunications', desc: 'Détectez tôt la dégradation des réseaux, les coupures de câbles et les interférences, et priorisez le rétablissement.', path: icons.telecoms },
