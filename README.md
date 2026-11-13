@@ -16,3 +16,11 @@ npm run dev
 ```
 
 Versions are pinned in `package.json` and `package-lock.json` so Vercel builds the same thing every time.
+
+## Structure
+
+- `components/Site.js` – shared header, footer, page meta, design tokens and stylesheet
+- `components/LegalPage.js` – template for the privacy policy and legal notice
+- `pages/privacy.js`, `pages/legal.js` – `/privacy` and `/legal` (and `/fr/...`)
+- `pages/_app.js` – self-hosted fonts (Inter, JetBrains Mono), no third-party requests
+- `public/product-wildfire-en.webp`, `public/product-wildfire-fr.webp` – product shots from the AUi wildfire demo
