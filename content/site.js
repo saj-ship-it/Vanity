@@ -193,7 +193,7 @@ export const content = {
         sections: [
           { h: 'Publisher', p: ['This website is published by Authentic Intelligence Inc. Contact: {email}.'] },
           { h: 'Hosting', p: ['This website is hosted by Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, United States (vercel.com).'] },
-          { h: 'Intellectual property', p: ['All content on this website, including text, graphics, the AUi Terminal name and interface images, belongs to Authentic Intelligence Inc. unless stated otherwise, and may not be reproduced without permission.', 'Map data shown in product images and site imagery: © IGN – Géoplateforme.'] },
+          { h: 'Intellectual property', p: ['All content on this website, including text, graphics, the AUi Terminal name and interface images, belongs to Authentic Intelligence Inc. unless stated otherwise, and may not be reproduced without permission.', 'Map data shown in product images: © IGN – Géoplateforme.'] },
           { h: 'Product images', p: ['Product images show a demonstration scenario. Values from sources marked as simulated in those images do not reflect live data.'] }
         ]
       }
@@ -371,7 +371,7 @@ export const content = {
         sections: [
           { h: 'Éditeur', p: ['Ce site est édité par Authentic Intelligence Inc. Contact : {email}.'] },
           { h: 'Hébergement', p: ['Ce site est hébergé par Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis (vercel.com).'] },
-          { h: 'Propriété intellectuelle', p: ['L’ensemble des contenus de ce site, notamment les textes, les éléments graphiques, le nom AUi Terminal et les images d’interface, appartient à Authentic Intelligence Inc., sauf mention contraire, et ne peut être reproduit sans autorisation.', 'Données cartographiques figurant dans les images produit et les visuels du site : © IGN – Géoplateforme.'] },
+          { h: 'Propriété intellectuelle', p: ['L’ensemble des contenus de ce site, notamment les textes, les éléments graphiques, le nom AUi Terminal et les images d’interface, appartient à Authentic Intelligence Inc., sauf mention contraire, et ne peut être reproduit sans autorisation.', 'Données cartographiques figurant dans les images produit : © IGN – Géoplateforme.'] },
           { h: 'Images produit', p: ['Les images produit présentent un scénario de démonstration. Les valeurs issues de sources signalées comme simulées dans ces images ne reflètent pas des données réelles.'] }
         ]
       }

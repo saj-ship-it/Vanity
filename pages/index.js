@@ -28,10 +28,17 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-visual" aria-hidden="true">
-            <img src="/hero-map.webp" alt="" width="1600" height="877" fetchpriority="high" />
-            <span className="pulse" />
-            <span className="pulse pulse-2" />
+          <div className="globe-container" aria-hidden="true">
+            <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
+              <defs>
+                <mask id="lensReveal">
+                  <rect width="780" height="780" fill="white" />
+                  <circle className="spotlight-lens" fill="black" filter="blur(25px)" />
+                </mask>
+              </defs>
+              <image href="/globe-signal.webp" width="780" height="780" style={{ mixBlendMode: 'screen' }} />
+              <rect width="780" height="780" fill="#050505" fillOpacity="0.75" mask="url(#lensReveal)" />
+            </svg>
           </div>
         </section>
 
