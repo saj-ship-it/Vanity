@@ -215,7 +215,7 @@ export const content = {
       { href: '#objective', label: 'Mission' },
       { href: '#process', label: 'Méthode' },
       { href: '#control', label: 'Confiance' },
-      { href: '#sectors', label: 'Clients' },
+      { href: '#sectors', label: 'Secteurs' },
       { href: '#pilot', label: 'Pilote' }
     ],
     hero: {
@@ -224,7 +224,7 @@ export const content = {
       // Longer phrases than English: a slightly smaller size keeps the four-line rhythm
       size: 'clamp(34px, 4.9vw, 56px)',
       maxWidth: '680px',
-      sub: 'L’intelligence prédictive au service de la décision. AUi Terminal est la plateforme de fusion de données et d’aide au commandement, fondée sur l’IA, des entreprises, des administrations et des infrastructures critiques.',
+      sub: 'L’intelligence prédictive au service de la décision. AUi Terminal est la plateforme de fusion de données et d’aide au commandement, fondée sur l’IA, destinée aux entreprises, aux administrations et aux opérateurs d’infrastructures critiques.',
       primary: 'Demander une présentation',
       primarySubject: 'Présentation AUi Terminal',
       secondary: 'Découvrir la plateforme'
@@ -238,8 +238,8 @@ export const content = {
       problemsLabel: 'Le signal est déjà dans vos données. Encore faut-il le voir à temps.',
       problems: [
         { title: 'Dispersion', desc: 'Plateformes opérationnelles, capteurs, satellites, météo, remontées du terrain, flux commerciaux : les signaux critiques sont éparpillés dans des systèmes qui n’ont jamais été conçus pour dialoguer.' },
-        { title: 'Fragmentation', desc: 'Chaque équipe, chaque site, chaque échelon de commandement se construit sa propre vision de la situation, à la main et dans l’urgence. Rarement la même.' },
-        { title: 'Trop tard', desc: 'Noyées dans le bruit, les alertes précoces n’émergent qu’une fois l’impact survenu. Le temps de consolider la situation, la fenêtre d’action s’est refermée.' }
+        { title: 'Fragmentation', desc: 'Chaque équipe, chaque site, chaque échelon de commandement se construit, à la main et dans l’urgence, sa propre vision de la situation, rarement la même d’un échelon à l’autre.' },
+        { title: 'Retard', desc: 'Noyées dans le bruit, les alertes précoces n’émergent qu’une fois l’impact survenu. Le temps de consolider la situation, la fenêtre d’action s’est refermée.' }
       ]
     },
     platform: {
@@ -251,7 +251,7 @@ export const content = {
       image: '/product-wildfire-fr.webp',
       imageMobile: '/product-wildfire-fr-mobile.webp',
       open: 'Agrandir l’image',
-      alt: 'Tableau de bord AUi Terminal pour les feux de forêt : incident en cours à La Teste-de-Buch confirmé par trois sources sur sept, météo au point d’éclosion, environ 1 200 personnes exposées, moyens aériens disponibles et carte opérationnelle.',
+      alt: 'Tableau de bord AUi Terminal pour les feux de forêt : incident en cours à La Teste-de-Buch confirmé par trois sources sur sept, météo au point d’éclosion, environ 1 200 personnes exposées, moyens aériens disponibles et carte opérationnelle.',
       caption: 'Scénario de démonstration : La Teste-de-Buch (Gironde). Chaque source indique si elle est en direct, simulée ou non raccordée.',
       callouts: [
         { eyebrow: '01 · Temps', title: 'Une confirmation plus rapide', text: 'Le croisement des sources permet d’agir dès le premier signal crédible. Indicateur suivi pendant le pilote : le délai entre ce premier signal et l’alerte confirmée.' },
@@ -276,9 +276,9 @@ export const content = {
       rest: 'Chaque prédiction est expliquée, chaque lacune signalée, chaque décision tracée. La rapidité ne se fait jamais au détriment de la maîtrise.',
       cards: [
         { title: 'L’humain décide, toujours', desc: 'AUi recommande, il n’agit jamais. La décision revient à l’autorité compétente, selon le principe des quatre yeux : celui qui propose ne valide pas.' },
-        { title: 'Transparent par construction', desc: 'Pas de boîte noire : chaque priorité renvoie aux données et au raisonnement qui la fondent, affichés à côté de la recommandation.' },
+        { title: 'Transparence native', desc: 'Pas de boîte noire : chaque priorité renvoie aux données et au raisonnement qui la fondent, affichés à côté de la recommandation.' },
         { title: 'Aucune zone d’ombre', desc: 'Chaque source affiche son statut : en direct, simulée ou non raccordée. Les données manquantes sont signalées comme telles : l’absence d’alerte n’est jamais prise pour une absence de risque.' },
-        { title: 'Une traçabilité opposable', desc: 'Une main courante horodatée et infalsifiable : ce que l’on savait, qui a décidé, et quand. Chaque décision peut être reconstituée lors d’un retour d’expérience, d’un audit ou d’une procédure.' },
+        { title: 'Une traçabilité opposable', desc: 'Une main courante horodatée et infalsifiable : ce que l’on savait, qui a décidé, et quand. Chaque décision peut être reconstituée lors d’un retour d’expérience, d’un audit ou d’une procédure contentieuse.' },
         { title: 'Conformité réglementaire', desc: 'Conçu pour répondre aux exigences de supervision humaine, de transparence et de traçabilité applicables aux systèmes d’IA à haut risque, du règlement européen sur l’IA (AI Act) aux cadres nationaux et sectoriels.' },
         { title: 'Souveraineté des données', desc: 'Les données de chaque client sont strictement cloisonnées et jamais mutualisées. Les modèles peuvent fonctionner en local, sans flux sortant, sur un cloud souverain qualifié ou sur votre propre infrastructure.' }
       ]
@@ -290,19 +290,19 @@ export const content = {
       after: '.',
       rest: 'Chaque déploiement s’adapte à votre environnement opérationnel, à votre exposition aux risques, à vos données et à vos circuits de décision réels. AUi s’appuie sur les systèmes que vous exploitez déjà et en démultiplie la valeur.',
       audiences: [
-        { title: 'Entreprises', lead: 'Anticiper les ruptures avant qu’elles ne pèsent sur vos résultats.', desc: 'Anticipez les risques opérationnels, logistiques et industriels sur l’ensemble de vos sites, gardez une longueur d’avance sur la concurrence et justifiez chaque décision importante auprès de votre conseil d’administration, de vos assureurs et des autorités de contrôle.' },
-        { title: 'Administrations et secteur public', lead: 'Un temps d’avance à chaque échelon.', desc: 'Donnez aux services et à chaque échelon de commandement une même lecture prédictive de la situation, de la gestion courante aux crises majeures, pour traiter les menaces avant qu’elles ne s’aggravent.' },
-        { title: 'Infrastructures critiques', lead: 'Prévenir la prochaine panne.', desc: 'Détectez à temps les défaillances, les menaces et les effets en cascade sur des réseaux interdépendants (énergie, eau, transports, télécommunications) et garantissez la continuité des services essentiels.' }
+        { title: 'Entreprises', lead: 'Anticiper les ruptures avant qu’elles ne pèsent sur vos résultats.', desc: 'Prévoyez les risques opérationnels, logistiques et industriels sur l’ensemble de vos sites, gardez l’initiative face à la concurrence et justifiez chaque décision importante auprès de votre conseil d’administration, de vos assureurs et des autorités de contrôle.' },
+        { title: 'Secteur public', lead: 'Un temps d’avance à chaque échelon.', desc: 'Donnez aux services et à chaque échelon de commandement une même lecture prédictive de la situation, de la gestion courante aux crises majeures, pour traiter les menaces avant qu’elles ne s’aggravent.' },
+        { title: 'Infrastructures critiques et OIV', lead: 'Prévenir la prochaine panne.', desc: 'Détectez à temps les défaillances, les menaces et les effets en cascade sur des réseaux interdépendants (énergie, eau, transports, télécommunications) et garantissez la continuité des services essentiels.' }
       ],
       sectorsLabel: 'Secteurs',
       sectors: [
         { name: 'Protection civile et feux de forêt', desc: 'Croisez détections satellitaires, météo et signalements de terrain pour confirmer plus tôt les départs de feu et engager au mieux les moyens aériens et terrestres.', path: icons.wildfire },
-        { name: 'Énergie et réseaux', desc: 'Anticipez tensions sur le réseau, défaillances d’équipements et ruptures d’approvisionnement avant qu’elles n’affectent vos clients.', path: icons.energy },
+        { name: 'Énergie et réseaux', desc: 'Prévenez les tensions sur le réseau, les défaillances d’équipements et les ruptures d’approvisionnement avant qu’elles n’affectent vos clients.', path: icons.energy },
         { name: 'Transports et logistique', desc: 'Repérez les perturbations naissantes sur les axes, dans les ports et chez les fournisseurs, et réorganisez les flux avant l’effet domino.', path: icons.transport },
-        { name: 'Télécommunications', desc: 'Détectez au plus tôt dégradations de service, coupures de câbles et brouillages, et priorisez les rétablissements.', path: icons.telecoms },
+        { name: 'Télécommunications', desc: 'Identifiez au plus tôt dégradations de service, coupures de câbles et brouillages, et priorisez les rétablissements.', path: icons.telecoms },
         { name: 'Santé', desc: 'Anticipez afflux de patients et tensions d’approvisionnement dans vos établissements, et adaptez les capacités en amont.', path: icons.health },
-        { name: 'Médias et divertissement', desc: 'Suivez l’émergence des récits et l’évolution de l’opinion, et détectez les risques d’image avant qu’ils ne se propagent.', path: icons.media },
-        { name: 'Marchés financiers', desc: 'Détectez les événements et les changements de régime qui font bouger les marchés, et mesurez l’exposition de vos positions avant que les prix ne l’intègrent.', path: icons.finance },
+        { name: 'Médias et industries culturelles', desc: 'Suivez l’émergence des récits et l’évolution de l’opinion, et désamorcez les risques d’image avant qu’ils ne se propagent.', path: icons.media },
+        { name: 'Marchés financiers', desc: 'Surveillez les événements et les changements de régime qui font bouger les marchés, et mesurez l’exposition de vos positions avant que les prix ne l’intègrent.', path: icons.finance },
         { name: 'Marketing', desc: 'Captez au plus tôt les évolutions de la demande, de l’opinion et de la concurrence, et réallouez vos budgets avant que le marché ne réagisse.', path: icons.marketing }
       ],
       swipeHint: 'Faites glisser pour voir les autres secteurs',
@@ -310,7 +310,7 @@ export const content = {
     },
     pilot: {
       label: 'Pilote',
-      before: 'Faites la preuve sur ',
+      before: 'Mesurez l’apport d’AUi sur ',
       accent: 'vos propres données',
       after: '. Un pilote de quatre mois, au forfait.',
       rows: [
@@ -327,8 +327,8 @@ export const content = {
       title: 'Demander une présentation ou un pilote',
       intro: 'Présentez-nous votre besoin : nous vous répondons sous deux jours ouvrés.',
       name: 'Nom et prénom',
-      email: 'E-mail professionnel',
-      org: 'Organisme',
+      email: 'Courriel professionnel',
+      org: 'Organisme ou entreprise',
       interest: 'Votre demande',
       interests: ['Une présentation', 'Un pilote', 'Autre demande'],
       sector: 'Secteur',
@@ -341,7 +341,7 @@ export const content = {
       submit: 'Envoyer',
       sending: 'Envoi en cours…',
       successTitle: 'Merci, votre demande a bien été envoyée.',
-      successBody: 'Nous revenons vers vous rapidement par e-mail.',
+      successBody: 'Nous revenons vers vous rapidement par courriel.',
       error: 'L’envoi a échoué. Vous pouvez nous écrire directement à ',
       subject: 'Demande AUi Terminal'
     },
