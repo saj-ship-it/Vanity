@@ -203,9 +203,9 @@ export const content = {
   fr: {
     meta: {
       title: 'Authentic Intelligence | AUi Terminal',
-      description: 'AUi Terminal est la couche de fusion de données et de commandement, propulsée par l’IA, pour les entreprises, l’État et les infrastructures critiques. Une vue unique. Toutes les sources. Chaque décision tracée.',
+      description: 'AUi Terminal, la plateforme d’aide à la décision fondée sur l’IA : toutes vos sources réunies, les crises anticipées, chaque décision tracée. Pour les entreprises, les administrations et les infrastructures critiques.',
       ogImage: '/og-image-fr.png',
-      ogImageAlt: 'Une vue unique. Toutes les sources. Chaque décision tracée. AUi Terminal par Authentic Intelligence.',
+      ogImageAlt: 'Une vue unique. Toutes les sources. Chaque décision tracée. AUi Terminal, par Authentic Intelligence.',
       ogLocale: 'fr_FR'
     },
     languageLabel: 'Langue',
@@ -213,9 +213,9 @@ export const content = {
     headerCta: 'Demander une présentation',
     nav: [
       { href: '#objective', label: 'Mission' },
-      { href: '#process', label: 'Processus' },
+      { href: '#process', label: 'Méthode' },
       { href: '#control', label: 'Confiance' },
-      { href: '#sectors', label: 'Pour qui' },
+      { href: '#sectors', label: 'Clients' },
       { href: '#pilot', label: 'Pilote' }
     ],
     hero: {
@@ -224,100 +224,100 @@ export const content = {
       // Longer phrases than English: a slightly smaller size keeps the four-line rhythm
       size: 'clamp(34px, 4.9vw, 56px)',
       maxWidth: '680px',
-      sub: 'L’intelligence prédictive, appliquée. AUi Terminal est la couche de fusion et de commandement, propulsée par l’IA, des entreprises, de l’État et des infrastructures critiques.',
+      sub: 'L’intelligence prédictive au service de la décision. AUi Terminal est la plateforme de fusion de données et d’aide au commandement, fondée sur l’IA, des entreprises, des administrations et des infrastructures critiques.',
       primary: 'Demander une présentation',
       primarySubject: 'Présentation AUi Terminal',
-      secondary: 'Voir la plateforme'
+      secondary: 'Découvrir la plateforme'
     },
     mission: {
-      label: 'Objectif de la mission',
-      before: 'AUi transforme des données fragmentées en ',
-      accent: 'avantage décisionnel',
+      label: 'Notre mission',
+      before: 'AUi transforme des données éparses en ',
+      accent: 'supériorité décisionnelle',
       after: '.',
-      rest: 'Il fusionne toutes les sources dont vous disposez, ou que vous exploitez sous licence, en une vue opérationnelle unique et en temps réel, détecte grâce à l’IA les signaux faibles et les ruptures qui annoncent une crise, et présente aux décideurs une recommandation hiérarchisée et expliquée tant qu’il est encore temps d’agir.',
-      problemsLabel: 'Le signal est déjà dans vos données. Personne ne le voit à temps.',
+      rest: 'La plateforme réunit en une seule vue opérationnelle, en temps réel, l’ensemble des sources dont vous disposez. Grâce à l’IA, elle repère les signaux faibles et les ruptures annonciatrices de crise, puis soumet aux décideurs une recommandation hiérarchisée et argumentée, tant qu’il est encore temps d’agir.',
+      problemsLabel: 'Le signal est déjà dans vos données. Encore faut-il le voir à temps.',
       problems: [
-        { title: 'Dispersion', desc: 'Les signaux critiques sont répartis dans des systèmes cloisonnés (plateformes opérationnelles, capteurs, satellites, météo, terrain et flux commerciaux) qui n’ont jamais été conçus pour fonctionner ensemble.' },
-        { title: 'Fragmentation', desc: 'Chaque équipe, chaque site et chaque niveau de commandement reconstitue sa propre vue à la main, sous pression, et rarement la même.' },
-        { title: 'Trop tard', desc: 'Les alertes précoces se perdent dans le bruit et n’apparaissent qu’après l’impact. Le temps de reconstituer la situation, la fenêtre d’action s’est refermée.' }
+        { title: 'Dispersion', desc: 'Plateformes opérationnelles, capteurs, satellites, météo, remontées du terrain, flux commerciaux : les signaux critiques sont éparpillés dans des systèmes qui n’ont jamais été conçus pour dialoguer.' },
+        { title: 'Fragmentation', desc: 'Chaque équipe, chaque site, chaque échelon de commandement se construit sa propre vision de la situation, à la main et dans l’urgence. Rarement la même.' },
+        { title: 'Trop tard', desc: 'Noyées dans le bruit, les alertes précoces n’émergent qu’une fois l’impact survenu. Le temps de consolider la situation, la fenêtre d’action s’est refermée.' }
       ]
     },
     platform: {
-      label: 'En pratique · Commandement feux de forêt',
+      label: 'En pratique · Lutte contre les feux de forêt',
       before: 'Un seul écran pour ',
       accent: 'ceux qui commandent',
       after: '.',
-      body: 'Le module feux de forêt d’AUi : l’incident, les sources qui le confirment, les personnes et les sites exposés, les moyens aériens et les points d’eau disponibles, fusionnés sur une seule carte opérationnelle.',
+      body: 'Le module feux de forêt d’AUi réunit sur une même carte opérationnelle l’incident, les sources qui le confirment, les personnes et les enjeux exposés, ainsi que les moyens aériens et les points d’eau disponibles.',
       image: '/product-wildfire-fr.webp',
       imageMobile: '/product-wildfire-fr-mobile.webp',
-      open: 'Ouvrir en taille réelle',
-      alt: 'Tableau de bord AUi Terminal feux de forêt : un incident en cours à La Teste-de-Buch confirmé par trois sources sur sept, la météo au point d’éclosion, environ 1 200 personnes exposées, les moyens aériens disponibles et la carte opérationnelle.',
-      caption: 'Scénario de démonstration : La Teste-de-Buch, Gironde. Chaque source est signalée en direct, simulée ou non raccordée.',
+      open: 'Agrandir l’image',
+      alt: 'Tableau de bord AUi Terminal pour les feux de forêt : incident en cours à La Teste-de-Buch confirmé par trois sources sur sept, météo au point d’éclosion, environ 1 200 personnes exposées, moyens aériens disponibles et carte opérationnelle.',
+      caption: 'Scénario de démonstration : La Teste-de-Buch (Gironde). Chaque source indique si elle est en direct, simulée ou non raccordée.',
       callouts: [
-        { eyebrow: '01 · Temps', title: 'Confirmation plus tôt', text: 'Des sources croisées permettent d’agir sur le premier signal crédible. Mesuré pendant le pilote : délai entre premier signal et alerte confirmée.' },
-        { eyebrow: '02 · Moyens aériens', title: 'Du temps de vol rendu au feu', text: 'Quand un plan d’eau passe sous le seuil d’écopage, AUi le montre aussitôt, avec le coût de l’alternative. Un détour de 16 minutes, c’est plus d’un quart d’heure de vol perdu à chaque rotation.' },
-        { eyebrow: '03 · Traçabilité', title: 'Des choix défendables', text: 'Chaque demande est inscrite avec son auteur, sa justification et son valideur.' }
+        { eyebrow: '01 · Temps', title: 'Une confirmation plus rapide', text: 'Le croisement des sources permet d’agir dès le premier signal crédible. Indicateur suivi pendant le pilote : le délai entre ce premier signal et l’alerte confirmée.' },
+        { eyebrow: '02 · Moyens aériens', title: 'Du temps de vol rendu au feu', text: 'Dès qu’un plan d’eau passe sous le seuil d’écopage, AUi le signale et chiffre l’alternative. Un détour de 16 minutes, c’est plus d’un quart d’heure de vol perdu à chaque rotation.' },
+        { eyebrow: '03 · Traçabilité', title: 'Des décisions défendables', text: 'Chaque demande est consignée : qui l’a formulée, sur quelle base, et qui l’a validée.' }
       ]
     },
     process: {
       label: 'Du signal à la décision',
       steps: [
-        { icon: 'fuse', title: 'Fusionner', desc: 'Des connecteurs réunissent en une vue unique tous les flux dont vous disposez : systèmes opérationnels, capteurs, satellites, météo et terrain.' },
-        { icon: 'verify', title: 'Vérifier', desc: 'L’état des sources est surveillé en continu, les flux interrompus sont signalés et les données sont recoupées.' },
-        { icon: 'predict', title: 'Prédire', desc: 'L’apprentissage automatique repère les anomalies et les ruptures de tendance dès qu’elles se forment et classe les risques par urgence, raisonnement à l’appui.' },
-        { icon: 'decide', title: 'Décider et agir', desc: 'L’IA recommande, vos équipes décident, et chaque validation est tracée.' }
+        { icon: 'fuse', title: 'Fusionner', desc: 'Systèmes opérationnels, capteurs, satellites, météo, terrain : tous vos flux sont réunis dans une vue unique.' },
+        { icon: 'verify', title: 'Vérifier', desc: 'La qualité de chaque source est contrôlée en continu : flux interrompus signalés, données recoupées.' },
+        { icon: 'predict', title: 'Prédire', desc: 'L’apprentissage automatique détecte anomalies et ruptures de tendance dès leur apparition, et hiérarchise les risques en justifiant chaque priorité.' },
+        { icon: 'decide', title: 'Décider et agir', desc: 'L’IA propose, vos équipes décident. Chaque validation est tracée.' }
       ]
     },
     trust: {
       label: 'Une IA de confiance',
-      before: 'Une IA puissante, ',
-      accent: 'avec vos équipes fermement aux commandes',
+      before: 'Une IA performante, ',
+      accent: 'sous le contrôle permanent de vos équipes',
       after: '.',
-      rest: 'Chaque prédiction est expliquée, chaque lacune de données est signalée et chaque décision est tracée : la vitesse ne se paie jamais d’une perte de contrôle.',
+      rest: 'Chaque prédiction est expliquée, chaque lacune signalée, chaque décision tracée. La rapidité ne se fait jamais au détriment de la maîtrise.',
       cards: [
-        { title: 'L’humain décide, toujours', desc: 'AUi recommande, il n’agit jamais. Les décisions reviennent au responsable désigné, et le principe des quatre yeux s’applique : celui qui propose ne valide pas.' },
-        { title: 'Explicable par conception', desc: 'Aucune boîte noire. Chaque priorité renvoie à ses données sources et au raisonnement qui la fonde, présentés à côté de la recommandation.' },
-        { title: 'Lacunes signalées, jamais masquées', desc: 'Chaque source affiche son statut : en direct, simulée ou non raccordée. La télémétrie manquante est signalée explicitement : le silence n’est jamais pris pour un signe de sécurité.' },
-        { title: 'Piste d’audit défendable', desc: 'Une main courante horodatée et infalsifiable de ce qui était connu, de qui a décidé et quand. Toute décision peut être reconstituée pour un retour d’expérience, un audit ou un examen juridique.' },
-        { title: 'Conformité réglementaire', desc: 'Conçu pour les obligations de supervision humaine, de transparence et de traçabilité imposées aux systèmes d’IA à haut risque, du règlement européen sur l’IA (AI Act) aux cadres nationaux et sectoriels émergents.' },
-        { title: 'Souveraineté des données', desc: 'Les données de chaque client restent isolées et ne sont jamais mutualisées. Les modèles peuvent s’exécuter localement, sans flux sortant, sur un cloud souverain qualifié ou sur votre propre infrastructure.' }
+        { title: 'L’humain décide, toujours', desc: 'AUi recommande, il n’agit jamais. La décision revient à l’autorité compétente, selon le principe des quatre yeux : celui qui propose ne valide pas.' },
+        { title: 'Transparent par construction', desc: 'Pas de boîte noire : chaque priorité renvoie aux données et au raisonnement qui la fondent, affichés à côté de la recommandation.' },
+        { title: 'Aucune zone d’ombre', desc: 'Chaque source affiche son statut : en direct, simulée ou non raccordée. Les données manquantes sont signalées comme telles : l’absence d’alerte n’est jamais prise pour une absence de risque.' },
+        { title: 'Une traçabilité opposable', desc: 'Une main courante horodatée et infalsifiable : ce que l’on savait, qui a décidé, et quand. Chaque décision peut être reconstituée lors d’un retour d’expérience, d’un audit ou d’une procédure.' },
+        { title: 'Conformité réglementaire', desc: 'Conçu pour répondre aux exigences de supervision humaine, de transparence et de traçabilité applicables aux systèmes d’IA à haut risque, du règlement européen sur l’IA (AI Act) aux cadres nationaux et sectoriels.' },
+        { title: 'Souveraineté des données', desc: 'Les données de chaque client sont strictement cloisonnées et jamais mutualisées. Les modèles peuvent fonctionner en local, sans flux sortant, sur un cloud souverain qualifié ou sur votre propre infrastructure.' }
       ]
     },
     serve: {
-      label: 'Pour qui',
+      label: 'À qui s’adresse AUi',
       before: 'Conçu pour ',
       accent: 'votre mission',
       after: '.',
-      rest: 'Chaque déploiement est adapté à votre environnement opérationnel, à votre profil de risque, à votre patrimoine de données et à la manière dont votre organisation prend réellement ses décisions. Il se place au-dessus des systèmes que vous exploitez déjà et renforce la valeur de chacun.',
+      rest: 'Chaque déploiement s’adapte à votre environnement opérationnel, à votre exposition aux risques, à vos données et à vos circuits de décision réels. AUi s’appuie sur les systèmes que vous exploitez déjà et en démultiplie la valeur.',
       audiences: [
-        { title: 'Entreprises', lead: 'Voir la perturbation avant qu’elle ne touche vos résultats.', desc: 'Anticipez les risques opérationnels, logistiques et liés à vos sites dans toutes vos régions, prenez l’avantage sur vos concurrents et étayez chaque décision importante par des éléments reconnus par les conseils d’administration, les assureurs et les régulateurs.' },
-        { title: 'État et secteur public', lead: 'L’avantage décisionnel à chaque niveau.', desc: 'Donnez aux services et à chaque niveau de commandement une même vue prédictive, des opérations courantes aux crises nationales, et agissez sur les menaces émergentes avant qu’elles ne s’aggravent.' },
-        { title: 'Infrastructures critiques', lead: 'Anticiper la prochaine panne.', desc: 'Détectez les défaillances, menaces et effets en cascade sur les réseaux interdépendants d’énergie, d’eau, de transport et de télécommunications assez tôt pour intervenir, et assurez la continuité des services essentiels.' }
+        { title: 'Entreprises', lead: 'Anticiper les ruptures avant qu’elles ne pèsent sur vos résultats.', desc: 'Anticipez les risques opérationnels, logistiques et industriels sur l’ensemble de vos sites, gardez une longueur d’avance sur la concurrence et justifiez chaque décision importante auprès de votre conseil d’administration, de vos assureurs et des autorités de contrôle.' },
+        { title: 'Administrations et secteur public', lead: 'Un temps d’avance à chaque échelon.', desc: 'Donnez aux services et à chaque échelon de commandement une même lecture prédictive de la situation, de la gestion courante aux crises majeures, pour traiter les menaces avant qu’elles ne s’aggravent.' },
+        { title: 'Infrastructures critiques', lead: 'Prévenir la prochaine panne.', desc: 'Détectez à temps les défaillances, les menaces et les effets en cascade sur des réseaux interdépendants (énergie, eau, transports, télécommunications) et garantissez la continuité des services essentiels.' }
       ],
       sectorsLabel: 'Secteurs',
       sectors: [
-        { name: 'Protection civile et feux de forêt', desc: 'Fusionnez les détections satellitaires de points chauds, la météo et les signalements de terrain pour confirmer les feux plus tôt et prioriser les moyens aériens et terrestres.', path: icons.wildfire },
-        { name: 'Énergie et services publics', desc: 'Anticipez les tensions sur le réseau, les défaillances d’équipements et les ruptures d’approvisionnement avant qu’elles n’atteignent vos clients.', path: icons.energy },
-        { name: 'Transport et logistique', desc: 'Repérez les perturbations qui se forment sur les itinéraires, dans les ports et chez les fournisseurs, et réorientez les flux avant que les retards ne s’enchaînent.', path: icons.transport },
-        { name: 'Télécommunications', desc: 'Détectez tôt la dégradation des réseaux, les coupures de câbles et les interférences, et priorisez le rétablissement.', path: icons.telecoms },
-        { name: 'Santé', desc: 'Anticipez les pics de demande et les pénuries dans vos établissements, et ajustez les capacités avant qu’ils ne surviennent.', path: icons.health },
-        { name: 'Médias et divertissement', desc: 'Suivez les récits et le sentiment du public dès qu’ils émergent, et signalez les risques de réputation avant qu’ils ne se propagent.', path: icons.media },
-        { name: 'Marchés financiers', desc: 'Détectez les événements réels et les changements de régime qui font bouger les marchés, et mesurez le risque sur vos positions avant que les prix ne le reflètent.', path: icons.finance },
-        { name: 'Marketing', desc: 'Repérez tôt l’évolution de la demande, du sentiment et de l’activité concurrente, et réallouez vos budgets avant que le marché ne réagisse.', path: icons.marketing }
+        { name: 'Protection civile et feux de forêt', desc: 'Croisez détections satellitaires, météo et signalements de terrain pour confirmer plus tôt les départs de feu et engager au mieux les moyens aériens et terrestres.', path: icons.wildfire },
+        { name: 'Énergie et réseaux', desc: 'Anticipez tensions sur le réseau, défaillances d’équipements et ruptures d’approvisionnement avant qu’elles n’affectent vos clients.', path: icons.energy },
+        { name: 'Transports et logistique', desc: 'Repérez les perturbations naissantes sur les axes, dans les ports et chez les fournisseurs, et réorganisez les flux avant l’effet domino.', path: icons.transport },
+        { name: 'Télécommunications', desc: 'Détectez au plus tôt dégradations de service, coupures de câbles et brouillages, et priorisez les rétablissements.', path: icons.telecoms },
+        { name: 'Santé', desc: 'Anticipez afflux de patients et tensions d’approvisionnement dans vos établissements, et adaptez les capacités en amont.', path: icons.health },
+        { name: 'Médias et divertissement', desc: 'Suivez l’émergence des récits et l’évolution de l’opinion, et détectez les risques d’image avant qu’ils ne se propagent.', path: icons.media },
+        { name: 'Marchés financiers', desc: 'Détectez les événements et les changements de régime qui font bouger les marchés, et mesurez l’exposition de vos positions avant que les prix ne l’intègrent.', path: icons.finance },
+        { name: 'Marketing', desc: 'Captez au plus tôt les évolutions de la demande, de l’opinion et de la concurrence, et réallouez vos budgets avant que le marché ne réagisse.', path: icons.marketing }
       ],
-      swipeHint: 'Faites défiler pour voir les autres secteurs',
-      cta: { title: 'Votre secteur', desc: 'Il n’est pas listé ? Chaque déploiement est conçu pour votre mission.', link: 'Parlons de votre cas d’usage', subject: 'AUi Terminal pour mon secteur' }
+      swipeHint: 'Faites glisser pour voir les autres secteurs',
+      cta: { title: 'Votre secteur', desc: 'Votre secteur n’y figure pas ? Chaque déploiement est conçu sur mesure.', link: 'Parlons de votre besoin', subject: 'AUi Terminal pour mon secteur' }
     },
     pilot: {
       label: 'Pilote',
-      before: 'Démontrez l’avantage sur ',
+      before: 'Faites la preuve sur ',
       accent: 'vos propres données',
-      after: '. Un pilote de quatre mois, à prix forfaitaire.',
+      after: '. Un pilote de quatre mois, au forfait.',
       rows: [
         { label: 'Durée', value: 'Quatre mois' },
-        { label: 'Périmètre', value: 'Une région, un site ou un service opérationnel' },
-        { label: 'Sources', value: 'Une sélection ciblée de vos sources de données existantes' },
-        { label: 'Résultat', value: 'Une évaluation fondée sur vos propres données' },
+        { label: 'Périmètre', value: 'Une région, un site ou un service' },
+        { label: 'Sources', value: 'Une sélection ciblée de vos sources existantes' },
+        { label: 'Livrable', value: 'Un rapport d’évaluation établi sur vos données' },
         { label: 'Conditions', value: 'Prix forfaitaire' }
       ],
       button: 'Demander un pilote',
@@ -325,28 +325,28 @@ export const content = {
     },
     form: {
       title: 'Demander une présentation ou un pilote',
-      intro: 'Dites-nous ce que vous devez décider. Nous répondons sous deux jours ouvrés.',
-      name: 'Nom',
-      email: 'Adresse e-mail professionnelle',
-      org: 'Organisation',
-      interest: 'Je souhaite',
-      interests: ['Une présentation', 'Un pilote', 'Autre chose'],
+      intro: 'Présentez-nous votre besoin : nous vous répondons sous deux jours ouvrés.',
+      name: 'Nom et prénom',
+      email: 'E-mail professionnel',
+      org: 'Organisme',
+      interest: 'Votre demande',
+      interests: ['Une présentation', 'Un pilote', 'Autre demande'],
       sector: 'Secteur',
-      sectorPlaceholder: 'Choisir un secteur',
+      sectorPlaceholder: 'Sélectionnez un secteur',
       other: 'Autre',
       message: 'Message',
-      messagePlaceholder: 'Que souhaitez-vous qu’AUi vous aide à voir ou à décider ?',
-      consent: 'Nous utilisons ces informations uniquement pour vous répondre. Voir notre ',
+      messagePlaceholder: 'Quelles décisions AUi pourrait-il vous aider à éclairer ?',
+      consent: 'Ces informations servent uniquement à vous répondre. Consultez notre ',
       privacy: 'politique de confidentialité',
-      submit: 'Envoyer la demande',
-      sending: 'Envoi…',
-      successTitle: 'Merci. Votre demande a bien été envoyée.',
-      successBody: 'Nous vous répondrons très vite par e-mail.',
-      error: 'Désolé, le formulaire n’a pas pu être envoyé. Écrivez-nous directement à ',
+      submit: 'Envoyer',
+      sending: 'Envoi en cours…',
+      successTitle: 'Merci, votre demande a bien été envoyée.',
+      successBody: 'Nous revenons vers vous rapidement par e-mail.',
+      error: 'L’envoi a échoué. Vous pouvez nous écrire directement à ',
       subject: 'Demande AUi Terminal'
     },
     footer: {
-      tagline: 'AUi Terminal : la couche de fusion et de commandement, propulsée par l’IA, des entreprises, de l’État et des infrastructures critiques.',
+      tagline: 'AUi Terminal, la plateforme de fusion de données et d’aide au commandement fondée sur l’IA, pour les entreprises, les administrations et les infrastructures critiques.',
       contactLabel: 'Contact',
       legalLabel: 'Informations légales',
       privacy: 'Politique de confidentialité',
@@ -354,16 +354,16 @@ export const content = {
       rights: '© 2026 Authentic Intelligence Inc. Tous droits réservés.'
     },
     back: 'Retour à l’accueil',
-    updated: 'Dernière mise à jour : 13 novembre 2026',
+    updated: 'Dernière mise à jour : 14 novembre 2026',
     legalPages: {
       privacy: {
         title: 'Politique de confidentialité',
         sections: [
-          { h: 'Qui sommes-nous', p: ['Ce site est exploité par Authentic Intelligence Inc., responsable du traitement des données personnelles décrites ici. Vous pouvez nous écrire à {email}.'] },
-          { h: 'Ce que ce site collecte', p: ['Ce site n’utilise ni cookies, ni outils d’analyse d’audience, ni traceurs publicitaires. Les polices et les images sont servies depuis notre propre domaine : consulter le site n’envoie donc pas vos données à des tiers tels que des fournisseurs de polices ou de statistiques. Seule exception : le formulaire de contact, décrit ci-dessous, que vous choisissez d’envoyer.'] },
-          { h: 'Hébergement', p: ['Notre hébergeur traite des données techniques telles que votre adresse IP, le type de navigateur et les pages demandées, afin de fournir le site et de le protéger contre les abus. Il est identifié dans nos mentions légales, et ce traitement relève de sa propre politique de confidentialité.'] },
-          { h: 'Lorsque vous nous contactez', p: ['Si vous utilisez le formulaire de contact ou nous écrivez, nous utilisons votre nom, votre organisation, vos coordonnées et votre message uniquement pour vous répondre et gérer notre relation. Nous ne vendons pas vos données et ne les partageons pas à des fins de prospection. Nous ne les conservons que le temps nécessaire à cette finalité.', 'Les messages du formulaire de contact sont acheminés vers notre messagerie par FormSubmit (formsubmit.co), qui les traite pour notre compte et à cette seule fin.'] },
-          { h: 'Vos droits', p: ['Conformément au Règlement général sur la protection des données (RGPD) et aux lois applicables, vous pouvez demander l’accès à vos données personnelles, leur rectification ou leur effacement, et vous opposer à leur traitement ou en demander la limitation. Écrivez à {email} ; nous vous répondrons sous un mois.', 'Vous pouvez également introduire une réclamation auprès de votre autorité de protection des données. En France, il s’agit de la CNIL (cnil.fr).'] }
+          { h: 'Responsable du traitement', p: ['Ce site est exploité par Authentic Intelligence Inc., responsable du traitement des données personnelles décrites ci-dessous. Pour toute question, écrivez-nous à {email}.'] },
+          { h: 'Données collectées par ce site', p: ['Ce site n’utilise ni cookies, ni outil de mesure d’audience, ni traceur publicitaire. Les polices de caractères et les images sont hébergées sur notre propre domaine : la simple consultation du site ne transmet donc aucune donnée à des tiers, tels que des fournisseurs de polices ou de statistiques. Seule exception : le formulaire de contact, décrit ci-dessous, que vous choisissez d’envoyer.'] },
+          { h: 'Hébergement', p: ['Notre hébergeur traite des données techniques, telles que votre adresse IP, votre type de navigateur et les pages consultées, afin d’assurer le fonctionnement du site et de le protéger contre les abus. Il est identifié dans nos mentions légales ; ce traitement relève de sa propre politique de confidentialité.'] },
+          { h: 'Demandes de contact', p: ['Lorsque vous utilisez le formulaire de contact ou nous écrivez, vos nom, organisme, coordonnées et message sont utilisés uniquement pour vous répondre et assurer le suivi de notre relation. Nous ne vendons pas vos données et ne les utilisons pas à des fins de prospection. Elles ne sont conservées que le temps nécessaire à cette finalité.', 'Les messages envoyés via le formulaire sont acheminés vers notre messagerie par FormSubmit (formsubmit.co), qui les traite pour notre compte et à cette seule fin.'] },
+          { h: 'Vos droits', p: ['Conformément au règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés, vous disposez d’un droit d’accès, de rectification et d’effacement de vos données, ainsi que d’un droit d’opposition et de limitation de leur traitement. Pour l’exercer, écrivez-nous à {email} ; nous vous répondrons dans un délai d’un mois.', 'Vous pouvez également introduire une réclamation auprès de la CNIL (cnil.fr) ou de l’autorité de protection des données de votre pays.'] }
         ]
       },
       legal: {
@@ -371,8 +371,8 @@ export const content = {
         sections: [
           { h: 'Éditeur', p: ['Ce site est édité par Authentic Intelligence Inc. Contact : {email}.'] },
           { h: 'Hébergement', p: ['Ce site est hébergé par Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis (vercel.com).'] },
-          { h: 'Propriété intellectuelle', p: ['L’ensemble des contenus de ce site, notamment les textes, les éléments graphiques, le nom AUi Terminal et les images d’interface, appartient à Authentic Intelligence Inc., sauf mention contraire, et ne peut être reproduit sans autorisation.', 'Données cartographiques figurant dans les images produit : © IGN – Géoplateforme.'] },
-          { h: 'Images produit', p: ['Les images produit présentent un scénario de démonstration. Les valeurs issues de sources signalées comme simulées dans ces images ne reflètent pas des données réelles.'] }
+          { h: 'Propriété intellectuelle', p: ['Sauf mention contraire, l’ensemble des contenus de ce site (textes, éléments graphiques, nom AUi Terminal, captures d’interface) est la propriété d’Authentic Intelligence Inc. Toute reproduction sans autorisation préalable est interdite.', 'Données cartographiques figurant dans les captures du produit : © IGN – Géoplateforme.'] },
+          { h: 'Captures du produit', p: ['Les captures du produit présentent un scénario de démonstration. Les valeurs issues de sources signalées comme simulées ne correspondent pas à des données réelles.'] }
         ]
       }
     }
