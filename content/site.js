@@ -176,7 +176,7 @@ export const content = {
       rights: '© 2026 Authentic Intelligence Inc. All rights reserved.'
     },
     back: 'Back to home',
-    updated: 'Last updated: 13 November 2026',
+    updated: 'Last updated: 15 November 2026',
     legalPages: {
       privacy: {
         title: 'Privacy policy',
@@ -185,7 +185,7 @@ export const content = {
           { h: 'What this website collects', p: ['This website does not use cookies, analytics or advertising trackers. Fonts and images are served from our own domain, so visiting the site does not send your data to third parties such as font or analytics providers. The only exception is the contact form, described below, which you choose to send.'] },
           { h: 'Hosting', p: ['Our hosting provider processes technical data such as your IP address, browser type and the pages requested, in order to deliver the website and protect it against abuse. The provider is identified in our legal notice, and its own privacy policy applies to that processing.'] },
           { h: 'When you contact us', p: ['If you use the contact form or email us, we use your name, organisation, contact details and message only to reply to you and to manage our relationship with you. We do not sell your data or share it for marketing. We keep it only for as long as that purpose requires.', 'Contact form submissions are delivered to our inbox by FormSubmit (formsubmit.co), which processes them on our behalf for that purpose only.'] },
-          { h: 'Your rights', p: ['Under the EU General Data Protection Regulation (GDPR) and similar laws, you can ask to access, correct or delete your personal data, and object to or restrict its processing. Write to {email} and we will respond within one month.', 'You can also lodge a complaint with your data protection authority. In France, this is the CNIL (cnil.fr).'] }
+          { h: 'Your rights', p: ['Under the EU General Data Protection Regulation (GDPR) and similar laws, you can ask to access, correct or delete your personal data, object to or restrict its processing, and receive it in a portable format. Write to {email} and we will respond within one month.', 'You can also lodge a complaint with your data protection authority. In France, this is the CNIL (cnil.fr).'] }
         ]
       },
       legal: {
@@ -224,7 +224,7 @@ export const content = {
       // Longer phrases than English: a slightly smaller size keeps the four-line rhythm
       size: 'clamp(34px, 4.9vw, 56px)',
       maxWidth: '680px',
-      sub: 'L’intelligence prédictive au service de la décision. AUi Terminal est la plateforme de fusion de données et d’aide au commandement, fondée sur l’IA, destinée aux entreprises, aux administrations et aux opérateurs d’infrastructures critiques.',
+      sub: 'L’intelligence prédictive au service de la décision. AUi Terminal, plateforme de fusion de données et d’aide au commandement fondée sur l’IA, s’adresse aux entreprises, aux administrations et aux opérateurs d’infrastructures critiques.',
       primary: 'Demander une présentation',
       primarySubject: 'Présentation AUi Terminal',
       secondary: 'Découvrir la plateforme'
@@ -238,7 +238,7 @@ export const content = {
       problemsLabel: 'Le signal est déjà dans vos données. Encore faut-il le voir à temps.',
       problems: [
         { title: 'Dispersion', desc: 'Plateformes opérationnelles, capteurs, satellites, météo, remontées du terrain, sources commerciales : les signaux critiques sont éparpillés dans des systèmes qui n’ont jamais été conçus pour dialoguer.' },
-        { title: 'Fragmentation', desc: 'Chaque équipe, chaque site, chaque échelon de commandement se construit, à la main et dans l’urgence, sa propre vision de la situation, rarement la même d’un échelon à l’autre.' },
+        { title: 'Fragmentation', desc: 'Chaque équipe, chaque site, chaque échelon de commandement se construit, à la main et dans l’urgence, sa propre vision de la situation, rarement la même d’un niveau à l’autre.' },
         { title: 'Retard', desc: 'Noyées dans le bruit, les alertes précoces n’émergent qu’une fois l’impact survenu. Le temps de consolider la situation, la fenêtre d’action s’est refermée.' }
       ]
     },
@@ -279,8 +279,8 @@ export const content = {
         { title: 'Explicable dès la conception', desc: 'Pas de boîte noire : chaque priorité renvoie aux données et au raisonnement qui la fondent, affichés à côté de la recommandation.' },
         { title: 'Aucune zone d’ombre', desc: 'Chaque source affiche son statut : en direct, simulée ou non raccordée. Les données manquantes sont signalées comme telles : l’absence d’alerte n’est jamais prise pour une absence de risque.' },
         { title: 'Piste d’audit fiable', desc: 'Une main courante horodatée et infalsifiable : ce que l’on savait, qui a décidé, et quand. Chaque décision peut être reconstituée lors d’un retour d’expérience, d’un audit ou d’une procédure contentieuse.' },
-        { title: 'Conformité réglementaire', desc: 'Conçu pour répondre aux exigences de supervision humaine, de transparence et de traçabilité applicables aux systèmes d’IA à haut risque, du règlement européen sur l’IA (AI Act) aux cadres nationaux et sectoriels.' },
-        { title: 'Souveraineté des données', desc: 'Les données de chaque client sont strictement cloisonnées et jamais mutualisées. Les modèles peuvent fonctionner en local, sans flux sortant, sur un cloud souverain qualifié ou sur votre propre infrastructure.' }
+        { title: 'Conformité réglementaire', desc: 'AUi est conçu pour répondre aux exigences de supervision humaine, de transparence et de traçabilité applicables aux systèmes d’IA à haut risque, du règlement européen sur l’IA (AI Act) aux cadres nationaux et sectoriels.' },
+        { title: 'Souveraineté des données', desc: 'Les données de chaque client sont strictement cloisonnées et jamais mutualisées. Les modèles peuvent être exécutés sans flux sortant, sur un cloud souverain qualifié ou directement sur votre propre infrastructure.' }
       ]
     },
     serve: {
@@ -292,17 +292,17 @@ export const content = {
       audiences: [
         { title: 'Entreprises', lead: 'Anticiper les ruptures avant qu’elles ne pèsent sur vos résultats.', desc: 'Prévoyez les risques opérationnels, logistiques et industriels sur l’ensemble de vos sites, gardez l’initiative face à la concurrence et justifiez chaque décision importante auprès de votre conseil d’administration, de vos assureurs et des autorités de contrôle.' },
         { title: 'Secteur public', lead: 'Un temps d’avance à chaque échelon.', desc: 'Donnez aux services et à chaque échelon de commandement une même lecture prédictive de la situation, de la gestion courante aux crises majeures, pour traiter les menaces avant qu’elles ne s’aggravent.' },
-        { title: 'Infrastructures critiques et OIV', lead: 'Prévenir la prochaine panne.', desc: 'Détectez à temps les défaillances, les menaces et les effets en cascade sur des réseaux interdépendants (énergie, eau, transports, télécommunications) et garantissez la continuité des services essentiels.' }
+        { title: 'Infrastructures critiques et OIV', lead: 'Prévenir la prochaine panne.', desc: 'Détectez à temps les défaillances, les menaces et les effets en cascade sur des réseaux interdépendants (énergie, eau, transports, télécommunications) et préservez la continuité des services essentiels.' }
       ],
       sectorsLabel: 'Secteurs',
       sectors: [
         { name: 'Protection civile et feux de forêt', desc: 'Croisez détections satellitaires, météo et signalements de terrain pour confirmer plus tôt les départs de feu et engager au mieux les moyens aériens et terrestres.', path: icons.wildfire },
-        { name: 'Énergie et réseaux', desc: 'Prévenez les tensions sur le réseau, les défaillances d’équipements et les ruptures d’approvisionnement avant qu’elles n’affectent vos clients.', path: icons.energy },
+        { name: 'Énergie et réseaux', desc: 'Voyez venir les tensions sur le réseau, les défaillances d’équipements et les ruptures d’approvisionnement avant qu’elles n’affectent vos clients.', path: icons.energy },
         { name: 'Transports et logistique', desc: 'Repérez les perturbations naissantes sur les axes, dans les ports et chez les fournisseurs, et réorganisez les flux avant l’effet domino.', path: icons.transport },
         { name: 'Télécommunications', desc: 'Identifiez au plus tôt dégradations de service, coupures de câbles et brouillages, et priorisez les rétablissements.', path: icons.telecoms },
         { name: 'Santé', desc: 'Anticipez afflux de patients et tensions d’approvisionnement dans vos établissements, et adaptez les capacités en amont.', path: icons.health },
         { name: 'Médias et industries culturelles', desc: 'Suivez l’émergence des récits et l’évolution de l’opinion, et désamorcez les risques d’image avant qu’ils ne se propagent.', path: icons.media },
-        { name: 'Marchés financiers', desc: 'Surveillez les événements et les changements de régime qui font bouger les marchés, et mesurez l’exposition de vos positions avant que les prix ne l’intègrent.', path: icons.finance },
+        { name: 'Marchés financiers', desc: 'Surveillez les événements et les ruptures de marché qui font bouger les cours, et mesurez l’exposition de vos positions avant que les cours ne l’intègrent.', path: icons.finance },
         { name: 'Marketing', desc: 'Captez au plus tôt les évolutions de la demande, de l’opinion et de la concurrence, et réallouez vos budgets avant que le marché ne réagisse.', path: icons.marketing }
       ],
       swipeHint: 'Faites glisser pour voir les autres secteurs',
@@ -317,7 +317,7 @@ export const content = {
         { label: 'Durée', value: 'Quatre mois' },
         { label: 'Périmètre', value: 'Une région, un site ou un service' },
         { label: 'Sources', value: 'Une sélection ciblée de vos sources existantes' },
-        { label: 'Livrable', value: 'Un rapport d’évaluation établi sur vos données' },
+        { label: 'Livrable', value: 'Un rapport d’évaluation établi à partir de vos données' },
         { label: 'Conditions', value: 'Prix forfaitaire' }
       ],
       button: 'Demander un pilote',
@@ -354,7 +354,7 @@ export const content = {
       rights: '© 2026 Authentic Intelligence Inc. Tous droits réservés.'
     },
     back: 'Retour à l’accueil',
-    updated: 'Dernière mise à jour : 14 novembre 2026',
+    updated: 'Dernière mise à jour : 15 novembre 2026',
     legalPages: {
       privacy: {
         title: 'Politique de confidentialité',
@@ -363,7 +363,7 @@ export const content = {
           { h: 'Données collectées par ce site', p: ['Ce site n’utilise ni cookies, ni outil de mesure d’audience, ni traceur publicitaire. Les polices de caractères et les images sont hébergées sur notre propre domaine : la simple consultation du site ne transmet donc aucune donnée à des tiers, tels que des fournisseurs de polices ou de statistiques. Seule exception : le formulaire de contact, décrit ci-dessous, que vous choisissez d’envoyer.'] },
           { h: 'Hébergement', p: ['Notre hébergeur traite des données techniques, telles que votre adresse IP, votre type de navigateur et les pages consultées, afin d’assurer le fonctionnement du site et de le protéger contre les abus. Il est identifié dans nos mentions légales ; ce traitement relève de sa propre politique de confidentialité.'] },
           { h: 'Demandes de contact', p: ['Lorsque vous utilisez le formulaire de contact ou nous écrivez, vos nom, organisme, coordonnées et message sont utilisés uniquement pour vous répondre et assurer le suivi de notre relation. Nous ne vendons pas vos données et ne les utilisons pas à des fins de prospection. Elles ne sont conservées que le temps nécessaire à cette finalité.', 'Les messages envoyés via le formulaire sont acheminés vers notre messagerie par FormSubmit (formsubmit.co), qui les traite pour notre compte et à cette seule fin.'] },
-          { h: 'Vos droits', p: ['Conformément au règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés, vous disposez d’un droit d’accès, de rectification et d’effacement de vos données, ainsi que d’un droit d’opposition et de limitation de leur traitement. Pour l’exercer, écrivez-nous à {email} ; nous vous répondrons dans un délai d’un mois.', 'Vous pouvez également introduire une réclamation auprès de la CNIL (cnil.fr) ou de l’autorité de protection des données de votre pays.'] }
+          { h: 'Vos droits', p: ['Conformément au règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés, vous disposez d’un droit d’accès, de rectification et d’effacement de vos données, d’un droit d’opposition et de limitation de leur traitement, ainsi que d’un droit à leur portabilité. Pour l’exercer, écrivez-nous à {email} ; nous vous répondrons dans un délai d’un mois.', 'Vous pouvez également introduire une réclamation auprès de la CNIL (cnil.fr) ou de l’autorité de protection des données de votre pays.'] }
         ]
       },
       legal: {
