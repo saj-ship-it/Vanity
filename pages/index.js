@@ -273,11 +273,6 @@ export default function Home() {
               </li>
             ))}
           </ol>
-          <p className="connects">
-            <span className="eyebrow">{t.process.connects.label}</span>
-            {t.process.connects.items.map((s) => <span key={s} className="item">{s}</span>)}
-            <span>{t.process.connects.note}</span>
-          </p>
         </section>
 
         {/* Trust, with the real decision log */}
@@ -290,8 +285,27 @@ export default function Home() {
             </p>
           </div>
           <figure className="log-figure">
-            <div className="log-frame">
-              <img src={t.trust.log.image} width="1200" height="642" alt={t.trust.log.alt} loading="lazy" decoding="async" />
+            <div className="log-card">
+              <div className="log-head">
+                <p className="log-title">{t.trust.log.title}</p>
+                <p className="log-intro">{t.trust.log.intro}</p>
+              </div>
+              <ol className="log-list">
+                {t.trust.log.entries.map((e) => (
+                  <li key={e.time} className="log-entry">
+                    <span className="log-time">{e.time}</span>
+                    <div>
+                      <p className="log-what"><strong>{e.kind}</strong> · {e.what}</p>
+                      <p className="log-by">{e.by}</p>
+                      <div className="log-meta">
+                        <span className={`log-status log-${e.state}`}>{e.status}</span>
+                        {e.action && <span className="log-action" aria-hidden="true">{e.action}</span>}
+                        <span className="log-tag">{t.trust.log.tag}</span>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
             <figcaption className="shot-caption">{t.trust.log.caption}</figcaption>
           </figure>

@@ -297,14 +297,25 @@ const CSS = `
   @keyframes live { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.55); } 100% { box-shadow: 0 0 0 8px rgba(34,197,94,0); } }
 
   /* Connects to */
-  .connects { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 18px; margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line-2); font: 400 14px/1.5 var(--sans); color: var(--text-2); }
-  .connects .eyebrow { margin-right: 6px; }
-  .connects span.item { color: #e5e7eb; }
 
   /* Decision log figure */
   .log-figure { margin: 0 0 56px; }
-  .log-frame { border: 1px solid #1f2937; border-radius: 10px; overflow: hidden; max-width: 760px; box-shadow: 0 30px 80px -30px rgba(37,99,235,0.3); }
-  .log-frame img { display: block; width: 100%; height: auto; }
+  .log-card { max-width: 760px; background: #05070b; border: 1px solid #1f2937; border-radius: 10px; padding: 20px 16px; box-shadow: 0 30px 80px -30px rgba(37,99,235,0.3); }
+  .log-head { padding-bottom: 16px; margin-bottom: 14px; border-bottom: 1px solid #1a2130; }
+  .log-title { margin: 0 0 6px; font: 700 14px/1.35 var(--sans); letter-spacing: 0.02em; text-transform: uppercase; color: var(--text); }
+  .log-intro { margin: 0; font: 400 14px/1.5 var(--sans); color: var(--text-2); }
+  .log-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .log-entry { display: grid; grid-template-columns: auto 1fr; gap: 14px; padding: 14px; background: #080b11; border: 1px solid #161c28; border-radius: 8px; }
+  .log-time { font: 500 13px/1.5 var(--mono); color: var(--text-2); }
+  .log-what { margin: 0 0 4px; font: 400 14px/1.45 var(--sans); color: #e5e7eb; }
+  .log-what strong { font-weight: 600; color: var(--text); }
+  .log-by { margin: 0 0 12px; font: 400 12.5px/1.45 var(--sans); color: var(--muted); }
+  .log-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .log-status, .log-action, .log-tag { font: 600 10.5px/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; padding: 7px 9px; border-radius: 4px; }
+  .log-pending { color: #fbbf24; background: rgba(245,158,11,0.1); }
+  .log-ok { color: #4ade80; background: rgba(34,197,94,0.1); }
+  .log-action { color: #0b1220; background: #dbe6ff; }
+  .log-tag { margin-left: auto; color: #fbbf24; border: 1px solid rgba(245,158,11,0.45); padding: 6px 8px; }
 
   /* Pilot phases timeline */
   .phases { list-style: none; margin: 0 0 48px; padding: 0; display: grid; grid-template-columns: 1fr; gap: 0; position: relative; }
@@ -428,6 +439,8 @@ const CSS = `
     .section-head { margin-bottom: 56px; }
     .cols-3 { grid-template-columns: repeat(3, 1fr); }
     .sequence { grid-template-columns: repeat(3, 1fr); gap: 56px; }
+    .log-card { padding: 26px 24px; }
+    .log-title { font-size: 15px; }
     .seq-step:not(:last-child) .seq-art::before { content: ''; position: absolute; top: 50%; right: -50px; width: 42px; height: 1.5px; background: linear-gradient(90deg, transparent, #3d5a8f); }
     .seq-step:not(:last-child) .seq-art::after { content: ''; position: absolute; top: 50%; right: -48px; width: 8px; height: 8px; border-top: 1.5px solid #3d5a8f; border-right: 1.5px solid #3d5a8f; transform: translateY(-50%) rotate(45deg); }
     .ticker-label .lbl { display: inline; }

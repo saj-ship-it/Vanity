@@ -51,7 +51,7 @@ export const content = {
     },
     ticker: {
       label: 'Demo scenario',
-      items: ['NASA FIRMS · hotspot · La Teste-de-Buch', 'Météo-France · wind 38 km/h NW', '3 of 7 sources confirm', 'Fire confirmed · priority 1', 'Water point below scooping level', 'Recommendation logged · awaiting validation']
+      items: ['Satellite hotspot detected · northern sector', 'Weather update · wind 38 km/h NW', '3 of 7 sources confirm', 'Fire confirmed · priority 1', 'Water point below scooping level', 'Recommendation logged · awaiting validation']
     },
     mission: {
       label: 'Our mission',
@@ -94,7 +94,6 @@ export const content = {
     },
     process: {
       label: 'From signal to decision',
-      connects: { label: 'Built to connect to', items: ['Météo-France', 'Met Office', 'NASA FIRMS', 'Copernicus Sentinel-1', 'Copernicus EFFIS', 'IGN', 'Ordnance Survey'], note: 'and the systems you already run' },
       steps: [
         { icon: 'fuse', title: 'Fuse', desc: 'Adapters bring every feed you own or license into one picture: operational systems, sensors, satellite, weather and field reports.' },
         { icon: 'verify', title: 'Verify', desc: 'Source health is monitored continuously, broken feeds are flagged and live data is cross-checked.' },
@@ -108,7 +107,16 @@ export const content = {
       accent: 'with your people firmly in command',
       after: '.',
       rest: 'Every prediction is explained, every data gap is disclosed and every decision is on record, so speed never comes at the cost of control.',
-      log: { image: '/decision-log-en.webp', alt: 'AUi Terminal decision log: a pre-positioning recommendation awaiting validation by the department operations centre, and a scooping-detour recommendation validated by the incident commander, each time-stamped.', caption: 'Decision log from the wildfire demonstration scenario: who recommended, who validated, and when.' },
+      log: {
+        title: 'Decision log · decision support',
+        intro: 'Every request or recommendation is validated by the competent authority before anyone acts on it.',
+        tag: 'Scenario',
+        entries: [
+          { time: '23:20', kind: 'Recommendation · pre-positioning', what: 'Wildfire response group to the northern sector', by: 'Recorded by the decision-support tool', status: 'Awaiting validation · operations centre', state: 'pending', action: 'Validate' },
+          { time: '23:00', kind: 'Recommendation · scooping detour', what: 'Inland water point below threshold → sea scooping (+16 min)', by: 'Recorded by the decision-support tool · validated by the incident commander (23:03)', status: 'Validated · incident commander', state: 'ok' }
+        ],
+        caption: 'Decision log from the wildfire demonstration scenario: who recommended, who validated, and when.'
+      },
       cards: [
         { title: 'Human authority, always', desc: 'AUi recommends; it never acts. Decisions rest with the accountable owner, and separation of duties is enforced: whoever proposes an action cannot validate it.' },
         { title: 'Explainable by design', desc: 'No black boxes. Every priority traces back to its source data and the reasoning behind it, presented alongside the recommendation.' },
@@ -251,7 +259,7 @@ export const content = {
     },
     ticker: {
       label: 'Scénario de démonstration',
-      items: ['NASA FIRMS · point chaud · La Teste-de-Buch', 'Météo-France · vent 38 km/h NO', '3 sources sur 7 confirment', 'Feu confirmé · priorité 1', 'Point d’écopage sous le niveau requis', 'Recommandation journalisée · en attente de validation']
+      items: ['Point chaud satellite détecté · secteur nord', 'Mise à jour météo · vent 38 km/h NO', '3 sources sur 7 confirment', 'Feu confirmé · priorité 1', 'Point d’écopage sous le niveau requis', 'Recommandation journalisée · en attente de validation']
     },
     mission: {
       label: 'Notre mission',
@@ -292,7 +300,6 @@ export const content = {
     },
     process: {
       label: 'Du signal à la décision',
-      connects: { label: 'Conçu pour se raccorder à', items: ['Météo-France', 'Met Office', 'NASA FIRMS', 'Copernicus Sentinel-1', 'Copernicus EFFIS', 'IGN', 'Ordnance Survey'], note: 'et aux systèmes que vous exploitez déjà' },
       steps: [
         { icon: 'fuse', title: 'Fusionner', desc: 'Systèmes opérationnels, capteurs, satellites, météo, terrain : tous vos flux de données sont réunis dans une vue unique.' },
         { icon: 'verify', title: 'Vérifier', desc: 'La qualité de chaque source est contrôlée en continu : flux interrompus signalés, données recoupées.' },
@@ -306,7 +313,16 @@ export const content = {
       accent: 'sous le contrôle permanent de vos équipes',
       after: '.',
       rest: 'Chaque prédiction est expliquée, chaque lacune signalée, chaque décision tracée. La rapidité ne se fait jamais au détriment de la maîtrise.',
-      log: { image: '/decision-log-fr.webp', alt: 'Main courante décisionnelle d’AUi Terminal : une recommandation de prépositionnement en attente de validation par le CODIS et une recommandation de détour d’écopage validée par le COS, chacune horodatée.', caption: 'Main courante issue du scénario de démonstration feux de forêt : qui recommande, qui valide, et quand.' },
+      log: {
+        title: 'Main courante · aide à la décision',
+        intro: 'Chaque demande ou recommandation est validée par l’autorité compétente avant toute exécution.',
+        tag: 'Scénario',
+        entries: [
+          { time: '23:20', kind: 'Recommandation · prépositionnement', what: 'Groupe d’intervention feux de forêt vers le secteur nord', by: 'Consignée par l’outil d’aide à la décision', status: 'En attente de validation · CODIS', state: 'pending', action: 'Valider' },
+          { time: '23:00', kind: 'Recommandation · détour d’écopage', what: 'Plan d’eau intérieur sous le seuil → écopage en mer (+16 min)', by: 'Consignée par l’outil d’aide à la décision · validée par le COS (23:03)', status: 'Validée · COS', state: 'ok' }
+        ],
+        caption: 'Main courante issue du scénario de démonstration feux de forêt : qui recommande, qui valide, et quand.'
+      },
       cards: [
         { title: 'L’humain décide, toujours', desc: 'AUi recommande, il n’agit jamais. La décision revient à l’autorité compétente, selon le principe des quatre yeux : celui qui propose ne valide pas.' },
         { title: 'Explicable dès la conception', desc: 'Pas de boîte noire : chaque priorité renvoie aux données et au raisonnement qui la fondent, affichés à côté de la recommandation.' },
