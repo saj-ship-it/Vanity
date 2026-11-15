@@ -84,7 +84,7 @@ export const content = {
         title: 'AUi Terminal · Operating picture',
         active: '1 active incident',
         kpis: [
-          { label: 'Active incident', value: 'Wildfire', sub: 'Northern sector · detected 49 min ago' },
+          { label: 'Active incident', value: 'Wildfire', sub: 'Southern sector · detected 49 min ago' },
           { label: 'Corroboration', value: '3 of 4 sources' },
           { label: 'Exposure', value: '≈ 1,200 people', sub: '340 homes · 2 sensitive sites' },
           { label: 'Resources', value: '5–8 aircraft', sub: 'Available within 40 min' },
@@ -92,7 +92,7 @@ export const content = {
         ],
         map: {
           aria: 'Illustrative operational map: an active wildfire with its perimeter and predicted spread, three confirming sources, two sensitive sites, water points and an aircraft.',
-          sector: 'NORTHERN SECTOR',
+          sector: 'SOUTHERN SECTOR',
           sites: ['Campsite', 'Village'],
           waterLow: 'Water point B · below threshold',
           waterOk: 'Water point A',
@@ -102,14 +102,14 @@ export const content = {
         legend: [['#ef4444', 'Active incident'], ['#f97316', 'Fire perimeter'], ['#f59e0b', 'Predicted spread (+2 h)'], ['#2dd4bf', 'Water point · aircraft']],
         recsLabel: 'Ranked recommendations',
         recs: [
-          { title: 'Pre-position a response group in the northern sector', why: 'At the current wind, the fire reaches two sensitive sites within 2 hours.', conf: 86, status: 'Awaiting validation', state: 'pending' },
+          { title: 'Pre-position a response group in the southern sector', why: 'At the current wind, the fire reaches two sensitive sites within 2 hours.', conf: 86, status: 'Awaiting validation', state: 'pending' },
           { title: 'Switch scooping to the coast', why: 'Water point B is below threshold. The detour adds 16 min per rotation.', conf: 92, status: 'Validated', state: 'ok' },
           { title: 'Pre-alert the campsite for evacuation', why: 'Inside the 2-hour spread envelope, with a single access road.', conf: 71, status: 'Proposed', state: 'new' }
         ],
         sourcesLabel: 'Source status',
         sourceStatus: [['Satellite hotspots', 'live', 'Live'], ['Weather', 'live', 'Live'], ['Field reports', 'live', 'Live'], ['Air assets', 'sim', 'Simulated'], ['Cameras', 'off', 'Not connected']]
       },
-      caption: 'Illustrative view of AUi Terminal. Scenario, sites and figures are representative.',
+      caption: 'Illustrative view of AUi Terminal over a base map of the Arcachon basin. Scenario, sites and figures are representative. Base map: © IGN.',
       // Pilot outcomes, as framed in the AUi Terminal deck
       callouts: [
         { eyebrow: '01 · Time', title: 'Confirmed sooner', text: 'Cross-checked sources let command act on the first credible signal. Measured in the pilot: time from first signal to confirmed alert.' },
@@ -246,7 +246,7 @@ export const content = {
         sections: [
           { h: 'Publisher', p: ['This website is published by Authentic Intelligence Inc. Contact: {email}.'] },
           { h: 'Hosting', p: ['This website is hosted by Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, United States (vercel.com).'] },
-          { h: 'Intellectual property', p: ['All content on this website, including text, graphics, the AUi Terminal name and interface images, belongs to Authentic Intelligence Inc. unless stated otherwise, and may not be reproduced without permission.', 'Map data shown in product images: © IGN – Géoplateforme.', 'Satellite imagery: NASA Worldview (Terra/MODIS), courtesy of NASA, public domain.'] },
+          { h: 'Intellectual property', p: ['All content on this website, including text, graphics, the AUi Terminal name and interface images, belongs to Authentic Intelligence Inc. unless stated otherwise, and may not be reproduced without permission.', 'Base map shown in product views: © IGN – Géoplateforme.', 'Satellite imagery: NASA Worldview (Terra/MODIS), courtesy of NASA, public domain.'] },
           { h: 'Product views', p: ['Product views on this site are illustrative. Scenarios, sites and figures are representative and do not reflect live data.'] }
         ]
       }
@@ -316,7 +316,7 @@ export const content = {
         title: 'AUi Terminal · Situation opérationnelle',
         active: '1 incident actif',
         kpis: [
-          { label: 'Incident actif', value: 'Feu de forêt', sub: 'Secteur nord · détecté il y a 49 min' },
+          { label: 'Incident actif', value: 'Feu de forêt', sub: 'Secteur sud · détecté il y a 49 min' },
           { label: 'Corroboration', value: '3 sources sur 4' },
           { label: 'Exposition', value: '≈ 1 200 personnes', sub: '340 habitations · 2 sites sensibles' },
           { label: 'Moyens', value: '5 à 8 aéronefs', sub: 'Disponibles sous 40 min' },
@@ -324,7 +324,7 @@ export const content = {
         ],
         map: {
           aria: 'Carte opérationnelle illustrative : un feu de forêt actif avec son périmètre et sa propagation prévue, trois sources qui le confirment, deux sites sensibles, des points d’eau et un aéronef.',
-          sector: 'SECTEUR NORD',
+          sector: 'SECTEUR SUD',
           sites: ['Camping', 'Village'],
           waterLow: 'Point d’eau B · sous le seuil',
           waterOk: 'Point d’eau A',
@@ -334,14 +334,14 @@ export const content = {
         legend: [['#ef4444', 'Incident actif'], ['#f97316', 'Périmètre du feu'], ['#f59e0b', 'Propagation prévue (+2 h)'], ['#2dd4bf', 'Point d’eau · aéronef']],
         recsLabel: 'Recommandations classées',
         recs: [
-          { title: 'Prépositionner un groupe d’intervention dans le secteur nord', why: 'Au vent actuel, le feu atteint deux sites sensibles d’ici 2 heures.', conf: 86, status: 'En attente de validation', state: 'pending' },
+          { title: 'Prépositionner un groupe d’intervention dans le secteur sud', why: 'Au vent actuel, le feu atteint deux sites sensibles d’ici 2 heures.', conf: 86, status: 'En attente de validation', state: 'pending' },
           { title: 'Basculer l’écopage sur le littoral', why: 'Le point d’eau B est sous le seuil. Le détour ajoute 16 min par rotation.', conf: 92, status: 'Validée', state: 'ok' },
           { title: 'Préalerter le camping en vue d’une évacuation', why: 'Situé dans l’enveloppe de propagation à 2 heures, avec un seul accès.', conf: 71, status: 'Proposée', state: 'new' }
         ],
         sourcesLabel: 'État des sources',
         sourceStatus: [['Points chauds satellite', 'live', 'En direct'], ['Météo', 'live', 'En direct'], ['Remontées terrain', 'live', 'En direct'], ['Moyens aériens', 'sim', 'Simulé'], ['Caméras', 'off', 'Non raccordé']]
       },
-      caption: 'Vue illustrative d’AUi Terminal. Scénario, sites et chiffres donnés à titre indicatif.',
+      caption: 'Vue illustrative d’AUi Terminal sur un fond de carte du bassin d’Arcachon. Scénario, sites et chiffres donnés à titre indicatif. Fond de carte : © IGN.',
       callouts: [
         { eyebrow: '01 · Temps', title: 'Une confirmation plus rapide', text: 'Le croisement des sources permet d’agir dès le premier signal crédible. Indicateur suivi pendant le pilote : le délai entre ce premier signal et l’alerte confirmée.' },
         { eyebrow: '02 · Moyens aériens', title: 'Plus de temps de vol utile sur le feu', text: 'Dès qu’un plan d’eau passe sous le seuil d’écopage, AUi le signale et chiffre l’alternative. Un détour de 16 minutes, c’est plus d’un quart d’heure de vol perdu à chaque rotation.' },
@@ -477,7 +477,7 @@ export const content = {
         sections: [
           { h: 'Éditeur', p: ['Ce site est édité par Authentic Intelligence Inc. Contact : {email}.'] },
           { h: 'Hébergement', p: ['Ce site est hébergé par Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis (vercel.com).'] },
-          { h: 'Propriété intellectuelle', p: ['Sauf mention contraire, l’ensemble des contenus de ce site (textes, éléments graphiques, nom AUi Terminal, vues d’interface) est la propriété d’Authentic Intelligence Inc. Toute reproduction sans autorisation préalable est interdite.', 'Données cartographiques figurant dans les captures du produit : © IGN – Géoplateforme.', 'Imagerie satellite : NASA Worldview (Terra/MODIS), avec l’aimable autorisation de la NASA, domaine public.'] },
+          { h: 'Propriété intellectuelle', p: ['Sauf mention contraire, l’ensemble des contenus de ce site (textes, éléments graphiques, nom AUi Terminal, vues d’interface) est la propriété d’Authentic Intelligence Inc. Toute reproduction sans autorisation préalable est interdite.', 'Données cartographiques figurant dans les vues du produit : © IGN – Géoplateforme.', 'Imagerie satellite : NASA Worldview (Terra/MODIS), avec l’aimable autorisation de la NASA, domaine public.'] },
           { h: 'Vues du produit', p: ['Les vues du produit présentées sur ce site sont illustratives. Les scénarios, sites et chiffres sont donnés à titre indicatif et ne correspondent pas à des données réelles.'] }
         ]
       }
