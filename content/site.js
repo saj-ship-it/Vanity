@@ -49,6 +49,10 @@ export const content = {
       primarySubject: 'AUi Terminal briefing',
       secondary: 'See the platform'
     },
+    ticker: {
+      label: 'Demo scenario',
+      items: ['NASA FIRMS · hotspot · La Teste-de-Buch', 'Météo-France · wind 38 km/h NW', '3 of 7 sources confirm', 'Fire confirmed · priority 1', 'Water point below scooping level', 'Recommendation logged · awaiting validation']
+    },
     mission: {
       label: 'Our mission',
       before: 'AUi turns fragmented data into ',
@@ -58,6 +62,7 @@ export const content = {
       rest: 'It fuses every source you own or license into one live operating picture. AI then detects the weak signals and pattern breaks that come before disruption, and puts a ranked, explained recommendation in front of decision-makers while there is still time to act.',
       problemsLabel: 'The signal is already in your data. No one sees it in time.',
       diagram: { from: 'Scattered sources', to: 'One qualified picture' },
+      timeline: { signal: 'First signal', impact: 'Impact', picture: 'Picture ready', window: 'Window to act' },
       problems: [
         { title: 'Scattered', desc: 'Critical signals sit in disconnected systems (operational platforms, sensors, satellite, weather, field and commercial feeds) that were never built to work together.' },
         { title: 'Out of sync', desc: 'Every team, site and level of command assembles its own picture by hand, under pressure, and rarely the same one.' },
@@ -244,6 +249,10 @@ export const content = {
       primarySubject: 'Présentation AUi Terminal',
       secondary: 'Découvrir la plateforme'
     },
+    ticker: {
+      label: 'Scénario de démonstration',
+      items: ['NASA FIRMS · point chaud · La Teste-de-Buch', 'Météo-France · vent 38 km/h NO', '3 sources sur 7 confirment', 'Feu confirmé · priorité 1', 'Point d’écopage sous le niveau requis', 'Recommandation journalisée · en attente de validation']
+    },
     mission: {
       label: 'Notre mission',
       before: 'AUi transforme des données éparses en ',
@@ -252,6 +261,7 @@ export const content = {
       rest: 'La plateforme AUi réunit en une seule vue opérationnelle, en temps réel, l’ensemble des sources dont vous disposez. Grâce à l’IA, elle repère les signaux faibles et les ruptures annonciatrices de crise, puis soumet aux décideurs une recommandation hiérarchisée et argumentée, tant qu’il est encore temps d’agir.',
       problemsLabel: 'Le signal est déjà dans vos données. Encore faut-il le voir à temps.',
       diagram: { from: 'Sources dispersées', to: 'Une vue unique et qualifiée' },
+      timeline: { signal: 'Premier signal', impact: 'Impact', picture: 'Vue consolidée', window: 'Fenêtre d’action' },
       problems: [
         { title: 'Dispersion', desc: 'Plateformes opérationnelles, capteurs, satellites, météo, remontées du terrain, sources commerciales : les signaux critiques sont éparpillés dans des systèmes qui n’ont jamais été conçus pour dialoguer.' },
         { title: 'Fragmentation', desc: 'Chaque équipe, chaque site, chaque échelon de commandement se construit, à la main et dans l’urgence, sa propre vision de la situation, rarement la même d’un niveau à l’autre.' },
