@@ -131,12 +131,15 @@ const audienceIcons = [
   'M12 8a4 4 0 100 8 4 4 0 000-8z M12 2v6 M12 16v6 M2 12h6 M16 12h6'
 ];
 
-// Scrolling feed of demo-scenario events under the hero
-const TICK_COLORS = ['#f59e0b', '#5b8def', '#22c55e', '#ef4444', '#f59e0b', '#5b8def'];
+// Scrolling examples of the AUi loop across sectors: signal, recommendation, human decision
 function Ticker({ label, items }) {
   const run = (hidden) => items.map((it, i) => (
     <span key={`${hidden ? 'h' : 'v'}${i}`} className="tk" aria-hidden={hidden || undefined}>
-      <i style={{ background: TICK_COLORS[i % TICK_COLORS.length] }} />{it}
+      <b>{it.sector}</b>
+      <span>{it.signal}</span>
+      <span className="tk-arrow" aria-hidden="true">→</span>
+      <span className="tk-action">{it.action}</span>
+      <span className={`tk-st tk-${it.state}`}>{it.status}</span>
     </span>
   ));
   return (
