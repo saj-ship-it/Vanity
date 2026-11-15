@@ -1,7 +1,57 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { processIcons } from '../content/site';
 import { useSite, PageMeta, GlobalStyles, SiteHeader, SiteFooter, Icon } from '../components/Site';
 import ContactForm from '../components/ContactForm';
+
+// Adds `in-view` once the element scrolls into view (starts the diagram's draw animation)
+function useInView() {
+  const ref = useRef(null);
+  const [seen, setSeen] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || seen) return undefined;
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setSeen(true); io.disconnect(); } }, { threshold: 0.3 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [seen]);
+  return [ref, seen];
+}
+
+// Scattered sources converge into one qualified picture
+const DOTS = [[70, 52], [112, 96], [58, 128], [152, 38], [196, 146], [234, 98], [168, 184], [262, 58], [304, 152], [342, 92], [382, 42], [404, 170], [118, 176], [282, 194]];
+function ProblemDiagram({ from, to }) {
+  const [ref, seen] = useInView();
+  const fx = 860, fw = 280, fy = 26, fh = 168;
+  return (
+    <svg ref={ref} className={`diagram${seen ? ' in-view' : ''}`} viewBox="0 0 1200 236" role="img" aria-label={`${from} → ${to}`}>
+      <g fill="none" stroke="#3d5a8f" strokeWidth="1.4" strokeOpacity="0.85">
+        {DOTS.map(([x, y], i) => {
+          const ty = fy + 24 + (i * (fh - 48)) / (DOTS.length - 1);
+          return <path key={i} className="diagram-line" style={{ animationDelay: `${i * 70}ms` }} d={`M${x} ${y} C ${600} ${y}, ${700} ${ty}, ${fx} ${ty}`} />;
+        })}
+      </g>
+      {DOTS.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="4" fill="#8b93a1" />)}
+      <rect x={fx} y={fy} width={fw} height={fh} rx="10" fill="#0d1526" stroke="#5b8def" strokeWidth="1.5" />
+      <g stroke="#1f2f4f" strokeWidth="1">
+        <path d={`M${fx + 20} ${fy + 120} C ${fx + 90} ${fy + 80}, ${fx + 150} ${fy + 140}, ${fx + 260} ${fy + 60}`} fill="none" />
+        <path d={`M${fx + 20} ${fy + 60} L ${fx + 260} ${fy + 60} M${fx + 20} ${fy + 100} L ${fx + 260} ${fy + 100} M${fx + 20} ${fy + 140} L ${fx + 260} ${fy + 140}`} />
+      </g>
+      <circle cx={fx + 170} cy={fy + 92} r="14" fill="none" stroke="#ef4444" strokeWidth="1.5" opacity="0.6" />
+      <circle cx={fx + 170} cy={fy + 92} r="5" fill="#ef4444" />
+      <text x="56" y="228" fontSize="13" fill="#8b93a1" fontFamily="var(--mono)">{from}</text>
+      <text x={fx} y="228" fontSize="13" fill="#e5e7eb" fontFamily="var(--mono)">{to}</text>
+    </svg>
+  );
+}
+
+// Soft glow that follows the cursor across a sector card
+const glow = (e) => {
+  const el = e.target.closest('.tile');
+  if (!el) return;
+  const r = el.getBoundingClientRect();
+  el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+  el.style.setProperty('--my', `${e.clientY - r.top}px`);
+};
 
 export default function Home() {
   const { t } = useSite();
@@ -14,8 +64,8 @@ export default function Home() {
 
       <main className="main">
 
-        {/* Hero */}
-        <section className="hero-layout">
+        {/* Hero, over a faint topographic texture */}
+        <section className="hero-layout contours">
           <div className="hero-copy" style={{ maxWidth: t.hero.maxWidth || '640px' }}>
             <h1 className="hero-title" style={{ fontSize: t.hero.size || 'clamp(38px, 6.5vw, 76px)' }}>
               {t.hero.lines.map((line) => <React.Fragment key={line}>{line} <br /> </React.Fragment>)}
@@ -38,12 +88,20 @@ export default function Home() {
               </defs>
               <image href="/globe-signal.webp" width="780" height="780" style={{ mixBlendMode: 'screen' }} />
               <rect width="780" height="780" fill="#050505" fillOpacity="0.75" mask="url(#lensReveal)" />
+              {/* Signals where AUi operates: Gironde and Scotland */}
+              {[[321, 259], [308, 197]].map(([x, y]) => (
+                <g key={x}>
+                  <circle className="gpulse" cx={x} cy={y} r="6" fill="none" stroke="#5b8def" strokeWidth="1.5" />
+                  <circle className="gpulse gpulse-2" cx={x} cy={y} r="6" fill="none" stroke="#5b8def" strokeWidth="1.5" />
+                  <circle cx={x} cy={y} r="3.5" fill="#5b8def" />
+                </g>
+              ))}
             </svg>
           </div>
         </section>
 
-        {/* [01] Mission */}
-        <section id="objective" className="section">
+        {/* Mission */}
+        <section id="objective" className="section section-alt">
           <div className="section-head">
             <h2 className="eyebrow">{t.mission.label}</h2>
             <p className="statement">
@@ -52,7 +110,8 @@ export default function Home() {
             </p>
           </div>
 
-          <p className="eyebrow" style={{ marginBottom: '28px' }}>{t.mission.problemsLabel}</p>
+          <p className="subhead" style={{ marginBottom: '24px' }}>{t.mission.problemsLabel}</p>
+          <ProblemDiagram from={t.mission.diagram.from} to={t.mission.diagram.to} />
           <div className="cols-3">
             {t.mission.problems.map((p) => (
               <div key={p.title} className="col">
@@ -62,6 +121,12 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* Real-world band: NASA satellite view of the 2022 Gironde fires */}
+        <figure className="band">
+          <img src={t.band.image} width="1800" height="686" alt={t.band.alt} loading="lazy" decoding="async" />
+          <figcaption>{t.band.caption}</figcaption>
+        </figure>
 
         {/* In practice: the product */}
         <section id="platform" className="section">
@@ -95,8 +160,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* [02] Process */}
-        <section id="process" className="section">
+        {/* Process: four connected steps */}
+        <section id="process" className="section section-alt">
           <div className="section-head">
             <h2 className="eyebrow">{t.process.label}</h2>
           </div>
@@ -111,10 +176,15 @@ export default function Home() {
               </li>
             ))}
           </ol>
+          <p className="connects">
+            <span className="eyebrow">{t.process.connects.label}</span>
+            {t.process.connects.items.map((s) => <span key={s} className="item">{s}</span>)}
+            <span>{t.process.connects.note}</span>
+          </p>
         </section>
 
-        {/* [03] Trust */}
-        <section id="control" className="section">
+        {/* Trust, with the real decision log */}
+        <section id="control" className="section contours">
           <div className="section-head">
             <h2 className="eyebrow">{t.trust.label}</h2>
             <p className="statement">
@@ -122,6 +192,12 @@ export default function Home() {
               <span className="statement-rest">{t.trust.rest}</span>
             </p>
           </div>
+          <figure className="log-figure">
+            <div className="log-frame">
+              <img src={t.trust.log.image} width="1200" height="642" alt={t.trust.log.alt} loading="lazy" decoding="async" />
+            </div>
+            <figcaption className="shot-caption">{t.trust.log.caption}</figcaption>
+          </figure>
           <div className="cols-3">
             {t.trust.cards.map((s) => (
               <div key={s.title} className="col col-accent">
@@ -132,8 +208,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* [04] Who we serve */}
-        <section id="sectors" className="section">
+        {/* Who we serve */}
+        <section id="sectors" className="section section-alt">
           <div className="section-head">
             <h2 className="eyebrow">{t.serve.label}</h2>
             <p className="statement">
@@ -153,11 +229,11 @@ export default function Home() {
           </div>
 
           <p className="eyebrow" style={{ marginBottom: '24px' }}>{t.serve.sectorsLabel}</p>
-          <div className="tiles tiles-3 sector-row">
+          <div className="tiles tiles-3 sector-row" onMouseMove={glow}>
             {t.serve.sectors.map((s) => (
               <div key={s.name} className="tile">
                 <div className="tile-top">
-                  <div className="tile-icon"><Icon path={s.path} /></div>
+                  <div className="tile-icon"><Icon path={s.path} size={28} /></div>
                   {s.tag && <span className="tile-tag">{s.tag}</span>}
                 </div>
                 <h3 className="card-title">{s.name}</h3>
@@ -167,7 +243,7 @@ export default function Home() {
 
             <a className="tile tile-cta" href="#contact">
               <div className="tile-top">
-                <div className="tile-icon"><Icon path="M12 5v14 M5 12h14" color="#9ca3af" /></div>
+                <div className="tile-icon"><Icon path="M12 5v14 M5 12h14" color="#9ca3af" size={28} /></div>
               </div>
               <h3 className="card-title">{t.serve.cta.title}</h3>
               <p className="body">{t.serve.cta.desc}</p>
@@ -177,12 +253,23 @@ export default function Home() {
           <span className="swipe-hint" aria-hidden="true">{t.serve.swipeHint} &rarr;</span>
         </section>
 
-        {/* [05] Pilot */}
+        {/* Pilot: four-month plan, terms and contact */}
         <section id="pilot" className="section">
           <div className="section-head">
             <h2 className="eyebrow">{t.pilot.label}</h2>
             <p className="statement">{t.pilot.before}<span className="accent">{t.pilot.accent}</span>{t.pilot.after}</p>
           </div>
+
+          <p className="eyebrow" style={{ marginBottom: '24px' }}>{t.pilot.phasesLabel}</p>
+          <ol className="phases">
+            {t.pilot.phases.map((ph) => (
+              <li key={ph.when} className="phase">
+                <p className="eyebrow">{ph.when}</p>
+                <h3 className="card-title">{ph.title}</h3>
+                <p className="body">{ph.desc}</p>
+              </li>
+            ))}
+          </ol>
 
           <div className="pilot-grid">
             <div className="pilot-table">

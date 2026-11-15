@@ -57,11 +57,17 @@ export const content = {
       // Starts on its own line after the first sentence
       rest: 'It fuses every source you own or license into one live operating picture. AI then detects the weak signals and pattern breaks that come before disruption, and puts a ranked, explained recommendation in front of decision-makers while there is still time to act.',
       problemsLabel: 'The signal is already in your data. No one sees it in time.',
+      diagram: { from: 'Scattered sources', to: 'One qualified picture' },
       problems: [
         { title: 'Scattered', desc: 'Critical signals sit in disconnected systems (operational platforms, sensors, satellite, weather, field and commercial feeds) that were never built to work together.' },
         { title: 'Out of sync', desc: 'Every team, site and level of command assembles its own picture by hand, under pressure, and rarely the same one.' },
         { title: 'Too late', desc: 'Early warnings are lost in the noise and surface only after the impact. By the time the picture is assembled, the window to act has closed.' }
       ]
+    },
+    band: {
+      image: '/gironde-2022.webp',
+      alt: 'Satellite image of a long smoke plume from the Gironde wildfires drifting west across the coast and out over the Atlantic.',
+      caption: 'Smoke from the Gironde wildfires crossing the coast near Arcachon, 18 July 2022. Imagery: NASA Worldview (Terra/MODIS).'
     },
     platform: {
       label: 'In practice · Wildfire command',
@@ -83,6 +89,7 @@ export const content = {
     },
     process: {
       label: 'From signal to decision',
+      connects: { label: 'Built to connect to', items: ['Météo-France', 'Met Office', 'NASA FIRMS', 'Copernicus Sentinel-1', 'Copernicus EFFIS', 'IGN', 'Ordnance Survey'], note: 'and the systems you already run' },
       steps: [
         { icon: 'fuse', title: 'Fuse', desc: 'Adapters bring every feed you own or license into one picture: operational systems, sensors, satellite, weather and field reports.' },
         { icon: 'verify', title: 'Verify', desc: 'Source health is monitored continuously, broken feeds are flagged and live data is cross-checked.' },
@@ -96,6 +103,7 @@ export const content = {
       accent: 'with your people firmly in command',
       after: '.',
       rest: 'Every prediction is explained, every data gap is disclosed and every decision is on record, so speed never comes at the cost of control.',
+      log: { image: '/decision-log-en.webp', alt: 'AUi Terminal decision log: a pre-positioning recommendation awaiting validation by the department operations centre, and a scooping-detour recommendation validated by the incident commander, each time-stamped.', caption: 'Decision log from the wildfire demonstration scenario: who recommended, who validated, and when.' },
       cards: [
         { title: 'Human authority, always', desc: 'AUi recommends; it never acts. Decisions rest with the accountable owner, and separation of duties is enforced: whoever proposes an action cannot validate it.' },
         { title: 'Explainable by design', desc: 'No black boxes. Every priority traces back to its source data and the reasoning behind it, presented alongside the recommendation.' },
@@ -135,6 +143,13 @@ export const content = {
       before: 'Prove the advantage on ',
       accent: 'your own data',
       after: '. A four-month, fixed-price pilot.',
+      phasesLabel: 'Pilot plan',
+      phases: [
+        { when: 'Month 1', title: 'Connect', desc: 'Secure hosting, roles and audit switched on; your first sources connected.' },
+        { when: 'Month 2', title: 'Calibrate', desc: 'Local zones, thresholds and resources set; operators trained on their own data.' },
+        { when: 'Month 3', title: 'Operate', desc: 'Live use on a priority sector, with decisions logged and gains measured.' },
+        { when: 'Month 4', title: 'Evaluate', desc: 'An evaluation report on your own data, with measured results.' }
+      ],
       rows: [
         { label: 'Duration', value: 'Four months' },
         { label: 'Scope', value: 'One region, site or operational service' },
@@ -193,7 +208,7 @@ export const content = {
         sections: [
           { h: 'Publisher', p: ['This website is published by Authentic Intelligence Inc. Contact: {email}.'] },
           { h: 'Hosting', p: ['This website is hosted by Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, United States (vercel.com).'] },
-          { h: 'Intellectual property', p: ['All content on this website, including text, graphics, the AUi Terminal name and interface images, belongs to Authentic Intelligence Inc. unless stated otherwise, and may not be reproduced without permission.', 'Map data shown in product images: © IGN – Géoplateforme.'] },
+          { h: 'Intellectual property', p: ['All content on this website, including text, graphics, the AUi Terminal name and interface images, belongs to Authentic Intelligence Inc. unless stated otherwise, and may not be reproduced without permission.', 'Map data shown in product images: © IGN – Géoplateforme.', 'Satellite imagery: NASA Worldview (Terra/MODIS), courtesy of NASA, public domain.'] },
           { h: 'Product images', p: ['Product images show a demonstration scenario. Values from sources marked as simulated in those images do not reflect live data.'] }
         ]
       }
@@ -236,11 +251,17 @@ export const content = {
       after: '.',
       rest: 'La plateforme AUi réunit en une seule vue opérationnelle, en temps réel, l’ensemble des sources dont vous disposez. Grâce à l’IA, elle repère les signaux faibles et les ruptures annonciatrices de crise, puis soumet aux décideurs une recommandation hiérarchisée et argumentée, tant qu’il est encore temps d’agir.',
       problemsLabel: 'Le signal est déjà dans vos données. Encore faut-il le voir à temps.',
+      diagram: { from: 'Sources dispersées', to: 'Une vue unique et qualifiée' },
       problems: [
         { title: 'Dispersion', desc: 'Plateformes opérationnelles, capteurs, satellites, météo, remontées du terrain, sources commerciales : les signaux critiques sont éparpillés dans des systèmes qui n’ont jamais été conçus pour dialoguer.' },
         { title: 'Fragmentation', desc: 'Chaque équipe, chaque site, chaque échelon de commandement se construit, à la main et dans l’urgence, sa propre vision de la situation, rarement la même d’un niveau à l’autre.' },
         { title: 'Retard', desc: 'Noyées dans le bruit, les alertes précoces n’émergent qu’une fois l’impact survenu. Le temps de consolider la situation, la fenêtre d’action s’est refermée.' }
       ]
+    },
+    band: {
+      image: '/gironde-2022.webp',
+      alt: 'Image satellite d’un long panache de fumée des feux de Gironde dérivant vers l’ouest, au-dessus du littoral et de l’Atlantique.',
+      caption: 'Fumée des feux de Gironde franchissant le littoral près d’Arcachon, le 18 juillet 2022. Imagerie : NASA Worldview (Terra/MODIS).'
     },
     platform: {
       label: 'En pratique · Lutte contre les feux de forêt',
@@ -261,6 +282,7 @@ export const content = {
     },
     process: {
       label: 'Du signal à la décision',
+      connects: { label: 'Conçu pour se raccorder à', items: ['Météo-France', 'Met Office', 'NASA FIRMS', 'Copernicus Sentinel-1', 'Copernicus EFFIS', 'IGN', 'Ordnance Survey'], note: 'et aux systèmes que vous exploitez déjà' },
       steps: [
         { icon: 'fuse', title: 'Fusionner', desc: 'Systèmes opérationnels, capteurs, satellites, météo, terrain : tous vos flux de données sont réunis dans une vue unique.' },
         { icon: 'verify', title: 'Vérifier', desc: 'La qualité de chaque source est contrôlée en continu : flux interrompus signalés, données recoupées.' },
@@ -274,6 +296,7 @@ export const content = {
       accent: 'sous le contrôle permanent de vos équipes',
       after: '.',
       rest: 'Chaque prédiction est expliquée, chaque lacune signalée, chaque décision tracée. La rapidité ne se fait jamais au détriment de la maîtrise.',
+      log: { image: '/decision-log-fr.webp', alt: 'Main courante décisionnelle d’AUi Terminal : une recommandation de prépositionnement en attente de validation par le CODIS et une recommandation de détour d’écopage validée par le COS, chacune horodatée.', caption: 'Main courante issue du scénario de démonstration feux de forêt : qui recommande, qui valide, et quand.' },
       cards: [
         { title: 'L’humain décide, toujours', desc: 'AUi recommande, il n’agit jamais. La décision revient à l’autorité compétente, selon le principe des quatre yeux : celui qui propose ne valide pas.' },
         { title: 'Explicable dès la conception', desc: 'Pas de boîte noire : chaque priorité renvoie aux données et au raisonnement qui la fondent, affichés à côté de la recommandation.' },
@@ -313,6 +336,13 @@ export const content = {
       before: 'Mesurez l’apport d’AUi sur ',
       accent: 'vos propres données',
       after: '. Un pilote de quatre mois, au forfait.',
+      phasesLabel: 'Déroulé du pilote',
+      phases: [
+        { when: 'Mois 1', title: 'Raccorder', desc: 'Hébergement sécurisé, rôles et audit activés ; premières sources raccordées.' },
+        { when: 'Mois 2', title: 'Calibrer', desc: 'Zones, seuils et moyens locaux réglés ; opérateurs formés sur leurs propres données.' },
+        { when: 'Mois 3', title: 'Exploiter', desc: 'Utilisation réelle sur un secteur prioritaire, décisions tracées et gains mesurés.' },
+        { when: 'Mois 4', title: 'Évaluer', desc: 'Un rapport d’évaluation établi à partir de vos données, résultats mesurés à l’appui.' }
+      ],
       rows: [
         { label: 'Durée', value: 'Quatre mois' },
         { label: 'Périmètre', value: 'Une région, un site ou un service' },
@@ -371,7 +401,7 @@ export const content = {
         sections: [
           { h: 'Éditeur', p: ['Ce site est édité par Authentic Intelligence Inc. Contact : {email}.'] },
           { h: 'Hébergement', p: ['Ce site est hébergé par Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis (vercel.com).'] },
-          { h: 'Propriété intellectuelle', p: ['Sauf mention contraire, l’ensemble des contenus de ce site (textes, éléments graphiques, nom AUi Terminal, captures d’interface) est la propriété d’Authentic Intelligence Inc. Toute reproduction sans autorisation préalable est interdite.', 'Données cartographiques figurant dans les captures du produit : © IGN – Géoplateforme.'] },
+          { h: 'Propriété intellectuelle', p: ['Sauf mention contraire, l’ensemble des contenus de ce site (textes, éléments graphiques, nom AUi Terminal, captures d’interface) est la propriété d’Authentic Intelligence Inc. Toute reproduction sans autorisation préalable est interdite.', 'Données cartographiques figurant dans les captures du produit : © IGN – Géoplateforme.', 'Imagerie satellite : NASA Worldview (Terra/MODIS), avec l’aimable autorisation de la NASA, domaine public.'] },
           { h: 'Captures du produit', p: ['Les captures du produit présentent un scénario de démonstration. Les valeurs issues de sources signalées comme simulées ne correspondent pas à des données réelles.'] }
         ]
       }
