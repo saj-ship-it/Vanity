@@ -289,10 +289,16 @@ const CSS = `
   .globe-pulses { display: none; }
   .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: live 2s ease-out infinite; }
   .ticker-track { flex: 1; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent); }
-  .ticker-run { display: flex; width: max-content; animation: marquee 50s linear infinite; }
+  .ticker-run { display: flex; width: max-content; animation: marquee 90s linear infinite; }
   .ticker:hover .ticker-run { animation-play-state: paused; }
-  .tk { display: inline-flex; align-items: center; gap: 10px; padding-right: 48px; white-space: nowrap; }
-  .tk i { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+  .tk { display: inline-flex; align-items: center; gap: 10px; padding-right: 56px; white-space: nowrap; }
+  .tk b { font-weight: 600; color: #fff; letter-spacing: 0.04em; text-transform: uppercase; font-size: 11px; }
+  .tk-arrow { color: var(--blue-text); }
+  .tk-action { color: #e5e7eb; }
+  .tk-st { font: 600 10px/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 6px; border-radius: 3px; }
+  .tk-ok { color: #4ade80; background: rgba(34,197,94,0.1); }
+  .tk-pending { color: #fbbf24; background: rgba(245,158,11,0.1); }
+  .tk-new { color: #93b4f5; background: rgba(91,141,239,0.12); }
   @keyframes marquee { to { transform: translateX(-50%); } }
   @keyframes live { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.55); } 100% { box-shadow: 0 0 0 8px rgba(34,197,94,0); } }
 

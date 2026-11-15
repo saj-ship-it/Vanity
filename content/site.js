@@ -50,8 +50,15 @@ export const content = {
       secondary: 'See the platform'
     },
     ticker: {
-      label: 'Demo scenario',
-      items: ['Satellite hotspot detected · northern sector', 'Weather update · wind 38 km/h NW', '3 of 7 sources confirm', 'Fire confirmed · priority 1', 'Water point below scooping level', 'Recommendation logged · awaiting validation']
+      label: 'Example signals',
+      items: [
+        { sector: 'Energy', signal: 'substation load 14% above forecast', action: 'reserve pre-dispatched', status: 'Validated', state: 'ok' },
+        { sector: 'Logistics', signal: 'port dwell time rising on 3 routes', action: 'reroute proposed', status: 'Awaiting validation', state: 'pending' },
+        { sector: 'Telecoms', signal: 'backbone latency anomaly', action: 'restoration prioritised', status: 'Validated', state: 'ok' },
+        { sector: 'Healthcare', signal: 'emergency demand +18% forecast within 48 h', action: 'staffing shift proposed', status: 'Awaiting validation', state: 'pending' },
+        { sector: 'Financial markets', signal: 'regime shift in regional power prices', action: 'exposure flagged to the desk', status: 'Proposed', state: 'new' },
+        { sector: 'Civil protection', signal: 'hotspot confirmed by 3 of 4 sources', action: 'resources pre-positioned', status: 'Validated', state: 'ok' }
+      ]
     },
     mission: {
       label: 'Our mission',
@@ -283,8 +290,15 @@ export const content = {
       secondary: 'Découvrir la plateforme'
     },
     ticker: {
-      label: 'Scénario de démonstration',
-      items: ['Point chaud satellite détecté · secteur nord', 'Mise à jour météo · vent 38 km/h NO', '3 sources sur 7 confirment', 'Feu confirmé · priorité 1', 'Point d’écopage sous le niveau requis', 'Recommandation journalisée · en attente de validation']
+      label: 'Exemples de signaux',
+      items: [
+        { sector: 'Énergie', signal: 'charge du poste source 14 % au-dessus de la prévision', action: 'réserve mobilisée par anticipation', status: 'Validé', state: 'ok' },
+        { sector: 'Logistique', signal: 'temps d’escale en hausse sur 3 routes', action: 'réacheminement proposé', status: 'En attente de validation', state: 'pending' },
+        { sector: 'Télécoms', signal: 'anomalie de latence sur le réseau dorsal', action: 'rétablissement priorisé', status: 'Validé', state: 'ok' },
+        { sector: 'Santé', signal: 'demande aux urgences +18 % prévue sous 48 h', action: 'ajustement des effectifs proposé', status: 'En attente de validation', state: 'pending' },
+        { sector: 'Marchés financiers', signal: 'rupture de régime sur les prix régionaux de l’électricité', action: 'exposition signalée à la salle des marchés', status: 'Proposé', state: 'new' },
+        { sector: 'Protection civile', signal: 'point chaud confirmé par 3 sources sur 4', action: 'moyens prépositionnés', status: 'Validé', state: 'ok' }
+      ]
     },
     mission: {
       label: 'Notre mission',
