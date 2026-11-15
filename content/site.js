@@ -234,10 +234,10 @@ export const content = {
       before: 'AUi transforme des données éparses en ',
       accent: 'supériorité décisionnelle',
       after: '.',
-      rest: 'La plateforme réunit en une seule vue opérationnelle, en temps réel, l’ensemble des sources dont vous disposez. Grâce à l’IA, elle repère les signaux faibles et les ruptures annonciatrices de crise, puis soumet aux décideurs une recommandation hiérarchisée et argumentée, tant qu’il est encore temps d’agir.',
+      rest: 'La plateforme AUi réunit en une seule vue opérationnelle, en temps réel, l’ensemble des sources dont vous disposez. Grâce à l’IA, elle repère les signaux faibles et les ruptures annonciatrices de crise, puis soumet aux décideurs une recommandation hiérarchisée et argumentée, tant qu’il est encore temps d’agir.',
       problemsLabel: 'Le signal est déjà dans vos données. Encore faut-il le voir à temps.',
       problems: [
-        { title: 'Dispersion', desc: 'Plateformes opérationnelles, capteurs, satellites, météo, remontées du terrain, flux commerciaux : les signaux critiques sont éparpillés dans des systèmes qui n’ont jamais été conçus pour dialoguer.' },
+        { title: 'Dispersion', desc: 'Plateformes opérationnelles, capteurs, satellites, météo, remontées du terrain, sources commerciales : les signaux critiques sont éparpillés dans des systèmes qui n’ont jamais été conçus pour dialoguer.' },
         { title: 'Fragmentation', desc: 'Chaque équipe, chaque site, chaque échelon de commandement se construit, à la main et dans l’urgence, sa propre vision de la situation, rarement la même d’un échelon à l’autre.' },
         { title: 'Retard', desc: 'Noyées dans le bruit, les alertes précoces n’émergent qu’une fois l’impact survenu. Le temps de consolider la situation, la fenêtre d’action s’est refermée.' }
       ]
@@ -255,14 +255,14 @@ export const content = {
       caption: 'Scénario de démonstration : La Teste-de-Buch (Gironde). Chaque source indique si elle est en direct, simulée ou non raccordée.',
       callouts: [
         { eyebrow: '01 · Temps', title: 'Une confirmation plus rapide', text: 'Le croisement des sources permet d’agir dès le premier signal crédible. Indicateur suivi pendant le pilote : le délai entre ce premier signal et l’alerte confirmée.' },
-        { eyebrow: '02 · Moyens aériens', title: 'Du temps de vol rendu au feu', text: 'Dès qu’un plan d’eau passe sous le seuil d’écopage, AUi le signale et chiffre l’alternative. Un détour de 16 minutes, c’est plus d’un quart d’heure de vol perdu à chaque rotation.' },
+        { eyebrow: '02 · Moyens aériens', title: 'Plus de temps de vol utile sur le feu', text: 'Dès qu’un plan d’eau passe sous le seuil d’écopage, AUi le signale et chiffre l’alternative. Un détour de 16 minutes, c’est plus d’un quart d’heure de vol perdu à chaque rotation.' },
         { eyebrow: '03 · Traçabilité', title: 'Des décisions défendables', text: 'Chaque demande est consignée : qui l’a formulée, sur quelle base, et qui l’a validée.' }
       ]
     },
     process: {
       label: 'Du signal à la décision',
       steps: [
-        { icon: 'fuse', title: 'Fusionner', desc: 'Systèmes opérationnels, capteurs, satellites, météo, terrain : tous vos flux sont réunis dans une vue unique.' },
+        { icon: 'fuse', title: 'Fusionner', desc: 'Systèmes opérationnels, capteurs, satellites, météo, terrain : tous vos flux de données sont réunis dans une vue unique.' },
         { icon: 'verify', title: 'Vérifier', desc: 'La qualité de chaque source est contrôlée en continu : flux interrompus signalés, données recoupées.' },
         { icon: 'predict', title: 'Prédire', desc: 'L’apprentissage automatique détecte anomalies et ruptures de tendance dès leur apparition, et hiérarchise les risques en justifiant chaque priorité.' },
         { icon: 'decide', title: 'Décider et agir', desc: 'L’IA propose, vos équipes décident. Chaque validation est tracée.' }
@@ -276,9 +276,9 @@ export const content = {
       rest: 'Chaque prédiction est expliquée, chaque lacune signalée, chaque décision tracée. La rapidité ne se fait jamais au détriment de la maîtrise.',
       cards: [
         { title: 'L’humain décide, toujours', desc: 'AUi recommande, il n’agit jamais. La décision revient à l’autorité compétente, selon le principe des quatre yeux : celui qui propose ne valide pas.' },
-        { title: 'Transparence native', desc: 'Pas de boîte noire : chaque priorité renvoie aux données et au raisonnement qui la fondent, affichés à côté de la recommandation.' },
+        { title: 'Explicable dès la conception', desc: 'Pas de boîte noire : chaque priorité renvoie aux données et au raisonnement qui la fondent, affichés à côté de la recommandation.' },
         { title: 'Aucune zone d’ombre', desc: 'Chaque source affiche son statut : en direct, simulée ou non raccordée. Les données manquantes sont signalées comme telles : l’absence d’alerte n’est jamais prise pour une absence de risque.' },
-        { title: 'Une traçabilité opposable', desc: 'Une main courante horodatée et infalsifiable : ce que l’on savait, qui a décidé, et quand. Chaque décision peut être reconstituée lors d’un retour d’expérience, d’un audit ou d’une procédure contentieuse.' },
+        { title: 'Piste d’audit fiable', desc: 'Une main courante horodatée et infalsifiable : ce que l’on savait, qui a décidé, et quand. Chaque décision peut être reconstituée lors d’un retour d’expérience, d’un audit ou d’une procédure contentieuse.' },
         { title: 'Conformité réglementaire', desc: 'Conçu pour répondre aux exigences de supervision humaine, de transparence et de traçabilité applicables aux systèmes d’IA à haut risque, du règlement européen sur l’IA (AI Act) aux cadres nationaux et sectoriels.' },
         { title: 'Souveraineté des données', desc: 'Les données de chaque client sont strictement cloisonnées et jamais mutualisées. Les modèles peuvent fonctionner en local, sans flux sortant, sur un cloud souverain qualifié ou sur votre propre infrastructure.' }
       ]
