@@ -26,7 +26,7 @@ export const content = {
   en: {
     meta: {
       title: 'Authentic Intelligence | AUi Terminal',
-      description: 'AUi Terminal is the AI-powered fusion and command layer for enterprise, government and critical national infrastructure. One view. Every source. Every decision on record.',
+      description: 'AUi Terminal fuses every data source into one live common operating picture, with decision support and a full decision record, for enterprise, government and critical national infrastructure.',
       ogImage: '/og-image.png',
       ogImageAlt: 'One view. Every source. Every decision on record. AUi Terminal by Authentic Intelligence.',
       ogLocale: 'en_GB'
@@ -50,16 +50,16 @@ export const content = {
       secondary: 'See the platform'
     },
     mission: {
-      label: 'Core mission objective',
+      label: 'Our mission',
       before: 'AUi turns fragmented data into ',
       accent: 'decision advantage',
       after: '.',
       // Starts on its own line after the first sentence
-      rest: 'It fuses every source you own or license into one live operating picture, uses AI to detect the weak signals and pattern breaks that precede disruption, and puts a ranked, explained recommendation in front of decision-makers while there is still time to act.',
+      rest: 'It fuses every source you own or license into one live operating picture. AI then detects the weak signals and pattern breaks that come before disruption, and puts a ranked, explained recommendation in front of decision-makers while there is still time to act.',
       problemsLabel: 'The signal is already in your data. No one sees it in time.',
       problems: [
         { title: 'Scattered', desc: 'Critical signals sit in disconnected systems (operational platforms, sensors, satellite, weather, field and commercial feeds) that were never built to work together.' },
-        { title: 'Fragmented', desc: 'Every team, site and level of command assembles its own picture by hand, under pressure, and rarely the same one.' },
+        { title: 'Out of sync', desc: 'Every team, site and level of command assembles its own picture by hand, under pressure, and rarely the same one.' },
         { title: 'Too late', desc: 'Early warnings are lost in the noise and surface only after the impact. By the time the picture is assembled, the window to act has closed.' }
       ]
     },
@@ -76,8 +76,8 @@ export const content = {
       caption: 'Demonstration scenario: La Teste-de-Buch, Gironde. Every source is labelled live, simulated or not yet connected.',
       // Pilot outcomes, as framed in the AUi Terminal deck
       callouts: [
-        { eyebrow: '01 · Time', title: 'Confirmed sooner', text: 'Cross-checked sources let command act on the first credible signal. Measured in pilot: time from first signal to confirmed alert.' },
-        { eyebrow: '02 · Air assets', title: 'Flight time back on the fire', text: 'When a water point drops below scooping level, AUi shows it at once, with the cost of the alternative. A 16-minute detour is more than a quarter of an hour of flight lost on every rotation.' },
+        { eyebrow: '01 · Time', title: 'Confirmed sooner', text: 'Cross-checked sources let command act on the first credible signal. Measured in the pilot: time from first signal to confirmed alert.' },
+        { eyebrow: '02 · Air assets', title: 'Flight time back on the fire', text: 'When a water point drops below scooping level, AUi shows it at once, with the cost of the alternative. A 16-minute detour costs 16 minutes of flight on every rotation.' },
         { eyebrow: '03 · Accountability', title: 'Defensible choices', text: 'Every request is logged with who made it, on what basis and who validated it.' }
       ]
     },
@@ -86,7 +86,7 @@ export const content = {
       steps: [
         { icon: 'fuse', title: 'Fuse', desc: 'Adapters bring every feed you own or license into one picture: operational systems, sensors, satellite, weather and field reports.' },
         { icon: 'verify', title: 'Verify', desc: 'Source health is monitored continuously, broken feeds are flagged and live data is cross-checked.' },
-        { icon: 'predict', title: 'Predict', desc: 'Machine learning spots anomalies and trend breaks as they form and ranks emerging risks by urgency, reasoning shown.' },
+        { icon: 'predict', title: 'Predict', desc: 'Machine learning spots anomalies and trend breaks as they form and ranks emerging risks by urgency, with the reasoning shown.' },
         { icon: 'decide', title: 'Decide & act', desc: 'AI recommends, your people decide, and every approval is logged.' }
       ]
     },
@@ -101,8 +101,8 @@ export const content = {
         { title: 'Explainable by design', desc: 'No black boxes. Every priority traces back to its source data and the reasoning behind it, presented alongside the recommendation.' },
         { title: 'Gaps disclosed, never hidden', desc: 'Every source carries a status: live, simulated or not connected. Missing telemetry is flagged explicitly, so silence is never mistaken for safety.' },
         { title: 'Defensible audit trail', desc: 'A time-stamped, tamper-evident record of what was known, who decided and when. Any decision can be reconstructed for post-incident review, audit or legal scrutiny.' },
-        { title: 'Regulatory alignment', desc: 'Architected for the human-oversight, transparency and record-keeping obligations placed on high-risk AI systems, from the EU AI Act to emerging national and sector frameworks.' },
-        { title: 'Data sovereignty', desc: 'Each client’s data stays isolated and is never pooled. Models can run locally with no data leaving the deployment, deployable on a certified sovereign cloud or on your own infrastructure.' }
+        { title: 'Regulatory alignment', desc: 'Built for the human-oversight, transparency and record-keeping obligations placed on high-risk AI systems, from the EU AI Act to emerging national and sector frameworks.' },
+        { title: 'Data sovereignty', desc: 'Each client’s data stays isolated and is never pooled. Models run with no data leaving your deployment, whether on a certified sovereign cloud or on your own infrastructure.' }
       ]
     },
     serve: {
@@ -112,23 +112,23 @@ export const content = {
       after: '.',
       rest: 'Every deployment is shaped around your operating environment, risk profile, data estate and the way your organisation actually makes decisions. It sits above the systems you already run and makes every one of them more valuable.',
       audiences: [
-        { title: 'Enterprise', lead: 'See disruption before it hits the P&L.', desc: 'Anticipate operational, supply-chain and site risk across every region, move ahead of competitors, and back every material decision with evidence boards, insurers and regulators trust.' },
-        { title: 'Government & public sector', lead: 'Decision advantage at every level.', desc: 'Give agencies and every level of command one predictive picture, from day-to-day operations to national emergencies, and act on emerging threats before they escalate.' },
+        { title: 'Enterprise', lead: 'See disruption before it hits the P&L.', desc: 'Anticipate operational, supply-chain and site risk across every region, move ahead of competitors, and back every material decision with evidence that boards, insurers and regulators trust.' },
+        { title: 'Government & public sector', lead: 'One picture at every level of command.', desc: 'Give agencies and every level of command one predictive picture, from day-to-day operations to national emergencies, and act on emerging threats before they escalate.' },
         { title: 'Critical national infrastructure', lead: 'Get ahead of the next outage.', desc: 'Detect faults, threats and cascading failures across interdependent energy, water, transport and telecoms networks early enough to intervene, and keep essential services running.' }
       ],
       sectorsLabel: 'Sectors',
       sectors: [
-        { name: 'Civil Protection & Wildfire', desc: 'Fuse satellite hotspots, weather and field reports to confirm fires sooner and prioritise air and ground resources.', path: icons.wildfire },
-        { name: 'Energy & Utilities', desc: 'Anticipate grid stress, asset failure and supply disruption before they reach customers.', path: icons.energy },
-        { name: 'Transport & Logistics', desc: 'See disruption forming across routes, ports and suppliers, and reroute before delays cascade.', path: icons.transport },
+        { name: 'Civil protection & wildfire', desc: 'Fuse satellite hotspots, weather and field reports to confirm fires sooner and prioritise air and ground resources.', path: icons.wildfire },
+        { name: 'Energy & utilities', desc: 'Anticipate grid stress, asset failure and supply disruption before they reach customers.', path: icons.energy },
+        { name: 'Transport & logistics', desc: 'See disruption forming across routes, ports and suppliers, and reroute before delays cascade.', path: icons.transport },
         { name: 'Telecommunications', desc: 'Detect network degradation, cable faults and interference early, and prioritise restoration.', path: icons.telecoms },
         { name: 'Healthcare', desc: 'Forecast demand surges and supply shortages across facilities, and align capacity ahead of the peak.', path: icons.health },
-        { name: 'Media & Entertainment', desc: 'Track narratives and audience sentiment as they form, and flag reputational risk before it spreads.', path: icons.media },
-        { name: 'Financial Markets', desc: 'Detect the real-world events and regime shifts that move markets, and see the risk to positions before prices reflect it.', path: icons.finance },
+        { name: 'Media & entertainment', desc: 'Track narratives and audience sentiment as they form, and flag reputational risk before it spreads.', path: icons.media },
+        { name: 'Financial markets', desc: 'Detect the real-world events and regime shifts that move markets, and see the risk to positions before prices reflect it.', path: icons.finance },
         { name: 'Marketing', desc: 'Spot shifts in demand, sentiment and competitor activity early, and move budget ahead of the market.', path: icons.marketing }
       ],
       swipeHint: 'Swipe for more sectors',
-      cta: { title: 'Your sector', desc: 'Not listed? Every deployment is engineered for your mission.', link: 'Discuss your use case', subject: 'AUi Terminal for my sector' }
+      cta: { title: 'Your sector', desc: 'Not listed? Tell us the decision you need to make.', link: 'Discuss your use case', subject: 'AUi Terminal for my sector' }
     },
     pilot: {
       label: 'Pilot',
@@ -139,7 +139,7 @@ export const content = {
         { label: 'Duration', value: 'Four months' },
         { label: 'Scope', value: 'One region, site or operational service' },
         { label: 'Sources', value: 'A focused selection of your existing data sources' },
-        { label: 'Outcome', value: 'An evaluation built on your own data' },
+        { label: 'Outcome', value: 'An evaluation report with measured results' },
         { label: 'Terms', value: 'Fixed price' }
       ],
       button: 'Request a pilot',
@@ -168,7 +168,7 @@ export const content = {
       subject: 'AUi Terminal enquiry'
     },
     footer: {
-      tagline: 'AUi Terminal: the AI-powered fusion and command layer for enterprise, government and critical national infrastructure.',
+      tagline: 'AUi Terminal: predictive intelligence and decision support, with every decision on record.',
       contactLabel: 'Contact',
       legalLabel: 'Legal',
       privacy: 'Privacy policy',
