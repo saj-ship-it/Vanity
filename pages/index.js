@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { processIcons } from '../content/site';
 import { useSite, PageMeta, GlobalStyles, SiteHeader, SiteFooter, Icon } from '../components/Site';
 import ContactForm from '../components/ContactForm';
+import OpsView from '../components/OpsView';
 
 // Adds `in-view` once the element scrolls into view (starts the diagram's draw animation)
 function useInView() {
@@ -236,13 +237,7 @@ export default function Home() {
           </div>
 
           <figure className="shot">
-            <a className="shot-frame" href={t.platform.image} target="_blank" rel="noopener">
-              <picture>
-                <source media="(max-width: 767px)" srcSet={t.platform.imageMobile} width="900" height="1051" />
-                <img src={t.platform.image} width="2000" height="1240" alt={t.platform.alt} loading="lazy" decoding="async" />
-              </picture>
-              <span className="shot-open">{t.platform.open} &#8599;</span>
-            </a>
+            <OpsView m={t.platform.ops} />
             <figcaption className="shot-caption">{t.platform.caption}</figcaption>
           </figure>
 
