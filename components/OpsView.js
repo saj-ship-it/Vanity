@@ -1,89 +1,89 @@
 import React from 'react';
 
-// Illustrative AUi Terminal operating picture, drawn in code: no real geography,
-// no named data providers. Copy comes from content/site.js (platform.ops).
-const C = { grid: '#0e1524', land: '#0a101b', sea: '#05080f', coast: '#22324f', contour: '#111a2b', road: '#172133', line: '#3d5a8f', text: '#aab2bf', hi: '#e5e7eb', red: '#ef4444', orange: '#f97316', amber: '#f59e0b', teal: '#2dd4bf', green: '#22c55e', blue: '#5b8def' };
+// Illustrative AUi Terminal operating picture: the scenario layer is drawn in code over a
+// muted IGN base map of the Arcachon basin. Copy comes from content/site.js (platform.ops).
+const C = { line: '#5b8def', text: '#cbd5e1', hi: '#f1f5f9', red: '#ef4444', orange: '#f97316', amber: '#f59e0b', teal: '#2dd4bf', green: '#22c55e', blue: '#5b8def', halo: '#05080f' };
 
-// Two layouts of the same scene: the full map, and a tighter crop with larger labels for phones
+// Points in base-map pixels (800 × 540), projected from the scenario's coordinates
+const P = { inc: [338, 410], cazaux: [301, 480], sea: [214, 427], lacanau: [319, 60] };
+
+// Two framings of the same map: the full view, and a tighter crop with larger labels for phones
 const LAYOUTS = {
-  wide: { view: [0, 0, 800, 540], fs: 11, air: [700, 136], scale: [48, 506], sources: [[662, 64], [636, 258], [560, 452], [290, 490]] },
-  narrow: { view: [200, 30, 580, 500], fs: 19, air: [684, 112], scale: [216, 512], sources: [[560, 64], [556, 270], [520, 430], [300, 486]] }
+  wide: { view: [0, 0, 800, 540], fs: 11, air: [478, 318], scale: [36, 506], credit: [752, 530], waterLow: 'left',
+    sources: [[600, 70], [600, 300], [520, 498], [40, 250]] },
+  narrow: { view: [170, 240, 480, 300], fs: 15, air: [520, 300], scale: [520, 528], credit: [646, 534], waterLow: 'right',
+    sources: [[420, 258], [470, 326], [470, 380], [186, 270]] }
 };
 
 function OpsMap({ m, variant }) {
   const L = LAYOUTS[variant];
-  const [vx, vy, vw, vh] = L.view;
+  const [vx, vy, vw] = L.view;
   const right = vx + vw;
   const cw = L.fs * 0.6; // monospace character width
-  const inc = [430, 196];
+  const [ix, iy] = P.inc;
   const id = `arrow-${variant}`;
+  // Labels carry a dark halo so they stay legible over the map
   const label = (x, y, text, fill = C.text, anchor) => (
-    <text x={x} y={y} fontSize={L.fs} fill={fill} fontFamily="var(--mono)" textAnchor={anchor}>{text}</text>
+    <text x={x} y={y} fontSize={L.fs} fill={fill} fontFamily="var(--mono)" textAnchor={anchor} stroke={C.halo} strokeWidth={L.fs * 0.32} strokeLinejoin="round" paintOrder="stroke">{text}</text>
   );
   return (
     <svg className={`ops-map ops-map-${variant}`} viewBox={L.view.join(' ')} preserveAspectRatio={variant === 'wide' ? 'xMidYMid slice' : 'xMidYMid meet'} role="img" aria-label={m.aria}>
-      <rect x={vx} y={vy} width={vw} height={vh} fill={C.land} />
-      <g stroke={C.grid}>
-        {Array.from({ length: 19 }, (_, i) => <path key={`v${i}`} d={`M${(i + 1) * 40} 0 V540`} />)}
-        {Array.from({ length: 13 }, (_, i) => <path key={`h${i}`} d={`M0 ${(i + 1) * 40} H800`} />)}
-      </g>
-      {/* Coast and sea */}
-      <path d="M0 0 H262 C 248 80, 232 140, 244 200 C 254 250, 212 300, 222 360 C 228 410, 206 460, 196 540 H0 Z" fill={C.sea} stroke={C.coast} strokeWidth="1.5" />
-      {/* Relief and roads */}
-      <g fill="none" stroke={C.contour}>
-        <path d="M300 20 C 380 60, 470 30, 560 70 S 720 60, 800 100" /><path d="M290 110 C 360 140, 480 100, 600 150 S 740 160, 800 190" />
-        <path d="M280 300 C 380 270, 470 330, 600 300 S 740 330, 800 320" /><path d="M260 380 C 360 360, 500 420, 640 380 S 760 400, 800 410" />
-        <path d="M240 470 C 360 450, 520 500, 660 470 S 770 480, 800 490" />
-      </g>
-      <g fill="none" stroke={C.road} strokeWidth="2"><path d="M262 120 L 470 250 L 800 230" /><path d="M520 0 L 560 180 L 520 540" /><path d="M240 330 L 420 300 L 600 330" /></g>
+      <image href="/ops-basemap.webp" x="0" y="0" width="800" height="540" preserveAspectRatio="none" />
+      <rect x="0" y="0" width="800" height="540" fill="#05080f" opacity="0.18" />
       {/* Sector boundary */}
-      <path d="M300 64 L566 44 L626 206 L524 304 L320 286 Z" fill="none" stroke={C.line} strokeDasharray="4 6" />
-      {label(308, 64 + L.fs + 8, m.sector)}
-      {/* Predicted spread (+2 h) */}
-      <ellipse cx="470" cy="172" rx="96" ry="58" transform="rotate(-18 470 172)" fill="rgba(245,158,11,0.05)" stroke={C.amber} strokeDasharray="3 5" strokeOpacity="0.7" />
+      <path d="M262 352 L470 336 L508 470 L430 534 L268 528 Z" fill="rgba(91,141,239,0.05)" stroke={C.line} strokeDasharray="4 6" strokeOpacity="0.85" />
+      {label(variant === 'wide' ? 392 : 384, variant === 'wide' ? 378 : 352, m.sector, C.hi)}
+      {/* Predicted spread (+2 h), downwind of a north-westerly */}
+      <ellipse cx="386" cy="438" rx="78" ry="44" transform="rotate(28 386 438)" fill="rgba(245,158,11,0.08)" stroke={C.amber} strokeDasharray="3 5" />
       {/* Fire perimeter and spread direction */}
-      <path d="M408 178 L448 172 L466 196 L450 220 L416 218 L400 200 Z" fill="rgba(249,115,22,0.16)" stroke={C.orange} strokeWidth="1.5" />
+      <path d={`M${ix - 26} ${iy - 12} L${ix + 12} ${iy - 20} L${ix + 28} ${iy + 2} L${ix + 16} ${iy + 22} L${ix - 14} ${iy + 22} L${ix - 30} ${iy + 4} Z`} fill="rgba(249,115,22,0.22)" stroke={C.orange} strokeWidth="1.5" />
       <defs><marker id={id} viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill={C.orange} /></marker></defs>
-      <path d="M452 186 L 510 150" stroke={C.orange} strokeWidth="2" markerEnd={`url(#${id})`} />
+      <path d={`M${ix + 18} ${iy + 10} L ${ix + 62} ${iy + 40}`} stroke={C.orange} strokeWidth="2" markerEnd={`url(#${id})`} />
       {/* Sensitive sites */}
-      {[[520, 132, m.sites[0]], [548, 186, m.sites[1]]].map(([x, y, l]) => (
-        <g key={l}><circle cx={x} cy={y} r="5" fill={C.amber} />{label(x + 10, y + L.fs * 0.35, l)}</g>
+      {[[424, 470, m.sites[0]], [452, 430, m.sites[1]]].map(([x, y, l]) => (
+        <g key={l}><circle cx={x} cy={y} r="5" fill={C.amber} stroke={C.halo} strokeWidth="1.5" />{label(x + 10, y + L.fs * 0.35, l)}</g>
       ))}
-      {/* Water points and scooping detour */}
-      <path d="M342 334 L 222 312" stroke={C.amber} strokeWidth="1.5" strokeDasharray="5 4" />
-      <path d="M342 324 l10 10 -10 10 -10 -10 z" fill={C.red} />
-      {label(358, 334 + L.fs * 0.35, m.waterLow)}
-      <path d="M612 382 l9 9 -9 9 -9 -9 z" fill={C.teal} />
-      {label(626, 391 + L.fs * 0.35, m.waterOk)}
-      {/* Aircraft */}
-      <g transform={`translate(${L.air[0]} ${L.air[1]})`}><circle r="11" fill="#0d2a2a" stroke={C.teal} /><path d="M-5 1 L5 -4 L2 1 L5 5 Z" fill={C.teal} /></g>
-      {label(L.air[0] + 16, L.air[1] + L.fs * 0.35, m.air)}
+      {/* Water point B below threshold, with the scooping detour to the sea */}
+      <path d={`M${P.cazaux[0]} ${P.cazaux[1]} L ${P.sea[0]} ${P.sea[1]}`} stroke={C.amber} strokeWidth="2" strokeDasharray="5 4" />
+      <circle cx={P.sea[0]} cy={P.sea[1]} r="4" fill="none" stroke={C.amber} strokeWidth="1.5" />
+      <path d={`M${P.cazaux[0]} ${P.cazaux[1] - 10} l10 10 -10 10 -10 -10 z`} fill={C.red} stroke={C.halo} strokeWidth="1.5" />
+      {L.waterLow === 'left'
+        ? label(P.cazaux[0] - 16, P.cazaux[1] + L.fs * 0.35, m.waterLow, C.hi, 'end')
+        : label(176, P.cazaux[1] + 30, m.waterLow, C.hi)}
+      {/* Water point A */}
+      <path d={`M${P.lacanau[0]} ${P.lacanau[1] - 9} l9 9 -9 9 -9 -9 z`} fill={C.teal} stroke={C.halo} strokeWidth="1.5" />
+      {label(P.lacanau[0] - 16, P.lacanau[1] + L.fs * 0.35, m.waterOk, C.hi, 'end')}
+      {/* Aircraft inbound */}
+      <path d={`M${L.air[0]} ${L.air[1]} L ${ix + 14} ${iy - 14}`} stroke={C.teal} strokeWidth="1.2" strokeDasharray="2 4" />
+      <g transform={`translate(${L.air[0]} ${L.air[1]})`}><circle r="11" fill="#0d2a2a" stroke={C.teal} /><path d="M5 -1 L-5 4 L-2 -1 L-5 -5 Z" fill={C.teal} /></g>
+      {label(L.air[0] + 16, L.air[1] + L.fs * 0.35, m.air, C.hi)}
       {/* Confirming sources, each chip kept inside the frame */}
       {m.sources.map((text, i) => {
         const ok = i < 3;
         const w = text.length * cw + 30;
         const h = L.fs + 13;
-        const x = Math.min(L.sources[i][0], right - w - (variant === 'wide' ? 44 : 4));
+        const x = Math.max(vx + 4, Math.min(L.sources[i][0], right - w - (variant === 'wide' ? 44 : 4)));
         const y = L.sources[i][1];
         return (
           <g key={text}>
-            <path className={ok ? 'ops-link' : ''} d={`M${inc[0]} ${inc[1]} L ${x + w / 2} ${y}`} stroke={ok ? C.blue : '#4b5563'} strokeWidth="1.2" strokeDasharray={ok ? '4 6' : '2 5'} strokeOpacity={ok ? 0.9 : 0.7} fill="none" />
-            <rect x={x} y={y - h / 2} width={w} height={h} rx="4" fill="#0b1220" stroke={ok ? C.blue : '#374151'} />
+            <path className={ok ? 'ops-link' : ''} d={`M${ix} ${iy} L ${x + w / 2} ${y}`} stroke={ok ? C.blue : '#6b7280'} strokeWidth="1.3" strokeDasharray={ok ? '4 6' : '2 5'} fill="none" />
+            <rect x={x} y={y - h / 2} width={w} height={h} rx="4" fill="#0b1220" fillOpacity="0.94" stroke={ok ? C.blue : '#4b5563'} />
             <circle cx={x + 12} cy={y} r="3.5" fill={ok ? C.green : '#6b7280'} />
-            {label(x + 22, y + L.fs * 0.35, text, ok ? C.hi : C.text)}
+            <text x={x + 22} y={y + L.fs * 0.35} fontSize={L.fs} fill={ok ? C.hi : '#9ca3af'} fontFamily="var(--mono)">{text}</text>
           </g>
         );
       })}
       {/* Incident */}
-      <circle className="gpulse" cx={inc[0]} cy={inc[1]} r="8" fill="none" stroke={C.red} strokeWidth="2" />
-      <circle cx={inc[0]} cy={inc[1]} r="7" fill={C.red} stroke="#fff" strokeWidth="2" />
-      <g transform={`translate(${inc[0]} ${inc[1] + 22 + L.fs / 2})`}>
+      <circle className="gpulse" cx={ix} cy={iy} r="8" fill="none" stroke={C.red} strokeWidth="2" />
+      <circle cx={ix} cy={iy} r="7" fill={C.red} stroke="#fff" strokeWidth="2" />
+      <g transform={`translate(${ix - 44 - L.fs * 2.4} ${iy})`}>
         <rect x={-(L.fs * 2.4)} y={-(L.fs / 2 + 6)} width={L.fs * 4.8} height={L.fs + 12} rx="4" fill="#0b1220" stroke={C.teal} />
-        {label(0, L.fs * 0.35, '✓ 3/4', C.teal, 'middle')}
+        <text x="0" y={L.fs * 0.35} fontSize={L.fs} fill={C.teal} fontFamily="var(--mono)" textAnchor="middle">✓ 3/4</text>
       </g>
-      {/* Scale */}
-      <path d={`M${L.scale[0]} ${L.scale[1]} h80 M${L.scale[0]} ${L.scale[1] - 5} v10 M${L.scale[0] + 80} ${L.scale[1] - 5} v10`} stroke={C.text} />
-      {label(L.scale[0], L.scale[1] - 10, '5 km')}
+      {/* Scale (10 km at this zoom) and map credit */}
+      <path d={`M${L.scale[0]} ${L.scale[1]} h78 M${L.scale[0]} ${L.scale[1] - 5} v10 M${L.scale[0] + 78} ${L.scale[1] - 5} v10`} stroke={C.text} />
+      {label(L.scale[0], L.scale[1] - 10, '10 km')}
+      <text x={L.credit[0]} y={L.credit[1]} fontSize={variant === 'wide' ? 9 : 11} fill="#94a3b8" fontFamily="var(--mono)" textAnchor="end">© IGN</text>
     </svg>
   );
 }
