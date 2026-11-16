@@ -265,6 +265,8 @@ const CSS = `
     -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 70%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 70%, transparent); }
   .contours > * { position: relative; z-index: 1; }
   .contours > .globe-container { position: absolute; z-index: 0; }
+  .globe-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: screen; }
+  .globe-container svg { position: relative; }
   .subhead { font: 600 17px/1.4 var(--sans); color: var(--text-2); margin: 0; letter-spacing: -0.005em; }
 
   /* Satellite band */
