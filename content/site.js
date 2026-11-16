@@ -222,9 +222,6 @@ export const content = {
     form: {
       title: 'Request a briefing or pilot',
       intro: 'Tell us about your objectives and the advantage you want to gain.',
-      quick: 'Prefer a quick call first? ',
-      quickLink: 'Book 30 minutes by email',
-      quickSubject: 'AUi Terminal: 30-minute call',
       name: 'Name',
       email: 'Work email',
       org: 'Organisation',
@@ -478,9 +475,6 @@ export const content = {
     form: {
       title: 'Demander une présentation ou un pilote',
       intro: 'Présentez-nous vos objectifs et l’avantage que vous visez.',
-      quick: 'Vous préférez un premier échange ? ',
-      quickLink: 'Réservez 30 minutes par courriel',
-      quickSubject: 'AUi Terminal : échange de 30 minutes',
       name: 'Nom et prénom',
       email: 'Courriel professionnel',
       org: 'Organisme ou entreprise',
