@@ -35,7 +35,7 @@ export const content = {
     navLabel: 'Sections',
     headerCta: 'Request a briefing',
     nav: [
-      { href: '#objective', label: 'Mission' },
+      { href: '#objective', label: 'Problem' },
       { href: '#process', label: 'Process' },
       { href: '#control', label: 'Trust' },
       { href: '#sectors', label: 'Who we serve' },
@@ -62,7 +62,7 @@ export const content = {
       ]
     },
     mission: {
-      label: 'Our mission',
+      label: 'The problem we solve',
       before: 'AUi turns fragmented data into ',
       accent: 'decision advantage',
       after: '.',
@@ -82,7 +82,7 @@ export const content = {
       before: 'One screen for ',
       accent: 'the people in command',
       after: '.',
-      body: 'Proven first where minutes cost the most. In AUi’s wildfire command module: the incident, the sources that confirm it, the people and sites exposed, and the aircraft and water points available, fused on one operational map.',
+      body: 'Proven first where minutes cost the most. AUi’s wildfire command module fuses the incident, the sources that confirm it, the people and sites exposed, and the aircraft and water points available into one operational map.',
       ops: {
         title: 'AUi Terminal · Operating picture',
         active: '1 active incident',
@@ -123,7 +123,7 @@ export const content = {
     process: {
       label: 'From signal to decision',
       steps: [
-        { icon: 'fuse', title: 'Fuse', desc: 'Adapters bring every feed you own or license into one picture: operational systems, sensors, satellite, weather and field reports.' },
+        { icon: 'fuse', title: 'Fuse', desc: 'Adapters bring operational systems, sensors, satellite, weather and field reports into one picture.' },
         { icon: 'verify', title: 'Verify', desc: 'Source health is monitored continuously, broken feeds are flagged and live data is cross-checked.' },
         { icon: 'predict', title: 'Predict', desc: 'Machine learning spots anomalies and trend breaks as they form and ranks emerging risks by urgency, with the reasoning shown.' },
         { icon: 'decide', title: 'Decide & act', desc: 'AI recommends, your people decide, and every approval is logged.' }
@@ -136,7 +136,7 @@ export const content = {
       after: '.',
       rest: 'Every prediction is explained, every data gap is disclosed and every decision is on record, so speed never comes at the cost of control.',
       log: {
-        title: 'Decision log · decision support',
+        title: 'Decision log',
         intro: 'Every request or recommendation is validated by the competent authority before anyone acts on it.',
         tag: 'Example',
         entries: [
@@ -159,10 +159,10 @@ export const content = {
       before: 'Engineered for ',
       accent: 'your mission',
       after: '.',
-      rest: 'Every deployment is shaped around your operating environment, risk profile, data estate and the way your organisation actually makes decisions. It sits above the systems you already run and makes every one of them more valuable.',
+      rest: 'Every deployment is shaped around your operating environment, risk profile, data estate and the way your organisation actually makes decisions. AUi sits above the systems you already run and makes every one of them more valuable.',
       audiences: [
         { title: 'Enterprise', lead: 'See disruption before it hits the P&L.', desc: 'Anticipate operational, supply-chain and site risk across every region, move ahead of competitors, and back every material decision with evidence that boards, insurers and regulators trust.' },
-        { title: 'Government & public sector', lead: 'One picture at every level of command.', desc: 'Give agencies and every level of command one predictive picture, from day-to-day operations to national emergencies, and act on emerging threats before they escalate.' },
+        { title: 'Government & public sector', lead: 'One picture at every level of command.', desc: 'Give agencies one shared, predictive picture, from day-to-day operations to national emergencies, and act on emerging threats before they escalate.' },
         { title: 'Critical national infrastructure', lead: 'Get ahead of the next outage.', desc: 'Detect faults, threats and cascading failures across interdependent energy, water, transport and telecoms networks early enough to intervene, and keep essential services running.' }
       ],
       sectorsLabel: 'Sectors',
@@ -177,18 +177,18 @@ export const content = {
         { name: 'Marketing', desc: 'Spot shifts in demand, sentiment and competitor activity early, and move budget ahead of the market.', path: icons.marketing }
       ],
       swipeHint: 'Swipe for more sectors',
-      cta: { title: 'Your sector', desc: 'Not listed? Every deployment is engineered to the mission. Tell us yours.', link: 'Discuss your use case', subject: 'AUi Terminal for my sector' }
+      cta: { title: 'Your sector', desc: 'Not listed? Every deployment is engineered around the client. Tell us about yours.', link: 'Discuss your use case', subject: 'AUi Terminal for my sector' }
     },
     company: {
       label: 'Who we are',
       before: 'More than eleven years engineering ',
       accent: 'advanced intelligence systems',
       after: '.',
-      rest: 'Authentic Intelligence is an AI company headquartered in Toronto. We design and deploy advanced AI and data platforms for institutions where precision, security and speed decide the outcome.',
+      rest: 'Authentic Intelligence is an AI company. We design and deploy AI and data platforms for institutions where precision, security and speed decide the outcome.',
       facts: [
-        { value: '11+', label: 'years delivering advanced systems' },
-        { value: 'Toronto', label: 'headquarters' },
-        { value: 'On your terms', label: 'sovereign cloud, on premises or hybrid deployment' }
+        { value: '11+', label: 'Years in high-stakes delivery' },
+        { value: 'Toronto', label: 'Headquarters' },
+        { value: 'On your terms', label: 'Sovereign cloud, on premises or hybrid deployment' }
       ],
       line: { before: 'Different sectors. ', accent: 'The same standard', after: ': built for the moment that matters, open to audit, discreet by design.' }
     },
@@ -200,9 +200,9 @@ export const content = {
       phasesLabel: 'Pilot plan',
       phases: [
         { when: 'Month 1', title: 'Connect', desc: 'Secure hosting, roles and audit switched on; your first sources connected.' },
-        { when: 'Month 2', title: 'Calibrate', desc: 'Local zones, thresholds and resources set; operators trained on their own data.' },
+        { when: 'Month 2', title: 'Calibrate', desc: 'Local zones, thresholds and resources set; operators trained on live data.' },
         { when: 'Month 3', title: 'Operate', desc: 'Live use on a priority sector, with decisions logged and gains measured.' },
-        { when: 'Month 4', title: 'Evaluate', desc: 'An evaluation report on your own data, with measured results.' }
+        { when: 'Month 4', title: 'Evaluate', desc: 'An evaluation report with measured gains.' }
       ],
       rows: [
         { label: 'Duration', value: 'Four months' },
@@ -212,13 +212,13 @@ export const content = {
         { label: 'Terms', value: 'Fixed price' }
       ],
       nextLabel: 'What happens next',
-      next: ['We reply within two working days.', 'A 30-minute briefing with our team, shaped around your mission and priorities.', 'A short scoping note: scope, sources, success measures and a fixed price.'],
+      next: ['We reply within two working days.', 'A 30-minute briefing with our team, shaped around your priorities.', 'A short scoping note: scope, sources, success measures and a fixed price.'],
       button: 'Request a pilot',
       subject: 'AUi Terminal pilot'
     },
     form: {
       title: 'Request a briefing or pilot',
-      intro: 'Tell us about your mission and the advantage you want to gain. We reply within two working days.',
+      intro: 'Tell us about your objectives and the advantage you want to gain.',
       quick: 'Prefer a quick call first? ',
       quickLink: 'Book 30 minutes by email',
       quickSubject: 'AUi Terminal: 30-minute call',
@@ -231,7 +231,7 @@ export const content = {
       sectorPlaceholder: 'Select a sector',
       other: 'Other',
       message: 'Message',
-      messagePlaceholder: 'Your mission, operating environment and the outcomes you expect AUi to deliver.',
+      messagePlaceholder: 'Your objectives, operating environment and the outcomes you expect AUi to deliver.',
       consent: 'We use these details only to reply to you. See our ',
       privacy: 'privacy policy',
       submit: 'Send request',
@@ -242,7 +242,7 @@ export const content = {
       subject: 'AUi Terminal enquiry'
     },
     footer: {
-      tagline: 'AUi Terminal: predictive intelligence and decision support, with every decision on record.',
+      tagline: 'AUi Terminal: predictive intelligence, with every decision on record.',
       contactLabel: 'Contact',
       legalLabel: 'Legal',
       privacy: 'Privacy policy',
@@ -287,7 +287,7 @@ export const content = {
     navLabel: 'Sections',
     headerCta: 'Demander une présentation',
     nav: [
-      { href: '#objective', label: 'Mission' },
+      { href: '#objective', label: 'Constat' },
       { href: '#process', label: 'Méthode' },
       { href: '#control', label: 'Confiance' },
       { href: '#sectors', label: 'Secteurs' },
@@ -317,7 +317,7 @@ export const content = {
       ]
     },
     mission: {
-      label: 'Notre mission',
+      label: 'Le constat',
       before: 'AUi transforme des données éparses en ',
       accent: 'supériorité décisionnelle',
       after: '.',
@@ -389,7 +389,7 @@ export const content = {
       after: '.',
       rest: 'Chaque prédiction est expliquée, chaque lacune signalée, chaque décision tracée. La rapidité ne se fait jamais au détriment de la maîtrise.',
       log: {
-        title: 'Journal des décisions · aide à la décision',
+        title: 'Journal des décisions',
         intro: 'Chaque demande ou recommandation est validée par l’autorité compétente avant toute exécution.',
         tag: 'Exemple',
         entries: [
@@ -415,7 +415,7 @@ export const content = {
       rest: 'Chaque déploiement s’adapte à votre environnement opérationnel, à votre exposition aux risques, à vos données et à vos circuits de décision réels. AUi s’appuie sur les systèmes que vous exploitez déjà et en démultiplie la valeur.',
       audiences: [
         { title: 'Entreprises', lead: 'Anticiper les ruptures avant qu’elles ne pèsent sur vos résultats.', desc: 'Prévoyez les risques opérationnels, logistiques et industriels sur l’ensemble de vos sites, gardez l’initiative face à la concurrence et justifiez chaque décision importante auprès de votre conseil d’administration, de vos assureurs et des autorités de contrôle.' },
-        { title: 'Secteur public', lead: 'Un temps d’avance à chaque échelon.', desc: 'Donnez aux services et à chaque échelon de commandement une même lecture prédictive de la situation, de la gestion courante aux crises majeures, pour traiter les menaces avant qu’elles ne s’aggravent.' },
+        { title: 'Secteur public', lead: 'Un temps d’avance à chaque échelon.', desc: 'Donnez aux services une même lecture prédictive de la situation, de la gestion courante aux crises majeures, pour traiter les menaces avant qu’elles ne s’aggravent.' },
         { title: 'Infrastructures critiques et OIV', lead: 'Prévenir la prochaine panne.', desc: 'Détectez à temps les défaillances, les menaces et les effets en cascade sur des réseaux interdépendants (énergie, eau, transports, télécommunications) et préservez la continuité des services essentiels.' }
       ],
       sectorsLabel: 'Secteurs',
@@ -437,11 +437,11 @@ export const content = {
       before: 'Plus de onze ans à concevoir des ',
       accent: 'systèmes d’intelligence avancés',
       after: '.',
-      rest: 'Authentic Intelligence est une société d’intelligence artificielle dont le siège est à Toronto. Nous concevons et déployons des plateformes avancées d’IA et de données pour des institutions où précision, sécurité et rapidité font la différence.',
+      rest: 'Authentic Intelligence est une société d’intelligence artificielle. Nous concevons et déployons des plateformes d’IA et de données pour des institutions où précision, sécurité et rapidité font la différence.',
       facts: [
-        { value: '11+', label: 'années de systèmes avancés en production' },
-        { value: 'Toronto', label: 'siège social' },
-        { value: 'À vos conditions', label: 'cloud souverain, sur site ou hybride' }
+        { value: '11+', label: 'Années de projets à fort enjeu' },
+        { value: 'Toronto', label: 'Siège social' },
+        { value: 'À vos conditions', label: 'Cloud souverain, sur site ou hybride' }
       ],
       line: { before: 'Des secteurs différents. ', accent: 'Une même exigence', after: ' : tenir au moment décisif, rendre des comptes, protéger la confidentialité.' }
     },
@@ -453,9 +453,9 @@ export const content = {
       phasesLabel: 'Déroulé du pilote',
       phases: [
         { when: 'Mois 1', title: 'Raccorder', desc: 'Hébergement sécurisé, rôles et audit activés ; premières sources raccordées.' },
-        { when: 'Mois 2', title: 'Calibrer', desc: 'Zones, seuils et moyens locaux réglés ; opérateurs formés sur leurs propres données.' },
+        { when: 'Mois 2', title: 'Calibrer', desc: 'Zones, seuils et moyens locaux réglés ; opérateurs formés sur données réelles.' },
         { when: 'Mois 3', title: 'Exploiter', desc: 'Utilisation réelle sur un secteur prioritaire, décisions tracées et gains mesurés.' },
-        { when: 'Mois 4', title: 'Évaluer', desc: 'Un rapport d’évaluation établi à partir de vos données, résultats mesurés à l’appui.' }
+        { when: 'Mois 4', title: 'Évaluer', desc: 'Un rapport d’évaluation, gains mesurés à l’appui.' }
       ],
       rows: [
         { label: 'Durée', value: 'Quatre mois' },
@@ -465,13 +465,13 @@ export const content = {
         { label: 'Conditions', value: 'Prix forfaitaire' }
       ],
       nextLabel: 'Les prochaines étapes',
-      next: ['Nous vous répondons sous deux jours ouvrés.', 'Un échange de 30 minutes avec notre équipe, centré sur votre mission et vos priorités.', 'Une note de cadrage concise : périmètre, sources, critères de réussite et prix forfaitaire.'],
+      next: ['Nous vous répondons sous deux jours ouvrés.', 'Un échange de 30 minutes avec notre équipe, centré sur vos priorités.', 'Une note de cadrage concise : périmètre, sources, critères de réussite et prix forfaitaire.'],
       button: 'Demander un pilote',
       subject: 'Pilote AUi Terminal'
     },
     form: {
       title: 'Demander une présentation ou un pilote',
-      intro: 'Présentez-nous votre mission et l’avantage que vous visez. Nous vous répondons sous deux jours ouvrés.',
+      intro: 'Présentez-nous vos objectifs et l’avantage que vous visez.',
       quick: 'Vous préférez un premier échange ? ',
       quickLink: 'Réservez 30 minutes par courriel',
       quickSubject: 'AUi Terminal : échange de 30 minutes',
@@ -484,7 +484,7 @@ export const content = {
       sectorPlaceholder: 'Sélectionnez un secteur',
       other: 'Autre',
       message: 'Message',
-      messagePlaceholder: 'Votre mission, votre environnement opérationnel et les résultats que vous attendez d’AUi.',
+      messagePlaceholder: 'Vos objectifs, votre environnement opérationnel et les résultats que vous attendez d’AUi.',
       consent: 'Ces informations servent uniquement à vous répondre. Consultez notre ',
       privacy: 'politique de confidentialité',
       submit: 'Envoyer',
@@ -495,7 +495,7 @@ export const content = {
       subject: 'Demande AUi Terminal'
     },
     footer: {
-      tagline: 'AUi Terminal, la plateforme de fusion de données et d’aide au commandement fondée sur l’IA, pour les entreprises, les administrations et les infrastructures critiques.',
+      tagline: 'AUi Terminal : l’intelligence prédictive, chaque décision tracée.',
       contactLabel: 'Contact',
       legalLabel: 'Informations légales',
       privacy: 'Politique de confidentialité',
