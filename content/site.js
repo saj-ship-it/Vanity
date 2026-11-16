@@ -214,8 +214,6 @@ export const content = {
         { label: 'Outcome', value: 'An evaluation report with measured results' },
         { label: 'Terms', value: 'Fixed price' }
       ],
-      nextLabel: 'What happens next',
-      next: ['We reply within two working days.', 'A 30-minute briefing with our team, shaped around your priorities.', 'A short scoping note: scope, sources, success measures and a fixed price.'],
       button: 'Request a pilot',
       subject: 'AUi Terminal pilot'
     },
@@ -467,8 +465,6 @@ export const content = {
         { label: 'Livrable', value: 'Un rapport d’évaluation établi à partir de vos données' },
         { label: 'Conditions', value: 'Prix forfaitaire' }
       ],
-      nextLabel: 'Les prochaines étapes',
-      next: ['Nous vous répondons sous deux jours ouvrés.', 'Un échange de 30 minutes avec notre équipe, centré sur vos priorités.', 'Une note de cadrage concise : périmètre, sources, critères de réussite et prix forfaitaire.'],
       button: 'Demander un pilote',
       subject: 'Pilote AUi Terminal'
     },

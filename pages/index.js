@@ -476,19 +476,11 @@ export default function Home() {
             ))}
           </ol>
 
-          <div className="pilot-grid">
-            <div className="pilot-table">
-              <ul className="chips">
-                {t.pilot.chips.map((c) => <li key={c}>{c}</li>)}
-              </ul>
-              <div className="next-steps">
-                <p className="eyebrow">{t.pilot.nextLabel}</p>
-                <ol>
-                  {t.pilot.next.map((n, i) => <li key={n}><span className="next-num">{i + 1}</span>{n}</li>)}
-                </ol>
-              </div>
-            </div>
+          <ul className="chips pilot-chips">
+            {t.pilot.chips.map((c) => <li key={c}>{c}</li>)}
+          </ul>
 
+          <div className="pilot-grid">
             <div id="contact" className="contact-panel">
               <h3>{t.form.title}</h3>
               <p className="body">{t.form.intro}</p>

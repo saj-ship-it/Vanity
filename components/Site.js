@@ -414,7 +414,7 @@ const CSS = `
 
   /* Pilot and contact */
   .pilot-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
-  .pilot-table { margin: 0; }
+  .chips.pilot-chips { margin: 8px 0 56px; }
   .contact-panel { background: var(--surface); border: 1px solid #222; border-radius: 10px; padding: 28px 22px; scroll-margin-top: 16px; }
   .contact-panel { background-image: linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px); background-size: 28px 28px; }
   .contact-panel h3 { font: 600 22px/1.3 var(--sans); letter-spacing: -0.01em; margin: 0 0 8px; }
@@ -495,11 +495,6 @@ const CSS = `
   .sector-sub { margin-top: -8px; font: 400 13px/1.45 var(--sans); color: var(--muted); }
   .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
   .chips li { padding: 10px 16px; border: 1px solid #1e2a44; border-radius: 999px; background: rgba(37,99,235,0.06); font: 500 14px/1.2 var(--sans); color: #e5e7eb; }
-  .next-steps { margin-top: 32px; }
-  .next-steps .eyebrow { margin-bottom: 16px; }
-  .next-steps ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
-  .next-steps li { display: flex; gap: 14px; align-items: baseline; font: 400 15px/1.5 var(--sans); color: var(--text-2); }
-  .next-num { flex: none; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #1e2a44; border-radius: 50%; font: 600 11px/1 var(--mono); color: var(--blue-text); transform: translateY(-1px); }
   .mobile-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(5,5,5,0.92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid var(--line-2); transform: translateY(110%); transition: transform 0.25s ease; }
   .mobile-cta.show { transform: none; }
   .mobile-cta .btn { display: flex; box-sizing: border-box; width: 100%; justify-content: center; }
@@ -598,7 +593,7 @@ const CSS = `
 
   /* Desktop */
   @media (min-width: 1024px) {
-    .pilot-grid { grid-template-columns: 5fr 6fr; gap: 56px; align-items: start; }
+    .pilot-grid { grid-template-columns: 1fr; max-width: 820px; }
     .tiles-4 { grid-template-columns: repeat(4, 1fr); position: relative; }
     .tiles-4 > .tile { position: relative; z-index: 1; }
     .tiles-4::before { content: ''; position: absolute; left: 24px; right: 24px; top: 48px; height: 1px; background: linear-gradient(to right, transparent, #2a3a5c 6%, #2a3a5c 94%, transparent); z-index: 0; }
