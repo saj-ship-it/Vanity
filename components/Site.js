@@ -444,15 +444,15 @@ const CSS = `
   .footer-brand { margin-bottom: 16px; }
   .footer-tagline { font: 400 14px/1.6 var(--sans); color: var(--text-2); max-width: 380px; margin: 0; }
   .footer-location { margin: 10px 0 0; font: 400 12px/1.4 var(--mono); letter-spacing: 0.06em; color: var(--muted); }
-  .company-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
-  .company-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-content: start; }
-  .stat { border-top: 2px solid var(--blue); padding-top: 16px; }
-  .stat-value { margin: 0 0 6px; font: 700 clamp(32px, 5vw, 48px)/1 var(--sans); letter-spacing: -0.03em; color: #fff; }
-  .stat-label { margin: 0; font: 400 14px/1.45 var(--sans); color: var(--text-2); }
-  .track { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 10px; }
-  .track li { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: #0a0f19; border: 1px solid #161c28; border-radius: 8px; font: 500 15px/1.3 var(--sans); color: #e5e7eb; }
-  .track li svg { flex: none; }
-  .track-note { margin: 14px 0 0; font: 400 12px/1.5 var(--mono); color: var(--muted); letter-spacing: 0.02em; }
+  .facts { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--line-2); }
+  .fact { padding: 28px 0; border-bottom: 1px solid var(--line-2); }
+  .fact-value { margin: 0 0 10px; font: 600 clamp(30px, 4vw, 44px)/1.05 var(--sans); letter-spacing: -0.03em; color: #fff; }
+  .fact-label { margin: 0; max-width: 300px; font: 400 15px/1.5 var(--sans); color: var(--text-2); }
+  .domains { margin-top: 56px; }
+  .domains .eyebrow { margin-bottom: 18px; }
+  .domains ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 0; }
+  .domains li { display: inline-flex; align-items: center; font: 500 clamp(18px, 2.2vw, 26px)/1.3 var(--sans); letter-spacing: -0.01em; color: #e5e7eb; }
+  .domains li:not(:last-child)::after { content: ''; flex: none; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); margin: 0 clamp(14px, 2vw, 26px); }
   .next-steps { margin-top: 32px; }
   .next-steps .eyebrow { margin-bottom: 16px; }
   .next-steps ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
@@ -513,8 +513,9 @@ const CSS = `
     .diagram { display: block; }
     .mobile-cta { display: none; }
     .site-footer { padding-bottom: 40px; }
-    .company-grid { grid-template-columns: 5fr 7fr; gap: 64px; }
-    .track { grid-template-columns: 1fr 1fr; }
+    .facts { grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line-2); }
+    .fact { padding: 32px 32px 36px; border-bottom: 0; border-left: 1px solid var(--line-2); }
+    .fact:first-child { padding-left: 0; border-left: 0; }
     .ops-bar { padding: 12px 16px; }
     .ops-clock { display: inline; }
     .ops-view { display: inline; }
