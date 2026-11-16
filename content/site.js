@@ -184,14 +184,13 @@ export const content = {
       before: 'More than eleven years building ',
       accent: 'mission-critical software',
       after: '.',
-      rest: 'Authentic Intelligence is a technology company headquartered in Toronto. We design and run software for organisations where reliability, security and discretion are non-negotiable.',
+      rest: 'Authentic Intelligence is a technology company headquartered in Toronto. We build software for organisations that cannot afford to get it wrong.',
       facts: [
         { value: '11+', label: 'years in production' },
         { value: 'Toronto', label: 'headquarters' },
         { value: 'On your terms', label: 'sovereign cloud, on premises or hybrid deployment' }
       ],
-      domainsLabel: 'Experience across',
-      domains: ['Film & entertainment', 'Government', 'Political campaigns', 'Banking', 'Financial technology']
+      line: { before: 'Different sectors. ', accent: 'The same standard', after: ': built for the moment that matters, open to audit, discreet by design.' }
     },
     pilot: {
       label: 'Pilot',
@@ -438,14 +437,13 @@ export const content = {
       before: 'Plus de onze ans à concevoir des ',
       accent: 'logiciels critiques',
       after: '.',
-      rest: 'Authentic Intelligence est une société technologique dont le siège est à Toronto. Nous concevons et exploitons des logiciels pour des organisations où fiabilité, sécurité et confidentialité ne se négocient pas.',
+      rest: 'Authentic Intelligence est une société technologique dont le siège est à Toronto. Nous concevons des logiciels pour des organisations qui ne peuvent pas se permettre l’erreur.',
       facts: [
         { value: '11+', label: 'années en production' },
         { value: 'Toronto', label: 'siège social' },
         { value: 'À vos conditions', label: 'cloud souverain, sur site ou hybride' }
       ],
-      domainsLabel: 'Une expérience couvrant',
-      domains: ['Cinéma et divertissement', 'Secteur public', 'Campagnes politiques', 'Banque', 'Technologies financières']
+      line: { before: 'Des secteurs différents. ', accent: 'Une même exigence', after: ' : tenir au moment décisif, rendre des comptes, protéger la confidentialité.' }
     },
     pilot: {
       label: 'Pilote',

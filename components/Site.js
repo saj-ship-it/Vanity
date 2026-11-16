@@ -448,11 +448,7 @@ const CSS = `
   .fact { padding: 28px 0; border-bottom: 1px solid var(--line-2); }
   .fact-value { margin: 0 0 10px; font: 600 clamp(30px, 4vw, 44px)/1.05 var(--sans); letter-spacing: -0.03em; color: #fff; }
   .fact-label { margin: 0; max-width: 300px; font: 400 15px/1.5 var(--sans); color: var(--text-2); }
-  .domains { margin-top: 56px; }
-  .domains .eyebrow { margin-bottom: 18px; }
-  .domains ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 0; }
-  .domains li { display: inline-flex; align-items: center; font: 500 clamp(18px, 2.2vw, 26px)/1.3 var(--sans); letter-spacing: -0.01em; color: #e5e7eb; }
-  .domains li:not(:last-child)::after { content: ''; flex: none; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); margin: 0 clamp(14px, 2vw, 26px); }
+  .standard { margin: 56px 0 0; max-width: 820px; font: 500 clamp(20px, 2.6vw, 30px)/1.35 var(--sans); letter-spacing: -0.015em; color: #e5e7eb; }
   .next-steps { margin-top: 32px; }
   .next-steps .eyebrow { margin-bottom: 16px; }
   .next-steps ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
