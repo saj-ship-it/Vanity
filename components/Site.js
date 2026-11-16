@@ -500,9 +500,6 @@ const CSS = `
   .next-steps ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
   .next-steps li { display: flex; gap: 14px; align-items: baseline; font: 400 15px/1.5 var(--sans); color: var(--text-2); }
   .next-num { flex: none; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #1e2a44; border-radius: 50%; font: 600 11px/1 var(--mono); color: var(--blue-text); transform: translateY(-1px); }
-  .quick-call { margin: 6px 0 22px; font: 400 14px/1.5 var(--sans); color: var(--text-2); }
-  .quick-call a { color: var(--blue-text); text-decoration: none; white-space: nowrap; }
-  .quick-call a:hover { text-decoration: underline; }
   .mobile-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(5,5,5,0.92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid var(--line-2); transform: translateY(110%); transition: transform 0.25s ease; }
   .mobile-cta.show { transform: none; }
   .mobile-cta .btn { display: flex; box-sizing: border-box; width: 100%; justify-content: center; }

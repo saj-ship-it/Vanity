@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Head from 'next/head';
 import { processIcons } from '../content/site';
-import { useSite, PageMeta, GlobalStyles, SiteHeader, SiteFooter, Icon, mailto } from '../components/Site';
+import { useSite, PageMeta, GlobalStyles, SiteHeader, SiteFooter, Icon } from '../components/Site';
 import ContactForm from '../components/ContactForm';
 import OpsView from '../components/OpsView';
 
@@ -492,7 +492,6 @@ export default function Home() {
             <div id="contact" className="contact-panel">
               <h3>{t.form.title}</h3>
               <p className="body">{t.form.intro}</p>
-              <p className="quick-call">{t.form.quick}<a href={mailto(t.form.quickSubject)}>{t.form.quickLink} &rarr;</a></p>
               <ContactForm />
             </div>
           </div>
