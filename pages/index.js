@@ -173,14 +173,66 @@ function MobileCta({ label }) {
   );
 }
 
-// Soft glow that follows the cursor across a sector card
-const glow = (e) => {
-  const el = e.target.closest('.tile');
-  if (!el) return;
-  const r = el.getBoundingClientRect();
-  el.style.setProperty('--mx', `${e.clientX - r.left}px`);
-  el.style.setProperty('--my', `${e.clientY - r.top}px`);
-};
+// Small graphics for the three outcomes
+function OutcomeViz({ kind, v }) {
+  if (kind === 'time') {
+    return (
+      <div className="viz viz-time" aria-hidden="true">
+        {[[v.today, 92, false], [v.withAui, 38, true]].map(([label, w, on]) => (
+          <div key={label} className="viz-row">
+            <span className="viz-label">{label}</span>
+            <span className="viz-track">
+              <span className={`viz-bar${on ? ' on' : ''}`} style={{ width: `${w}%` }}><i /><i /></span>
+            </span>
+          </div>
+        ))}
+        <div className="viz-axis"><span>{v.signal}</span><span>{v.confirmed}</span></div>
+      </div>
+    );
+  }
+  if (kind === 'capacity') {
+    return (
+      <div className="viz viz-cap" aria-hidden="true">
+        {[[v.today, 72], [v.withAui, 18]].map(([label, c]) => (
+          <div key={label} className="viz-row">
+            <span className="viz-label">{label}</span>
+            <span className="viz-stack"><span className="seg seg-a" style={{ width: `${c}%` }} /><span className="seg seg-b" style={{ width: `${100 - c}%` }} /></span>
+          </div>
+        ))}
+        <div className="viz-legend"><span><i className="seg-a" />{v.collation}</span><span><i className="seg-b" />{v.judgement}</span></div>
+      </div>
+    );
+  }
+  return (
+    <ol className="viz viz-log" aria-hidden="true">
+      {v.logged.map((label, i) => (
+        <li key={label}><span className="viz-time-stamp">08:{['15', '18', '21'][i]}</span><Icon path="M5 12l5 5L20 7" size={14} color="#4ade80" strokeWidth={2} /><span>{label}</span></li>
+      ))}
+    </ol>
+  );
+}
+
+// Trust loop: AI recommends, a person validates, the decision is logged
+const loopIcons = [
+  'M22 7l-8.5 8.5-5-5L2 17 M16 7h6v6',
+  'M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2 M9 3a4 4 0 100 8 4 4 0 000-8z M16 11l2 2 4-4',
+  'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z M14 2v6h6 M8 13h8 M8 17h5'
+];
+function TrustLoop({ loop }) {
+  return (
+    <div className="loop">
+      <ol className="loop-row">
+        {loop.steps.map((st, i) => (
+          <li key={st} className="loop-node">
+            <span className="loop-icon"><Icon path={loopIcons[i]} size={20} color="#5b8def" /></span>
+            <span className="loop-text">{st}</span>
+          </li>
+        ))}
+      </ol>
+      <p className="loop-back"><span aria-hidden="true">↺</span> {loop.back}</p>
+    </div>
+  );
+}
 
 export default function Home() {
   const { t } = useSite();
@@ -270,9 +322,10 @@ export default function Home() {
             <figcaption className="shot-caption">{t.platform.caption}</figcaption>
           </figure>
 
-          <div className="callouts">
+          <div className="outcomes">
             {t.platform.callouts.map((c) => (
-              <div key={c.title} className="col col-accent">
+              <div key={c.title} className="outcome">
+                <OutcomeViz kind={c.viz} v={t.platform.viz} />
                 <p className="eyebrow">{c.eyebrow}</p>
                 <h3 className="callout-title">{c.title}</h3>
                 <p className="body">{c.text}</p>
@@ -286,14 +339,14 @@ export default function Home() {
           <div className="section-head">
             <h2 className="eyebrow">{t.process.label}</h2>
           </div>
-          <ol className="tiles tiles-4" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+          <ol className="flow">
             {t.process.steps.map((step) => (
-              <li key={step.icon} className="tile">
-                <div className="tile-top">
-                  <div className="tile-icon"><Icon path={processIcons[step.icon]} /></div>
+              <li key={step.icon} className="flow-step">
+                <span className="flow-node"><Icon path={processIcons[step.icon]} size={26} color="#5b8def" /></span>
+                <div>
+                  <h3 className="card-title">{step.title}</h3>
+                  <p className="flow-cap">{step.desc}</p>
                 </div>
-                <h3 className="card-title">{step.title}</h3>
-                <p className="body">{step.desc}</p>
               </li>
             ))}
           </ol>
@@ -308,6 +361,7 @@ export default function Home() {
               <span className="statement-rest">{t.trust.rest}</span>
             </p>
           </div>
+          <TrustLoop loop={t.trust.loop} />
           <figure className="log-figure">
             <div className="log-card">
               <div className="log-head">
@@ -360,34 +414,26 @@ export default function Home() {
                 <div className="card-icon"><Icon path={audienceIcons[i]} size={20} color="#5b8def" /></div>
                 <p className="eyebrow">{a.title}</p>
                 <h3 className="audience-lead">{a.lead}</h3>
-                <p className="body">{a.desc}</p>
               </div>
             ))}
           </div>
 
           <p className="eyebrow" style={{ marginBottom: '24px' }}>{t.serve.sectorsLabel}</p>
-          <div className="tiles tiles-3 sector-row" onMouseMove={glow}>
-            {t.serve.sectors.map((s) => (
-              <div key={s.name} className="tile">
-                <div className="tile-top">
-                  <div className="tile-icon"><Icon path={s.path} size={28} /></div>
-                  {s.tag && <span className="tile-tag">{s.tag}</span>}
-                </div>
-                <h3 className="card-title">{s.name}</h3>
-                <p className="body">{s.desc}</p>
-              </div>
+          <ul className="sector-grid">
+            {t.serve.sectors.map((sec) => (
+              <li key={sec.name} className="sector">
+                <span className="sector-icon"><Icon path={sec.path} size={40} strokeWidth={1.25} /></span>
+                <span className="sector-name">{sec.name}</span>
+              </li>
             ))}
-
-            <a className="tile tile-cta" href="#contact">
-              <div className="tile-top">
-                <div className="tile-icon"><Icon path="M12 5v14 M5 12h14" color="#9ca3af" size={28} /></div>
-              </div>
-              <h3 className="card-title">{t.serve.cta.title}</h3>
-              <p className="body">{t.serve.cta.desc}</p>
-              <span className="tile-link">{t.serve.cta.link} &rarr;</span>
-            </a>
-          </div>
-          <span className="swipe-hint" aria-hidden="true">{t.serve.swipeHint} &rarr;</span>
+            <li>
+              <a className="sector sector-cta" href="#contact">
+                <span className="sector-icon"><Icon path="M12 5v14 M5 12h14" size={40} strokeWidth={1.25} color="#9ca3af" /></span>
+                <span className="sector-name">{t.serve.cta.title} <span aria-hidden="true">&rarr;</span></span>
+                <span className="sector-sub">{t.serve.cta.desc}</span>
+              </a>
+            </li>
+          </ul>
         </section>
 
         {/* Who we are: track record by client type, location and deployment options */}
@@ -432,12 +478,9 @@ export default function Home() {
 
           <div className="pilot-grid">
             <div className="pilot-table">
-              {t.pilot.rows.map((row) => (
-                <div key={row.label} className="pilot-row">
-                  <span className="pilot-label">{row.label}</span>
-                  <span className="pilot-value">{row.value}</span>
-                </div>
-              ))}
+              <ul className="chips">
+                {t.pilot.chips.map((c) => <li key={c}>{c}</li>)}
+              </ul>
               <div className="next-steps">
                 <p className="eyebrow">{t.pilot.nextLabel}</p>
                 <ol>
