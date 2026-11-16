@@ -177,16 +177,16 @@ export const content = {
         { name: 'Marketing', desc: 'Spot shifts in demand, sentiment and competitor activity early, and move budget ahead of the market.', path: icons.marketing }
       ],
       swipeHint: 'Swipe for more sectors',
-      cta: { title: 'Your sector', desc: 'Not listed? Tell us the decision you need to make.', link: 'Discuss your use case', subject: 'AUi Terminal for my sector' }
+      cta: { title: 'Your sector', desc: 'Not listed? Every deployment is engineered to the mission. Tell us yours.', link: 'Discuss your use case', subject: 'AUi Terminal for my sector' }
     },
     company: {
       label: 'Who we are',
-      before: 'More than eleven years building ',
-      accent: 'mission-critical software',
+      before: 'More than eleven years engineering ',
+      accent: 'advanced intelligence systems',
       after: '.',
-      rest: 'Authentic Intelligence is a technology company headquartered in Toronto. We build software for organisations that cannot afford to get it wrong.',
+      rest: 'Authentic Intelligence is an AI company headquartered in Toronto. We design and deploy advanced AI and data platforms for institutions where precision, security and speed decide the outcome.',
       facts: [
-        { value: '11+', label: 'years in production' },
+        { value: '11+', label: 'years delivering advanced systems' },
         { value: 'Toronto', label: 'headquarters' },
         { value: 'On your terms', label: 'sovereign cloud, on premises or hybrid deployment' }
       ],
@@ -212,13 +212,13 @@ export const content = {
         { label: 'Terms', value: 'Fixed price' }
       ],
       nextLabel: 'What happens next',
-      next: ['We reply within two working days.', 'A 30-minute briefing, shaped around your sector and the decisions you face.', 'A short scoping note: scope, sources, success measures and a fixed price.'],
+      next: ['We reply within two working days.', 'A 30-minute briefing with our team, shaped around your mission and priorities.', 'A short scoping note: scope, sources, success measures and a fixed price.'],
       button: 'Request a pilot',
       subject: 'AUi Terminal pilot'
     },
     form: {
       title: 'Request a briefing or pilot',
-      intro: 'Tell us what you need to decide. We reply within two working days.',
+      intro: 'Tell us about your mission and the advantage you want to gain. We reply within two working days.',
       quick: 'Prefer a quick call first? ',
       quickLink: 'Book 30 minutes by email',
       quickSubject: 'AUi Terminal: 30-minute call',
@@ -231,7 +231,7 @@ export const content = {
       sectorPlaceholder: 'Select a sector',
       other: 'Other',
       message: 'Message',
-      messagePlaceholder: 'What would you like AUi to help you see or decide?',
+      messagePlaceholder: 'Your mission, operating environment and the outcomes you expect AUi to deliver.',
       consent: 'We use these details only to reply to you. See our ',
       privacy: 'privacy policy',
       submit: 'Send request',
@@ -435,11 +435,11 @@ export const content = {
     company: {
       label: 'Qui sommes-nous',
       before: 'Plus de onze ans à concevoir des ',
-      accent: 'logiciels critiques',
+      accent: 'systèmes d’intelligence avancés',
       after: '.',
-      rest: 'Authentic Intelligence est une société technologique dont le siège est à Toronto. Nous concevons des logiciels pour des organisations qui ne peuvent pas se permettre l’erreur.',
+      rest: 'Authentic Intelligence est une société d’intelligence artificielle dont le siège est à Toronto. Nous concevons et déployons des plateformes avancées d’IA et de données pour des institutions où précision, sécurité et rapidité font la différence.',
       facts: [
-        { value: '11+', label: 'années en production' },
+        { value: '11+', label: 'années de systèmes avancés en production' },
         { value: 'Toronto', label: 'siège social' },
         { value: 'À vos conditions', label: 'cloud souverain, sur site ou hybride' }
       ],
@@ -465,13 +465,13 @@ export const content = {
         { label: 'Conditions', value: 'Prix forfaitaire' }
       ],
       nextLabel: 'Les prochaines étapes',
-      next: ['Nous vous répondons sous deux jours ouvrés.', 'Un échange de 30 minutes, centré sur votre secteur et les décisions qui vous concernent.', 'Une note de cadrage concise : périmètre, sources, critères de réussite et prix forfaitaire.'],
+      next: ['Nous vous répondons sous deux jours ouvrés.', 'Un échange de 30 minutes avec notre équipe, centré sur votre mission et vos priorités.', 'Une note de cadrage concise : périmètre, sources, critères de réussite et prix forfaitaire.'],
       button: 'Demander un pilote',
       subject: 'Pilote AUi Terminal'
     },
     form: {
       title: 'Demander une présentation ou un pilote',
-      intro: 'Présentez-nous votre besoin : nous vous répondons sous deux jours ouvrés.',
+      intro: 'Présentez-nous votre mission et l’avantage que vous visez. Nous vous répondons sous deux jours ouvrés.',
       quick: 'Vous préférez un premier échange ? ',
       quickLink: 'Réservez 30 minutes par courriel',
       quickSubject: 'AUi Terminal : échange de 30 minutes',
@@ -484,7 +484,7 @@ export const content = {
       sectorPlaceholder: 'Sélectionnez un secteur',
       other: 'Autre',
       message: 'Message',
-      messagePlaceholder: 'Quelles décisions AUi pourrait-il vous aider à éclairer ?',
+      messagePlaceholder: 'Votre mission, votre environnement opérationnel et les résultats que vous attendez d’AUi.',
       consent: 'Ces informations servent uniquement à vous répondre. Consultez notre ',
       privacy: 'politique de confidentialité',
       submit: 'Envoyer',
