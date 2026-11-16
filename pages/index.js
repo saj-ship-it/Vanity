@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Head from 'next/head';
 import { processIcons } from '../content/site';
 import { useSite, PageMeta, GlobalStyles, SiteHeader, SiteFooter, Icon } from '../components/Site';
 import ContactForm from '../components/ContactForm';
@@ -165,6 +166,10 @@ export default function Home() {
   return (
     <div className="page">
       <PageMeta title={t.meta.title} description={t.meta.description} />
+      <Head>
+        <link key="globe-sm" rel="preload" as="image" href="/globe-signal-sm.webp" media="(max-width: 767px)" fetchpriority="high" />
+        <link key="globe-lg" rel="preload" as="image" href="/globe-signal.webp" media="(min-width: 768px)" fetchpriority="high" />
+      </Head>
       <GlobalStyles />
       <SiteHeader nav={t.nav} />
 
@@ -185,6 +190,11 @@ export default function Home() {
           </div>
 
           <div className="globe-container" aria-hidden="true">
+            {/* An HTML picture (unlike an SVG image) lets phones download a lighter copy */}
+            <picture>
+              <source media="(max-width: 767px)" srcSet="/globe-signal-sm.webp" width="720" height="750" />
+              <img className="globe-img" src="/globe-signal.webp" width="1160" height="1208" alt="" fetchpriority="high" decoding="async" />
+            </picture>
             <svg viewBox="0 0 780 780" style={{ width: '100%', height: '100%' }}>
               <defs>
                 <mask id="lensReveal">
@@ -192,7 +202,6 @@ export default function Home() {
                   <circle className="spotlight-lens" fill="black" filter="blur(25px)" />
                 </mask>
               </defs>
-              <image href="/globe-signal.webp" width="780" height="780" style={{ mixBlendMode: 'screen' }} />
               <rect width="780" height="780" fill="#050505" fillOpacity="0.75" mask="url(#lensReveal)" />
               {/* Signals where AUi operates: Gironde and Scotland */}
               <g className="globe-pulses">{[[321, 259], [308, 197]].map(([x, y]) => (
