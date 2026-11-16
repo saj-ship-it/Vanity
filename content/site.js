@@ -67,14 +67,14 @@ export const content = {
       accent: 'decision advantage',
       after: '.',
       // Starts on its own line after the first sentence
-      rest: 'It fuses every source you own or license into one live operating picture. AI then detects the weak signals and pattern breaks that come before disruption, and puts a ranked, explained recommendation in front of decision-makers while there is still time to act.',
+      rest: 'It fuses every source you own or license into one live picture, and AI flags what matters while there is still time to act.',
       problemsLabel: 'The signal is already in your data. No one sees it in time.',
       diagram: { from: 'Scattered sources', to: 'One qualified picture' },
       timeline: { signal: 'First signal', impact: 'Impact', picture: 'Picture ready', window: 'Window to act' },
       problems: [
-        { title: 'Scattered', desc: 'Critical signals sit in disconnected systems (operational platforms, sensors, satellite, weather, field and commercial feeds) that were never built to work together.' },
-        { title: 'Out of sync', desc: 'Every team, site and level of command assembles its own picture by hand, under pressure, and rarely the same one.' },
-        { title: 'Too late', desc: 'Early warnings are lost in the noise and surface only after the impact. By the time the picture is assembled, the window to act has closed.' }
+        { title: 'Scattered', desc: 'Critical signals sit in systems never built to work together.' },
+        { title: 'Out of sync', desc: 'Every team builds its own picture by hand, and rarely the same one.' },
+        { title: 'Too late', desc: 'By the time the picture is assembled, the window to act has closed.' }
       ]
     },
     platform: {
@@ -114,19 +114,20 @@ export const content = {
       },
       caption: 'Illustrative view of AUi Terminal over a base map of the Arcachon basin. Scenario, sites and figures are representative. Base map: © IGN.',
       // Pilot outcomes, as framed in the AUi Terminal deck
+      viz: { today: 'Today', withAui: 'With AUi', signal: 'Signal', confirmed: 'Confirmed', collation: 'Collation', judgement: 'Judgement', logged: ['Recommended', 'Validated', 'Logged'] },
       callouts: [
-        { eyebrow: '01 · Time', title: 'Confirmed sooner', text: 'Cross-checked sources let teams act on the first credible signal instead of waiting for certainty. Measured in every pilot: time from first signal to confirmed alert.' },
-        { eyebrow: '02 · Capacity', title: 'Expert time back', text: 'AUi assembles the picture analysts used to build by hand, so experts spend their time on judgement, not collation. In wildfire command, a water point below threshold is flagged at once, with the cost of every detour.' },
-        { eyebrow: '03 · Accountability', title: 'Defensible choices', text: 'Every request is logged with who made it, on what basis and who validated it.' }
+        { eyebrow: '01 · Time', title: 'Confirmed sooner', text: 'Act on the first credible signal, not the last.', viz: 'time' },
+        { eyebrow: '02 · Capacity', title: 'Expert time back', text: 'The picture assembles itself. Experts focus on judgement.', viz: 'capacity' },
+        { eyebrow: '03 · Accountability', title: 'Defensible choices', text: 'Every action logged: who, on what basis, who validated.', viz: 'log' }
       ]
     },
     process: {
       label: 'From signal to decision',
       steps: [
-        { icon: 'fuse', title: 'Fuse', desc: 'Adapters bring operational systems, sensors, satellite, weather and field reports into one picture.' },
-        { icon: 'verify', title: 'Verify', desc: 'Source health is monitored continuously, broken feeds are flagged and live data is cross-checked.' },
-        { icon: 'predict', title: 'Predict', desc: 'Machine learning spots anomalies and trend breaks as they form and ranks emerging risks by urgency, with the reasoning shown.' },
-        { icon: 'decide', title: 'Decide & act', desc: 'AI recommends, your people decide, and every approval is logged.' }
+        { icon: 'fuse', title: 'Fuse', desc: 'Every source, one picture.' },
+        { icon: 'verify', title: 'Verify', desc: 'Every feed checked, every gap flagged.' },
+        { icon: 'predict', title: 'Predict', desc: 'Risks ranked, reasoning shown.' },
+        { icon: 'decide', title: 'Decide & act', desc: 'AI recommends. People decide.' }
       ]
     },
     trust: {
@@ -145,13 +146,14 @@ export const content = {
         ],
         caption: 'Example decision log entries: who recommended, who validated, and when.'
       },
+      loop: { steps: ['AI recommends', 'A person validates', 'Decision logged'], back: 'Explained and reviewable at every step' },
       cards: [
-        { title: 'Human authority, always', desc: 'AUi recommends; it never acts. Decisions rest with the accountable owner, and separation of duties is enforced: whoever proposes an action cannot validate it.' },
-        { title: 'Explainable by design', desc: 'No black boxes. Every priority traces back to its source data and the reasoning behind it, presented alongside the recommendation.' },
-        { title: 'Gaps disclosed, never hidden', desc: 'Every source carries a status: live, simulated or not connected. Missing telemetry is flagged explicitly, so silence is never mistaken for safety.' },
-        { title: 'Defensible audit trail', desc: 'A time-stamped, tamper-evident record of what was known, who decided and when. Any decision can be reconstructed for post-incident review, audit or legal scrutiny.' },
-        { title: 'Regulatory alignment', desc: 'Built for the human-oversight, transparency and record-keeping obligations placed on high-risk AI systems, from the EU AI Act to emerging national and sector frameworks.' },
-        { title: 'Data sovereignty', desc: 'Each client’s data stays isolated and is never pooled. Models run with no data leaving your deployment, whether on a certified sovereign cloud or on your own infrastructure.' }
+        { title: 'Human authority, always', desc: 'AUi recommends; it never acts. Whoever proposes cannot validate.' },
+        { title: 'Explainable by design', desc: 'Every priority traces back to its source data and reasoning.' },
+        { title: 'Gaps disclosed, never hidden', desc: 'Each source is marked live, simulated or not connected.' },
+        { title: 'Defensible audit trail', desc: 'A tamper-evident record of what was known, who decided and when.' },
+        { title: 'Regulatory alignment', desc: 'Built for the EU AI Act and emerging national frameworks.' },
+        { title: 'Data sovereignty', desc: 'Client data stays isolated and never leaves your deployment.' }
       ]
     },
     serve: {
@@ -204,6 +206,7 @@ export const content = {
         { when: 'Month 3', title: 'Operate', desc: 'Live use on a priority sector, with decisions logged and gains measured.' },
         { when: 'Month 4', title: 'Evaluate', desc: 'An evaluation report with measured gains.' }
       ],
+      chips: ['4 months', 'One region, site or service', 'Fixed price'],
       rows: [
         { label: 'Duration', value: 'Four months' },
         { label: 'Scope', value: 'One region, site or operational service' },
@@ -321,14 +324,14 @@ export const content = {
       before: 'AUi transforme des données éparses en ',
       accent: 'supériorité décisionnelle',
       after: '.',
-      rest: 'La plateforme AUi réunit en une seule vue opérationnelle, en temps réel, l’ensemble des sources dont vous disposez. Grâce à l’IA, elle repère les signaux faibles et les ruptures annonciatrices de crise, puis soumet aux décideurs une recommandation hiérarchisée et argumentée, tant qu’il est encore temps d’agir.',
+      rest: 'AUi réunit toutes vos sources en une vue unique et en temps réel, et l’IA signale ce qui compte tant qu’il est encore temps d’agir.',
       problemsLabel: 'Le signal est déjà dans vos données. Encore faut-il le voir à temps.',
       diagram: { from: 'Sources dispersées', to: 'Une vue unique et qualifiée' },
       timeline: { signal: 'Premier signal', impact: 'Impact', picture: 'Vue consolidée', window: 'Fenêtre d’action' },
       problems: [
-        { title: 'Dispersion', desc: 'Plateformes opérationnelles, capteurs, satellites, météo, remontées du terrain, sources commerciales : les signaux critiques sont éparpillés dans des systèmes qui n’ont jamais été conçus pour dialoguer.' },
-        { title: 'Fragmentation', desc: 'Chaque équipe, chaque site, chaque échelon de commandement se construit, à la main et dans l’urgence, sa propre vision de la situation, rarement la même d’un niveau à l’autre.' },
-        { title: 'Retard', desc: 'Noyées dans le bruit, les alertes précoces n’émergent qu’une fois l’impact survenu. Le temps de consolider la situation, la fenêtre d’action s’est refermée.' }
+        { title: 'Dispersion', desc: 'Les signaux critiques dorment dans des systèmes jamais conçus pour dialoguer.' },
+        { title: 'Fragmentation', desc: 'Chaque équipe construit sa propre vue à la main, rarement la même.' },
+        { title: 'Retard', desc: 'Le temps de consolider la situation, la fenêtre d’action s’est refermée.' }
       ]
     },
     platform: {
@@ -367,19 +370,20 @@ export const content = {
         sourceStatus: [['Points chauds satellite', 'live', 'En direct'], ['Météo', 'live', 'En direct'], ['Remontées terrain', 'live', 'En direct'], ['Moyens aériens', 'sim', 'Simulé'], ['Caméras', 'off', 'Non raccordé']]
       },
       caption: 'Vue illustrative d’AUi Terminal sur un fond de carte du bassin d’Arcachon. Scénario, sites et chiffres donnés à titre indicatif. Fond de carte : © IGN.',
+      viz: { today: 'Aujourd’hui', withAui: 'Avec AUi', signal: 'Signal', confirmed: 'Confirmé', collation: 'Compilation', judgement: 'Analyse', logged: ['Recommandé', 'Validé', 'Consigné'] },
       callouts: [
-        { eyebrow: '01 · Temps', title: 'Une confirmation plus rapide', text: 'Le croisement des sources permet d’agir dès le premier signal crédible, sans attendre la certitude. Indicateur suivi dans chaque pilote : le délai entre ce premier signal et l’alerte confirmée.' },
-        { eyebrow: '02 · Capacité', title: 'Du temps d’expert retrouvé', text: 'AUi assemble la vue que les analystes construisaient à la main : leurs experts se consacrent à l’analyse, pas à la compilation. En lutte contre les feux de forêt, un plan d’eau sous le seuil est signalé aussitôt, avec le coût de chaque détour.' },
-        { eyebrow: '03 · Traçabilité', title: 'Des décisions défendables', text: 'Chaque demande est consignée : qui l’a formulée, sur quelle base, et qui l’a validée.' }
+        { eyebrow: '01 · Temps', title: 'Une confirmation plus rapide', text: 'Agir sur le premier signal crédible, pas sur le dernier.', viz: 'time' },
+        { eyebrow: '02 · Capacité', title: 'Du temps d’expert retrouvé', text: 'La vue se construit seule. Les experts se consacrent à l’analyse.', viz: 'capacity' },
+        { eyebrow: '03 · Traçabilité', title: 'Des décisions défendables', text: 'Chaque action consignée : qui, sur quelle base, qui a validé.', viz: 'log' }
       ]
     },
     process: {
       label: 'Du signal à la décision',
       steps: [
-        { icon: 'fuse', title: 'Fusionner', desc: 'Systèmes opérationnels, capteurs, satellites, météo, terrain : tous vos flux de données sont réunis dans une vue unique.' },
-        { icon: 'verify', title: 'Vérifier', desc: 'La qualité de chaque source est contrôlée en continu : flux interrompus signalés, données recoupées.' },
-        { icon: 'predict', title: 'Prédire', desc: 'L’apprentissage automatique détecte anomalies et ruptures de tendance dès leur apparition, et hiérarchise les risques en justifiant chaque priorité.' },
-        { icon: 'decide', title: 'Décider et agir', desc: 'L’IA propose, vos équipes décident. Chaque validation est tracée.' }
+        { icon: 'fuse', title: 'Fusionner', desc: 'Toutes les sources, une seule vue.' },
+        { icon: 'verify', title: 'Vérifier', desc: 'Chaque flux contrôlé, chaque lacune signalée.' },
+        { icon: 'predict', title: 'Prédire', desc: 'Risques classés, raisonnement explicité.' },
+        { icon: 'decide', title: 'Décider et agir', desc: 'L’IA propose. L’humain décide.' }
       ]
     },
     trust: {
@@ -398,13 +402,14 @@ export const content = {
         ],
         caption: 'Exemples d’entrées du journal des décisions : qui recommande, qui valide, et quand.'
       },
+      loop: { steps: ['L’IA recommande', 'Une personne valide', 'Décision tracée'], back: 'Expliquée et vérifiable à chaque étape' },
       cards: [
-        { title: 'L’humain décide, toujours', desc: 'AUi recommande, il n’agit jamais. La décision revient à l’autorité compétente, selon le principe des quatre yeux : celui qui propose ne valide pas.' },
-        { title: 'Explicable dès la conception', desc: 'Pas de boîte noire : chaque priorité renvoie aux données et au raisonnement qui la fondent, affichés à côté de la recommandation.' },
-        { title: 'Aucune zone d’ombre', desc: 'Chaque source affiche son statut : en direct, simulée ou non raccordée. Les données manquantes sont signalées comme telles : l’absence d’alerte n’est jamais prise pour une absence de risque.' },
-        { title: 'Piste d’audit fiable', desc: 'Une main courante horodatée et infalsifiable : ce que l’on savait, qui a décidé, et quand. Chaque décision peut être reconstituée lors d’un retour d’expérience, d’un audit ou d’une procédure contentieuse.' },
-        { title: 'Conformité réglementaire', desc: 'AUi est conçu pour répondre aux exigences de supervision humaine, de transparence et de traçabilité applicables aux systèmes d’IA à haut risque, du règlement européen sur l’IA (AI Act) aux cadres nationaux et sectoriels.' },
-        { title: 'Souveraineté des données', desc: 'Les données de chaque client sont strictement cloisonnées et jamais mutualisées. Les modèles peuvent être exécutés sans flux sortant, sur un cloud souverain qualifié ou directement sur votre propre infrastructure.' }
+        { title: 'L’humain décide, toujours', desc: 'AUi recommande, il n’agit jamais. Celui qui propose ne valide pas.' },
+        { title: 'Explicable dès la conception', desc: 'Chaque priorité renvoie à ses données sources et à son raisonnement.' },
+        { title: 'Aucune zone d’ombre', desc: 'Chaque source est signalée en direct, simulée ou non raccordée.' },
+        { title: 'Piste d’audit fiable', desc: 'Une trace infalsifiable de ce que l’on savait, de qui a décidé et quand.' },
+        { title: 'Conformité réglementaire', desc: 'Conçu pour l’AI Act européen et les cadres nationaux émergents.' },
+        { title: 'Souveraineté des données', desc: 'Les données de chaque client restent isolées et ne quittent jamais votre déploiement.' }
       ]
     },
     serve: {
@@ -457,6 +462,7 @@ export const content = {
         { when: 'Mois 3', title: 'Exploiter', desc: 'Utilisation réelle sur un secteur prioritaire, décisions tracées et gains mesurés.' },
         { when: 'Mois 4', title: 'Évaluer', desc: 'Un rapport d’évaluation, gains mesurés à l’appui.' }
       ],
+      chips: ['4 mois', 'Une région, un site ou un service', 'Prix forfaitaire'],
       rows: [
         { label: 'Durée', value: 'Quatre mois' },
         { label: 'Périmètre', value: 'Une région, un site ou un service' },
