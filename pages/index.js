@@ -407,10 +407,9 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="domains">
-            <p className="eyebrow">{t.company.domainsLabel}</p>
-            <ul>{t.company.domains.map((d) => <li key={d}>{d}</li>)}</ul>
-          </div>
+          <p className="standard">
+            {t.company.line.before}<span className="accent">{t.company.line.accent}</span>{t.company.line.after}
+          </p>
         </section>
 
         {/* Pilot: four-month plan, terms and contact */}
