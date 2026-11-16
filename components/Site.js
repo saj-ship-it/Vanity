@@ -154,6 +154,7 @@ export function SiteFooter() {
         <div>
           <div className="brand footer-brand"><BrandMark /><span>AUTHENTIC INTELLIGENCE</span></div>
           <p className="footer-tagline">{t.footer.tagline}</p>
+          <p className="footer-location">{t.footer.location}</p>
         </div>
         <div>
           <p className="eyebrow footer-heading">{t.footer.contactLabel}</p>
@@ -193,7 +194,7 @@ const CSS = `
   }
   html { scroll-behavior: smooth; scroll-padding-top: 84px; background: var(--bg); }
   body { font-family: var(--sans); color: var(--text); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .spotlight-lens, .gpulse, .flow-dot, .tiles-4::after, .diagram-line, .ticker-run, .live-dot, .ops-link { animation: none !important; } .ticker-track { overflow-x: auto; } .diagram-line { stroke-dashoffset: 0 !important; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .spotlight-lens, .gpulse, .flow-dot, .tiles-4::after, .diagram-line, .ticker-run, .live-dot, .ops-link { animation: none !important; } .mobile-cta { transition: none; } .ticker-track { overflow-x: auto; } .diagram-line { stroke-dashoffset: 0 !important; } }
 
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes dynamicSpotlight {
@@ -270,10 +271,6 @@ const CSS = `
   .subhead { font: 600 17px/1.4 var(--sans); color: var(--text-2); margin: 0; letter-spacing: -0.005em; }
 
   /* Satellite band */
-  .band { position: relative; margin: 0 calc(50% - 50vw); width: 100vw; height: clamp(220px, 34vw, 460px); overflow: hidden; background: #04070d; }
-  .band img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, #0a0d14 0%, rgba(4,7,13,0) 22%, rgba(4,7,13,0) 70%, var(--bg) 100%); pointer-events: none; }
-  .band figcaption { position: absolute; left: 0; right: 0; bottom: 18px; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 20px; font: 400 12px/1.5 var(--mono); color: #c3cad6; letter-spacing: 0.02em; }
 
   /* Scattered sources -> one picture */
   .diagram { width: 100%; height: auto; display: block; margin: 0 0 40px; }
@@ -446,6 +443,29 @@ const CSS = `
   .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
   .footer-brand { margin-bottom: 16px; }
   .footer-tagline { font: 400 14px/1.6 var(--sans); color: var(--text-2); max-width: 380px; margin: 0; }
+  .footer-location { margin: 10px 0 0; font: 400 12px/1.4 var(--mono); letter-spacing: 0.06em; color: var(--muted); }
+  .company-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+  .company-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-content: start; }
+  .stat { border-top: 2px solid var(--blue); padding-top: 16px; }
+  .stat-value { margin: 0 0 6px; font: 700 clamp(32px, 5vw, 48px)/1 var(--sans); letter-spacing: -0.03em; color: #fff; }
+  .stat-label { margin: 0; font: 400 14px/1.45 var(--sans); color: var(--text-2); }
+  .track { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .track li { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: #0a0f19; border: 1px solid #161c28; border-radius: 8px; font: 500 15px/1.3 var(--sans); color: #e5e7eb; }
+  .track li svg { flex: none; }
+  .track-note { margin: 14px 0 0; font: 400 12px/1.5 var(--mono); color: var(--muted); letter-spacing: 0.02em; }
+  .next-steps { margin-top: 32px; }
+  .next-steps .eyebrow { margin-bottom: 16px; }
+  .next-steps ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .next-steps li { display: flex; gap: 14px; align-items: baseline; font: 400 15px/1.5 var(--sans); color: var(--text-2); }
+  .next-num { flex: none; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #1e2a44; border-radius: 50%; font: 600 11px/1 var(--mono); color: var(--blue-text); transform: translateY(-1px); }
+  .quick-call { margin: 6px 0 22px; font: 400 14px/1.5 var(--sans); color: var(--text-2); }
+  .quick-call a { color: var(--blue-text); text-decoration: none; white-space: nowrap; }
+  .quick-call a:hover { text-decoration: underline; }
+  .mobile-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(5,5,5,0.92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid var(--line-2); transform: translateY(110%); transition: transform 0.25s ease; }
+  .mobile-cta.show { transform: none; }
+  .mobile-cta .btn { display: flex; box-sizing: border-box; width: 100%; justify-content: center; }
+  .diagram { display: none; }
+  .site-footer { padding-bottom: 96px; }
   .footer-heading { margin-bottom: 14px; }
   .footer-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
   .footer-list a { font: 400 14px/1.5 var(--sans); color: var(--text-2); text-decoration: none; }
@@ -467,7 +487,7 @@ const CSS = `
     .brand { font-size: 10px; letter-spacing: 0.14em; gap: 8px; }
     .header-right { gap: 8px; }
     .lang-switch a { padding: 6px 5px; }
-    .nav-links { font-size: 10px; letter-spacing: 0.02em; }
+    .nav-links { font-size: 10px; letter-spacing: 0; gap: 0; }
   }
 
   /* Tablet */
@@ -490,6 +510,11 @@ const CSS = `
     .section-head { margin-bottom: 56px; }
     .cols-3 { grid-template-columns: repeat(3, 1fr); }
     .sequence { grid-template-columns: repeat(3, 1fr); gap: 56px; }
+    .diagram { display: block; }
+    .mobile-cta { display: none; }
+    .site-footer { padding-bottom: 40px; }
+    .company-grid { grid-template-columns: 5fr 7fr; gap: 64px; }
+    .track { grid-template-columns: 1fr 1fr; }
     .ops-bar { padding: 12px 16px; }
     .ops-clock { display: inline; }
     .ops-view { display: inline; }

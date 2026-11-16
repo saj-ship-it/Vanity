@@ -39,6 +39,7 @@ export const content = {
       { href: '#process', label: 'Process' },
       { href: '#control', label: 'Trust' },
       { href: '#sectors', label: 'Who we serve' },
+      { href: '#company', label: 'Company' },
       { href: '#pilot', label: 'Pilot' }
     ],
     hero: {
@@ -76,17 +77,12 @@ export const content = {
         { title: 'Too late', desc: 'Early warnings are lost in the noise and surface only after the impact. By the time the picture is assembled, the window to act has closed.' }
       ]
     },
-    band: {
-      image: '/gironde-2022.webp',
-      alt: 'Satellite image of a long smoke plume from the Gironde wildfires drifting west across the coast and out over the Atlantic.',
-      caption: 'Smoke from the Gironde wildfires crossing the coast near Arcachon, 18 July 2022. Imagery: NASA Worldview (Terra/MODIS).'
-    },
     platform: {
-      label: 'In practice · Wildfire command',
+      label: 'Flagship deployment · Wildfire command',
       before: 'One screen for ',
       accent: 'the people in command',
       after: '.',
-      body: 'From AUi’s wildfire command module: the incident, the sources that confirm it, the people and sites exposed, and the aircraft and water points available, fused on one operational map.',
+      body: 'Proven first where minutes cost the most. In AUi’s wildfire command module: the incident, the sources that confirm it, the people and sites exposed, and the aircraft and water points available, fused on one operational map.',
       ops: {
         title: 'AUi Terminal · Operating picture',
         active: '1 active incident',
@@ -119,8 +115,8 @@ export const content = {
       caption: 'Illustrative view of AUi Terminal over a base map of the Arcachon basin. Scenario, sites and figures are representative. Base map: © IGN.',
       // Pilot outcomes, as framed in the AUi Terminal deck
       callouts: [
-        { eyebrow: '01 · Time', title: 'Confirmed sooner', text: 'Cross-checked sources let command act on the first credible signal. Measured in the pilot: time from first signal to confirmed alert.' },
-        { eyebrow: '02 · Air assets', title: 'Flight time back on the fire', text: 'When a water point drops below scooping level, AUi shows it at once, with the cost of the alternative. A 16-minute detour costs 16 minutes of flight on every rotation.' },
+        { eyebrow: '01 · Time', title: 'Confirmed sooner', text: 'Cross-checked sources let teams act on the first credible signal instead of waiting for certainty. Measured in every pilot: time from first signal to confirmed alert.' },
+        { eyebrow: '02 · Capacity', title: 'Expert time back', text: 'AUi assembles the picture analysts used to build by hand, so experts spend their time on judgement, not collation. In wildfire command, a water point below threshold is flagged at once, with the cost of every detour.' },
         { eyebrow: '03 · Accountability', title: 'Defensible choices', text: 'Every request is logged with who made it, on what basis and who validated it.' }
       ]
     },
@@ -142,12 +138,12 @@ export const content = {
       log: {
         title: 'Decision log · decision support',
         intro: 'Every request or recommendation is validated by the competent authority before anyone acts on it.',
-        tag: 'Scenario',
+        tag: 'Example',
         entries: [
-          { time: '23:20', kind: 'Recommendation · pre-positioning', what: 'Wildfire response group to the northern sector', by: 'Recorded by the decision-support tool', status: 'Awaiting validation · operations centre', state: 'pending', action: 'Validate' },
-          { time: '23:00', kind: 'Recommendation · scooping detour', what: 'Inland water point below threshold → sea scooping (+16 min)', by: 'Recorded by the decision-support tool · validated by the incident commander (23:03)', status: 'Validated · incident commander', state: 'ok' }
+          { time: '08:42', kind: 'Recommendation · reserve dispatch', what: 'Substation load forecast 14% above plan → bring standby capacity online', by: 'Recorded by the decision-support tool', status: 'Awaiting validation · grid control room', state: 'pending', action: 'Validate' },
+          { time: '08:15', kind: 'Recommendation · rerouting', what: 'Port dwell time rising on 3 routes → move two sailings to an alternate terminal', by: 'Recorded by the decision-support tool · validated by the logistics duty manager (08:21)', status: 'Validated · duty manager', state: 'ok' }
         ],
-        caption: 'Decision log from the wildfire demonstration scenario: who recommended, who validated, and when.'
+        caption: 'Example decision log entries: who recommended, who validated, and when.'
       },
       cards: [
         { title: 'Human authority, always', desc: 'AUi recommends; it never acts. Decisions rest with the accountable owner, and separation of duties is enforced: whoever proposes an action cannot validate it.' },
@@ -171,17 +167,37 @@ export const content = {
       ],
       sectorsLabel: 'Sectors',
       sectors: [
-        { name: 'Civil protection & wildfire', desc: 'Fuse satellite hotspots, weather and field reports to confirm fires sooner and prioritise air and ground resources.', path: icons.wildfire },
         { name: 'Energy & utilities', desc: 'Anticipate grid stress, asset failure and supply disruption before they reach customers.', path: icons.energy },
         { name: 'Transport & logistics', desc: 'See disruption forming across routes, ports and suppliers, and reroute before delays cascade.', path: icons.transport },
         { name: 'Telecommunications', desc: 'Detect network degradation, cable faults and interference early, and prioritise restoration.', path: icons.telecoms },
         { name: 'Healthcare', desc: 'Forecast demand surges and supply shortages across facilities, and align capacity ahead of the peak.', path: icons.health },
         { name: 'Media & entertainment', desc: 'Track narratives and audience sentiment as they form, and flag reputational risk before it spreads.', path: icons.media },
         { name: 'Financial markets', desc: 'Detect the real-world events and regime shifts that move markets, and see the risk to positions before prices reflect it.', path: icons.finance },
+        { name: 'Civil protection & wildfire', desc: 'Fuse satellite hotspots, weather and field reports to confirm fires sooner and prioritise air and ground resources.', path: icons.wildfire },
         { name: 'Marketing', desc: 'Spot shifts in demand, sentiment and competitor activity early, and move budget ahead of the market.', path: icons.marketing }
       ],
       swipeHint: 'Swipe for more sectors',
       cta: { title: 'Your sector', desc: 'Not listed? Tell us the decision you need to make.', link: 'Discuss your use case', subject: 'AUi Terminal for my sector' }
+    },
+    company: {
+      label: 'Who we are',
+      before: 'More than eleven years building ',
+      accent: 'mission-critical software',
+      after: ' for demanding clients.',
+      rest: 'Authentic Intelligence is a technology company based in Toronto, Canada. Our team has designed and delivered software for major Hollywood film studios, the U.S. government, national political campaigns, Canadian banks and U.S. fintechs: organisations where reliability, security and discretion are non-negotiable.',
+      stats: [
+        { value: '11+', label: 'years delivering production software' },
+        { value: 'Toronto', label: 'headquarters, Canada' }
+      ],
+      trackLabel: 'Track record',
+      track: ['Hollywood film studios', 'U.S. government', 'National political campaigns', 'Canadian banks', 'U.S. fintechs'],
+      trackNote: 'Client names are withheld. References are available under NDA.',
+      deployLabel: 'Deployed your way',
+      deploy: [
+        { title: 'Sovereign cloud', desc: 'Hosted on a sovereign cloud in your jurisdiction, under your control.' },
+        { title: 'On premises', desc: 'Installed inside your own infrastructure, with no data leaving it.' },
+        { title: 'Tailored', desc: 'Any hybrid or bespoke arrangement that fits your security, regulatory and procurement requirements.' }
+      ]
     },
     pilot: {
       label: 'Pilot',
@@ -202,12 +218,17 @@ export const content = {
         { label: 'Outcome', value: 'An evaluation report with measured results' },
         { label: 'Terms', value: 'Fixed price' }
       ],
+      nextLabel: 'What happens next',
+      next: ['We reply within two working days.', 'A 30-minute briefing, shaped around your sector and the decisions you face.', 'A short scoping note: scope, sources, success measures and a fixed price.'],
       button: 'Request a pilot',
       subject: 'AUi Terminal pilot'
     },
     form: {
       title: 'Request a briefing or pilot',
       intro: 'Tell us what you need to decide. We reply within two working days.',
+      quick: 'Prefer a quick call first? ',
+      quickLink: 'Book 30 minutes by email',
+      quickSubject: 'AUi Terminal: 30-minute call',
       name: 'Name',
       email: 'Work email',
       org: 'Organisation',
@@ -233,6 +254,7 @@ export const content = {
       legalLabel: 'Legal',
       privacy: 'Privacy policy',
       legal: 'Legal notice',
+      location: 'Toronto, Canada',
       rights: '© 2026 Authentic Intelligence Inc. All rights reserved.'
     },
     back: 'Back to home',
@@ -251,9 +273,9 @@ export const content = {
       legal: {
         title: 'Legal notice',
         sections: [
-          { h: 'Publisher', p: ['This website is published by Authentic Intelligence Inc. Contact: {email}.'] },
+          { h: 'Publisher', p: ['This website is published by Authentic Intelligence Inc., Toronto, Ontario, Canada. Contact: {email}.'] },
           { h: 'Hosting', p: ['This website is hosted by Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, United States (vercel.com).'] },
-          { h: 'Intellectual property', p: ['All content on this website, including text, graphics, the AUi Terminal name and interface images, belongs to Authentic Intelligence Inc. unless stated otherwise, and may not be reproduced without permission.', 'Base map shown in product views: © IGN – Géoplateforme.', 'Satellite imagery: NASA Worldview (Terra/MODIS), courtesy of NASA, public domain.'] },
+          { h: 'Intellectual property', p: ['All content on this website, including text, graphics, the AUi Terminal name and interface images, belongs to Authentic Intelligence Inc. unless stated otherwise, and may not be reproduced without permission.', 'Base map shown in product views: © IGN – Géoplateforme.'] },
           { h: 'Product views', p: ['Product views on this site are illustrative. Scenarios, sites and figures are representative and do not reflect live data.'] }
         ]
       }
@@ -276,6 +298,7 @@ export const content = {
       { href: '#process', label: 'Méthode' },
       { href: '#control', label: 'Confiance' },
       { href: '#sectors', label: 'Secteurs' },
+      { href: '#company', label: 'Société' },
       { href: '#pilot', label: 'Pilote' }
     ],
     hero: {
@@ -315,17 +338,12 @@ export const content = {
         { title: 'Retard', desc: 'Noyées dans le bruit, les alertes précoces n’émergent qu’une fois l’impact survenu. Le temps de consolider la situation, la fenêtre d’action s’est refermée.' }
       ]
     },
-    band: {
-      image: '/gironde-2022.webp',
-      alt: 'Image satellite d’un long panache de fumée des feux de Gironde dérivant vers l’ouest, au-dessus du littoral et de l’Atlantique.',
-      caption: 'Fumée des feux de Gironde franchissant le littoral près d’Arcachon, le 18 juillet 2022. Imagerie : NASA Worldview (Terra/MODIS).'
-    },
     platform: {
-      label: 'En pratique · Lutte contre les feux de forêt',
+      label: 'Déploiement de référence · Feux de forêt',
       before: 'Un seul écran pour ',
       accent: 'ceux qui commandent',
       after: '.',
-      body: 'Le module feux de forêt d’AUi réunit sur une même carte opérationnelle l’incident, les sources qui le confirment, les personnes et les enjeux exposés, ainsi que les moyens aériens et les points d’eau disponibles.',
+      body: 'Éprouvé d’abord là où chaque minute compte. Le module feux de forêt d’AUi réunit sur une même carte opérationnelle l’incident, les sources qui le confirment, les personnes et les enjeux exposés, ainsi que les moyens aériens et les points d’eau disponibles.',
       ops: {
         title: 'AUi Terminal · Situation opérationnelle',
         active: '1 incident actif',
@@ -357,8 +375,8 @@ export const content = {
       },
       caption: 'Vue illustrative d’AUi Terminal sur un fond de carte du bassin d’Arcachon. Scénario, sites et chiffres donnés à titre indicatif. Fond de carte : © IGN.',
       callouts: [
-        { eyebrow: '01 · Temps', title: 'Une confirmation plus rapide', text: 'Le croisement des sources permet d’agir dès le premier signal crédible. Indicateur suivi pendant le pilote : le délai entre ce premier signal et l’alerte confirmée.' },
-        { eyebrow: '02 · Moyens aériens', title: 'Plus de temps de vol utile sur le feu', text: 'Dès qu’un plan d’eau passe sous le seuil d’écopage, AUi le signale et chiffre l’alternative. Un détour de 16 minutes, c’est plus d’un quart d’heure de vol perdu à chaque rotation.' },
+        { eyebrow: '01 · Temps', title: 'Une confirmation plus rapide', text: 'Le croisement des sources permet d’agir dès le premier signal crédible, sans attendre la certitude. Indicateur suivi dans chaque pilote : le délai entre ce premier signal et l’alerte confirmée.' },
+        { eyebrow: '02 · Capacité', title: 'Du temps d’expert retrouvé', text: 'AUi assemble la vue que les analystes construisaient à la main : leurs experts se consacrent à l’analyse, pas à la compilation. En lutte contre les feux de forêt, un plan d’eau sous le seuil est signalé aussitôt, avec le coût de chaque détour.' },
         { eyebrow: '03 · Traçabilité', title: 'Des décisions défendables', text: 'Chaque demande est consignée : qui l’a formulée, sur quelle base, et qui l’a validée.' }
       ]
     },
@@ -378,14 +396,14 @@ export const content = {
       after: '.',
       rest: 'Chaque prédiction est expliquée, chaque lacune signalée, chaque décision tracée. La rapidité ne se fait jamais au détriment de la maîtrise.',
       log: {
-        title: 'Main courante · aide à la décision',
+        title: 'Journal des décisions · aide à la décision',
         intro: 'Chaque demande ou recommandation est validée par l’autorité compétente avant toute exécution.',
-        tag: 'Scénario',
+        tag: 'Exemple',
         entries: [
-          { time: '23:20', kind: 'Recommandation · prépositionnement', what: 'Groupe d’intervention feux de forêt vers le secteur nord', by: 'Consignée par l’outil d’aide à la décision', status: 'En attente de validation · CODIS', state: 'pending', action: 'Valider' },
-          { time: '23:00', kind: 'Recommandation · détour d’écopage', what: 'Plan d’eau intérieur sous le seuil → écopage en mer (+16 min)', by: 'Consignée par l’outil d’aide à la décision · validée par le COS (23:03)', status: 'Validée · COS', state: 'ok' }
+          { time: '08:42', kind: 'Recommandation · mobilisation de réserve', what: 'Charge prévue du poste source 14 % au-dessus du plan → mise en service de capacités de secours', by: 'Consignée par l’outil d’aide à la décision', status: 'En attente de validation · centre de conduite', state: 'pending', action: 'Valider' },
+          { time: '08:15', kind: 'Recommandation · réacheminement', what: 'Temps d’escale en hausse sur 3 routes → transfert de deux départs vers un terminal alternatif', by: 'Consignée par l’outil d’aide à la décision · validée par le responsable logistique d’astreinte (08:21)', status: 'Validée · responsable d’astreinte', state: 'ok' }
         ],
-        caption: 'Main courante issue du scénario de démonstration feux de forêt : qui recommande, qui valide, et quand.'
+        caption: 'Exemples d’entrées du journal des décisions : qui recommande, qui valide, et quand.'
       },
       cards: [
         { title: 'L’humain décide, toujours', desc: 'AUi recommande, il n’agit jamais. La décision revient à l’autorité compétente, selon le principe des quatre yeux : celui qui propose ne valide pas.' },
@@ -409,17 +427,37 @@ export const content = {
       ],
       sectorsLabel: 'Secteurs',
       sectors: [
-        { name: 'Protection civile et feux de forêt', desc: 'Croisez détections satellitaires, météo et signalements de terrain pour confirmer plus tôt les départs de feu et engager au mieux les moyens aériens et terrestres.', path: icons.wildfire },
         { name: 'Énergie et réseaux', desc: 'Voyez venir les tensions sur le réseau, les défaillances d’équipements et les ruptures d’approvisionnement avant qu’elles n’affectent vos clients.', path: icons.energy },
         { name: 'Transports et logistique', desc: 'Repérez les perturbations naissantes sur les axes, dans les ports et chez les fournisseurs, et réorganisez les flux avant l’effet domino.', path: icons.transport },
         { name: 'Télécommunications', desc: 'Identifiez au plus tôt dégradations de service, coupures de câbles et brouillages, et priorisez les rétablissements.', path: icons.telecoms },
         { name: 'Santé', desc: 'Anticipez afflux de patients et tensions d’approvisionnement dans vos établissements, et adaptez les capacités en amont.', path: icons.health },
         { name: 'Médias et industries culturelles', desc: 'Suivez l’émergence des récits et l’évolution de l’opinion, et désamorcez les risques d’image avant qu’ils ne se propagent.', path: icons.media },
         { name: 'Marchés financiers', desc: 'Surveillez les événements et les ruptures de marché qui font bouger les cours, et mesurez l’exposition de vos positions avant que les cours ne l’intègrent.', path: icons.finance },
+        { name: 'Protection civile et feux de forêt', desc: 'Croisez détections satellitaires, météo et signalements de terrain pour confirmer plus tôt les départs de feu et engager au mieux les moyens aériens et terrestres.', path: icons.wildfire },
         { name: 'Marketing', desc: 'Captez au plus tôt les évolutions de la demande, de l’opinion et de la concurrence, et réallouez vos budgets avant que le marché ne réagisse.', path: icons.marketing }
       ],
       swipeHint: 'Faites glisser pour voir les autres secteurs',
       cta: { title: 'Votre secteur', desc: 'Votre secteur n’y figure pas ? Chaque déploiement est conçu sur mesure.', link: 'Parlons de votre besoin', subject: 'AUi Terminal pour mon secteur' }
+    },
+    company: {
+      label: 'Qui sommes-nous',
+      before: 'Plus de onze ans à concevoir des ',
+      accent: 'logiciels critiques',
+      after: ' pour des clients exigeants.',
+      rest: 'Authentic Intelligence est une société technologique basée à Toronto, au Canada. Notre équipe a conçu et livré des logiciels pour de grands studios de cinéma d’Hollywood, l’administration américaine, des campagnes politiques nationales, des banques canadiennes et des fintechs américaines : des organisations pour lesquelles fiabilité, sécurité et confidentialité ne se négocient pas.',
+      stats: [
+        { value: '11+', label: 'années de logiciels livrés en production' },
+        { value: 'Toronto', label: 'siège social, Canada' }
+      ],
+      trackLabel: 'Références',
+      track: ['Studios de cinéma d’Hollywood', 'Administration américaine', 'Campagnes politiques nationales', 'Banques canadiennes', 'Fintechs américaines'],
+      trackNote: 'Les noms de nos clients restent confidentiels. Références communicables sous accord de confidentialité.',
+      deployLabel: 'Déployé selon vos exigences',
+      deploy: [
+        { title: 'Cloud souverain', desc: 'Hébergé sur un cloud souverain dans votre juridiction, sous votre contrôle.' },
+        { title: 'Sur site', desc: 'Installé dans votre propre infrastructure, sans qu’aucune donnée n’en sorte.' },
+        { title: 'Sur mesure', desc: 'Toute configuration hybride ou spécifique adaptée à vos exigences de sécurité, réglementaires et d’achat.' }
+      ]
     },
     pilot: {
       label: 'Pilote',
@@ -440,12 +478,17 @@ export const content = {
         { label: 'Livrable', value: 'Un rapport d’évaluation établi à partir de vos données' },
         { label: 'Conditions', value: 'Prix forfaitaire' }
       ],
+      nextLabel: 'Les prochaines étapes',
+      next: ['Nous vous répondons sous deux jours ouvrés.', 'Un échange de 30 minutes, centré sur votre secteur et les décisions qui vous concernent.', 'Une note de cadrage concise : périmètre, sources, critères de réussite et prix forfaitaire.'],
       button: 'Demander un pilote',
       subject: 'Pilote AUi Terminal'
     },
     form: {
       title: 'Demander une présentation ou un pilote',
       intro: 'Présentez-nous votre besoin : nous vous répondons sous deux jours ouvrés.',
+      quick: 'Vous préférez un premier échange ? ',
+      quickLink: 'Réservez 30 minutes par courriel',
+      quickSubject: 'AUi Terminal : échange de 30 minutes',
       name: 'Nom et prénom',
       email: 'Courriel professionnel',
       org: 'Organisme ou entreprise',
@@ -471,6 +514,7 @@ export const content = {
       legalLabel: 'Informations légales',
       privacy: 'Politique de confidentialité',
       legal: 'Mentions légales',
+      location: 'Toronto (Canada)',
       rights: '© 2026 Authentic Intelligence Inc. Tous droits réservés.'
     },
     back: 'Retour à l’accueil',
@@ -489,9 +533,9 @@ export const content = {
       legal: {
         title: 'Mentions légales',
         sections: [
-          { h: 'Éditeur', p: ['Ce site est édité par Authentic Intelligence Inc. Contact : {email}.'] },
+          { h: 'Éditeur', p: ['Ce site est édité par Authentic Intelligence Inc., Toronto (Ontario), Canada. Contact : {email}.'] },
           { h: 'Hébergement', p: ['Ce site est hébergé par Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis (vercel.com).'] },
-          { h: 'Propriété intellectuelle', p: ['Sauf mention contraire, l’ensemble des contenus de ce site (textes, éléments graphiques, nom AUi Terminal, vues d’interface) est la propriété d’Authentic Intelligence Inc. Toute reproduction sans autorisation préalable est interdite.', 'Données cartographiques figurant dans les vues du produit : © IGN – Géoplateforme.', 'Imagerie satellite : NASA Worldview (Terra/MODIS), avec l’aimable autorisation de la NASA, domaine public.'] },
+          { h: 'Propriété intellectuelle', p: ['Sauf mention contraire, l’ensemble des contenus de ce site (textes, éléments graphiques, nom AUi Terminal, vues d’interface) est la propriété d’Authentic Intelligence Inc. Toute reproduction sans autorisation préalable est interdite.', 'Données cartographiques figurant dans les vues du produit : © IGN – Géoplateforme.'] },
           { h: 'Vues du produit', p: ['Les vues du produit présentées sur ce site sont illustratives. Les scénarios, sites et chiffres sont donnés à titre indicatif et ne correspondent pas à des données réelles.'] }
         ]
       }

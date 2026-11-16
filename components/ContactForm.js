@@ -25,8 +25,6 @@ export default function ContactForm() {
           name: data.name,
           email: data.email,
           organisation: data.organisation,
-          interest: data.interest,
-          sector: data.sector,
           message: data.message,
           language: locale.toUpperCase(),
           _subject: `${f.subject} — ${data.organisation || data.name}`,
@@ -63,23 +61,9 @@ export default function ContactForm() {
         <label htmlFor="cf-email">{f.email}{req}</label>
         <input id="cf-email" name="email" type="email" autoComplete="email" required maxLength={200} />
       </div>
-      <div className="field">
+      <div className="field field-wide">
         <label htmlFor="cf-org">{f.org}{req}</label>
         <input id="cf-org" name="organisation" type="text" autoComplete="organization" required maxLength={200} />
-      </div>
-      <div className="field">
-        <label htmlFor="cf-interest">{f.interest}</label>
-        <select id="cf-interest" name="interest" defaultValue={f.interests[0]}>
-          {f.interests.map((i) => <option key={i} value={i}>{i}</option>)}
-        </select>
-      </div>
-      <div className="field field-wide">
-        <label htmlFor="cf-sector">{f.sector}</label>
-        <select id="cf-sector" name="sector" defaultValue="">
-          <option value="" disabled>{f.sectorPlaceholder}</option>
-          {t.serve.sectors.map((s) => <option key={s.name} value={s.name}>{s.name}</option>)}
-          <option value={f.other}>{f.other}</option>
-        </select>
       </div>
       <div className="field field-wide">
         <label htmlFor="cf-message">{f.message}{req}</label>
