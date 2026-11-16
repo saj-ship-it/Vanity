@@ -151,20 +151,6 @@ function Ticker({ label, items }) {
   );
 }
 
-// Track record and deployment icons, same 24px line style
-const trackIcons = [
-  'M2 8h20v12H2z M2 8l3-5 4 5 M9 8l3-5 4 5 M16 8l3-5 3 5',
-  'M3 21h18 M4 10h16 M12 3l9 5H3z M6 10v8 M10 10v8 M14 10v8 M18 10v8',
-  'M3 11l18-5v12L3 14z M7 12.5V19h4v-5.5',
-  'M3 21h18 M3 10h18 M5 6l7-3 7 3 M6 10v8 M18 10v8 M10 14h4',
-  'M4 4h16v16H4z M8 16l3-4 3 2 3-5'
-];
-const deployIcons = [
-  'M17.5 19H7a5 5 0 01-.6-9.96A6 6 0 0118 8.5a4.5 4.5 0 01-.5 10.5z M12 11v4 M10 13h4',
-  'M3 4h18v6H3z M3 14h18v6H3z M7 7h.01 M7 17h.01',
-  'M12 2l9 5v10l-9 5-9-5V7z M12 12l9-5 M12 12v10 M12 12L3 7'
-];
-
 // Phones: a slim call-to-action bar once the hero is out of view, hidden again at the form
 function MobileCta({ label }) {
   const [show, setShow] = useState(false);
@@ -413,34 +399,17 @@ export default function Home() {
               <span className="statement-rest">{t.company.rest}</span>
             </p>
           </div>
-          <div className="company-grid">
-            <div className="company-stats">
-              {t.company.stats.map((st) => (
-                <div key={st.value} className="stat">
-                  <p className="stat-value">{st.value}</p>
-                  <p className="stat-label">{st.label}</p>
-                </div>
-              ))}
-            </div>
-            <div>
-              <p className="eyebrow" style={{ marginBottom: '16px' }}>{t.company.trackLabel}</p>
-              <ul className="track">
-                {t.company.track.map((c, i) => (
-                  <li key={c}><Icon path={trackIcons[i]} size={18} color="#5b8def" /><span>{c}</span></li>
-                ))}
-              </ul>
-              <p className="track-note">{t.company.trackNote}</p>
-            </div>
-          </div>
-          <p className="eyebrow" style={{ margin: '56px 0 24px' }}>{t.company.deployLabel}</p>
-          <div className="cols-3">
-            {t.company.deploy.map((d, i) => (
-              <div key={d.title} className="col col-icon">
-                <div className="card-icon"><Icon path={deployIcons[i]} size={20} color="#5b8def" /></div>
-                <h3 className="card-title">{d.title}</h3>
-                <p className="body">{d.desc}</p>
+          <div className="facts">
+            {t.company.facts.map((f) => (
+              <div key={f.value} className="fact">
+                <p className="fact-value">{f.value}</p>
+                <p className="fact-label">{f.label}</p>
               </div>
             ))}
+          </div>
+          <div className="domains">
+            <p className="eyebrow">{t.company.domainsLabel}</p>
+            <ul>{t.company.domains.map((d) => <li key={d}>{d}</li>)}</ul>
           </div>
         </section>
 

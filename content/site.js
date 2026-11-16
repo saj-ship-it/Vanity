@@ -183,21 +183,15 @@ export const content = {
       label: 'Who we are',
       before: 'More than eleven years building ',
       accent: 'mission-critical software',
-      after: ' for demanding clients.',
-      rest: 'Authentic Intelligence is a technology company based in Toronto, Canada. Our team has designed and delivered software for major Hollywood film studios, the U.S. government, national political campaigns, Canadian banks and U.S. fintechs: organisations where reliability, security and discretion are non-negotiable.',
-      stats: [
-        { value: '11+', label: 'years delivering production software' },
-        { value: 'Toronto', label: 'headquarters, Canada' }
+      after: '.',
+      rest: 'Authentic Intelligence is a technology company headquartered in Toronto. We design and run software for organisations where reliability, security and discretion are non-negotiable.',
+      facts: [
+        { value: '11+', label: 'years in production' },
+        { value: 'Toronto', label: 'headquarters' },
+        { value: 'On your terms', label: 'sovereign cloud, on premises or hybrid deployment' }
       ],
-      trackLabel: 'Track record',
-      track: ['Hollywood film studios', 'U.S. government', 'National political campaigns', 'Canadian banks', 'U.S. fintechs'],
-      trackNote: 'Client names are withheld. References are available under NDA.',
-      deployLabel: 'Deployed your way',
-      deploy: [
-        { title: 'Sovereign cloud', desc: 'Hosted on a sovereign cloud in your jurisdiction, under your control.' },
-        { title: 'On premises', desc: 'Installed inside your own infrastructure, with no data leaving it.' },
-        { title: 'Tailored', desc: 'Any hybrid or bespoke arrangement that fits your security, regulatory and procurement requirements.' }
-      ]
+      domainsLabel: 'Experience across',
+      domains: ['Film & entertainment', 'Government', 'Political campaigns', 'Banking', 'Financial technology']
     },
     pilot: {
       label: 'Pilot',
@@ -443,21 +437,15 @@ export const content = {
       label: 'Qui sommes-nous',
       before: 'Plus de onze ans à concevoir des ',
       accent: 'logiciels critiques',
-      after: ' pour des clients exigeants.',
-      rest: 'Authentic Intelligence est une société technologique basée à Toronto, au Canada. Notre équipe a conçu et livré des logiciels pour de grands studios de cinéma d’Hollywood, l’administration américaine, des campagnes politiques nationales, des banques canadiennes et des fintechs américaines : des organisations pour lesquelles fiabilité, sécurité et confidentialité ne se négocient pas.',
-      stats: [
-        { value: '11+', label: 'années de logiciels livrés en production' },
-        { value: 'Toronto', label: 'siège social, Canada' }
+      after: '.',
+      rest: 'Authentic Intelligence est une société technologique dont le siège est à Toronto. Nous concevons et exploitons des logiciels pour des organisations où fiabilité, sécurité et confidentialité ne se négocient pas.',
+      facts: [
+        { value: '11+', label: 'années en production' },
+        { value: 'Toronto', label: 'siège social' },
+        { value: 'À vos conditions', label: 'cloud souverain, sur site ou hybride' }
       ],
-      trackLabel: 'Références',
-      track: ['Studios de cinéma d’Hollywood', 'Administration américaine', 'Campagnes politiques nationales', 'Banques canadiennes', 'Fintechs américaines'],
-      trackNote: 'Les noms de nos clients restent confidentiels. Références communicables sous accord de confidentialité.',
-      deployLabel: 'Déployé selon vos exigences',
-      deploy: [
-        { title: 'Cloud souverain', desc: 'Hébergé sur un cloud souverain dans votre juridiction, sous votre contrôle.' },
-        { title: 'Sur site', desc: 'Installé dans votre propre infrastructure, sans qu’aucune donnée n’en sorte.' },
-        { title: 'Sur mesure', desc: 'Toute configuration hybride ou spécifique adaptée à vos exigences de sécurité, réglementaires et d’achat.' }
-      ]
+      domainsLabel: 'Une expérience couvrant',
+      domains: ['Cinéma et divertissement', 'Secteur public', 'Campagnes politiques', 'Banque', 'Technologies financières']
     },
     pilot: {
       label: 'Pilote',
