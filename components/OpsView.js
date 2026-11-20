@@ -32,7 +32,7 @@ function OpsMap({ m, variant }) {
       <rect x="0" y="0" width="800" height="540" fill="#05080f" opacity="0.18" />
       {/* Sector boundary */}
       <path d="M262 352 L470 336 L508 470 L430 534 L268 528 Z" fill="rgba(91,141,239,0.05)" stroke={C.line} strokeDasharray="4 6" strokeOpacity="0.85" />
-      {label(variant === 'wide' ? 392 : 384, variant === 'wide' ? 378 : 352, m.sector, C.hi)}
+      {variant === 'wide' && label(392, 378, m.sector, C.hi)}
       {/* Predicted spread (+2 h), downwind of a north-westerly */}
       <ellipse cx="386" cy="438" rx="78" ry="44" transform="rotate(28 386 438)" fill="rgba(245,158,11,0.08)" stroke={C.amber} strokeDasharray="3 5" />
       {/* Fire perimeter and spread direction */}
@@ -64,6 +64,16 @@ function OpsMap({ m, variant }) {
         const h = L.fs + 13;
         const x = Math.max(vx + 4, Math.min(L.sources[i][0], right - w - (variant === 'wide' ? 44 : 4)));
         const y = L.sources[i][1];
+        if (variant === 'narrow') {
+          const [dx, dy] = L.sources[i];
+          return (
+            <g key={text}>
+              <path className={ok ? 'ops-link' : ''} d={`M${ix} ${iy} L ${dx} ${dy}`} stroke={ok ? C.blue : '#6b7280'} strokeWidth="1.3" strokeDasharray={ok ? '4 6' : '2 5'} fill="none" />
+              <circle cx={dx} cy={dy} r="9" fill="#0b1220" stroke={ok ? C.blue : '#4b5563'} />
+              <circle cx={dx} cy={dy} r="4" fill={ok ? C.green : '#6b7280'} />
+            </g>
+          );
+        }
         return (
           <g key={text}>
             <path className={ok ? 'ops-link' : ''} d={`M${ix} ${iy} L ${x + w / 2} ${y}`} stroke={ok ? C.blue : '#6b7280'} strokeWidth="1.3" strokeDasharray={ok ? '4 6' : '2 5'} fill="none" />
