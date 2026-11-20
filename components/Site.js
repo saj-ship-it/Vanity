@@ -274,7 +274,7 @@ const CSS = `
   /* Satellite band */
 
   /* Scattered sources -> one picture */
-  .diagram-wrap { margin: 0 0 40px; }
+  .diagram-wrap { margin: 0; }
   .diagram { width: 100%; height: auto; display: block; }
   .diagram-narrow { max-width: 420px; margin: 0 auto; }
   .diagram-line { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 1.8s ease-out forwards paused; }
