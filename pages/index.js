@@ -55,7 +55,7 @@ function ProblemDiagram({ from, to }) {
         <text x={fx} y="228" fontSize="13" fill="#e5e7eb" fontFamily="var(--mono)">{to}</text>
       </svg>
       <svg className="diagram diagram-narrow" viewBox="0 0 360 330" aria-hidden="true">
-        <text x="20" y="14" fontSize="13" fill="#8b93a1" fontFamily="var(--mono)">{from}</text>
+        <text x="180" y="14" fontSize="13" fill="#8b93a1" fontFamily="var(--mono)" textAnchor="middle">{from}</text>
         <g fill="none" stroke="#3d5a8f" strokeWidth="1.3" strokeOpacity="0.85">
           {DOTS_NARROW.map(([x, y], i) => {
             const tx = nx + 20 + (i * (nw - 40)) / (DOTS_NARROW.length - 1);
@@ -64,7 +64,7 @@ function ProblemDiagram({ from, to }) {
         </g>
         {DOTS_NARROW.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="3.5" fill="#8b93a1" />)}
         <DiagramFrame fx={nx} fy={ny} fw={nw} fh={nh} k={0.8} />
-        <text x={nx} y={ny + nh + 24} fontSize="13" fill="#e5e7eb" fontFamily="var(--mono)">{to}</text>
+        <text x={nx + nw / 2} y={ny + nh + 24} fontSize="13" fill="#e5e7eb" fontFamily="var(--mono)" textAnchor="middle">{to}</text>
       </svg>
     </div>
   );
