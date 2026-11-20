@@ -228,7 +228,7 @@ const CSS = `
   .lang-switch a { color: var(--muted); text-decoration: none; padding: 6px 7px; border: 1px solid transparent; border-radius: 3px; }
   .lang-switch a:hover, .lang-switch a:focus-visible { color: var(--text); }
   .lang-switch a[aria-current='true'] { color: var(--text); border-color: var(--line-2); }
-  .nav-links { display: flex; justify-content: space-between; gap: 4px; font: 500 11px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+  .nav-links { display: flex; justify-content: space-between; gap: 6px; font: 500 11px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
   .nav-links a { color: #a3a3a3; text-decoration: none; white-space: nowrap; padding: 6px 0; border-bottom: 1px solid transparent; }
   .nav-links a:hover, .nav-links a:focus-visible { color: var(--blue-text); }
   .nav-links a[aria-current='true'] { color: var(--text); border-bottom-color: var(--blue); }
@@ -506,7 +506,6 @@ const CSS = `
   .footer-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
   .footer-list a { font: 400 14px/1.5 var(--sans); color: var(--text-2); text-decoration: none; }
   .footer-list a:hover, .footer-list a:focus-visible { color: var(--text); }
-  .site-footer .lang-switch { margin-left: -7px; }
   .footer-bottom { display: flex; flex-direction: column; gap: 14px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font: 400 13px/1.5 var(--sans); color: var(--muted); }
 
   /* Legal pages */
@@ -517,6 +516,19 @@ const CSS = `
   .legal section a { color: var(--blue-text); }
   .back-link { font: 500 12px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
   .back-link:hover, .back-link:focus-visible { color: var(--text); }
+
+  /* Phones */
+  @media (max-width: 767px) {
+    .ops-rec:nth-child(n+2), .ops-label-gap, .ops-sources { display: none; }
+    .log-by, .log-tag { display: none; }
+    .log-what { margin-bottom: 12px; }
+    #control .col-icon { display: grid; grid-template-columns: 40px 1fr; column-gap: 14px; align-items: center; }
+    #control .col-icon .card-icon { grid-row: 1 / span 2; align-self: start; margin: 0; }
+    #control .col-icon .card-title { margin: 0 0 4px; }
+    #control .col-icon .body { grid-column: 2; margin: 0; }
+    #control .cols-3 { gap: 24px; }
+    .sector { min-height: 140px; }
+  }
 
   /* Small phones (iPhone SE and similar) */
   @media (max-width: 374px) {

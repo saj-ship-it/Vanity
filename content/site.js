@@ -38,7 +38,7 @@ export const content = {
       { href: '#objective', label: 'Problem' },
       { href: '#process', label: 'Process' },
       { href: '#control', label: 'Trust' },
-      { href: '#sectors', label: 'Who we serve' },
+      { href: '#sectors', label: 'Sectors' },
       { href: '#company', label: 'Company' },
       { href: '#pilot', label: 'Pilot' }
     ],
@@ -161,7 +161,7 @@ export const content = {
       before: 'Engineered for ',
       accent: 'your mission',
       after: '.',
-      rest: 'Every deployment is shaped around your operating environment, risk profile, data estate and the way your organisation actually makes decisions. AUi sits above the systems you already run and makes every one of them more valuable.',
+      rest: 'Every deployment is shaped around your environment, and AUi sits above the systems you already run.',
       audiences: [
         { title: 'Enterprise', lead: 'See disruption before it hits the P&L.', desc: 'Anticipate operational, supply-chain and site risk across every region, move ahead of competitors, and back every material decision with evidence that boards, insurers and regulators trust.' },
         { title: 'Government & public sector', lead: 'One picture at every level of command.', desc: 'Give agencies one shared, predictive picture, from day-to-day operations to national emergencies, and act on emerging threats before they escalate.' },
@@ -412,7 +412,7 @@ export const content = {
       before: 'Conçu pour ',
       accent: 'votre mission',
       after: '.',
-      rest: 'Chaque déploiement s’adapte à votre environnement opérationnel, à votre exposition aux risques, à vos données et à vos circuits de décision réels. AUi s’appuie sur les systèmes que vous exploitez déjà et en démultiplie la valeur.',
+      rest: 'Chaque déploiement s’adapte à votre environnement, et AUi s’appuie sur les systèmes que vous exploitez déjà.',
       audiences: [
         { title: 'Entreprises', lead: 'Anticiper les ruptures avant qu’elles ne pèsent sur vos résultats.', desc: 'Prévoyez les risques opérationnels, logistiques et industriels sur l’ensemble de vos sites, gardez l’initiative face à la concurrence et justifiez chaque décision importante auprès de votre conseil d’administration, de vos assureurs et des autorités de contrôle.' },
         { title: 'Secteur public', lead: 'Un temps d’avance à chaque échelon.', desc: 'Donnez aux services une même lecture prédictive de la situation, de la gestion courante aux crises majeures, pour traiter les menaces avant qu’elles ne s’aggravent.' },
