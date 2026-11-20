@@ -274,9 +274,11 @@ const CSS = `
   /* Satellite band */
 
   /* Scattered sources -> one picture */
-  .diagram { width: 100%; height: auto; display: block; margin: 0 0 40px; }
+  .diagram-wrap { margin: 0 0 40px; }
+  .diagram { width: 100%; height: auto; display: block; }
+  .diagram-narrow { max-width: 420px; margin: 0 auto; }
   .diagram-line { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 1.8s ease-out forwards paused; }
-  .diagram.in-view .diagram-line { animation-play-state: running; }
+  .in-view .diagram-line { animation-play-state: running; }
   .sequence { list-style: none; margin: 8px 0 64px; padding: 0; display: grid; grid-template-columns: 1fr; gap: 40px; }
   .seq-art { position: relative; aspect-ratio: 2 / 1; background: #070b13; border: 1px solid #1a2234; border-radius: 10px; padding: 12px; margin-bottom: 20px; }
   .seq-art svg { width: 100%; height: 100%; display: block; }
@@ -498,7 +500,7 @@ const CSS = `
   .mobile-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(5,5,5,0.92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid var(--line-2); transform: translateY(110%); transition: transform 0.25s ease; }
   .mobile-cta.show { transform: none; }
   .mobile-cta .btn { display: flex; box-sizing: border-box; width: 100%; justify-content: center; }
-  .diagram { display: none; }
+  .diagram-wide { display: none; }
   .site-footer { padding-bottom: 96px; }
   .footer-heading { margin-bottom: 14px; }
   .footer-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
@@ -556,7 +558,8 @@ const CSS = `
     .sector-grid > li:last-child { grid-column: auto; }
     .sector { padding: 28px 24px; gap: 20px; }
     .sector-name { font-size: 17px; }
-    .diagram { display: block; }
+    .diagram-wide { display: block; }
+    .diagram-narrow { display: none; }
     .mobile-cta { display: none; }
     .site-footer { padding-bottom: 40px; }
     .facts { grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line-2); }

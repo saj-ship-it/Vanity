@@ -21,28 +21,52 @@ function useInView() {
 
 // Scattered sources converge into one qualified picture
 const DOTS = [[70, 52], [112, 96], [58, 128], [152, 38], [196, 146], [234, 98], [168, 184], [262, 58], [304, 152], [342, 92], [382, 42], [404, 170], [118, 176], [282, 194]];
+// Phones get a top-to-bottom version so the labels stay readable
+const DOTS_NARROW = [[30, 34], [80, 66], [132, 30], [176, 84], [222, 42], [270, 74], [322, 34], [52, 106], [118, 114], [200, 120], [252, 108], [312, 100]];
+function DiagramFrame({ fx, fy, fw, fh, k = 1 }) {
+  return (
+    <>
+      <rect x={fx} y={fy} width={fw} height={fh} rx="10" fill="#0d1526" stroke="#5b8def" strokeWidth="1.5" />
+      <g stroke="#1f2f4f" strokeWidth="1" fill="none">
+        <path d={`M${fx + 20 * k} ${fy + fh * 0.71} C ${fx + fw * 0.32} ${fy + fh * 0.48}, ${fx + fw * 0.54} ${fy + fh * 0.83}, ${fx + fw - 20 * k} ${fy + fh * 0.36}`} />
+        <path d={`M${fx + 20 * k} ${fy + fh * 0.36} H ${fx + fw - 20 * k} M${fx + 20 * k} ${fy + fh * 0.6} H ${fx + fw - 20 * k} M${fx + 20 * k} ${fy + fh * 0.83} H ${fx + fw - 20 * k}`} />
+      </g>
+      <circle cx={fx + fw * 0.61} cy={fy + fh * 0.55} r={14 * k} fill="none" stroke="#ef4444" strokeWidth="1.5" opacity="0.6" />
+      <circle cx={fx + fw * 0.61} cy={fy + fh * 0.55} r={5 * k} fill="#ef4444" />
+    </>
+  );
+}
 function ProblemDiagram({ from, to }) {
   const [ref, seen] = useInView();
   const fx = 860, fw = 280, fy = 26, fh = 168;
+  const nx = 70, nw = 220, ny = 196, nh = 100;
   return (
-    <svg ref={ref} className={`diagram${seen ? ' in-view' : ''}`} viewBox="0 0 1200 236" role="img" aria-label={`${from} → ${to}`}>
-      <g fill="none" stroke="#3d5a8f" strokeWidth="1.4" strokeOpacity="0.85">
-        {DOTS.map(([x, y], i) => {
-          const ty = fy + 24 + (i * (fh - 48)) / (DOTS.length - 1);
-          return <path key={i} className="diagram-line" style={{ animationDelay: `${i * 70}ms` }} d={`M${x} ${y} C ${600} ${y}, ${700} ${ty}, ${fx} ${ty}`} />;
-        })}
-      </g>
-      {DOTS.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="4" fill="#8b93a1" />)}
-      <rect x={fx} y={fy} width={fw} height={fh} rx="10" fill="#0d1526" stroke="#5b8def" strokeWidth="1.5" />
-      <g stroke="#1f2f4f" strokeWidth="1">
-        <path d={`M${fx + 20} ${fy + 120} C ${fx + 90} ${fy + 80}, ${fx + 150} ${fy + 140}, ${fx + 260} ${fy + 60}`} fill="none" />
-        <path d={`M${fx + 20} ${fy + 60} L ${fx + 260} ${fy + 60} M${fx + 20} ${fy + 100} L ${fx + 260} ${fy + 100} M${fx + 20} ${fy + 140} L ${fx + 260} ${fy + 140}`} />
-      </g>
-      <circle cx={fx + 170} cy={fy + 92} r="14" fill="none" stroke="#ef4444" strokeWidth="1.5" opacity="0.6" />
-      <circle cx={fx + 170} cy={fy + 92} r="5" fill="#ef4444" />
-      <text x="56" y="228" fontSize="13" fill="#8b93a1" fontFamily="var(--mono)">{from}</text>
-      <text x={fx} y="228" fontSize="13" fill="#e5e7eb" fontFamily="var(--mono)">{to}</text>
-    </svg>
+    <div ref={ref} className={`diagram-wrap${seen ? ' in-view' : ''}`} role="img" aria-label={`${from} → ${to}`}>
+      <svg className="diagram diagram-wide" viewBox="0 0 1200 236" aria-hidden="true">
+        <g fill="none" stroke="#3d5a8f" strokeWidth="1.4" strokeOpacity="0.85">
+          {DOTS.map(([x, y], i) => {
+            const ty = fy + 24 + (i * (fh - 48)) / (DOTS.length - 1);
+            return <path key={i} className="diagram-line" style={{ animationDelay: `${i * 70}ms` }} d={`M${x} ${y} C ${600} ${y}, ${700} ${ty}, ${fx} ${ty}`} />;
+          })}
+        </g>
+        {DOTS.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="4" fill="#8b93a1" />)}
+        <DiagramFrame fx={fx} fy={fy} fw={fw} fh={fh} />
+        <text x="56" y="228" fontSize="13" fill="#8b93a1" fontFamily="var(--mono)">{from}</text>
+        <text x={fx} y="228" fontSize="13" fill="#e5e7eb" fontFamily="var(--mono)">{to}</text>
+      </svg>
+      <svg className="diagram diagram-narrow" viewBox="0 0 360 330" aria-hidden="true">
+        <text x="20" y="14" fontSize="13" fill="#8b93a1" fontFamily="var(--mono)">{from}</text>
+        <g fill="none" stroke="#3d5a8f" strokeWidth="1.3" strokeOpacity="0.85">
+          {DOTS_NARROW.map(([x, y], i) => {
+            const tx = nx + 20 + (i * (nw - 40)) / (DOTS_NARROW.length - 1);
+            return <path key={i} className="diagram-line" style={{ animationDelay: `${i * 70}ms` }} d={`M${x} ${y} C ${x} 160, ${tx} 150, ${tx} ${ny}`} />;
+          })}
+        </g>
+        {DOTS_NARROW.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="3.5" fill="#8b93a1" />)}
+        <DiagramFrame fx={nx} fy={ny} fw={nw} fh={nh} k={0.8} />
+        <text x={nx} y={ny + nh + 24} fontSize="13" fill="#e5e7eb" fontFamily="var(--mono)">{to}</text>
+      </svg>
+    </div>
   );
 }
 
